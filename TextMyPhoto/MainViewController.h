@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainViewController : UIViewController
+@interface MainViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+
+@property (nonatomic, weak) IBOutlet UIImageView *imageView;
+@property (nonatomic, weak) IBOutlet UIButton *shareButton;
+@property (nonatomic, strong) UIImagePickerController *imgPicker;
+
+-(IBAction)shareButtonPressed:(UIButton *)sender;
+-(IBAction)choosePhotoButtonPressed:(UIButton *)sender;
 
 @end
