@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DE71B39F16002B9A00D2FF7A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE71B39E16002B9A00D2FF7A /* MessageUI.framework */; };
 		DEED1B9315EFA2A6004E33F3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEED1B9215EFA2A6004E33F3 /* UIKit.framework */; };
 		DEED1B9515EFA2A6004E33F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEED1B9415EFA2A6004E33F3 /* Foundation.framework */; };
 		DEED1B9715EFA2A6004E33F3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEED1B9615EFA2A6004E33F3 /* CoreGraphics.framework */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DE71B39E16002B9A00D2FF7A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		DEED1B8E15EFA2A6004E33F3 /* TextMyPhoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextMyPhoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEED1B9215EFA2A6004E33F3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DEED1B9415EFA2A6004E33F3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -40,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE71B39F16002B9A00D2FF7A /* MessageUI.framework in Frameworks */,
 				DEED1B9315EFA2A6004E33F3 /* UIKit.framework in Frameworks */,
 				DEED1B9515EFA2A6004E33F3 /* Foundation.framework in Frameworks */,
 				DEED1B9715EFA2A6004E33F3 /* CoreGraphics.framework in Frameworks */,
@@ -69,6 +72,7 @@
 		DEED1B9115EFA2A6004E33F3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DE71B39E16002B9A00D2FF7A /* MessageUI.framework */,
 				DEED1B9215EFA2A6004E33F3 /* UIKit.framework */,
 				DEED1B9415EFA2A6004E33F3 /* Foundation.framework */,
 				DEED1B9615EFA2A6004E33F3 /* CoreGraphics.framework */,
@@ -293,6 +297,7 @@
 				DEED1BB115EFA2A6004E33F3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
