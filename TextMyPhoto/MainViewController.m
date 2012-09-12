@@ -58,7 +58,7 @@ didFinishSavingWithError:(NSError *)error
     if (!imageData)
     {
         // Something went wrong, the image was probably not set
-        [self showAlertWithTitle:@"Error" andMessage:@"Something went wrong"];
+        [self showAlertWithTitle:@"Error" andMessage:@"Something went wrong when preparing the image for sharing via email."];
         return;
     }
     
@@ -88,6 +88,43 @@ didFinishSavingWithError:(NSError *)error
     else
         NSLog(@"Mail not sent");
     [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)shareImageViaTwitter
+{
+    // Make sure this device is capable of tweeting.
+    if (![TWTweetComposeViewController canSendTweet])
+    {
+        [self showAlertWithTitle:@"Error" andMessage:@"Your device is not properly configured for sending tweets."];
+    }
+    else
+    {
+        TWTweetComposeViewController* tweetComposer = [[TWTweetComposeViewController alloc] init];
+        
+        // Add the image to the tweet
+        [tweetComposer addImage:_imageView.image];
+        
+        // Print 
+        TWTweetComposeViewControllerCompletionHandler
+        completionHandler =
+        ^(TWTweetComposeViewControllerResult result) {
+            switch (result)
+            {
+                case TWTweetComposeViewControllerResultCancelled:
+                    NSLog(@"Twitter Result: Cancel");
+                    break;
+                case TWTweetComposeViewControllerResultDone:
+                    NSLog(@"Twitter Result: Sent");
+                    break;
+                default:
+                    NSLog(@"Twitter Result: Error");
+                    break;
+            }
+            [self dismissModalViewControllerAnimated:YES];
+        };
+        [tweetComposer setCompletionHandler:completionHandler];
+        [self presentModalViewController:tweetComposer animated:YES];
+    }
 }
 
 #pragma mark For selecting the image
@@ -157,6 +194,11 @@ didFinishSavingWithError:(NSError *)error
     }
     else if (actionSheet.tag == ACTIONSHEET_TYPE_CHOOSE_SHARE)
     {
+        if (!_imageView.image)
+        {
+            [self showAlertWithTitle:@"Error" andMessage:@"You are not able to share this image."];
+            return;
+        }
         switch (buttonIndex)
         {
             case 0: // save to camera
@@ -169,7 +211,7 @@ didFinishSavingWithError:(NSError *)error
                 NSLog(@"Facebook");
                 break;
             case 3: // Twitter
-                NSLog(@"Twitter");
+                [self shareImageViaTwitter];
                 break;
             case 4: // cancel - do nothing
                 return;
