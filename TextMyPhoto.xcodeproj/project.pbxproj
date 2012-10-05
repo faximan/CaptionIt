@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		DE71B39F16002B9A00D2FF7A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE71B39E16002B9A00D2FF7A /* MessageUI.framework */; };
 		DE71B3A216003BF700D2FF7A /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE71B3A116003BF700D2FF7A /* Twitter.framework */; };
+		DED06304161EB90F00FD976D /* pinboard.png in Resources */ = {isa = PBXBuildFile; fileRef = DED06303161EB90F00FD976D /* pinboard.png */; };
+		DED06307161EBCB000FD976D /* LaunchMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DED06306161EBCB000FD976D /* LaunchMenuViewController.m */; };
 		DEED1B9315EFA2A6004E33F3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEED1B9215EFA2A6004E33F3 /* UIKit.framework */; };
 		DEED1B9515EFA2A6004E33F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEED1B9415EFA2A6004E33F3 /* Foundation.framework */; };
 		DEED1B9715EFA2A6004E33F3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEED1B9615EFA2A6004E33F3 /* CoreGraphics.framework */; };
@@ -18,11 +20,16 @@
 		DEED1BA615EFA2A6004E33F3 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEED1BA415EFA2A6004E33F3 /* MainStoryboard_iPhone.storyboard */; };
 		DEED1BA915EFA2A6004E33F3 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEED1BA715EFA2A6004E33F3 /* MainStoryboard_iPad.storyboard */; };
 		DEED1BAC15EFA2A6004E33F3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEED1BAB15EFA2A6004E33F3 /* MainViewController.m */; };
+		DEF61DF0161F267100582C33 /* button_greycolor.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF61DEF161F267100582C33 /* button_greycolor.png */; };
+		DEF61DF3161F2F0E00582C33 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF61DF2161F2F0E00582C33 /* EditViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		DE71B39E16002B9A00D2FF7A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		DE71B3A116003BF700D2FF7A /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		DED06303161EB90F00FD976D /* pinboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinboard.png; sourceTree = "<group>"; };
+		DED06305161EBCB000FD976D /* LaunchMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchMenuViewController.h; sourceTree = "<group>"; };
+		DED06306161EBCB000FD976D /* LaunchMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchMenuViewController.m; sourceTree = "<group>"; };
 		DEED1B8E15EFA2A6004E33F3 /* TextMyPhoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextMyPhoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEED1B9215EFA2A6004E33F3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DEED1B9415EFA2A6004E33F3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -37,6 +44,9 @@
 		DEED1BA815EFA2A6004E33F3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		DEED1BAA15EFA2A6004E33F3 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		DEED1BAB15EFA2A6004E33F3 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		DEF61DEF161F267100582C33 /* button_greycolor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_greycolor.png; sourceTree = "<group>"; };
+		DEF61DF1161F2F0E00582C33 /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditViewController.h; path = ../EditViewController.h; sourceTree = "<group>"; };
+		DEF61DF2161F2F0E00582C33 /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditViewController.m; path = ../EditViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,9 +65,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DED062FF161EB85100FD976D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DEF61DEF161F267100582C33 /* button_greycolor.png */,
+				DED06303161EB90F00FD976D /* pinboard.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		DEED1B8315EFA2A6004E33F3 = {
 			isa = PBXGroup;
 			children = (
+				DEED1B9915EFA2A6004E33F3 /* Supporting Files */,
+				DED062FF161EB85100FD976D /* Resources */,
+				DEF61DEA161F22B100582C33 /* Storyboards */,
 				DEED1B9815EFA2A6004E33F3 /* TextMyPhoto */,
 				DEED1B9115EFA2A6004E33F3 /* Frameworks */,
 				DEED1B8F15EFA2A6004E33F3 /* Products */,
@@ -87,13 +109,10 @@
 		DEED1B9815EFA2A6004E33F3 /* TextMyPhoto */ = {
 			isa = PBXGroup;
 			children = (
-				DEED1BA115EFA2A6004E33F3 /* AppDelegate.h */,
-				DEED1BA215EFA2A6004E33F3 /* AppDelegate.m */,
-				DEED1BA415EFA2A6004E33F3 /* MainStoryboard_iPhone.storyboard */,
-				DEED1BA715EFA2A6004E33F3 /* MainStoryboard_iPad.storyboard */,
-				DEED1BAA15EFA2A6004E33F3 /* MainViewController.h */,
-				DEED1BAB15EFA2A6004E33F3 /* MainViewController.m */,
-				DEED1B9915EFA2A6004E33F3 /* Supporting Files */,
+				DED06305161EBCB000FD976D /* LaunchMenuViewController.h */,
+				DED06306161EBCB000FD976D /* LaunchMenuViewController.m */,
+				DEF61DF1161F2F0E00582C33 /* EditViewController.h */,
+				DEF61DF2161F2F0E00582C33 /* EditViewController.m */,
 			);
 			path = TextMyPhoto;
 			sourceTree = "<group>";
@@ -101,12 +120,26 @@
 		DEED1B9915EFA2A6004E33F3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DEED1BA115EFA2A6004E33F3 /* AppDelegate.h */,
+				DEED1BA215EFA2A6004E33F3 /* AppDelegate.m */,
+				DEED1BAA15EFA2A6004E33F3 /* MainViewController.h */,
+				DEED1BAB15EFA2A6004E33F3 /* MainViewController.m */,
 				DEED1B9A15EFA2A6004E33F3 /* TextMyPhoto-Info.plist */,
 				DEED1B9B15EFA2A6004E33F3 /* InfoPlist.strings */,
 				DEED1B9E15EFA2A6004E33F3 /* main.m */,
 				DEED1BA015EFA2A6004E33F3 /* TextMyPhoto-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			path = TextMyPhoto;
+			sourceTree = "<group>";
+		};
+		DEF61DEA161F22B100582C33 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				DEED1BA415EFA2A6004E33F3 /* MainStoryboard_iPhone.storyboard */,
+				DEED1BA715EFA2A6004E33F3 /* MainStoryboard_iPad.storyboard */,
+			);
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,6 +196,8 @@
 				DEED1B9D15EFA2A6004E33F3 /* InfoPlist.strings in Resources */,
 				DEED1BA615EFA2A6004E33F3 /* MainStoryboard_iPhone.storyboard in Resources */,
 				DEED1BA915EFA2A6004E33F3 /* MainStoryboard_iPad.storyboard in Resources */,
+				DED06304161EB90F00FD976D /* pinboard.png in Resources */,
+				DEF61DF0161F267100582C33 /* button_greycolor.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,6 +211,8 @@
 				DEED1B9F15EFA2A6004E33F3 /* main.m in Sources */,
 				DEED1BA315EFA2A6004E33F3 /* AppDelegate.m in Sources */,
 				DEED1BAC15EFA2A6004E33F3 /* MainViewController.m in Sources */,
+				DED06307161EBCB000FD976D /* LaunchMenuViewController.m in Sources */,
+				DEF61DF3161F2F0E00582C33 /* EditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,6 +233,7 @@
 				DEED1BA515EFA2A6004E33F3 /* en */,
 			);
 			name = MainStoryboard_iPhone.storyboard;
+			path = TextMyPhoto;
 			sourceTree = "<group>";
 		};
 		DEED1BA715EFA2A6004E33F3 /* MainStoryboard_iPad.storyboard */ = {
@@ -204,6 +242,7 @@
 				DEED1BA815EFA2A6004E33F3 /* en */,
 			);
 			name = MainStoryboard_iPad.storyboard;
+			path = TextMyPhoto;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -267,6 +306,7 @@
 				GCC_PREFIX_HEADER = "TextMyPhoto/TextMyPhoto-Prefix.pch";
 				INFOPLIST_FILE = "TextMyPhoto/TextMyPhoto-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -278,6 +318,7 @@
 				GCC_PREFIX_HEADER = "TextMyPhoto/TextMyPhoto-Prefix.pch";
 				INFOPLIST_FILE = "TextMyPhoto/TextMyPhoto-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

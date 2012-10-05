@@ -12,7 +12,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    // Set custom color of toolbars
+    [[UIToolbar appearance] setTintColor:[UIColor grayColor]];
     return YES;
 }
 							
