@@ -14,6 +14,7 @@
 {
     // Set custom color of toolbars
     [[UIToolbar appearance] setTintColor:[UIColor grayColor]];
+    [[UINavigationBar appearance] setTintColor:[UIColor grayColor]];
     return YES;
 }
 							

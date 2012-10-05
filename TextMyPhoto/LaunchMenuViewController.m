@@ -106,9 +106,6 @@
     [_boarderView.layer setBorderWidth:BOARDER_WIDTH];
     [_boarderView setBackgroundColor:[UIColor clearColor]];
     
-    // Set color of navigation bar
-    [self.navigationController.navigationBar setTintColor:[UIColor grayColor]];
-    
     // Set the imageSource to keep track of if we should
     // try to get pictures from the camera as well.
     cameraAvailable = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
