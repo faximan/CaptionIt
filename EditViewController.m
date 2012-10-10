@@ -190,6 +190,16 @@ didFinishSavingWithError:(NSError *)error
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithObject:buttonItem];
 }
 
+-(BOOL)shouldAutorotate
+{
+    return YES;
+}
+
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskAllButUpsideDown;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
