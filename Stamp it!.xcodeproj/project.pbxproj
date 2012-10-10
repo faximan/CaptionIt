@@ -37,14 +37,14 @@
 		DED06303161EB90F00FD976D /* pinboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinboard.png; sourceTree = "<group>"; };
 		DED06305161EBCB000FD976D /* LaunchMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchMenuViewController.h; sourceTree = "<group>"; };
 		DED06306161EBCB000FD976D /* LaunchMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchMenuViewController.m; sourceTree = "<group>"; };
-		DEED1B8E15EFA2A6004E33F3 /* TextMyPhoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextMyPhoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEED1B8E15EFA2A6004E33F3 /* Stamp it!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stamp it!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEED1B9215EFA2A6004E33F3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DEED1B9415EFA2A6004E33F3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DEED1B9615EFA2A6004E33F3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		DEED1B9A15EFA2A6004E33F3 /* TextMyPhoto-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TextMyPhoto-Info.plist"; sourceTree = "<group>"; };
+		DEED1B9A15EFA2A6004E33F3 /* Stamp it!-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Stamp it!-Info.plist"; sourceTree = "<group>"; };
 		DEED1B9C15EFA2A6004E33F3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DEED1B9E15EFA2A6004E33F3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		DEED1BA015EFA2A6004E33F3 /* TextMyPhoto-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TextMyPhoto-Prefix.pch"; sourceTree = "<group>"; };
+		DEED1BA015EFA2A6004E33F3 /* Stamp it!-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Stamp it!-Prefix.pch"; sourceTree = "<group>"; };
 		DEED1BA115EFA2A6004E33F3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DEED1BA215EFA2A6004E33F3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DEED1BA515EFA2A6004E33F3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
@@ -98,7 +98,7 @@
 		DEED1B8F15EFA2A6004E33F3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DEED1B8E15EFA2A6004E33F3 /* TextMyPhoto.app */,
+				DEED1B8E15EFA2A6004E33F3 /* Stamp it!.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -136,10 +136,10 @@
 			children = (
 				DEED1BA115EFA2A6004E33F3 /* AppDelegate.h */,
 				DEED1BA215EFA2A6004E33F3 /* AppDelegate.m */,
-				DEED1B9A15EFA2A6004E33F3 /* TextMyPhoto-Info.plist */,
+				DEED1B9A15EFA2A6004E33F3 /* Stamp it!-Info.plist */,
 				DEED1B9B15EFA2A6004E33F3 /* InfoPlist.strings */,
 				DEED1B9E15EFA2A6004E33F3 /* main.m */,
-				DEED1BA015EFA2A6004E33F3 /* TextMyPhoto-Prefix.pch */,
+				DEED1BA015EFA2A6004E33F3 /* Stamp it!-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			path = TextMyPhoto;
@@ -157,9 +157,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DEED1B8D15EFA2A6004E33F3 /* TextMyPhoto */ = {
+		DEED1B8D15EFA2A6004E33F3 /* Stamp it! */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DEED1BAF15EFA2A6004E33F3 /* Build configuration list for PBXNativeTarget "TextMyPhoto" */;
+			buildConfigurationList = DEED1BAF15EFA2A6004E33F3 /* Build configuration list for PBXNativeTarget "Stamp it!" */;
 			buildPhases = (
 				DEED1B8A15EFA2A6004E33F3 /* Sources */,
 				DEED1B8B15EFA2A6004E33F3 /* Frameworks */,
@@ -169,9 +169,9 @@
 			);
 			dependencies = (
 			);
-			name = TextMyPhoto;
+			name = "Stamp it!";
 			productName = TextMyPhoto;
-			productReference = DEED1B8E15EFA2A6004E33F3 /* TextMyPhoto.app */;
+			productReference = DEED1B8E15EFA2A6004E33F3 /* Stamp it!.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -183,7 +183,7 @@
 				LastUpgradeCheck = 0440;
 				ORGANIZATIONNAME = "Alexander Faxå";
 			};
-			buildConfigurationList = DEED1B8815EFA2A6004E33F3 /* Build configuration list for PBXProject "TextMyPhoto" */;
+			buildConfigurationList = DEED1B8815EFA2A6004E33F3 /* Build configuration list for PBXProject "Stamp it!" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -195,7 +195,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DEED1B8D15EFA2A6004E33F3 /* TextMyPhoto */,
+				DEED1B8D15EFA2A6004E33F3 /* Stamp it! */,
 			);
 		};
 /* End PBXProject section */
@@ -317,10 +317,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TextMyPhoto/TextMyPhoto-Prefix.pch";
-				INFOPLIST_FILE = "TextMyPhoto/TextMyPhoto-Info.plist";
+				GCC_PREFIX_HEADER = "TextMyPhoto/Stamp it!-Prefix.pch";
+				INFOPLIST_FILE = "TextMyPhoto/Stamp it!-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Stamp it!";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -330,10 +330,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TextMyPhoto/TextMyPhoto-Prefix.pch";
-				INFOPLIST_FILE = "TextMyPhoto/TextMyPhoto-Info.plist";
+				GCC_PREFIX_HEADER = "TextMyPhoto/Stamp it!-Prefix.pch";
+				INFOPLIST_FILE = "TextMyPhoto/Stamp it!-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Stamp it!";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -342,7 +342,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DEED1B8815EFA2A6004E33F3 /* Build configuration list for PBXProject "TextMyPhoto" */ = {
+		DEED1B8815EFA2A6004E33F3 /* Build configuration list for PBXProject "Stamp it!" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DEED1BAD15EFA2A6004E33F3 /* Debug */,
@@ -351,7 +351,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DEED1BAF15EFA2A6004E33F3 /* Build configuration list for PBXNativeTarget "TextMyPhoto" */ = {
+		DEED1BAF15EFA2A6004E33F3 /* Build configuration list for PBXNativeTarget "Stamp it!" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DEED1BB015EFA2A6004E33F3 /* Debug */,

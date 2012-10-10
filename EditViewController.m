@@ -140,6 +140,7 @@
 -(BOOL) textFieldShouldReturn:(UITextField *)textField
 {    
     [textField resignFirstResponder];
+    _stampedImage.stampedText = _textLabel.text;
     return YES;
 }
 
@@ -215,6 +216,14 @@
         return;
     }
     _imageView.image = _stampedImage.originalImage;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    // TODO:
+    // Save stampedImage to permanent memory!
 }
 
 -(BOOL)shouldAutorotate
