@@ -43,7 +43,7 @@
     else // no camera
     {
         _imgPicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        [self presentModalViewController:_imgPicker animated:YES];
+        [self presentViewController:_imgPicker animated:YES completion:nil];
     }
 }
 
@@ -57,7 +57,7 @@
         [self performSegueWithIdentifier:@"edit" sender:nil];
     
     // Get rid of the picker controller.
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark View Stuff
@@ -78,7 +78,7 @@
             _imgPicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
             break;
     }
-    [self presentModalViewController:_imgPicker animated:YES];
+    [self presentViewController:_imgPicker animated:YES completion:nil];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -133,15 +133,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-    } else {
-        return YES;
-    }
 }
 
 @end

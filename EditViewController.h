@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MessageUI/MFMailComposeViewController.h>
-#import <Twitter/TWTweetComposeViewController.h>
+#import "Social/Social.h"
 
 @interface EditViewController : UIViewController < UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 

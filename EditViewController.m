@@ -23,7 +23,7 @@ didFinishSavingWithError:(NSError *)error
     if (error != NULL)
         [self showAlertWithTitle:@"Unknown error" andMessage:@"The image was not saved, sorry."];
     else // no errors
-        [self showAlertWithTitle:@"Success" andMessage:@"The image was successfully saved to your photos album."];
+        [self showAlertWithTitle:@"Success" andMessage:@"The image was successfully saved to your photo album."];
 }
 
 /** Share the image to the world. Possible ways of sharing:
@@ -61,7 +61,7 @@ didFinishSavingWithError:(NSError *)error
         [controller setSubject:@"My stamped photo"];
         [controller addAttachmentData:imageData mimeType:@"image/png" fileName:@"myphoto"];
         if (controller)
-            [self presentModalViewController:controller animated:YES];
+            [self presentViewController:controller animated:YES completion:nil];
     }
     else
         [self showAlertWithTitle:@"Error" andMessage:@"Your device is not configured for sending emails!"];
@@ -76,46 +76,65 @@ didFinishSavingWithError:(NSError *)error
         NSLog(@"Mail sent");
     else
         NSLog(@"Mail not sent");
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)shareImageViaTwitter
 {
-    // Make sure this device is capable of tweeting.
-    if (![TWTweetComposeViewController canSendTweet])
-    {
-        [self showAlertWithTitle:@"Error" andMessage:@"Your device is not properly configured for sending tweets."];
-    }
-    else
-    {
-        TWTweetComposeViewController* tweetComposer = [[TWTweetComposeViewController alloc] init];
+    SLComposeViewController* tweetComposer = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
         
-        // Add the image to the tweet
-        [tweetComposer addImage:_imageView.image];
+    // Add the image to the tweet
+    [tweetComposer addImage:_imageView.image];
         
-        // Print out diagnostic information when the user
-        // completes the action and dismiss the ModalViewController
-        TWTweetComposeViewControllerCompletionHandler
-        completionHandler =
-        ^(TWTweetComposeViewControllerResult result)
+    // Print out diagnostic information when the user
+    // completes the action and dismiss the view controller.
+    [tweetComposer setCompletionHandler:
+    ^(SLComposeViewControllerResult result)
+    {
+        switch (result)
         {
-            switch (result)
-            {
-                case TWTweetComposeViewControllerResultCancelled:
-                    NSLog(@"Twitter Result: Cancel");
-                    break;
-                case TWTweetComposeViewControllerResultDone:
-                    NSLog(@"Twitter Result: Sent");
-                    break;
-                default:
-                    NSLog(@"Twitter Result: Error");
-                    break;
-            }
-            [self dismissModalViewControllerAnimated:YES];
-        };
-        [tweetComposer setCompletionHandler:completionHandler];
-        [self presentModalViewController:tweetComposer animated:YES];
-    }
+            case SLComposeViewControllerResultCancelled:
+                NSLog(@"Twitter Result: Cancel");
+                break;
+            case SLComposeViewControllerResultDone:
+                NSLog(@"Twitter Result: Sent");
+                break;
+            default:
+                NSLog(@"Twitter Result: Error");
+                break;
+        }
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
+    [self presentViewController:tweetComposer animated:YES completion:nil];
+}
+
+- (void)shareImageViaFacebook
+{
+    SLComposeViewController *fb = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+    
+    // Add the image
+    [fb addImage:_imageView.image];
+    
+    // Print out diagnostic information when the user
+    //completes the action and dismiss the view controller.
+    [fb setCompletionHandler:
+     ^(SLComposeViewControllerResult result)
+     {
+         switch (result)
+         {
+             case SLComposeViewControllerResultCancelled:
+                 NSLog(@"Facebook Result: Cancel");
+                 break;
+             case SLComposeViewControllerResultDone:
+                 NSLog(@"Facebook Result: Sent");
+                 break;
+             default:
+                 NSLog(@"Facebook Result: Error");
+                 break;
+         }
+         [self dismissViewControllerAnimated:YES completion:nil];
+     }];
+    [self presentViewController:fb animated:YES completion:nil];
 }
 
 #pragma mark View Stuff
@@ -136,7 +155,7 @@ didFinishSavingWithError:(NSError *)error
                 [self emailImage];
                 break;
             case 2: // Facebook
-                NSLog(@"Facebook");
+                [self shareImageViaFacebook];
                 break;
             case 3: // Twitter
                 [self shareImageViaTwitter];
@@ -166,7 +185,8 @@ didFinishSavingWithError:(NSError *)error
     self.title = @"Edit";
     
     // Add share button to navigation bar
-    UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(shareButtonPressed)];
+    UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc]
+                                   initWithTitle:@"Share" style:UIBarButtonItemStyleDone target:self action:@selector(shareButtonPressed)];
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithObject:buttonItem];
 }
 

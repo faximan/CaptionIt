@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DE6B38FA16255178009B41DC /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE6B38F916255178009B41DC /* Social.framework */; };
 		DE71B39F16002B9A00D2FF7A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE71B39E16002B9A00D2FF7A /* MessageUI.framework */; };
-		DE71B3A216003BF700D2FF7A /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE71B3A116003BF700D2FF7A /* Twitter.framework */; };
 		DED06304161EB90F00FD976D /* pinboard.png in Resources */ = {isa = PBXBuildFile; fileRef = DED06303161EB90F00FD976D /* pinboard.png */; };
 		DED06307161EBCB000FD976D /* LaunchMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DED06306161EBCB000FD976D /* LaunchMenuViewController.m */; };
 		DEED1B9315EFA2A6004E33F3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEED1B9215EFA2A6004E33F3 /* UIKit.framework */; };
@@ -22,11 +22,12 @@
 		DEED1BAC15EFA2A6004E33F3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEED1BAB15EFA2A6004E33F3 /* MainViewController.m */; };
 		DEF61DF0161F267100582C33 /* button_greycolor.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF61DEF161F267100582C33 /* button_greycolor.png */; };
 		DEF61DF3161F2F0E00582C33 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF61DF2161F2F0E00582C33 /* EditViewController.m */; };
+		DEF61DF6161F415200582C33 /* MyNavigationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF61DF5161F415200582C33 /* MyNavigationControllerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DE6B38F916255178009B41DC /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		DE71B39E16002B9A00D2FF7A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		DE71B3A116003BF700D2FF7A /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		DED06303161EB90F00FD976D /* pinboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinboard.png; sourceTree = "<group>"; };
 		DED06305161EBCB000FD976D /* LaunchMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchMenuViewController.h; sourceTree = "<group>"; };
 		DED06306161EBCB000FD976D /* LaunchMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchMenuViewController.m; sourceTree = "<group>"; };
@@ -47,6 +48,8 @@
 		DEF61DEF161F267100582C33 /* button_greycolor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_greycolor.png; sourceTree = "<group>"; };
 		DEF61DF1161F2F0E00582C33 /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditViewController.h; path = ../EditViewController.h; sourceTree = "<group>"; };
 		DEF61DF2161F2F0E00582C33 /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditViewController.m; path = ../EditViewController.m; sourceTree = "<group>"; };
+		DEF61DF4161F415200582C33 /* MyNavigationControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyNavigationControllerViewController.h; sourceTree = "<group>"; };
+		DEF61DF5161F415200582C33 /* MyNavigationControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyNavigationControllerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE71B3A216003BF700D2FF7A /* Twitter.framework in Frameworks */,
+				DE6B38FA16255178009B41DC /* Social.framework in Frameworks */,
 				DE71B39F16002B9A00D2FF7A /* MessageUI.framework in Frameworks */,
 				DEED1B9315EFA2A6004E33F3 /* UIKit.framework in Frameworks */,
 				DEED1B9515EFA2A6004E33F3 /* Foundation.framework in Frameworks */,
@@ -97,7 +100,7 @@
 		DEED1B9115EFA2A6004E33F3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DE71B3A116003BF700D2FF7A /* Twitter.framework */,
+				DE6B38F916255178009B41DC /* Social.framework */,
 				DE71B39E16002B9A00D2FF7A /* MessageUI.framework */,
 				DEED1B9215EFA2A6004E33F3 /* UIKit.framework */,
 				DEED1B9415EFA2A6004E33F3 /* Foundation.framework */,
@@ -113,6 +116,8 @@
 				DED06306161EBCB000FD976D /* LaunchMenuViewController.m */,
 				DEF61DF1161F2F0E00582C33 /* EditViewController.h */,
 				DEF61DF2161F2F0E00582C33 /* EditViewController.m */,
+				DEF61DF4161F415200582C33 /* MyNavigationControllerViewController.h */,
+				DEF61DF5161F415200582C33 /* MyNavigationControllerViewController.m */,
 			);
 			path = TextMyPhoto;
 			sourceTree = "<group>";
@@ -213,6 +218,7 @@
 				DEED1BAC15EFA2A6004E33F3 /* MainViewController.m in Sources */,
 				DED06307161EBCB000FD976D /* LaunchMenuViewController.m in Sources */,
 				DEF61DF3161F2F0E00582C33 /* EditViewController.m in Sources */,
+				DEF61DF6161F415200582C33 /* MyNavigationControllerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,6 +311,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TextMyPhoto/TextMyPhoto-Prefix.pch";
 				INFOPLIST_FILE = "TextMyPhoto/TextMyPhoto-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -317,6 +324,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TextMyPhoto/TextMyPhoto-Prefix.pch";
 				INFOPLIST_FILE = "TextMyPhoto/TextMyPhoto-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
