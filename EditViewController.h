@@ -8,16 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import <MessageUI/MFMailComposeViewController.h>
-#import "Social/Social.h"
+#import <QuartzCore/QuartzCore.h>
+#import <Social/Social.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 
-@interface EditViewController : UIViewController < UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
+#import "StampedImage.h"
+
+@interface EditViewController : UIViewController < UIActionSheetDelegate, MFMailComposeViewControllerDelegate, UITextFieldDelegate>
 
 @property (nonatomic, weak) IBOutlet UIImageView *imageView;
+@property (nonatomic, weak) IBOutlet UITextField *textLabel;
 
-// Share the current image (in imageView) to Twitter
-- (void)shareImageViaTwitter;
+@property (nonatomic, strong) StampedImage *stampedImage;
 
-// Email the current image (in imageView)
-- (void)emailImage;
+- (void)shareImage:(UIImage *)imageToShare viaSocialService:(NSString *)serviceType;
+- (void)emailImage:(UIImage *)imageToShare;
 
 @end

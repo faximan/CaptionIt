@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		DE6B38FA16255178009B41DC /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE6B38F916255178009B41DC /* Social.framework */; };
 		DE71B39F16002B9A00D2FF7A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE71B39E16002B9A00D2FF7A /* MessageUI.framework */; };
+		DEA4B8B416257BFD00E711AF /* stamp.png in Resources */ = {isa = PBXBuildFile; fileRef = DEA4B8B316257BFD00E711AF /* stamp.png */; };
+		DEA4B8B61625809B00E711AF /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA4B8B51625809B00E711AF /* AssetsLibrary.framework */; };
+		DEA4B8B91625823100E711AF /* StampedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA4B8B81625823100E711AF /* StampedImage.m */; };
 		DED06304161EB90F00FD976D /* pinboard.png in Resources */ = {isa = PBXBuildFile; fileRef = DED06303161EB90F00FD976D /* pinboard.png */; };
 		DED06307161EBCB000FD976D /* LaunchMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DED06306161EBCB000FD976D /* LaunchMenuViewController.m */; };
 		DEED1B9315EFA2A6004E33F3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEED1B9215EFA2A6004E33F3 /* UIKit.framework */; };
@@ -19,7 +22,6 @@
 		DEED1BA315EFA2A6004E33F3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DEED1BA215EFA2A6004E33F3 /* AppDelegate.m */; };
 		DEED1BA615EFA2A6004E33F3 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEED1BA415EFA2A6004E33F3 /* MainStoryboard_iPhone.storyboard */; };
 		DEED1BA915EFA2A6004E33F3 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEED1BA715EFA2A6004E33F3 /* MainStoryboard_iPad.storyboard */; };
-		DEED1BAC15EFA2A6004E33F3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEED1BAB15EFA2A6004E33F3 /* MainViewController.m */; };
 		DEF61DF0161F267100582C33 /* button_greycolor.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF61DEF161F267100582C33 /* button_greycolor.png */; };
 		DEF61DF3161F2F0E00582C33 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF61DF2161F2F0E00582C33 /* EditViewController.m */; };
 		DEF61DF6161F415200582C33 /* MyNavigationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF61DF5161F415200582C33 /* MyNavigationControllerViewController.m */; };
@@ -28,6 +30,10 @@
 /* Begin PBXFileReference section */
 		DE6B38F916255178009B41DC /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		DE71B39E16002B9A00D2FF7A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		DEA4B8B316257BFD00E711AF /* stamp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stamp.png; sourceTree = "<group>"; };
+		DEA4B8B51625809B00E711AF /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		DEA4B8B71625823100E711AF /* StampedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StampedImage.h; path = ../StampedImage.h; sourceTree = "<group>"; };
+		DEA4B8B81625823100E711AF /* StampedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StampedImage.m; path = ../StampedImage.m; sourceTree = "<group>"; };
 		DED06303161EB90F00FD976D /* pinboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinboard.png; sourceTree = "<group>"; };
 		DED06305161EBCB000FD976D /* LaunchMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchMenuViewController.h; sourceTree = "<group>"; };
 		DED06306161EBCB000FD976D /* LaunchMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchMenuViewController.m; sourceTree = "<group>"; };
@@ -43,8 +49,6 @@
 		DEED1BA215EFA2A6004E33F3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DEED1BA515EFA2A6004E33F3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		DEED1BA815EFA2A6004E33F3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		DEED1BAA15EFA2A6004E33F3 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		DEED1BAB15EFA2A6004E33F3 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		DEF61DEF161F267100582C33 /* button_greycolor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_greycolor.png; sourceTree = "<group>"; };
 		DEF61DF1161F2F0E00582C33 /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditViewController.h; path = ../EditViewController.h; sourceTree = "<group>"; };
 		DEF61DF2161F2F0E00582C33 /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditViewController.m; path = ../EditViewController.m; sourceTree = "<group>"; };
@@ -57,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEA4B8B61625809B00E711AF /* AssetsLibrary.framework in Frameworks */,
 				DE6B38FA16255178009B41DC /* Social.framework in Frameworks */,
 				DE71B39F16002B9A00D2FF7A /* MessageUI.framework in Frameworks */,
 				DEED1B9315EFA2A6004E33F3 /* UIKit.framework in Frameworks */,
@@ -71,6 +76,7 @@
 		DED062FF161EB85100FD976D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DEA4B8B316257BFD00E711AF /* stamp.png */,
 				DEF61DEF161F267100582C33 /* button_greycolor.png */,
 				DED06303161EB90F00FD976D /* pinboard.png */,
 			);
@@ -100,6 +106,7 @@
 		DEED1B9115EFA2A6004E33F3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DEA4B8B51625809B00E711AF /* AssetsLibrary.framework */,
 				DE6B38F916255178009B41DC /* Social.framework */,
 				DE71B39E16002B9A00D2FF7A /* MessageUI.framework */,
 				DEED1B9215EFA2A6004E33F3 /* UIKit.framework */,
@@ -112,6 +119,8 @@
 		DEED1B9815EFA2A6004E33F3 /* TextMyPhoto */ = {
 			isa = PBXGroup;
 			children = (
+				DEA4B8B71625823100E711AF /* StampedImage.h */,
+				DEA4B8B81625823100E711AF /* StampedImage.m */,
 				DED06305161EBCB000FD976D /* LaunchMenuViewController.h */,
 				DED06306161EBCB000FD976D /* LaunchMenuViewController.m */,
 				DEF61DF1161F2F0E00582C33 /* EditViewController.h */,
@@ -127,8 +136,6 @@
 			children = (
 				DEED1BA115EFA2A6004E33F3 /* AppDelegate.h */,
 				DEED1BA215EFA2A6004E33F3 /* AppDelegate.m */,
-				DEED1BAA15EFA2A6004E33F3 /* MainViewController.h */,
-				DEED1BAB15EFA2A6004E33F3 /* MainViewController.m */,
 				DEED1B9A15EFA2A6004E33F3 /* TextMyPhoto-Info.plist */,
 				DEED1B9B15EFA2A6004E33F3 /* InfoPlist.strings */,
 				DEED1B9E15EFA2A6004E33F3 /* main.m */,
@@ -203,6 +210,7 @@
 				DEED1BA915EFA2A6004E33F3 /* MainStoryboard_iPad.storyboard in Resources */,
 				DED06304161EB90F00FD976D /* pinboard.png in Resources */,
 				DEF61DF0161F267100582C33 /* button_greycolor.png in Resources */,
+				DEA4B8B416257BFD00E711AF /* stamp.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,10 +223,10 @@
 			files = (
 				DEED1B9F15EFA2A6004E33F3 /* main.m in Sources */,
 				DEED1BA315EFA2A6004E33F3 /* AppDelegate.m in Sources */,
-				DEED1BAC15EFA2A6004E33F3 /* MainViewController.m in Sources */,
 				DED06307161EBCB000FD976D /* LaunchMenuViewController.m in Sources */,
 				DEF61DF3161F2F0E00582C33 /* EditViewController.m in Sources */,
 				DEF61DF6161F415200582C33 /* MyNavigationControllerViewController.m in Sources */,
+				DEA4B8B91625823100E711AF /* StampedImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

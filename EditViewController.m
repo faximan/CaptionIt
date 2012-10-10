@@ -11,14 +11,33 @@
 @implementation EditViewController
 
 @synthesize imageView = _imageView;
+@synthesize textLabel = _textLabel;
 
+@synthesize stampedImage = _stampedImage;
 
 #pragma mark For sharing the image
 
+// Takes the current addons to the image and renders it to a bitmap
+- (UIImage *)renderCurrentImage
+{
+    // Get the context
+    UIGraphicsBeginImageContext(_imageView.bounds.size);
+    
+    // Render the image
+    [_imageView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    
+    // Render the text on top of the image
+    CGContextTranslateCTM(UIGraphicsGetCurrentContext(), _textLabel.frame.origin.x, _textLabel.frame.origin.y);
+    [_textLabel.layer renderInContext:UIGraphicsGetCurrentContext()];
+    
+    // Convert to UIImage
+    UIImage *bitmap = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return bitmap;
+}
+
 // Called when the user finishes saving an image to the photos album
-- (void)image:(UIImage *)image
-didFinishSavingWithError:(NSError *)error
-  contextInfo:(NSDictionary *)contextInfo
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(NSDictionary *)contextInfo
 {
     if (error != NULL)
         [self showAlertWithTitle:@"Unknown error" andMessage:@"The image was not saved, sorry."];
@@ -33,17 +52,17 @@ didFinishSavingWithError:(NSError *)error
  * Twitter
  * other? */
 -(void)shareButtonPressed
-{    
+{
     UIActionSheet *popupQuery = [[UIActionSheet alloc] initWithTitle:@"How do you want to share the image?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Save to photo library", @"Email", @"Facebook", @"Twitter", nil];
     
     popupQuery.actionSheetStyle = UIActionSheetStyleBlackOpaque;
     [popupQuery showInView:self.view];
 }
 
-- (void)emailImage
+- (void)emailImage:(UIImage *)imageToShare
 {
     // Convert the image to a PNG representation for emailing
-    NSData *imageData = UIImagePNGRepresentation(_imageView.image);
+    NSData *imageData = UIImagePNGRepresentation(imageToShare);
     if (!imageData)
     {
         // Something went wrong, the image was probably not set
@@ -79,89 +98,78 @@ didFinishSavingWithError:(NSError *)error
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)shareImageViaTwitter
+- (void)shareImage:(UIImage *)imageToShare viaSocialService:(NSString *)serviceType;
 {
-    SLComposeViewController* tweetComposer = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-        
-    // Add the image to the tweet
-    [tweetComposer addImage:_imageView.image];
-        
-    // Print out diagnostic information when the user
-    // completes the action and dismiss the view controller.
-    [tweetComposer setCompletionHandler:
-    ^(SLComposeViewControllerResult result)
-    {
-        switch (result)
-        {
-            case SLComposeViewControllerResultCancelled:
-                NSLog(@"Twitter Result: Cancel");
-                break;
-            case SLComposeViewControllerResultDone:
-                NSLog(@"Twitter Result: Sent");
-                break;
-            default:
-                NSLog(@"Twitter Result: Error");
-                break;
-        }
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }];
-    [self presentViewController:tweetComposer animated:YES completion:nil];
-}
-
-- (void)shareImageViaFacebook
-{
-    SLComposeViewController *fb = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+    SLComposeViewController *socialComposer = [SLComposeViewController composeViewControllerForServiceType:serviceType];
     
     // Add the image
-    [fb addImage:_imageView.image];
+    [socialComposer addImage:imageToShare];
     
     // Print out diagnostic information when the user
     //completes the action and dismiss the view controller.
-    [fb setCompletionHandler:
+    [socialComposer setCompletionHandler:
      ^(SLComposeViewControllerResult result)
      {
          switch (result)
          {
              case SLComposeViewControllerResultCancelled:
-                 NSLog(@"Facebook Result: Cancel");
+                 NSLog(@"%@ Result: Cancel", serviceType);
                  break;
              case SLComposeViewControllerResultDone:
-                 NSLog(@"Facebook Result: Sent");
+                 NSLog(@"%@ Result: Sent", serviceType);
                  break;
              default:
-                 NSLog(@"Facebook Result: Error");
+                 NSLog(@"%@ Result: Error", serviceType);
                  break;
          }
          [self dismissViewControllerAnimated:YES completion:nil];
      }];
-    [self presentViewController:fb animated:YES completion:nil];
+    [self presentViewController:socialComposer animated:YES completion:nil];
+}
+
+#pragma mark For editing the image
+- (IBAction)addText
+{
+    // Set the textlabel to be in edit mode
+    [_textLabel becomeFirstResponder];
+}
+
+#pragma mark UITextField delegate
+
+// Called when the UITextField is in edit mode and return key is hit
+-(BOOL) textFieldShouldReturn:(UITextField *)textField
+{    
+    [textField resignFirstResponder];
+    return YES;
 }
 
 #pragma mark View Stuff
 /** Delegate method called when the user selects an option in an action sheet. */
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (!_imageView.image)
+    // Prepare the picture for sharing
+    UIImage *imageToShare = [self renderCurrentImage];
+    if (!imageToShare)
     {
-       [self showAlertWithTitle:@"Error" andMessage:@"You are not able to share this image."];
-            return;
+        [self showAlertWithTitle:@"Error" andMessage:@"Your picture could not be prepared properly for sharing"];
+        return;
     }
     switch (buttonIndex)
     {
-            case 0: // save to camera
-                UIImageWriteToSavedPhotosAlbum(_imageView.image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
-                break;
-            case 1: // email
-                [self emailImage];
-                break;
-            case 2: // Facebook
-                [self shareImageViaFacebook];
-                break;
-            case 3: // Twitter
-                [self shareImageViaTwitter];
-                break;
-            case 4: // cancel - do nothing
-                return;
+        case 0: // save to camera
+            UIImageWriteToSavedPhotosAlbum(imageToShare, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+            break;
+        case 1: // email
+            [self emailImage:imageToShare];
+            break;
+        case 2: // Facebook
+            [self shareImage:imageToShare viaSocialService:SLServiceTypeFacebook];
+            break;
+        case 3: // Twitter
+             [self shareImage:imageToShare viaSocialService:SLServiceTypeTwitter];
+            break;
+        case 4: // cancel - do nothing
+            return;
     }
 }
 
@@ -182,12 +190,31 @@ didFinishSavingWithError:(NSError *)error
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.title = @"Edit";
     
     // Add share button to navigation bar
     UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc]
                                    initWithTitle:@"Share" style:UIBarButtonItemStyleDone target:self action:@selector(shareButtonPressed)];
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithObject:buttonItem];
+    
+    _stampedImage = [[StampedImage alloc] init];
+    _textLabel.delegate = self;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    // Set the imageview to be the image that was selected
+    if (!_stampedImage.originalImage)
+    {
+        // The image is not set for some reason, go back
+        [self showAlertWithTitle:@"Error" andMessage:@"The image you selected is not available."];
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+    _imageView.image = _stampedImage.originalImage;
 }
 
 -(BOOL)shouldAutorotate

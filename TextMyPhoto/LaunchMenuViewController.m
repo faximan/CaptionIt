@@ -14,6 +14,7 @@
 {
     bool cameraAvailable;
     UIImage *image;
+    NSURL *urlToImage;
 }
 
 @synthesize boarderView = _boarderView;
@@ -52,6 +53,21 @@
 {
     // Get the selected image and populate the image view with it.
     image = (UIImage *)[info valueForKey:UIImagePickerControllerOriginalImage];
+    urlToImage = (NSURL *)[info valueForKey:UIImagePickerControllerReferenceURL];
+    
+   /* NSURL *url = [info valueForKey:UIImagePickerControllerReferenceURL];
+    ALAssetsLibrary *assetLibrary=[[ALAssetsLibrary alloc] init];
+    [assetLibrary assetForURL:url resultBlock:^(ALAsset *asset)
+     {
+         ALAssetRepresentation *rep = [asset defaultRepresentation];
+         Byte *buffer = (Byte*)malloc(rep.size);
+         NSUInteger buffered = [rep getBytes:buffer fromOffset:0.0 length:rep.size error:nil];
+         NSData *data = [NSData dataWithBytesNoCopy:buffer length:buffered freeWhenDone:YES];
+         image = [UIImage imageWithData:data];
+     }
+         failureBlock:^(NSError *err) {
+             NSLog(@"Error: %@",[err localizedDescription]);
+     }];*/
     
     if(image) //A image was actually selected/taken
         [self performSegueWithIdentifier:@"edit" sender:nil];
@@ -87,7 +103,10 @@
     {
         EditViewController *vc = [segue destinationViewController];
         if (vc.view)
-            vc.imageView.image = image;
+        {
+            vc.stampedImage.originalImage = image;
+            vc.stampedImage.urlToOriginalImage = urlToImage;
+        }
     }
 }
 
