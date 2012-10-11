@@ -7,6 +7,7 @@
 //
 
 #import "EditViewController.h"
+#import "IOHandler.h"
 
 @implementation EditViewController
 
@@ -196,6 +197,7 @@
 	if (color)
     {
 		_textLabel.textColor = color;
+        _stampedImage.textColor = color;
 	}
 }
 
@@ -252,7 +254,6 @@
     [alert show];
 }
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -273,7 +274,7 @@
     // Set the imageview frame to be the same size as the image
     [_parentView setFrame:[self frameForImage:_stampedImage.originalImage inViewAspectFit:_parentView.superview]];
     _parentView.center = _parentView.superview.center; // center on screen
-  //  _textLabel.center = _imageView.center;
+    _textLabel.center = _imageView.center;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -289,6 +290,14 @@
         return;
     }
     _imageView.image = _stampedImage.originalImage;
+    _textLabel.textColor = _stampedImage.textColor;
+    _textLabel.text = _stampedImage.stampedText;
+    [self alignViews];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     [self alignViews];
 }
 
@@ -296,8 +305,8 @@
 {
     [super viewWillDisappear:animated];
     
-    // TODO:
-    // Save stampedImage to permanent memory!
+    // Serialize current work to disk
+    [IOHandler saveImage:_stampedImage];
 }
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration

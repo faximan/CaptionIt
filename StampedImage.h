@@ -12,10 +12,19 @@
 
 #import <Foundation/Foundation.h>
 
-@interface StampedImage : NSObject
+// Constant NSString used for serialization
+#define URL_TO_ORIGINAL_IMAGE  @"urlToOriginalImage"
+#define STAMPED_TEXT @"stampedText"
+#define STAMPED_TEXT_COLOR @"textColor"
+
+@interface StampedImage : NSObject <NSCoding>
 
 @property (nonatomic, strong) UIImage* originalImage;
 @property (nonatomic, strong) NSURL *urlToOriginalImage;
 @property (nonatomic, strong) NSString *stampedText;
+@property (nonatomic, strong) UIColor *textColor;
+
+- (id)initWithCoder:(NSCoder *)coder;
+- (void)encodeWithCoder:(NSCoder *)coder;
 
 @end

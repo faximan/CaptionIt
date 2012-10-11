@@ -19,5 +19,6 @@
 @property (nonatomic, strong) UIImagePickerController *imgPicker;
 
 -(IBAction)stampPhotoButtonPressed:(UIButton *)sender;
+-(IBAction)previousPhotosButtonPressed:(UIButton *)sender;
 
 @end

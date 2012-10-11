@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 Alexander Faxå. All rights reserved.
 //
 
+/** Custom Navigation Controller in order to let ever view controller keep track of its autorotation properties itself. */
+
 #import <UIKit/UIKit.h>
 
 @interface MyNavigationControllerViewController : UINavigationController

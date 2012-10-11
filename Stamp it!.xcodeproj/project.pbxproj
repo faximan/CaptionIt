@@ -16,6 +16,7 @@
 		DE4D99711626B60000936EBE /* UIColor+ColorSpaces.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4D996A1626B60000936EBE /* UIColor+ColorSpaces.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DE4D99741626B91F00936EBE /* BrightnessWheel.png in Resources */ = {isa = PBXBuildFile; fileRef = DE4D99721626B91F00936EBE /* BrightnessWheel.png */; };
 		DE4D99751626B91F00936EBE /* ColorWheel.png in Resources */ = {isa = PBXBuildFile; fileRef = DE4D99731626B91F00936EBE /* ColorWheel.png */; };
+		DE4D99781626C18200936EBE /* IOHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4D99771626C18200936EBE /* IOHandler.m */; };
 		DE6B38FA16255178009B41DC /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE6B38F916255178009B41DC /* Social.framework */; };
 		DE71B39F16002B9A00D2FF7A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE71B39E16002B9A00D2FF7A /* MessageUI.framework */; };
 		DEA4B8B416257BFD00E711AF /* stamp.png in Resources */ = {isa = PBXBuildFile; fileRef = DEA4B8B316257BFD00E711AF /* stamp.png */; };
@@ -53,6 +54,8 @@
 		DE4D996A1626B60000936EBE /* UIColor+ColorSpaces.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ColorSpaces.m"; sourceTree = "<group>"; };
 		DE4D99721626B91F00936EBE /* BrightnessWheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BrightnessWheel.png; sourceTree = "<group>"; };
 		DE4D99731626B91F00936EBE /* ColorWheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ColorWheel.png; sourceTree = "<group>"; };
+		DE4D99761626C18200936EBE /* IOHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOHandler.h; sourceTree = "<group>"; };
+		DE4D99771626C18200936EBE /* IOHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IOHandler.m; sourceTree = "<group>"; };
 		DE6B38F916255178009B41DC /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		DE71B39E16002B9A00D2FF7A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		DEA4B8B316257BFD00E711AF /* stamp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stamp.png; sourceTree = "<group>"; };
@@ -138,7 +141,7 @@
 				DED062FF161EB85100FD976D /* Resources */,
 				DEF61DEA161F22B100582C33 /* Storyboards */,
 				DE4D995B1626B5AC00936EBE /* ColorPicker */,
-				DEED1B9815EFA2A6004E33F3 /* TextMyPhoto */,
+				DEED1B9815EFA2A6004E33F3 /* Stamp It! */,
 				DEED1B9115EFA2A6004E33F3 /* Frameworks */,
 				DEED1B8F15EFA2A6004E33F3 /* Products */,
 			);
@@ -165,7 +168,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		DEED1B9815EFA2A6004E33F3 /* TextMyPhoto */ = {
+		DEED1B9815EFA2A6004E33F3 /* Stamp It! */ = {
 			isa = PBXGroup;
 			children = (
 				DEA4B8B71625823100E711AF /* StampedImage.h */,
@@ -176,7 +179,10 @@
 				DEF61DF2161F2F0E00582C33 /* EditViewController.m */,
 				DEF61DF4161F415200582C33 /* MyNavigationControllerViewController.h */,
 				DEF61DF5161F415200582C33 /* MyNavigationControllerViewController.m */,
+				DE4D99761626C18200936EBE /* IOHandler.h */,
+				DE4D99771626C18200936EBE /* IOHandler.m */,
 			);
+			name = "Stamp It!";
 			path = TextMyPhoto;
 			sourceTree = "<group>";
 		};
@@ -285,6 +291,7 @@
 				DE4D996F1626B60000936EBE /* MNMagnifyingView.m in Sources */,
 				DE4D99701626B60000936EBE /* MNMobileFunctions.m in Sources */,
 				DE4D99711626B60000936EBE /* UIColor+ColorSpaces.m in Sources */,
+				DE4D99781626C18200936EBE /* IOHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

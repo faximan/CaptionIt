@@ -9,12 +9,13 @@
 #import "LaunchMenuViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "EditViewController.h"
+#import "StampedImage.h"
+#import "IOHandler.h"
 
 @implementation LaunchMenuViewController
 {
     bool cameraAvailable;
-    UIImage *image;
-    NSURL *urlToImage;
+    StampedImage *stampedImage;
 }
 
 @synthesize boarderView = _boarderView;
@@ -52,28 +53,35 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     // Get the selected image and populate the image view with it.
-    image = (UIImage *)[info valueForKey:UIImagePickerControllerOriginalImage];
-    urlToImage = (NSURL *)[info valueForKey:UIImagePickerControllerReferenceURL];
-    
-   /* NSURL *url = [info valueForKey:UIImagePickerControllerReferenceURL];
-    ALAssetsLibrary *assetLibrary=[[ALAssetsLibrary alloc] init];
-    [assetLibrary assetForURL:url resultBlock:^(ALAsset *asset)
-     {
-         ALAssetRepresentation *rep = [asset defaultRepresentation];
-         Byte *buffer = (Byte*)malloc(rep.size);
-         NSUInteger buffered = [rep getBytes:buffer fromOffset:0.0 length:rep.size error:nil];
-         NSData *data = [NSData dataWithBytesNoCopy:buffer length:buffered freeWhenDone:YES];
-         image = [UIImage imageWithData:data];
-     }
-         failureBlock:^(NSError *err) {
-             NSLog(@"Error: %@",[err localizedDescription]);
-     }];*/
-    
-    if(image) //A image was actually selected/taken
+    stampedImage.originalImage = (UIImage *)[info valueForKey:UIImagePickerControllerOriginalImage];
+    stampedImage.urlToOriginalImage = (NSURL *)[info valueForKey:UIImagePickerControllerReferenceURL];
+        
+    if(stampedImage.originalImage) //A image was actually selected/taken
         [self performSegueWithIdentifier:@"edit" sender:nil];
     
     // Get rid of the picker controller.
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark Previous photos
+
+-(IBAction)previousPhotosButtonPressed:(UIButton *)sender
+{
+    StampedImage *prevImage = [IOHandler readImage];
+    if (!prevImage)
+    {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Error"
+                              message:@"No previous projects found."
+                              delegate: nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+    else
+    {
+        [self performSegueWithIdentifier:@"edit" sender:self];
+    }
 }
 
 #pragma mark View Stuff
@@ -104,8 +112,7 @@
         EditViewController *vc = [segue destinationViewController];
         if (vc.view)
         {
-            vc.stampedImage.originalImage = image;
-            vc.stampedImage.urlToOriginalImage = urlToImage;
+            vc.stampedImage = stampedImage;
         }
     }
 }
@@ -131,6 +138,7 @@
     
     // Set up the image picker
     _imgPicker = [[UIImagePickerController alloc] init];
+    stampedImage = [[StampedImage alloc] init];
     _imgPicker.delegate = self;
 }
 
