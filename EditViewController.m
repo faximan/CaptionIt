@@ -198,7 +198,7 @@
 #pragma mark UITextField delegate
 
 // Called when the UITextField is in edit mode and return key is hit
--(BOOL) textFieldShouldReturn:(UITextField *)textField
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
 {    
     [textField resignFirstResponder];
     _stampedImage.stampedText = _textLabel.text;
@@ -242,7 +242,7 @@
     UIAlertView *alert = [[UIAlertView alloc]
                           initWithTitle:title
                           message:message
-                          delegate: nil
+                          delegate:self
                           cancelButtonTitle:@"OK"
                           otherButtonTitles:nil];
     [alert show];
@@ -259,7 +259,8 @@
                                    initWithTitle:@"Share" style:UIBarButtonItemStyleDone target:self action:@selector(shareButtonPressed)];
     self.navigationItem.rightBarButtonItems = @[buttonItem];
     
-    _stampedImage = [[StampedImage alloc] init];
+    if (!_stampedImage)
+        _stampedImage = [[StampedImage alloc] init];
     _textLabel.delegate = self;
 }
 
@@ -275,14 +276,6 @@
 {
     [super viewWillAppear:animated];
     
-    // Set the imageview to be the image that was selected
-    if (!_stampedImage.originalImage)
-    {
-        // The image is not set for some reason, go back
-        [self showAlertWithTitle:@"Error" andMessage:@"The image you selected is not available."];
-        [self.navigationController popViewControllerAnimated:YES];
-        return;
-    }
     _imageView.image = _stampedImage.originalImage;
     _textLabel.textColor = _stampedImage.textColor;
     _textLabel.text = _stampedImage.stampedText;
@@ -303,7 +296,7 @@
     [IOHandler saveImage:_stampedImage];
 }
 
--(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+-(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     // Reset parent view before auto rotation to shrink it later
     _parentView.frame = _parentView.superview.frame;

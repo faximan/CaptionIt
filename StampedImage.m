@@ -38,6 +38,13 @@
     dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
 }
 
+// Make sure to reset the text label if the image is changed
+-(void)setOriginalImage:(UIImage *)originalImage
+{
+    _originalImage = originalImage;
+    _stampedText = @"";
+}
+
 - (id)initWithCoder:(NSCoder *)coder
 {
     self = [super init];

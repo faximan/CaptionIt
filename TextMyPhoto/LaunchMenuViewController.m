@@ -62,8 +62,8 @@
 
 -(IBAction)previousPhotosButtonPressed:(UIButton *)sender
 {
-    StampedImage *prevImage = [IOHandler readImage];
-    if (!prevImage)
+    stampedImage = [IOHandler readImage];
+    if (!stampedImage || !stampedImage.originalImage)
     {
         UIAlertView *alert = [[UIAlertView alloc]
                               initWithTitle:@"Error"
@@ -132,8 +132,10 @@
     cameraAvailable = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
     
     // Set up the image picker
-    _imgPicker = [[UIImagePickerController alloc] init];
-    stampedImage = [[StampedImage alloc] init];
+    if (!_imgPicker)
+        _imgPicker = [[UIImagePickerController alloc] init];
+    if (!stampedImage)
+        stampedImage = [[StampedImage alloc] init];
     _imgPicker.delegate = self;
 }
 
