@@ -12,27 +12,68 @@
 
 @synthesize imageView = _imageView;
 @synthesize textLabel = _textLabel;
+@synthesize parentView = _parentView;
 
 @synthesize stampedImage = _stampedImage;
 
 #pragma mark For sharing the image
 
+// Returns a CGRect that corresponds to the actual part of the screen containing image when added with Aspect Fit into imageview.
+-(CGRect)frameForImage:(UIImage*)image inViewAspectFit:(UIView*)imageView
+{
+    float imageRatio = image.size.width / image.size.height;
+    float viewRatio = imageView.frame.size.width / imageView.frame.size.height;
+    
+    if(imageRatio < viewRatio)
+    {
+        float scale = imageView.frame.size.height / image.size.height;
+        float width = scale * image.size.width;
+        float topLeftX = (imageView.frame.size.width - width) * 0.5;
+        return CGRectMake(topLeftX, 0, width, imageView.frame.size.height);
+    }
+    else
+    {
+        float scale = imageView.frame.size.width / image.size.width;
+        float height = scale * image.size.height;
+        float topLeftY = (imageView.frame.size.height - height) * 0.5;
+        return CGRectMake(0, topLeftY, imageView.frame.size.width, height);
+    }
+}
+
 // Takes the current addons to the image and renders it to a bitmap
 - (UIImage *)renderCurrentImage
 {
-    // Get the context
-    UIGraphicsBeginImageContext(_imageView.bounds.size);
+    // Parentview should here have the same frame as the imageview. Cache the old frame, scale it to full photo resolution and render it.
+    CGRect oldFrame = _parentView.frame;
+    float scaleFactor = _stampedImage.originalImage.size.width / _imageView.frame.size.width;
+    _parentView.frame = CGRectMake(_parentView.frame.origin.x, _parentView.frame.origin.y, _stampedImage.originalImage.size.width, _stampedImage.originalImage.size.height);
     
+    // Get the context
+    UIGraphicsBeginImageContextWithOptions(_parentView.bounds.size, _parentView.opaque, 0.0);
+        
     // Render the image
     [_imageView.layer renderInContext:UIGraphicsGetCurrentContext()];
     
     // Render the text on top of the image
+    // Scale to render sharp (cache old frame)
+    CGRect oldLabelFrame = _textLabel.frame;
+    CGFloat oldFontSize = _textLabel.font.pointSize;
+    _textLabel.font = [UIFont systemFontOfSize:_textLabel.font.pointSize * scaleFactor];
+    _textLabel.frame = CGRectMake(oldLabelFrame.origin.x, oldLabelFrame.origin.y, oldLabelFrame.size.width * scaleFactor, oldLabelFrame.size.height * scaleFactor);
+     _textLabel.center = _imageView.center;
+    
+    // Translate the context to where the label is to render it at the correct position
     CGContextTranslateCTM(UIGraphicsGetCurrentContext(), _textLabel.frame.origin.x, _textLabel.frame.origin.y);
     [_textLabel.layer renderInContext:UIGraphicsGetCurrentContext()];
     
     // Convert to UIImage
     UIImage *bitmap = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
+    
+    _textLabel.font = [UIFont systemFontOfSize:oldFontSize];
+    _textLabel.frame = oldLabelFrame;
+    _parentView.frame = oldFrame;
+    _textLabel.center = _imageView.center;
     return bitmap;
 }
 
@@ -53,6 +94,9 @@
  * other? */
 -(void)shareButtonPressed
 {
+    // Remove keyboard if in edit mode
+    [_textLabel resignFirstResponder];
+    
     UIActionSheet *popupQuery = [[UIActionSheet alloc] initWithTitle:@"How do you want to share the image?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Save to photo library", @"Email", @"Facebook", @"Twitter", nil];
     
     popupQuery.actionSheetStyle = UIActionSheetStyleBlackOpaque;
@@ -203,6 +247,14 @@
     _textLabel.delegate = self;
 }
 
+- (void)alignViews
+{
+    // Set the imageview frame to be the same size as the image
+    [_parentView setFrame:[self frameForImage:_stampedImage.originalImage inViewAspectFit:_parentView.superview]];
+    _parentView.center = _parentView.superview.center; // center on screen
+  //  _textLabel.center = _imageView.center;
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -216,6 +268,7 @@
         return;
     }
     _imageView.image = _stampedImage.originalImage;
+    [self alignViews];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -224,6 +277,18 @@
     
     // TODO:
     // Save stampedImage to permanent memory!
+}
+
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    // Reset parent view before auto rotation to shrink it later
+    _parentView.frame = _parentView.superview.frame;
+}
+
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    // Shrink parent view to fit image
+    [self alignViews];
 }
 
 -(BOOL)shouldAutorotate

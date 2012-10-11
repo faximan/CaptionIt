@@ -18,6 +18,7 @@
 
 @property (nonatomic, weak) IBOutlet UIImageView *imageView;
 @property (nonatomic, weak) IBOutlet UITextField *textLabel;
+@property (nonatomic, weak) IBOutlet UIView *parentView; // The view that contains the picture and all the addons.
 
 @property (nonatomic, strong) StampedImage *stampedImage;
 
