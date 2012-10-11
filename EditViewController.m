@@ -178,6 +178,27 @@
     [_textLabel becomeFirstResponder];
 }
 
+// Pull up the color picker
+- (IBAction)changeColor
+{
+    MNColorPicker *colorPicker = [[MNColorPicker alloc] init];
+	colorPicker.delegate = self;
+	colorPicker.color = self.view.backgroundColor;
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:colorPicker];
+    [self presentViewController:navigationController animated:YES completion:nil];
+}
+
+#pragma mark MNColorPickerDelegate
+
+- (void)colorPicker:(MNColorPicker*)colorPicker didFinishWithColor:(UIColor *)color
+{
+	[self dismissViewControllerAnimated:YES completion:nil];
+	if (color)
+    {
+		_textLabel.textColor = color;
+	}
+}
+
 #pragma mark UITextField delegate
 
 // Called when the UITextField is in edit mode and return key is hit

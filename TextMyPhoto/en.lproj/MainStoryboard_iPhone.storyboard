@@ -95,6 +95,12 @@
                                             <action selector="addText" destination="ddt-II-aHa" id="WRz-X8-1QN"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="6PV-JU-c7o"/>
+                                    <barButtonItem title="Color" style="plain" id="fw9-Nl-9X7">
+                                        <connections>
+                                            <action selector="changeColor" destination="ddt-II-aHa" id="1bo-z2-Tlh"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <view contentMode="scaleToFill" id="eZZ-XU-nPf" userLabel="Container view">
@@ -166,6 +172,8 @@
         <class className="EditViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/EditViewController.h"/>
             <relationships>
+                <relationship kind="action" name="addText"/>
+                <relationship kind="action" name="changeColor"/>
                 <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="parentView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="textLabel" candidateClass="UITextField"/>

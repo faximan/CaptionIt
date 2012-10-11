@@ -13,8 +13,9 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 
 #import "StampedImage.h"
+#import "MNColorPicker.h"
 
-@interface EditViewController : UIViewController < UIActionSheetDelegate, MFMailComposeViewControllerDelegate, UITextFieldDelegate>
+@interface EditViewController : UIViewController < UIActionSheetDelegate, MFMailComposeViewControllerDelegate, UITextFieldDelegate, MNColorPickerDelegate>
 
 @property (nonatomic, weak) IBOutlet UIImageView *imageView;
 @property (nonatomic, weak) IBOutlet UITextField *textLabel;
@@ -24,5 +25,8 @@
 
 - (void)shareImage:(UIImage *)imageToShare viaSocialService:(NSString *)serviceType;
 - (void)emailImage:(UIImage *)imageToShare;
+
+- (IBAction)addText;
+- (IBAction)changeColor;
 
 @end

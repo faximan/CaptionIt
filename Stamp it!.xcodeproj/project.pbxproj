@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DE4D996B1626B60000936EBE /* MNBrightnessView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4D995E1626B60000936EBE /* MNBrightnessView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DE4D996C1626B60000936EBE /* MNColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4D99601626B60000936EBE /* MNColorPicker.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DE4D996D1626B60000936EBE /* MNColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4D99621626B60000936EBE /* MNColorView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DE4D996E1626B60000936EBE /* MNColorWheelView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4D99641626B60000936EBE /* MNColorWheelView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DE4D996F1626B60000936EBE /* MNMagnifyingView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4D99661626B60000936EBE /* MNMagnifyingView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DE4D99701626B60000936EBE /* MNMobileFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4D99681626B60000936EBE /* MNMobileFunctions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DE4D99711626B60000936EBE /* UIColor+ColorSpaces.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4D996A1626B60000936EBE /* UIColor+ColorSpaces.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DE4D99741626B91F00936EBE /* BrightnessWheel.png in Resources */ = {isa = PBXBuildFile; fileRef = DE4D99721626B91F00936EBE /* BrightnessWheel.png */; };
+		DE4D99751626B91F00936EBE /* ColorWheel.png in Resources */ = {isa = PBXBuildFile; fileRef = DE4D99731626B91F00936EBE /* ColorWheel.png */; };
 		DE6B38FA16255178009B41DC /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE6B38F916255178009B41DC /* Social.framework */; };
 		DE71B39F16002B9A00D2FF7A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE71B39E16002B9A00D2FF7A /* MessageUI.framework */; };
 		DEA4B8B416257BFD00E711AF /* stamp.png in Resources */ = {isa = PBXBuildFile; fileRef = DEA4B8B316257BFD00E711AF /* stamp.png */; };
@@ -28,6 +37,22 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DE4D995D1626B60000936EBE /* MNBrightnessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNBrightnessView.h; sourceTree = "<group>"; };
+		DE4D995E1626B60000936EBE /* MNBrightnessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNBrightnessView.m; sourceTree = "<group>"; };
+		DE4D995F1626B60000936EBE /* MNColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNColorPicker.h; sourceTree = "<group>"; };
+		DE4D99601626B60000936EBE /* MNColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNColorPicker.m; sourceTree = "<group>"; };
+		DE4D99611626B60000936EBE /* MNColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNColorView.h; sourceTree = "<group>"; };
+		DE4D99621626B60000936EBE /* MNColorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNColorView.m; sourceTree = "<group>"; };
+		DE4D99631626B60000936EBE /* MNColorWheelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNColorWheelView.h; sourceTree = "<group>"; };
+		DE4D99641626B60000936EBE /* MNColorWheelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNColorWheelView.m; sourceTree = "<group>"; };
+		DE4D99651626B60000936EBE /* MNMagnifyingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNMagnifyingView.h; sourceTree = "<group>"; };
+		DE4D99661626B60000936EBE /* MNMagnifyingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNMagnifyingView.m; sourceTree = "<group>"; };
+		DE4D99671626B60000936EBE /* MNMobileFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNMobileFunctions.h; sourceTree = "<group>"; };
+		DE4D99681626B60000936EBE /* MNMobileFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNMobileFunctions.m; sourceTree = "<group>"; };
+		DE4D99691626B60000936EBE /* UIColor+ColorSpaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ColorSpaces.h"; sourceTree = "<group>"; };
+		DE4D996A1626B60000936EBE /* UIColor+ColorSpaces.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ColorSpaces.m"; sourceTree = "<group>"; };
+		DE4D99721626B91F00936EBE /* BrightnessWheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BrightnessWheel.png; sourceTree = "<group>"; };
+		DE4D99731626B91F00936EBE /* ColorWheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ColorWheel.png; sourceTree = "<group>"; };
 		DE6B38F916255178009B41DC /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		DE71B39E16002B9A00D2FF7A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		DEA4B8B316257BFD00E711AF /* stamp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stamp.png; sourceTree = "<group>"; };
@@ -73,6 +98,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DE4D995B1626B5AC00936EBE /* ColorPicker */ = {
+			isa = PBXGroup;
+			children = (
+				DE4D99721626B91F00936EBE /* BrightnessWheel.png */,
+				DE4D99731626B91F00936EBE /* ColorWheel.png */,
+				DE4D995D1626B60000936EBE /* MNBrightnessView.h */,
+				DE4D995E1626B60000936EBE /* MNBrightnessView.m */,
+				DE4D995F1626B60000936EBE /* MNColorPicker.h */,
+				DE4D99601626B60000936EBE /* MNColorPicker.m */,
+				DE4D99611626B60000936EBE /* MNColorView.h */,
+				DE4D99621626B60000936EBE /* MNColorView.m */,
+				DE4D99631626B60000936EBE /* MNColorWheelView.h */,
+				DE4D99641626B60000936EBE /* MNColorWheelView.m */,
+				DE4D99651626B60000936EBE /* MNMagnifyingView.h */,
+				DE4D99661626B60000936EBE /* MNMagnifyingView.m */,
+				DE4D99671626B60000936EBE /* MNMobileFunctions.h */,
+				DE4D99681626B60000936EBE /* MNMobileFunctions.m */,
+				DE4D99691626B60000936EBE /* UIColor+ColorSpaces.h */,
+				DE4D996A1626B60000936EBE /* UIColor+ColorSpaces.m */,
+			);
+			name = ColorPicker;
+			sourceTree = "<group>";
+		};
 		DED062FF161EB85100FD976D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +137,7 @@
 				DEED1B9915EFA2A6004E33F3 /* Supporting Files */,
 				DED062FF161EB85100FD976D /* Resources */,
 				DEF61DEA161F22B100582C33 /* Storyboards */,
+				DE4D995B1626B5AC00936EBE /* ColorPicker */,
 				DEED1B9815EFA2A6004E33F3 /* TextMyPhoto */,
 				DEED1B9115EFA2A6004E33F3 /* Frameworks */,
 				DEED1B8F15EFA2A6004E33F3 /* Products */,
@@ -211,6 +260,8 @@
 				DED06304161EB90F00FD976D /* pinboard.png in Resources */,
 				DEF61DF0161F267100582C33 /* button_greycolor.png in Resources */,
 				DEA4B8B416257BFD00E711AF /* stamp.png in Resources */,
+				DE4D99741626B91F00936EBE /* BrightnessWheel.png in Resources */,
+				DE4D99751626B91F00936EBE /* ColorWheel.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +278,13 @@
 				DEF61DF3161F2F0E00582C33 /* EditViewController.m in Sources */,
 				DEF61DF6161F415200582C33 /* MyNavigationControllerViewController.m in Sources */,
 				DEA4B8B91625823100E711AF /* StampedImage.m in Sources */,
+				DE4D996B1626B60000936EBE /* MNBrightnessView.m in Sources */,
+				DE4D996C1626B60000936EBE /* MNColorPicker.m in Sources */,
+				DE4D996D1626B60000936EBE /* MNColorView.m in Sources */,
+				DE4D996E1626B60000936EBE /* MNColorWheelView.m in Sources */,
+				DE4D996F1626B60000936EBE /* MNMagnifyingView.m in Sources */,
+				DE4D99701626B60000936EBE /* MNMobileFunctions.m in Sources */,
+				DE4D99711626B60000936EBE /* UIColor+ColorSpaces.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
