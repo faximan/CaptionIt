@@ -11,12 +11,6 @@
 
 @implementation EditViewController
 
-@synthesize imageView = _imageView;
-@synthesize textLabel = _textLabel;
-@synthesize parentView = _parentView;
-
-@synthesize stampedImage = _stampedImage;
-
 #pragma mark For sharing the image
 
 // Returns a CGRect that corresponds to the actual part of the screen containing image when added with Aspect Fit into imageview.
@@ -263,7 +257,7 @@
     // Add share button to navigation bar
     UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc]
                                    initWithTitle:@"Share" style:UIBarButtonItemStyleDone target:self action:@selector(shareButtonPressed)];
-    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObject:buttonItem];
+    self.navigationItem.rightBarButtonItems = @[buttonItem];
     
     _stampedImage = [[StampedImage alloc] init];
     _textLabel.delegate = self;

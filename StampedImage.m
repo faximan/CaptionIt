@@ -11,11 +11,6 @@
 
 @implementation StampedImage
 
-@synthesize originalImage = _originalImage;
-@synthesize urlToOriginalImage = _urlToOriginalImage;
-@synthesize stampedText = _stampedText;
-@synthesize textColor = _textColor;
-
 // Get the image, in the assets library, pointed to by the url property
 // Use semaphores to make sure the images is fetched before continuing.
 - (void)fetchOriginalImage

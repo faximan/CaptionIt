@@ -17,7 +17,7 @@
     NSString* path = nil;
  	
     if (documentDir)
-        path = [documentDir objectAtIndex:0];
+        path = documentDir[0];
     
     return [NSString stringWithFormat:@"%@/%@", path, @"data.bin"];
 }

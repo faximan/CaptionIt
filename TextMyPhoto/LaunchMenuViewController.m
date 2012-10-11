@@ -18,11 +18,6 @@
     StampedImage *stampedImage;
 }
 
-@synthesize boarderView = _boarderView;
-@synthesize pickButton = _pickButton;
-@synthesize prevButton = _prevButton;
-@synthesize imgPicker = _imgPicker;
-
 #pragma mark For selecting the image
 
 // The device has a camera, return if it should be used for
