@@ -8,17 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define BOARDER_WIDTH 3.5f
-
 @interface LaunchMenuViewController : UIViewController
 <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate>
-
-@property (nonatomic, weak) IBOutlet UIView *boarderView;
-@property (nonatomic, weak) IBOutlet UIButton *pickButton;
-@property (nonatomic, weak) IBOutlet UIButton *prevButton;
-@property (nonatomic, strong) UIImagePickerController *imgPicker;
-
--(IBAction)stampPhotoButtonPressed:(UIButton *)sender;
--(IBAction)previousPhotosButtonPressed:(UIButton *)sender;
 
 @end

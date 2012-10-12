@@ -33,7 +33,7 @@
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="previousPhotosButtonPressed:" destination="qAM-91-BMl" eventType="touchUpInside" id="Nfd-wp-nXy"/>
+                                            <segue destination="GwM-AR-CGU" kind="push" id="v4B-ie-cpc"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="22W-UW-L72">
@@ -145,7 +145,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cDA-Me-df1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="243" y="107"/>
+            <point key="canvasLocation" x="389" y="109"/>
+        </scene>
+        <!--Thumbs Photo Controller View Controller-->
+        <scene sceneID="ipC-la-4Wq">
+            <objects>
+                <viewController id="GwM-AR-CGU" customClass="ThumbsPhotoControllerViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TIa-Xc-u8I" customClass="thu">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="MC2-rU-dLt"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hcl-uW-2uI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="165" y="766"/>
         </scene>
         <!--My Navigation Controller View Controller-->
         <scene sceneID="mfy-VO-6mk">
@@ -171,31 +187,6 @@
         <image name="pinboard.png" width="640" height="1136"/>
         <image name="stamp.png" width="400" height="300"/>
     </resources>
-    <classes>
-        <class className="EditViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addText"/>
-                <relationship kind="action" name="changeColor"/>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="parentView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="textLabel" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="LaunchMenuViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LaunchMenuViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="previousPhotosButtonPressed:" candidateClass="UIButton"/>
-                <relationship kind="action" name="stampPhotoButtonPressed:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="boarderView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="pickButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="prevButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="MyNavigationControllerViewController" superclassName="UINavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MyNavigationControllerViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -17,16 +17,6 @@
 
 @interface EditViewController : UIViewController < UIActionSheetDelegate, MFMailComposeViewControllerDelegate, UITextFieldDelegate, MNColorPickerDelegate>
 
-@property (nonatomic, weak) IBOutlet UIImageView *imageView;
-@property (nonatomic, weak) IBOutlet UITextField *textLabel;
-@property (nonatomic, weak) IBOutlet UIView *parentView; // The view that contains the picture and all the addons.
-
 @property (nonatomic, strong) StampedImage *stampedImage;
-
-- (void)shareImage:(UIImage *)imageToShare viaSocialService:(NSString *)serviceType;
-- (void)emailImage:(UIImage *)imageToShare;
-
-- (IBAction)addText;
-- (IBAction)changeColor;
 
 @end

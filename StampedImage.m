@@ -11,6 +11,11 @@
 
 @implementation StampedImage
 
+// Constants for encoding/decoding
+NSString* const URL_TO_ORIGINAL_IMAGE = @"urlToOriginalImage";
+NSString* const STAMPED_TEXT = @"stampedText";
+NSString* const STAMPED_TEXT_COLOR = @"textColor";
+
 // Get the image, in the assets library, pointed to by the url property
 // Use semaphores to make sure the images is fetched before continuing.
 - (void)fetchOriginalImage

@@ -17,6 +17,16 @@
 		DE4D99741626B91F00936EBE /* BrightnessWheel.png in Resources */ = {isa = PBXBuildFile; fileRef = DE4D99721626B91F00936EBE /* BrightnessWheel.png */; };
 		DE4D99751626B91F00936EBE /* ColorWheel.png in Resources */ = {isa = PBXBuildFile; fileRef = DE4D99731626B91F00936EBE /* ColorWheel.png */; };
 		DE4D99781626C18200936EBE /* IOHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4D99771626C18200936EBE /* IOHandler.m */; };
+		DE4D997A1627118000936EBE /* license.txt in Resources */ = {isa = PBXBuildFile; fileRef = DE4D99791627118000936EBE /* license.txt */; };
+		DE4D99951627BAB400936EBE /* KTPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DE4D99871627BAB400936EBE /* KTPhotoBrowser.bundle */; };
+		DE4D99961627BAB400936EBE /* KTPhotoBrowserGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4D998A1627BAB400936EBE /* KTPhotoBrowserGlobal.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DE4D99971627BAB400936EBE /* KTPhotoScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4D998C1627BAB400936EBE /* KTPhotoScrollViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DE4D99981627BAB400936EBE /* KTPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4D998E1627BAB400936EBE /* KTPhotoView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DE4D99991627BAB400936EBE /* KTThumbsView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4D99901627BAB400936EBE /* KTThumbsView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DE4D999A1627BAB400936EBE /* KTThumbsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4D99921627BAB400936EBE /* KTThumbsViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DE4D999B1627BAB400936EBE /* KTThumbView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4D99941627BAB400936EBE /* KTThumbView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DE4D999E1627BBA000936EBE /* PhotoBrowserDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4D999D1627BBA000936EBE /* PhotoBrowserDataSource.m */; };
+		DE4D99A11627BE3700936EBE /* ThumbsPhotoControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4D99A01627BE3700936EBE /* ThumbsPhotoControllerViewController.m */; };
 		DE6B38FA16255178009B41DC /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE6B38F916255178009B41DC /* Social.framework */; };
 		DE71B39F16002B9A00D2FF7A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE71B39E16002B9A00D2FF7A /* MessageUI.framework */; };
 		DEA4B8B416257BFD00E711AF /* stamp.png in Resources */ = {isa = PBXBuildFile; fileRef = DEA4B8B316257BFD00E711AF /* stamp.png */; };
@@ -56,6 +66,25 @@
 		DE4D99731626B91F00936EBE /* ColorWheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ColorWheel.png; sourceTree = "<group>"; };
 		DE4D99761626C18200936EBE /* IOHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOHandler.h; sourceTree = "<group>"; };
 		DE4D99771626C18200936EBE /* IOHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IOHandler.m; sourceTree = "<group>"; };
+		DE4D99791627118000936EBE /* license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = license.txt; sourceTree = "<group>"; };
+		DE4D99871627BAB400936EBE /* KTPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = KTPhotoBrowser.bundle; sourceTree = "<group>"; };
+		DE4D99881627BAB400936EBE /* KTPhotoBrowserDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTPhotoBrowserDataSource.h; sourceTree = "<group>"; };
+		DE4D99891627BAB400936EBE /* KTPhotoBrowserGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTPhotoBrowserGlobal.h; sourceTree = "<group>"; };
+		DE4D998A1627BAB400936EBE /* KTPhotoBrowserGlobal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTPhotoBrowserGlobal.m; sourceTree = "<group>"; };
+		DE4D998B1627BAB400936EBE /* KTPhotoScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTPhotoScrollViewController.h; sourceTree = "<group>"; };
+		DE4D998C1627BAB400936EBE /* KTPhotoScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTPhotoScrollViewController.m; sourceTree = "<group>"; };
+		DE4D998D1627BAB400936EBE /* KTPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTPhotoView.h; sourceTree = "<group>"; };
+		DE4D998E1627BAB400936EBE /* KTPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTPhotoView.m; sourceTree = "<group>"; };
+		DE4D998F1627BAB400936EBE /* KTThumbsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTThumbsView.h; sourceTree = "<group>"; };
+		DE4D99901627BAB400936EBE /* KTThumbsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTThumbsView.m; sourceTree = "<group>"; };
+		DE4D99911627BAB400936EBE /* KTThumbsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTThumbsViewController.h; sourceTree = "<group>"; };
+		DE4D99921627BAB400936EBE /* KTThumbsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTThumbsViewController.m; sourceTree = "<group>"; };
+		DE4D99931627BAB400936EBE /* KTThumbView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTThumbView.h; sourceTree = "<group>"; };
+		DE4D99941627BAB400936EBE /* KTThumbView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTThumbView.m; sourceTree = "<group>"; };
+		DE4D999C1627BBA000936EBE /* PhotoBrowserDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoBrowserDataSource.h; sourceTree = "<group>"; };
+		DE4D999D1627BBA000936EBE /* PhotoBrowserDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoBrowserDataSource.m; sourceTree = "<group>"; };
+		DE4D999F1627BE3700936EBE /* ThumbsPhotoControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumbsPhotoControllerViewController.h; sourceTree = "<group>"; };
+		DE4D99A01627BE3700936EBE /* ThumbsPhotoControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumbsPhotoControllerViewController.m; sourceTree = "<group>"; };
 		DE6B38F916255178009B41DC /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		DE71B39E16002B9A00D2FF7A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		DEA4B8B316257BFD00E711AF /* stamp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stamp.png; sourceTree = "<group>"; };
@@ -101,9 +130,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		DE4D995B1626B5AC00936EBE /* ColorPicker */ = {
+		DE4D995B1626B5AC00936EBE /* MNColorPicker */ = {
 			isa = PBXGroup;
 			children = (
+				DE4D99791627118000936EBE /* license.txt */,
 				DE4D99721626B91F00936EBE /* BrightnessWheel.png */,
 				DE4D99731626B91F00936EBE /* ColorWheel.png */,
 				DE4D995D1626B60000936EBE /* MNBrightnessView.h */,
@@ -121,7 +151,28 @@
 				DE4D99691626B60000936EBE /* UIColor+ColorSpaces.h */,
 				DE4D996A1626B60000936EBE /* UIColor+ColorSpaces.m */,
 			);
-			name = ColorPicker;
+			name = MNColorPicker;
+			sourceTree = "<group>";
+		};
+		DE4D99861627BA8D00936EBE /* KTPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				DE4D99871627BAB400936EBE /* KTPhotoBrowser.bundle */,
+				DE4D99881627BAB400936EBE /* KTPhotoBrowserDataSource.h */,
+				DE4D99891627BAB400936EBE /* KTPhotoBrowserGlobal.h */,
+				DE4D998A1627BAB400936EBE /* KTPhotoBrowserGlobal.m */,
+				DE4D998B1627BAB400936EBE /* KTPhotoScrollViewController.h */,
+				DE4D998C1627BAB400936EBE /* KTPhotoScrollViewController.m */,
+				DE4D998D1627BAB400936EBE /* KTPhotoView.h */,
+				DE4D998E1627BAB400936EBE /* KTPhotoView.m */,
+				DE4D998F1627BAB400936EBE /* KTThumbsView.h */,
+				DE4D99901627BAB400936EBE /* KTThumbsView.m */,
+				DE4D99911627BAB400936EBE /* KTThumbsViewController.h */,
+				DE4D99921627BAB400936EBE /* KTThumbsViewController.m */,
+				DE4D99931627BAB400936EBE /* KTThumbView.h */,
+				DE4D99941627BAB400936EBE /* KTThumbView.m */,
+			);
+			name = KTPhotoBrowser;
 			sourceTree = "<group>";
 		};
 		DED062FF161EB85100FD976D /* Resources */ = {
@@ -140,7 +191,8 @@
 				DEED1B9915EFA2A6004E33F3 /* Supporting Files */,
 				DED062FF161EB85100FD976D /* Resources */,
 				DEF61DEA161F22B100582C33 /* Storyboards */,
-				DE4D995B1626B5AC00936EBE /* ColorPicker */,
+				DE4D99861627BA8D00936EBE /* KTPhotoBrowser */,
+				DE4D995B1626B5AC00936EBE /* MNColorPicker */,
 				DEED1B9815EFA2A6004E33F3 /* Stamp It! */,
 				DEED1B9115EFA2A6004E33F3 /* Frameworks */,
 				DEED1B8F15EFA2A6004E33F3 /* Products */,
@@ -181,6 +233,10 @@
 				DEF61DF5161F415200582C33 /* MyNavigationControllerViewController.m */,
 				DE4D99761626C18200936EBE /* IOHandler.h */,
 				DE4D99771626C18200936EBE /* IOHandler.m */,
+				DE4D999C1627BBA000936EBE /* PhotoBrowserDataSource.h */,
+				DE4D999D1627BBA000936EBE /* PhotoBrowserDataSource.m */,
+				DE4D999F1627BE3700936EBE /* ThumbsPhotoControllerViewController.h */,
+				DE4D99A01627BE3700936EBE /* ThumbsPhotoControllerViewController.m */,
 			);
 			name = "Stamp It!";
 			path = TextMyPhoto;
@@ -268,6 +324,8 @@
 				DEA4B8B416257BFD00E711AF /* stamp.png in Resources */,
 				DE4D99741626B91F00936EBE /* BrightnessWheel.png in Resources */,
 				DE4D99751626B91F00936EBE /* ColorWheel.png in Resources */,
+				DE4D997A1627118000936EBE /* license.txt in Resources */,
+				DE4D99951627BAB400936EBE /* KTPhotoBrowser.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +350,14 @@
 				DE4D99701626B60000936EBE /* MNMobileFunctions.m in Sources */,
 				DE4D99711626B60000936EBE /* UIColor+ColorSpaces.m in Sources */,
 				DE4D99781626C18200936EBE /* IOHandler.m in Sources */,
+				DE4D99961627BAB400936EBE /* KTPhotoBrowserGlobal.m in Sources */,
+				DE4D99971627BAB400936EBE /* KTPhotoScrollViewController.m in Sources */,
+				DE4D99981627BAB400936EBE /* KTPhotoView.m in Sources */,
+				DE4D99991627BAB400936EBE /* KTThumbsView.m in Sources */,
+				DE4D999A1627BAB400936EBE /* KTThumbsViewController.m in Sources */,
+				DE4D999B1627BAB400936EBE /* KTThumbView.m in Sources */,
+				DE4D999E1627BBA000936EBE /* PhotoBrowserDataSource.m in Sources */,
+				DE4D99A11627BE3700936EBE /* ThumbsPhotoControllerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

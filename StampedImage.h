@@ -12,11 +12,6 @@
 
 #import <Foundation/Foundation.h>
 
-// Constant NSString used for serialization
-#define URL_TO_ORIGINAL_IMAGE  @"urlToOriginalImage"
-#define STAMPED_TEXT @"stampedText"
-#define STAMPED_TEXT_COLOR @"textColor"
-
 @interface StampedImage : NSObject <NSCoding>
 
 @property (nonatomic, strong) UIImage* originalImage;

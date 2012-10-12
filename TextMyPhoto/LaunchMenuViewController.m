@@ -12,6 +12,17 @@
 #import "StampedImage.h"
 #import "IOHandler.h"
 
+#define BOARDER_WIDTH 3.5f
+
+@interface LaunchMenuViewController ()
+
+@property (nonatomic, weak) IBOutlet UIView *boarderView;
+@property (nonatomic, weak) IBOutlet UIButton *pickButton;
+@property (nonatomic, weak) IBOutlet UIButton *prevButton;
+@property (nonatomic, strong) UIImagePickerController *imgPicker;
+
+@end
+
 @implementation LaunchMenuViewController
 {
     bool cameraAvailable;
@@ -19,7 +30,6 @@
 }
 
 #pragma mark For selecting the image
-
 // The device has a camera, return if it should be used for
 // getting the image or if it should be picked from the photo library.
 -(void)selectSourceTypeAndShowPicker
@@ -48,8 +58,8 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     // Get the selected image and populate the image view with it.
-    stampedImage.originalImage = (UIImage *)[info valueForKey:UIImagePickerControllerOriginalImage];
-    stampedImage.urlToOriginalImage = (NSURL *)[info valueForKey:UIImagePickerControllerReferenceURL];
+    stampedImage.originalImage = info[UIImagePickerControllerOriginalImage];
+    stampedImage.urlToOriginalImage = info[UIImagePickerControllerReferenceURL];
         
     if(stampedImage.originalImage) //A image was actually selected/taken
         [self performSegueWithIdentifier:@"edit" sender:nil];
@@ -62,7 +72,7 @@
 
 -(IBAction)previousPhotosButtonPressed:(UIButton *)sender
 {
-    stampedImage = [IOHandler readImage];
+   /* stampedImage = [IOHandler readImage];
     if (!stampedImage || !stampedImage.originalImage)
     {
         UIAlertView *alert = [[UIAlertView alloc]
@@ -76,7 +86,7 @@
     else
     {
         [self performSegueWithIdentifier:@"edit" sender:self];
-    }
+    }*/
 }
 
 #pragma mark View Stuff
@@ -112,10 +122,8 @@
     }
 }
 
-- (void)viewDidLoad
+-(void)addBorderToWindow
 {
-    [super viewDidLoad];
-	
     // Create black border in launchview
     [_pickButton.layer setBorderColor:[UIColor blackColor].CGColor];
     [_pickButton.layer setBorderWidth:BOARDER_WIDTH];
@@ -126,12 +134,17 @@
     [_boarderView.layer setBorderColor:[UIColor blackColor].CGColor];
     [_boarderView.layer setBorderWidth:BOARDER_WIDTH];
     [_boarderView setBackgroundColor:[UIColor clearColor]];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
     
-    // Set the imageSource to keep track of if we should
-    // try to get pictures from the camera as well.
+    [self addBorderToWindow];
+	
+    // Make sure we know whether this device has a camera or not
     cameraAvailable = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
     
-    // Set up the image picker
     if (!_imgPicker)
         _imgPicker = [[UIImagePickerController alloc] init];
     if (!stampedImage)
@@ -161,11 +174,4 @@
 {
     return UIInterfaceOrientationMaskPortrait;
 }
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 @end

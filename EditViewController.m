@@ -9,6 +9,14 @@
 #import "EditViewController.h"
 #import "IOHandler.h"
 
+@interface EditViewController ()
+
+@property (nonatomic, weak) IBOutlet UIImageView *imageView;
+@property (nonatomic, weak) IBOutlet UITextField *textLabel;
+@property (nonatomic, weak) IBOutlet UIView *parentView; // The view that contains the picture and all the addons.
+
+@end
+
 @implementation EditViewController
 
 #pragma mark For sharing the image
@@ -81,12 +89,6 @@
         [self showAlertWithTitle:@"Success" andMessage:@"The image was successfully saved to your photo album."];
 }
 
-/** Share the image to the world. Possible ways of sharing:
- * Save to photo album
- * Email it
- * Facebook
- * Twitter
- * other? */
 -(void)shareButtonPressed
 {
     // Remove keyboard if in edit mode
@@ -285,6 +287,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    // Super
     [self alignViews];
 }
 
@@ -316,12 +319,6 @@
 -(NSUInteger)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskAllButUpsideDown;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end
