@@ -11,6 +11,8 @@
 
 @implementation StampedImage
 
+@synthesize originalImage = _originalImage;
+
 // Constants for encoding/decoding
 NSString* const URL_TO_ORIGINAL_IMAGE = @"urlToOriginalImage";
 NSString* const STAMPED_TEXT = @"stampedText";
@@ -50,6 +52,14 @@ NSString* const STAMPED_TEXT_COLOR = @"textColor";
     _stampedText = @"";
 }
 
+-(UIImage *)originalImage
+{
+    // Lazy instanziation from permanent storage
+    if (!_originalImage)
+        [self fetchOriginalImage];
+    return _originalImage;
+}
+
 - (id)initWithCoder:(NSCoder *)coder
 {
     self = [super init];
@@ -58,10 +68,6 @@ NSString* const STAMPED_TEXT_COLOR = @"textColor";
         _urlToOriginalImage = [coder decodeObjectForKey:URL_TO_ORIGINAL_IMAGE];
         _stampedText = [coder decodeObjectForKey:STAMPED_TEXT];
         _textColor = [coder decodeObjectForKey:STAMPED_TEXT_COLOR];
-        
-        [self fetchOriginalImage]; // from the library
-        if (!_originalImage) // make sure there is an image associated with this object
-            return nil;
     }
     return self;
 }

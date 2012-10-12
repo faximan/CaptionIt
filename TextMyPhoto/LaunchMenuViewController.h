@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PreviousTableViewController.h"
 
 @interface LaunchMenuViewController : UIViewController
-<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate>
+<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, PreviousTableViewControllerDelegate>
 
 @end

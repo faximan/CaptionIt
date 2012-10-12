@@ -253,6 +253,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
     
     self.title = @"Edit";
     
@@ -263,6 +264,9 @@
     
     if (!_stampedImage)
         _stampedImage = [[StampedImage alloc] init];
+    
+    // A big value of _projectNbr will cause this to be handled as a new project. This should be resetted to a smaller value if an old project is modified.
+    _projectNbr = [NSNumber numberWithInteger:NSIntegerMax];
     _textLabel.delegate = self;
 }
 
@@ -277,17 +281,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
     _imageView.image = _stampedImage.originalImage;
     _textLabel.textColor = _stampedImage.textColor;
     _textLabel.text = _stampedImage.stampedText;
-    [self alignViews];
-}
-
--(void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    // Super
     [self alignViews];
 }
 
@@ -296,7 +292,7 @@
     [super viewWillDisappear:animated];
     
     // Serialize current work to disk
-    [IOHandler saveImage:_stampedImage];
+    [IOHandler saveImage:_stampedImage forIndex:_projectNbr]; // Will cause it to append a new image
 }
 
 -(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration

@@ -29,6 +29,7 @@
     StampedImage *stampedImage;
 }
 
+#pragma mark -
 #pragma mark For selecting the image
 // The device has a camera, return if it should be used for
 // getting the image or if it should be picked from the photo library.
@@ -68,27 +69,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark Previous photos
-
--(IBAction)previousPhotosButtonPressed:(UIButton *)sender
-{
-   /* stampedImage = [IOHandler readImage];
-    if (!stampedImage || !stampedImage.originalImage)
-    {
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"Error"
-                              message:@"No previous projects found."
-                              delegate: nil
-                              cancelButtonTitle:@"OK"
-                              otherButtonTitles:nil];
-        [alert show];
-    }
-    else
-    {
-        [self performSegueWithIdentifier:@"edit" sender:self];
-    }*/
-}
-
+#pragma mark -
 #pragma mark View Stuff
 
 /** Delegate method called when the user selects an option in an action sheet. */
@@ -119,6 +100,12 @@
         {
             vc.stampedImage = stampedImage;
         }
+    }
+    if ([[segue identifier] isEqualToString:@"previous"])
+    {
+        UINavigationController *nc = (UINavigationController *)[segue destinationViewController];
+        PreviousTableViewController *vc = nc.viewControllers[0];
+        vc.delegate = self;
     }
 }
 
@@ -155,14 +142,14 @@
 // Hide/show navigation bar
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 
-- (void)viewDidDisappear:(BOOL)animated
+-(void)viewDidDisappear:(BOOL)animated
 {
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewDidDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
 -(BOOL)shouldAutorotate
@@ -174,4 +161,16 @@
 {
     return UIInterfaceOrientationMaskPortrait;
 }
+
+#pragma mark -
+#pragma mark PreviousTableViewControllerDelegate
+- (void)PreviousTableViewController:(PreviousTableViewController *)previousTableViewController didFinishWithSelection:(NSUInteger)selection
+{
+    
+}
+- (void)didCancelPreviousTableViewController:(PreviousTableViewController *)previousTableViewController
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 @end

@@ -22,26 +22,39 @@
     return [NSString stringWithFormat:@"%@/%@", path, @"data.bin"];
 }
 
-+(BOOL)saveImage:(StampedImage *)image
++(BOOL)saveImage:(StampedImage *)image forIndex:(NSNumber *)index
 {
     NSString *path = [self pathForDataFile];
-    NSLog(@"Writing image to '%@'", path);
- 	
-    return [NSKeyedArchiver archiveRootObject:image toFile:path];
-}
-
-+(StampedImage *)readImage
-{
-    NSString *path = [self pathForDataFile];
-    NSLog(@"Loading accounts from file '%@'", path);
- 	
-    StampedImage *image = nil;
     
-    image = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
-    return image;
+    NSArray *images = [self readImages];
+    if (!images) // no previously stored images
+    {
+        images = @[image];
+    }
+    else
+    {
+        if ([index unsignedIntegerValue] >= [images count]) // append at the end
+            images = [images arrayByAddingObject:image];
+        else // replace a current image
+        {
+            NSMutableArray *mutImages = [images mutableCopy];
+            mutImages[[index unsignedIntegerValue]] = image;
+            images = mutImages;
+        }
+    }
+    return [NSKeyedArchiver archiveRootObject:images toFile:path];
 }
 
-
-
++(NSArray *)readImages
+{
+    NSString *path = [self pathForDataFile];
+    NSObject *images = nil;
+    
+    images = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+    
+    if (![images isKindOfClass:[NSArray class]]) // corrupt data
+        return nil;
+    return (NSArray *)images;
+}
 
 @end
