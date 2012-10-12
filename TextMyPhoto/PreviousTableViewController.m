@@ -8,7 +8,6 @@
 
 #import "PreviousTableViewController.h"
 #import "IOHandler.h"
-#import "StampedImage.h"
 #import "PreviousTableViewCell.h"
 
 #define MAX_CELL_HEIGHT 150
@@ -19,25 +18,39 @@
 
 @implementation PreviousTableViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     _images = [IOHandler readImages];
-    [self.tableView reloadData];    
+    [self.tableView reloadData];
+    
+    // Do not stick around if no prev projects could be found
+    if ([_images count] == 0)
+    {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"No previous projects"
+                              message:@"No previous projects were found"
+                              delegate:self
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 -(IBAction)cancelButtonPressed:(id)sender
 {
     [_delegate didCancelPreviousTableViewController:self];
+}
+
+-(BOOL)shouldAutorotate
+{
+    return NO;
+}
+
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 #pragma mark - Table view data source
@@ -89,14 +102,13 @@
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
+ */
 
 /*
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
-}
-*/
+}*/
 
 /*
 // Override to support conditional rearranging of the table view.
@@ -112,7 +124,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [_delegate PreviousTableViewController:self didFinishWithSelection:indexPath.row];
+    [_delegate PreviousTableViewController:self didFinishWithImage:(StampedImage*)_images[indexPath.row] forRow:indexPath.row];
+}
+
+#pragma mark -
+#pragma mark UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alert clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [_delegate didCancelPreviousTableViewController:self];
 }
 
 @end

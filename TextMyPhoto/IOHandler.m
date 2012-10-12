@@ -38,7 +38,7 @@
         else // replace a current image
         {
             NSMutableArray *mutImages = [images mutableCopy];
-            mutImages[[index unsignedIntegerValue]] = image;
+            [mutImages setObject:image atIndexedSubscript:[index unsignedIntegerValue]];
             images = mutImages;
         }
     }

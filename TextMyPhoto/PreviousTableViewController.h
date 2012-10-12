@@ -7,17 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "StampedImage.h"
 
 @protocol PreviousTableViewControllerDelegate;
 
-@interface PreviousTableViewController : UITableViewController
+@interface PreviousTableViewController : UITableViewController <UIAlertViewDelegate>
 
 @property (nonatomic, weak) id<PreviousTableViewControllerDelegate> delegate;
 
 @end
 
 @protocol PreviousTableViewControllerDelegate <NSObject>
-- (void)PreviousTableViewController:(PreviousTableViewController *)previousTableViewController didFinishWithSelection:(NSUInteger)selection;
+- (void)PreviousTableViewController:(PreviousTableViewController *)previousTableViewController didFinishWithImage:(StampedImage *)image forRow:(NSInteger)index;
+
 - (void)didCancelPreviousTableViewController:(PreviousTableViewController *)previousTableViewController;
 
 @end

@@ -265,8 +265,6 @@
     if (!_stampedImage)
         _stampedImage = [[StampedImage alloc] init];
     
-    // A big value of _projectNbr will cause this to be handled as a new project. This should be resetted to a smaller value if an old project is modified.
-    _projectNbr = [NSNumber numberWithInteger:NSIntegerMax];
     _textLabel.delegate = self;
 }
 
@@ -287,12 +285,19 @@
     [self alignViews];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+-(void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillDisappear:animated];
-    
-    // Serialize current work to disk
-    [IOHandler saveImage:_stampedImage forIndex:_projectNbr]; // Will cause it to append a new image
+    [super viewDidAppear:animated];
+    [self alignViews];
+}
+
+-(void)willMoveToParentViewController:(UIViewController *)parent
+{
+    if (!parent)
+    {
+        // Back button was pressed. Save current work
+        [IOHandler saveImage:_stampedImage forIndex:_projectNbr];
+    }
 }
 
 -(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration

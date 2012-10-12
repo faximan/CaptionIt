@@ -151,21 +151,21 @@
         <scene sceneID="xer-sf-pNJ">
             <objects>
                 <tableViewController id="lba-vh-wsa" customClass="PreviousTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="175" sectionHeaderHeight="22" sectionFooterHeight="22" id="qyn-bg-W9U">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="175" sectionHeaderHeight="22" sectionFooterHeight="22" id="qyn-bg-W9U">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="separatorColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.80101477581521741" green="0.80101477581521741" blue="0.80101477581521741" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="separatorColor" red="0.72131878396739135" green="0.72131878396739135" blue="0.72131878396739135" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="150" id="xbU-NK-O8r" customClass="PreviousTableViewCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="150"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="151" id="xbU-NK-O8r" customClass="PreviousTableViewCell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="151"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" id="0O8-Hb-GyX">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" id="0O8-Hb-GyX">
+                                            <rect key="frame" x="0.0" y="1" width="320" height="150"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
@@ -211,10 +211,10 @@
             </objects>
             <point key="canvasLocation" x="-766" y="109"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--My Navigation Controller View Controller-->
         <scene sceneID="y9V-fc-Ba3">
             <objects>
-                <navigationController id="Edb-VE-rrf" sceneMemberID="viewController">
+                <navigationController id="Edb-VE-rrf" customClass="MyNavigationControllerViewController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PEm-hu-LbX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -247,6 +247,7 @@
         <class className="LaunchMenuViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LaunchMenuViewController.h"/>
             <relationships>
+                <relationship kind="action" name="stampPhotoButtonPressed:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="boarderView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="pickButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="prevButton" candidateClass="UIButton"/>

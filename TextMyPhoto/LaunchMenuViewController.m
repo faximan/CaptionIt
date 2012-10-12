@@ -27,6 +27,7 @@
 {
     bool cameraAvailable;
     StampedImage *stampedImage;
+    NSInteger projectNbr;
 }
 
 #pragma mark -
@@ -61,7 +62,8 @@
     // Get the selected image and populate the image view with it.
     stampedImage.originalImage = info[UIImagePickerControllerOriginalImage];
     stampedImage.urlToOriginalImage = info[UIImagePickerControllerReferenceURL];
-        
+    
+    projectNbr = NSIntegerMax;
     if(stampedImage.originalImage) //A image was actually selected/taken
         [self performSegueWithIdentifier:@"edit" sender:nil];
     
@@ -95,10 +97,13 @@
 {
     if ([[segue identifier] isEqualToString:@"edit"])
     {
+        // Make sure the navigation bar is visible in the next view
+        [self.navigationController setNavigationBarHidden:NO animated:NO];
         EditViewController *vc = [segue destinationViewController];
         if (vc.view)
         {
             vc.stampedImage = stampedImage;
+            vc.projectNbr = @(projectNbr);
         }
     }
     if ([[segue identifier] isEqualToString:@"previous"])
@@ -139,17 +144,11 @@
     _imgPicker.delegate = self;
 }
 
-// Hide/show navigation bar
+// Hide navigation bar for this view
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
-}
-
--(void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
 -(BOOL)shouldAutorotate
@@ -164,10 +163,15 @@
 
 #pragma mark -
 #pragma mark PreviousTableViewControllerDelegate
-- (void)PreviousTableViewController:(PreviousTableViewController *)previousTableViewController didFinishWithSelection:(NSUInteger)selection
+- (void)PreviousTableViewController:(PreviousTableViewController *)previousTableViewController didFinishWithImage:(StampedImage *)image forRow:(NSInteger)index
 {
+    stampedImage = image;
+    projectNbr = index;
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self performSegueWithIdentifier:@"edit" sender:self];
     
 }
+
 - (void)didCancelPreviousTableViewController:(PreviousTableViewController *)previousTableViewController
 {
     [self dismissViewControllerAnimated:YES completion:nil];
