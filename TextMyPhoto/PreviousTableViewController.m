@@ -9,6 +9,8 @@
 #import "PreviousTableViewController.h"
 #import "IOHandler.h"
 #import "PreviousTableViewCell.h"
+#import "UIImage+Tint.h"
+#import <QuartzCore/QuartzCore.h>
 
 #define MAX_CELL_HEIGHT 150
 
@@ -72,6 +74,17 @@
     
     cell.cellImage.image = [[_images objectAtIndex:indexPath.row] originalImage];
     
+    // Set tint when pressed
+    cell.cellImage.highlightedImage = [cell.cellImage.image tintedImageUsingColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.3]];
+    
+    // Add drop shadow
+    cell.layer.shadowOffset = CGSizeMake(1, 0);
+    cell.layer.shadowColor = [[UIColor blackColor] CGColor];
+    cell.layer.shadowRadius = 10;
+    cell.layer.shadowOpacity = .75;
+    CGRect shadowFrame = cell.layer.bounds;
+    CGPathRef shadowPath = [UIBezierPath bezierPathWithRect:shadowFrame].CGPath;
+    cell.layer.shadowPath = shadowPath;
     return cell;
 }
 
@@ -119,7 +132,7 @@
 }
 */
 
-#pragma mark - Table view delegate
+#pragma mark - Table view 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

@@ -157,22 +157,23 @@
                         <color key="backgroundColor" red="0.80101477581521741" green="0.80101477581521741" blue="0.80101477581521741" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="separatorColor" red="0.72131878396739135" green="0.72131878396739135" blue="0.72131878396739135" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="151" id="xbU-NK-O8r" customClass="PreviousTableViewCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="151"/>
+                            <tableViewCell opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="150" id="NMH-JU-UJW" customClass="PreviousTableViewCell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" id="0O8-Hb-GyX">
-                                            <rect key="frame" x="0.0" y="1" width="320" height="150"/>
+                                        <imageView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" id="T7F-Be-Cmu">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <color key="backgroundColor" red="0.02033656159" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <outlet property="cellImage" destination="0O8-Hb-GyX" id="bgb-Tw-FnP"/>
+                                    <outlet property="cellImage" destination="T7F-Be-Cmu" id="h5d-Lr-kXQ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -235,40 +236,6 @@
         <image name="pinboard.png" width="640" height="1136"/>
         <image name="stamp.png" width="400" height="300"/>
     </resources>
-    <classes>
-        <class className="EditViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="parentView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="textLabel" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="LaunchMenuViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LaunchMenuViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="stampPhotoButtonPressed:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="boarderView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="pickButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="prevButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="MyNavigationControllerViewController" superclassName="UINavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MyNavigationControllerViewController.h"/>
-        </class>
-        <class className="PreviousTableViewCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PreviousTableViewCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="cellImage" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="PreviousTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PreviousTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelButtonPressed:"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

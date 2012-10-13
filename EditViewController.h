@@ -21,3 +21,8 @@
 @property  NSNumber* projectNbr; // The index of this project
 
 @end
+
+/** TODO:
+Rendered image i tableviewn
+Ta bort bilder ur tableviewn (kryss?)
+*/
