@@ -80,92 +80,24 @@
     return bitmap;
 }
 
-// Called when the user finishes saving an image to the photos album
-- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(NSDictionary *)contextInfo
-{
-    if (error != NULL)
-        [self showAlertWithTitle:@"Unknown error" andMessage:@"The image was not saved, sorry."];
-    else // no errors
-        [self showAlertWithTitle:@"Success" andMessage:@"The image was successfully saved to your photo album."];
-}
-
 -(void)shareButtonPressed
 {
     // Remove keyboard if in edit mode
     [_textLabel resignFirstResponder];
     
-    UIActionSheet *popupQuery = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Save to photo library", @"Email", @"Facebook", @"Twitter", nil];
-    
-    popupQuery.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-    [popupQuery showInView:self.view];
-}
-
-- (void)emailImage:(UIImage *)imageToShare
-{
-    // Convert the image to a PNG representation for emailing
-    NSData *imageData = UIImagePNGRepresentation(imageToShare);
-    if (!imageData)
+    UIImage *renderedImage = [self renderCurrentImage];
+    if (!renderedImage) // Error when rendering
     {
-        // Something went wrong, the image was probably not set
-        [self showAlertWithTitle:@"Error" andMessage:@"Something went wrong when preparing the image for sharing via email."];
+        [self showAlertWithTitle:@"Error" andMessage:@"Your image could not be prepared for sharing."];
         return;
     }
     
-    // Check to make sure that this device is capable of sending emails
-    if ([MFMailComposeViewController canSendMail])
-    {
-        NSLog(@"Trying to send mail");
-        // Share the picture via email
-        MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
-        controller.mailComposeDelegate = self;
-        [controller setSubject:@"My stamped photo"];
-        [controller addAttachmentData:imageData mimeType:@"image/png" fileName:@"myphoto"];
-        if (controller)
-            [self presentViewController:controller animated:YES completion:nil];
-    }
-    else
-        [self showAlertWithTitle:@"Error" andMessage:@"Your device is not configured for sending emails!"];
-}
-
-// Called when the user exits the mail composer window
-- (void)mailComposeController:(MFMailComposeViewController*)controller
-          didFinishWithResult:(MFMailComposeResult)result
-                        error:(NSError*)error;
-{
-    if (result == MFMailComposeResultSent)
-        NSLog(@"Mail sent");
-    else
-        NSLog(@"Mail not sent");
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)shareImage:(UIImage *)imageToShare viaSocialService:(NSString *)serviceType;
-{
-    SLComposeViewController *socialComposer = [SLComposeViewController composeViewControllerForServiceType:serviceType];
-    
-    // Add the image
-    [socialComposer addImage:imageToShare];
-    
-    // Print out diagnostic information when the user
-    //completes the action and dismiss the view controller.
-    [socialComposer setCompletionHandler:
-     ^(SLComposeViewControllerResult result)
-     {
-         switch (result)
-         {
-             case SLComposeViewControllerResultCancelled:
-                 NSLog(@"%@ Result: Cancel", serviceType);
-                 break;
-             case SLComposeViewControllerResultDone:
-                 NSLog(@"%@ Result: Sent", serviceType);
-                 break;
-             default:
-                 NSLog(@"%@ Result: Error", serviceType);
-                 break;
-         }
-         [self dismissViewControllerAnimated:YES completion:nil];
-     }];
-    [self presentViewController:socialComposer animated:YES completion:nil];
+    // Pull up a list of places to share this photo to.
+    NSArray* dataToShare = @[renderedImage];
+    UIActivityViewController* activityViewController =
+    [[UIActivityViewController alloc] initWithActivityItems:dataToShare
+                                      applicationActivities:nil];
+    [self presentViewController:activityViewController animated:YES completion:^{}];
 }
 
 #pragma mark For editing the image
@@ -208,35 +140,6 @@
 }
 
 #pragma mark View Stuff
-/** Delegate method called when the user selects an option in an action sheet. */
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    // Prepare the picture for sharing
-    UIImage *imageToShare = [self renderCurrentImage];
-    if (!imageToShare)
-    {
-        [self showAlertWithTitle:@"Error" andMessage:@"Your picture could not be prepared properly for sharing"];
-        return;
-    }
-    switch (buttonIndex)
-    {
-        case 0: // save to camera
-            UIImageWriteToSavedPhotosAlbum(imageToShare, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
-            break;
-        case 1: // email
-            [self emailImage:imageToShare];
-            break;
-        case 2: // Facebook
-            [self shareImage:imageToShare viaSocialService:SLServiceTypeFacebook];
-            break;
-        case 3: // Twitter
-             [self shareImage:imageToShare viaSocialService:SLServiceTypeTwitter];
-            break;
-        case 4: // cancel - do nothing
-            return;
-    }
-}
-
 // Show a UIAlertView with the passed title and message
 // Only one button called "OK" is added to dissmiss the alert.
 - (void)showAlertWithTitle:(NSString *)title andMessage:(NSString*)message

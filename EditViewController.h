@@ -15,7 +15,7 @@
 #import "StampedImage.h"
 #import "MNColorPicker.h"
 
-@interface EditViewController : UIViewController < UIActionSheetDelegate, MFMailComposeViewControllerDelegate, UITextFieldDelegate, MNColorPickerDelegate>
+@interface EditViewController : UIViewController < MFMailComposeViewControllerDelegate, UITextFieldDelegate, MNColorPickerDelegate>
 
 @property (nonatomic, strong) StampedImage *stampedImage;
 @property  NSNumber* projectNbr; // The index of this project
