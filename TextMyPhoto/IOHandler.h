@@ -11,7 +11,8 @@
 
 @interface IOHandler : NSObject
 
-+(BOOL)saveImage:(StampedImage *)image forIndex:(NSNumber *)index;
++(BOOL)saveImage:(StampedImage *)image forIndex:(NSInteger)index;
 +(NSArray *)readImages;
++(BOOL)deleteImageAtIndex:(NSInteger)index;
 
 @end

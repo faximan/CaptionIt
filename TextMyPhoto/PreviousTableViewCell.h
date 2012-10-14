@@ -11,5 +11,6 @@
 @interface PreviousTableViewCell : UITableViewCell
 
 @property (nonatomic, weak) IBOutlet UIImageView *cellImage;
+@property (nonatomic, weak) IBOutlet UIView* customView;
 
 @end

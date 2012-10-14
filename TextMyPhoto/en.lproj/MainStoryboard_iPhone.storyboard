@@ -168,12 +168,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
+                                        <view opaque="NO" alpha="0.50000000000000011" contentMode="scaleToFill" id="PsE-b4-dPO">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        </view>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <color key="backgroundColor" red="0.02033656159" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="cellImage" destination="T7F-Be-Cmu" id="h5d-Lr-kXQ"/>
+                                    <outlet property="customView" destination="PsE-b4-dPO" id="XJh-Pn-jdt"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -236,6 +242,37 @@
         <image name="pinboard.png" width="640" height="1136"/>
         <image name="stamp.png" width="400" height="300"/>
     </resources>
+    <classes>
+        <class className="EditViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="parentView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="textLabel" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="LaunchMenuViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LaunchMenuViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="boarderView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="pickButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="prevButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="MyNavigationControllerViewController" superclassName="UINavigationController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MyNavigationControllerViewController.h"/>
+        </class>
+        <class className="PreviousTableViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PreviousTableViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="cellImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="customView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="PreviousTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PreviousTableViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

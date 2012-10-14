@@ -22,10 +22,9 @@
     return [NSString stringWithFormat:@"%@/%@", path, @"data.bin"];
 }
 
-+(BOOL)saveImage:(StampedImage *)image forIndex:(NSNumber *)index
++(BOOL)saveImage:(StampedImage *)image forIndex:(NSInteger)index
 {
     NSString *path = [self pathForDataFile];
-    
     NSArray *images = [self readImages];
     if (!images) // no previously stored images
     {
@@ -33,12 +32,12 @@
     }
     else
     {
-        if ([index unsignedIntegerValue] >= [images count]) // append at the end
+        if (index >= [images count]) // append at the end
             images = [images arrayByAddingObject:image];
         else // replace a current image
         {
             NSMutableArray *mutImages = [images mutableCopy];
-            [mutImages setObject:image atIndexedSubscript:[index unsignedIntegerValue]];
+            [mutImages setObject:image atIndexedSubscript:index];
             images = mutImages;
         }
     }
@@ -55,6 +54,26 @@
     if (![images isKindOfClass:[NSArray class]]) // corrupt data
         return nil;
     return (NSArray *)images;
+}
+
+
++(BOOL)deleteImageAtIndex:(NSInteger)index
+{
+    NSString *path = [self pathForDataFile];
+    NSArray *images = [self readImages];
+    if (!images) // no previously stored images, this is wrong
+        return NO;
+    else
+    {
+        if (index >= [images count]) // index too high. This is wrong!
+            return NO;
+        else // replace a current image
+        {
+            NSMutableArray *mutImages = [images mutableCopy];
+            [mutImages removeObjectAtIndex:index];
+            return [NSKeyedArchiver archiveRootObject:mutImages toFile:path];
+        }
+    }
 }
 
 @end

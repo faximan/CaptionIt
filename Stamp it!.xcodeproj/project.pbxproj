@@ -20,6 +20,7 @@
 		DE4D997A1627118000936EBE /* license.txt in Resources */ = {isa = PBXBuildFile; fileRef = DE4D99791627118000936EBE /* license.txt */; };
 		DE6B38FA16255178009B41DC /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE6B38F916255178009B41DC /* Social.framework */; };
 		DE71B39F16002B9A00D2FF7A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE71B39E16002B9A00D2FF7A /* MessageUI.framework */; };
+		DEA33C72162A938800DBFB35 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA33C71162A938800DBFB35 /* QuartzCore.framework */; };
 		DEA4B8B416257BFD00E711AF /* stamp.png in Resources */ = {isa = PBXBuildFile; fileRef = DEA4B8B316257BFD00E711AF /* stamp.png */; };
 		DEA4B8B61625809B00E711AF /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA4B8B51625809B00E711AF /* AssetsLibrary.framework */; };
 		DEA4B8B91625823100E711AF /* StampedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA4B8B81625823100E711AF /* StampedImage.m */; };
@@ -63,6 +64,7 @@
 		DE4D99791627118000936EBE /* license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = license.txt; sourceTree = "<group>"; };
 		DE6B38F916255178009B41DC /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		DE71B39E16002B9A00D2FF7A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		DEA33C71162A938800DBFB35 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DEA4B8B316257BFD00E711AF /* stamp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stamp.png; sourceTree = "<group>"; };
 		DEA4B8B51625809B00E711AF /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		DEA4B8B71625823100E711AF /* StampedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StampedImage.h; path = ../StampedImage.h; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEA33C72162A938800DBFB35 /* QuartzCore.framework in Frameworks */,
 				DEA4B8B61625809B00E711AF /* AssetsLibrary.framework in Frameworks */,
 				DE6B38FA16255178009B41DC /* Social.framework in Frameworks */,
 				DE71B39F16002B9A00D2FF7A /* MessageUI.framework in Frameworks */,
@@ -170,6 +173,7 @@
 		DEED1B9115EFA2A6004E33F3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DEA33C71162A938800DBFB35 /* QuartzCore.framework */,
 				DEA4B8B51625809B00E711AF /* AssetsLibrary.framework */,
 				DE6B38F916255178009B41DC /* Social.framework */,
 				DE71B39E16002B9A00D2FF7A /* MessageUI.framework */,

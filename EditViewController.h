@@ -18,11 +18,6 @@
 @interface EditViewController : UIViewController < MFMailComposeViewControllerDelegate, UITextFieldDelegate, MNColorPickerDelegate>
 
 @property (nonatomic, strong) StampedImage *stampedImage;
-@property  NSNumber* projectNbr; // The index of this project
+@property  NSInteger projectNbr; // The index of this project
 
 @end
-
-/** TODO:
-Rendered image i tableviewn
-Ta bort bilder ur tableviewn (kryss?)
-*/
