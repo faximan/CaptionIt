@@ -47,43 +47,43 @@
 - (UIImage *)renderCurrentImage
 {
     // Parentview should here have the same frame as the imageview. Cache the old frame, scale it to full photo resolution and render it.
-    CGRect oldFrame = _parentView.frame;
-    float scaleFactor = _stampedImage.originalImage.size.width / _imageView.frame.size.width;
-    _parentView.frame = CGRectMake(_parentView.frame.origin.x, _parentView.frame.origin.y, _stampedImage.originalImage.size.width, _stampedImage.originalImage.size.height);
+    CGRect oldFrame = self.parentView.frame;
+    float scaleFactor = self.stampedImage.originalImage.size.width / self.imageView.frame.size.width;
+    self.parentView.frame = CGRectMake(self.parentView.frame.origin.x, self.parentView.frame.origin.y, self.stampedImage.originalImage.size.width, self.stampedImage.originalImage.size.height);
     
     // Get the context
-    UIGraphicsBeginImageContextWithOptions(_parentView.bounds.size, _parentView.opaque, 0.0);
+    UIGraphicsBeginImageContextWithOptions(self.parentView.bounds.size, self.parentView.opaque, 0.0);
         
     // Render the image
-    [_imageView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    [self.imageView.layer renderInContext:UIGraphicsGetCurrentContext()];
     
     // Render the text on top of the image
     // Scale to render sharp (cache old frame)
-    CGRect oldLabelFrame = _textLabel.frame;
-    CGFloat oldFontSize = _textLabel.font.pointSize;
-    _textLabel.font = [UIFont systemFontOfSize:_textLabel.font.pointSize * scaleFactor];
-    _textLabel.frame = CGRectMake(oldLabelFrame.origin.x, oldLabelFrame.origin.y, oldLabelFrame.size.width * scaleFactor, oldLabelFrame.size.height * scaleFactor);
-     _textLabel.center = _imageView.center;
+    CGRect oldLabelFrame = self.textLabel.frame;
+    CGFloat oldFontSize = self.textLabel.font.pointSize;
+    self.textLabel.font = [UIFont systemFontOfSize:self.textLabel.font.pointSize * scaleFactor];
+    self.textLabel.frame = CGRectMake(oldLabelFrame.origin.x, oldLabelFrame.origin.y, oldLabelFrame.size.width * scaleFactor, oldLabelFrame.size.height * scaleFactor);
+    self.textLabel.center = self.imageView.center;
     
     // Translate the context to where the label is to render it at the correct position
-    CGContextTranslateCTM(UIGraphicsGetCurrentContext(), _textLabel.frame.origin.x, _textLabel.frame.origin.y);
-    [_textLabel.layer renderInContext:UIGraphicsGetCurrentContext()];
+    CGContextTranslateCTM(UIGraphicsGetCurrentContext(), self.textLabel.frame.origin.x, self.textLabel.frame.origin.y);
+    [self.textLabel.layer renderInContext:UIGraphicsGetCurrentContext()];
     
     // Convert to UIImage
     UIImage *bitmap = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    _textLabel.font = [UIFont systemFontOfSize:oldFontSize];
-    _textLabel.frame = oldLabelFrame;
-    _parentView.frame = oldFrame;
-    _textLabel.center = _imageView.center;
+    self.textLabel.font = [UIFont systemFontOfSize:oldFontSize];
+    self.textLabel.frame = oldLabelFrame;
+    self.parentView.frame = oldFrame;
+    self.textLabel.center = self.imageView.center;
     return bitmap;
 }
 
 -(void)shareButtonPressed
 {
     // Remove keyboard if in edit mode
-    [_textLabel resignFirstResponder];
+    [self.textLabel resignFirstResponder];
     
     UIImage *renderedImage = [self renderCurrentImage];
     if (!renderedImage) // Error when rendering
@@ -97,14 +97,14 @@
     UIActivityViewController* activityViewController =
     [[UIActivityViewController alloc] initWithActivityItems:dataToShare
                                       applicationActivities:nil];
-    [self presentViewController:activityViewController animated:YES completion:^{}];
+    [self presentViewController:activityViewController animated:YES completion:nil];
 }
 
 #pragma mark For editing the image
 - (IBAction)addText
 {
     // Set the textlabel to be in edit mode
-    [_textLabel becomeFirstResponder];
+    [self.textLabel becomeFirstResponder];
 }
 
 // Pull up the color picker
@@ -124,8 +124,8 @@
 	[self dismissViewControllerAnimated:YES completion:nil];
 	if (color)
     {
-		_textLabel.textColor = color;
-        _stampedImage.textColor = color;
+		self.textLabel.textColor = color;
+        self.stampedImage.textColor = color;
 	}
 }
 
@@ -135,7 +135,7 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {    
     [textField resignFirstResponder];
-    _stampedImage.stampedText = _textLabel.text;
+    self.stampedImage.stampedText = self.textLabel.text;
     return YES;
 }
 
@@ -165,26 +165,26 @@
                                    initWithTitle:@"Share" style:UIBarButtonItemStyleDone target:self action:@selector(shareButtonPressed)];
     self.navigationItem.rightBarButtonItems = @[buttonItem];
     
-    if (!_stampedImage)
-        _stampedImage = [[StampedImage alloc] init];
+    if (!self.stampedImage)
+        self.stampedImage = [[StampedImage alloc] init];
     
-    _textLabel.delegate = self;
+    self.textLabel.delegate = self;
 }
 
 - (void)alignViews
 {
     // Set the imageview frame to be the same size as the image
-    [_parentView setFrame:[self frameForImage:_stampedImage.originalImage inViewAspectFit:_parentView.superview]];
-    _parentView.center = _parentView.superview.center; // center on screen
-    _textLabel.center = _imageView.center;
+    [self.parentView setFrame:[self frameForImage:self.stampedImage.originalImage inViewAspectFit:_parentView.superview]];
+    self.parentView.center = self.parentView.superview.center; // center on screen
+    self.textLabel.center = self.imageView.center;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    _imageView.image = _stampedImage.originalImage;
-    _textLabel.textColor = _stampedImage.textColor;
-    _textLabel.text = _stampedImage.stampedText;
+    self.imageView.image = self.stampedImage.originalImage;
+    self.textLabel.textColor = self.stampedImage.textColor;
+    self.textLabel.text = self.stampedImage.stampedText;
     [self alignViews];
 }
 
@@ -199,14 +199,14 @@
     if (!parent)
     {
         // Back button was pressed. Save current work
-        [IOHandler saveImage:_stampedImage forIndex:_projectNbr];
+        [IOHandler saveImage:self.stampedImage forIndex:self.projectNbr];
     }
 }
 
 -(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     // Reset parent view before auto rotation to shrink it later
-    _parentView.frame = _parentView.superview.frame;
+    self.parentView.frame = self.parentView.superview.frame;
 }
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation

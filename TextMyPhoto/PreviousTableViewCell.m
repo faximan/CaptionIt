@@ -23,32 +23,17 @@
     animation.duration = 0.2f;
     animation.type = kCATransitionFromLeft;
     
-    //redraw the subviews (and animate)
-    if (editing)
+    self.customView.hidden = !editing;
+   
+    float viewXPos = editing ? SLIDE_DISTANCE : 0.0;
+    for( UIView *subview in self.contentView.subviews )
     {
-        _customView.hidden = NO;
-        for( UIView *subview in self.contentView.subviews )
-        {
-            [subview.layer addAnimation: animation forKey: @"editingFade"];
-            
-            // Move all subviews 10 points to the right
-            subview.frame = CGRectMake(SLIDE_DISTANCE, subview.frame.origin.y, subview.frame.size.width, subview.frame.size.height);
-            [subview setNeedsDisplay];
-        }
-    }
-    else
-    {
-        _customView.hidden = YES;
-        for( UIView *subview in self.contentView.subviews )
-        {
-            [subview.layer addAnimation: animation forKey: @"editingFade"];
-            
-            // Move back
-            subview.frame = CGRectMake(0.0, subview.frame.origin.y, subview.frame.size.width, subview.frame.size.height);
-            [subview setNeedsDisplay];
-        }
-    }
+        [subview.layer addAnimation: animation forKey: @"editingFade"];
         
+        // Move all subviews 10 points to the right
+        subview.frame = CGRectMake(viewXPos, subview.frame.origin.y, subview.frame.size.width, subview.frame.size.height);
+        [subview setNeedsDisplay];
+    }        
 }
 
 @end

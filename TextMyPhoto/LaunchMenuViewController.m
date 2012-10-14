@@ -51,8 +51,8 @@
     }
     else // no camera
     {
-        _imgPicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        [self presentViewController:_imgPicker animated:YES completion:nil];
+        self.imgPicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentViewController:self.imgPicker animated:YES completion:nil];
     }
 }
 
@@ -62,10 +62,12 @@
     // Get the selected image and populate the image view with it.
     stampedImage.originalImage = info[UIImagePickerControllerOriginalImage];
     stampedImage.urlToOriginalImage = info[UIImagePickerControllerReferenceURL];
-    
-    projectNbr = NSIntegerMax;
+
     if(stampedImage.originalImage) //A image was actually selected/taken
+    {
+        projectNbr = NSIntegerMax; // New project
         [self performSegueWithIdentifier:@"edit" sender:nil];
+    }
     
     // Get rid of the picker controller.
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -84,13 +86,13 @@
         case 2: // cancel - do nothing
             return;
         case 0: // camera
-            _imgPicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            self.imgPicker.sourceType = UIImagePickerControllerSourceTypeCamera;
             break;
         case 1: // photo library
-            _imgPicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            self.imgPicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
             break;
     }
-    [self presentViewController:_imgPicker animated:YES completion:nil];
+    [self presentViewController:self.imgPicker animated:YES completion:nil];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -117,15 +119,15 @@
 -(void)addBorderToWindow
 {
     // Create black border in launchview
-    [_pickButton.layer setBorderColor:[UIColor blackColor].CGColor];
-    [_pickButton.layer setBorderWidth:BOARDER_WIDTH];
+    [self.pickButton.layer setBorderColor:[UIColor blackColor].CGColor];
+    [self.pickButton.layer setBorderWidth:BOARDER_WIDTH];
     
-    [_prevButton.layer setBorderColor:[UIColor blackColor].CGColor];
-    [_prevButton.layer setBorderWidth:BOARDER_WIDTH];
+    [self.prevButton.layer setBorderColor:[UIColor blackColor].CGColor];
+    [self.prevButton.layer setBorderWidth:BOARDER_WIDTH];
     
-    [_boarderView.layer setBorderColor:[UIColor blackColor].CGColor];
-    [_boarderView.layer setBorderWidth:BOARDER_WIDTH];
-    [_boarderView setBackgroundColor:[UIColor clearColor]];
+    [self.boarderView.layer setBorderColor:[UIColor blackColor].CGColor];
+    [self.boarderView.layer setBorderWidth:BOARDER_WIDTH];
+    [self.boarderView setBackgroundColor:[UIColor clearColor]];
 }
 
 - (void)viewDidLoad
@@ -137,11 +139,12 @@
     // Make sure we know whether this device has a camera or not
     cameraAvailable = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
     
-    if (!_imgPicker)
-        _imgPicker = [[UIImagePickerController alloc] init];
+    if (!self.imgPicker)
+        self.imgPicker = [[UIImagePickerController alloc] init];
+    self.imgPicker.delegate = self;
+    
     if (!stampedImage)
         stampedImage = [[StampedImage alloc] init];
-    _imgPicker.delegate = self;
 }
 
 // Hide navigation bar for this view

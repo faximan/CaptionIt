@@ -25,11 +25,11 @@
 {
     [super viewDidLoad];
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
-    _images = [IOHandler readImages];
+    self.images = [IOHandler readImages];
     [self.tableView reloadData];
     
     // Do not stick around if no prev projects could be found
-    if ([_images count] == 0)
+    if ([self.images count] == 0)
     {
         UIAlertView *alert = [[UIAlertView alloc]
                               initWithTitle:@"No previous projects"
@@ -43,7 +43,7 @@
 
 -(IBAction)cancelButtonPressed:(id)sender
 {
-    [_delegate didCancelPreviousTableViewController:self];
+    [self.delegate didCancelPreviousTableViewController:self];
 }
 
 -(BOOL)shouldAutorotate
@@ -65,7 +65,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_images count];
+    return [self.images count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -73,7 +73,7 @@
     static NSString *CellIdentifier = @"Cell";
     PreviousTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    cell.cellImage.image = [[_images objectAtIndex:indexPath.row] originalImage];
+    cell.cellImage.image = [[self.images objectAtIndex:indexPath.row] originalImage];
     
     // Set tint when pressed
     cell.cellImage.highlightedImage = [cell.cellImage.image tintedImageUsingColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.3]];
@@ -91,7 +91,7 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath: (NSIndexPath *) indexPath
 {
-    StampedImage *si = _images[indexPath.row];
+    StampedImage *si = self.images[indexPath.row];
     return MIN(MAX_CELL_HEIGHT, si.originalImage.size.height);
 }
 
@@ -108,9 +108,9 @@
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
         // Remove the right item from the data source
-        NSMutableArray *temp = [_images mutableCopy];
+        NSMutableArray *temp = [self.images mutableCopy];
         [temp removeObjectAtIndex:indexPath.row];
-        _images = (NSArray *)temp;
+        self.images = (NSArray *)temp;
         
         // Remove the item from the backing storage
         [IOHandler deleteImageAtIndex:indexPath.row];
@@ -125,7 +125,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [_delegate PreviousTableViewController:self didFinishWithImage:(StampedImage*)_images[indexPath.row] forRow:indexPath.row];
+    [self.delegate PreviousTableViewController:self didFinishWithImage:(StampedImage*)self.images[indexPath.row] forRow:indexPath.row];
 }
 
 #pragma mark -
@@ -133,7 +133,7 @@
 
 - (void)alertView:(UIAlertView *)alert clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [_delegate didCancelPreviousTableViewController:self];
+    [self.delegate didCancelPreviousTableViewController:self];
 }
 
 @end
