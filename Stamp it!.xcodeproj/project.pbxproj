@@ -193,8 +193,6 @@
 				DED06306161EBCB000FD976D /* LaunchMenuViewController.m */,
 				DEF61DF1161F2F0E00582C33 /* EditViewController.h */,
 				DEF61DF2161F2F0E00582C33 /* EditViewController.m */,
-				DEF61DF4161F415200582C33 /* MyNavigationControllerViewController.h */,
-				DEF61DF5161F415200582C33 /* MyNavigationControllerViewController.m */,
 				DE4D99761626C18200936EBE /* IOHandler.h */,
 				DE4D99771626C18200936EBE /* IOHandler.m */,
 				DEFB03771627EC7A00DD1D85 /* PreviousTableViewController.h */,
@@ -211,6 +209,8 @@
 		DEED1B9915EFA2A6004E33F3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DEF61DF4161F415200582C33 /* MyNavigationControllerViewController.h */,
+				DEF61DF5161F415200582C33 /* MyNavigationControllerViewController.m */,
 				DEED1BA115EFA2A6004E33F3 /* AppDelegate.h */,
 				DEED1BA215EFA2A6004E33F3 /* AppDelegate.m */,
 				DEED1B9A15EFA2A6004E33F3 /* Stamp it!-Info.plist */,

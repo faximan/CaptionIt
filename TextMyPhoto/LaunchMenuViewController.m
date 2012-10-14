@@ -103,7 +103,7 @@
         if (vc.view)
         {
             vc.stampedImage = stampedImage;
-            vc.projectNbr = @(projectNbr);
+            vc.projectNbr = projectNbr;
         }
     }
     if ([[segue identifier] isEqualToString:@"previous"])
@@ -167,8 +167,8 @@
 {
     stampedImage = image;
     projectNbr = index;
-    [self dismissViewControllerAnimated:YES completion:nil];
     [self performSegueWithIdentifier:@"edit" sender:self];
+    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 
