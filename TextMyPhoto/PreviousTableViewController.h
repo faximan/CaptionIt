@@ -7,13 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "StampedImage.h"
+#import "StampedImage+Create.h"
+#import "CoreDataTableViewController.h"
 
 @protocol PreviousTableViewControllerDelegate;
 
-@interface PreviousTableViewController : UITableViewController <UIAlertViewDelegate>
+@interface PreviousTableViewController : CoreDataTableViewController
 
 @property (nonatomic, weak) id<PreviousTableViewControllerDelegate> delegate;
+
+// The database of previous projects
+@property (nonatomic, strong) UIManagedDocument *previousDatabase;
 
 @end
 

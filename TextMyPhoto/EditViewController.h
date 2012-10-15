@@ -12,12 +12,11 @@
 #import <Social/Social.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 
-#import "StampedImage.h"
+#import "StampedImage+Create.h"
 #import "MNColorPicker.h"
 
 @interface EditViewController : UIViewController < MFMailComposeViewControllerDelegate, UITextFieldDelegate, MNColorPickerDelegate>
 
 @property (nonatomic, strong) StampedImage *stampedImage;
-@property  NSInteger projectNbr; // The index of this project
 
 @end

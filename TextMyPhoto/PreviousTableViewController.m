@@ -7,38 +7,18 @@
 //
 
 #import "PreviousTableViewController.h"
-#import "IOHandler.h"
 #import "PreviousTableViewCell.h"
 #import "UIImage+Tint.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define MAX_CELL_HEIGHT 150
 
-@interface PreviousTableViewController ()
-@property NSArray* images;
-@end
-
 @implementation PreviousTableViewController
-
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
-    self.images = [IOHandler readImages];
-    [self.tableView reloadData];
-    
-    // Do not stick around if no prev projects could be found
-    if ([self.images count] == 0)
-    {
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"No previous projects"
-                              message:@"No previous projects were found"
-                              delegate:self
-                              cancelButtonTitle:@"OK"
-                              otherButtonTitles:nil];
-        [alert show];
-    }
 }
 
 -(IBAction)cancelButtonPressed:(id)sender
@@ -58,22 +38,14 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [self.images count];
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     PreviousTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    cell.cellImage.image = [[self.images objectAtIndex:indexPath.row] originalImage];
+    StampedImage *stampedImage = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    cell.cellImage.image = [stampedImage getOriginalImage];
     
     // Set tint when pressed
     cell.cellImage.highlightedImage = [cell.cellImage.image tintedImageUsingColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.3]];
@@ -91,8 +63,8 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath: (NSIndexPath *) indexPath
 {
-    StampedImage *si = self.images[indexPath.row];
-    return MIN(MAX_CELL_HEIGHT, si.originalImage.size.height);
+    StampedImage *stampedImage = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    return MIN(MAX_CELL_HEIGHT, [stampedImage getOriginalImage].size.height);
 }
 
 // Let the user only delete users by pressing "edit". No swiping.
@@ -106,17 +78,9 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete)
-    {
-        // Remove the right item from the data source
-        NSMutableArray *temp = [self.images mutableCopy];
-        [temp removeObjectAtIndex:indexPath.row];
-        self.images = (NSArray *)temp;
-        
-        // Remove the item from the backing storage
-        [IOHandler deleteImageAtIndex:indexPath.row];
-        
-        // Remove tablerow and animate deletion
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    {        
+        // Remove object from database
+        [self.previousDatabase.managedObjectContext deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
     }
 }
 
@@ -125,15 +89,54 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self.delegate PreviousTableViewController:self didFinishWithImage:(StampedImage*)self.images[indexPath.row] forRow:indexPath.row];
+    StampedImage *stampedImage = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    [self.delegate PreviousTableViewController:self didFinishWithImage:stampedImage forRow:indexPath.row];
 }
 
-#pragma mark -
-#pragma mark UIAlertViewDelegate
-
-- (void)alertView:(UIAlertView *)alert clickedButtonAtIndex:(NSInteger)buttonIndex
+#pragma mark-
+#pragma mark Database handling
+// attaches an NSFetchRequest to this UITableViewController
+- (void)setupFetchedResultsController
 {
-    [self.delegate didCancelPreviousTableViewController:self];
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"StampedImage"];
+    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"dateModified" ascending:NO]];
+    // no predicate because we want ALL the stamped images
+    
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request                                                                        managedObjectContext:self.previousDatabase.managedObjectContext                                                                          sectionNameKeyPath:nil                                                                                   cacheName:nil];
+}
+
+- (void)useDocument
+{
+    // Check for the status of the database
+    if (![[NSFileManager defaultManager] fileExistsAtPath:[self.previousDatabase.fileURL path]])
+    {
+        // does not exist on disk, so create it
+        [self.previousDatabase saveToURL:self.previousDatabase.fileURL forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success)
+        {
+            [self setupFetchedResultsController];
+        }];
+    }
+    else if (self.previousDatabase.documentState == UIDocumentStateClosed)
+    {
+        // exists on disk, but we need to open it
+        [self.previousDatabase openWithCompletionHandler:^(BOOL success)
+        {
+            [self setupFetchedResultsController];
+        }];
+    } else if (self.previousDatabase.documentState == UIDocumentStateNormal)
+    {
+        // already open and ready to use
+        [self setupFetchedResultsController];
+    }
+}
+
+- (void)setPreviousDatabase:(UIManagedDocument *)previousDatabase
+{
+    if (_previousDatabase != previousDatabase)
+    {
+        _previousDatabase = previousDatabase;
+        [self useDocument]; // setup the fetched controller
+    }
 }
 
 @end

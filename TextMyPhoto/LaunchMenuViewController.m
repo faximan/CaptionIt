@@ -9,8 +9,7 @@
 #import "LaunchMenuViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "EditViewController.h"
-#import "StampedImage.h"
-#import "IOHandler.h"
+#import "StampedImage+Create.h"
 
 #define BOARDER_WIDTH 3.5f
 
@@ -21,13 +20,16 @@
 @property (nonatomic, weak) IBOutlet UIButton *prevButton;
 @property (nonatomic, strong) UIImagePickerController *imgPicker;
 
+// The database of previous projects
+@property (nonatomic, strong) UIManagedDocument *previousDatabase;
+
 @end
 
 @implementation LaunchMenuViewController
 {
     bool cameraAvailable;
-    StampedImage *stampedImage;
-    NSInteger projectNbr;
+    UIImage *pickedImage;
+    StampedImage* stampedImage;
 }
 
 #pragma mark -
@@ -56,18 +58,42 @@
     }
 }
 
+-(IBAction)previousButtonPressed:(UIButton *)sender
+{
+    if (self.previousDatabase.documentState != UIDocumentStateNormal)
+    {
+        // Error when opening database
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Error"
+                              message:@"Error when opening project database."
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+    else if ([self numProjectsInDatabase] == 0)
+    {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"No previous projects"
+                              message:@"There are no previous projects in the database."
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+    else
+    {
+        // Go to previous projects browser
+        [self performSegueWithIdentifier:@"previous" sender:self];
+    }
+}
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    // Get the selected image and populate the image view with it.
-    stampedImage.originalImage = info[UIImagePickerControllerOriginalImage];
-    stampedImage.urlToOriginalImage = info[UIImagePickerControllerReferenceURL];
-
-    if(stampedImage.originalImage) //A image was actually selected/taken
-    {
-        projectNbr = NSIntegerMax; // New project
+    // Get the selected image
+    pickedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    if(pickedImage) //A image was actually selected/taken
         [self performSegueWithIdentifier:@"edit" sender:nil];
-    }
     
     // Get rid of the picker controller.
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -101,18 +127,24 @@
     {
         // Make sure the navigation bar is visible in the next view
         [self.navigationController setNavigationBarHidden:NO animated:NO];
+        
         EditViewController *vc = [segue destinationViewController];
-        if (vc.view)
+        // Create a new database entry if we have a new project
+        if (!stampedImage)
         {
-            vc.stampedImage = stampedImage;
-            vc.projectNbr = projectNbr;
+            StampedImage *newImage = [StampedImage createStampedImageWithImage:pickedImage inManagedObjectContext:self.previousDatabase.managedObjectContext];
+            vc.stampedImage = newImage;
         }
+        else
+            vc.stampedImage = stampedImage;
     }
     if ([[segue identifier] isEqualToString:@"previous"])
     {
         UINavigationController *nc = (UINavigationController *)[segue destinationViewController];
         PreviousTableViewController *vc = nc.viewControllers[0];
         vc.delegate = self;
+        stampedImage = nil;
+        vc.previousDatabase = self.previousDatabase;
     }
 }
 
@@ -143,8 +175,7 @@
         self.imgPicker = [[UIImagePickerController alloc] init];
     self.imgPicker.delegate = self;
     
-    if (!stampedImage)
-        stampedImage = [[StampedImage alloc] init];
+    stampedImage = nil;
 }
 
 // Hide navigation bar for this view
@@ -152,6 +183,18 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
+    
+    // Create database
+    [self loadDatabase];
+}
+
+// Because opening of the database is asynchronus
+// we do not want the user to start navigating around the app
+// when it is not ready to use.
+-(void)makeNavigationVisible
+{
+    _pickButton.hidden = NO;
+    _prevButton.hidden = NO;
 }
 
 -(BOOL)shouldAutorotate
@@ -164,12 +207,84 @@
     return UIInterfaceOrientationMaskPortrait;
 }
 
+-(void)didReceiveMemoryWarning
+{
+    [self saveDatabase];    
+    [super didReceiveMemoryWarning];
+}
+
+#pragma mark-
+#pragma mark Database stuff
+
+// Returns the number of projects stored in the database
+-(NSUInteger)numProjectsInDatabase
+{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"StampedImage"];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"dateModified" ascending:YES];
+    request.sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    
+    NSError *error = nil;
+    NSUInteger numProjects = [self.previousDatabase.managedObjectContext countForFetchRequest:request error:&error];
+    return (error) ? 0 : numProjects;
+}
+
+-(void)loadDatabase
+{
+    // Create the database if it is not set
+    if (!self.previousDatabase)
+    {
+        NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+        url = [url URLByAppendingPathComponent:@"Default Previous Projects Database"];
+        // url is now "<Documents Directory>/Default Previous Projects Database"
+        self.previousDatabase = [[UIManagedDocument alloc] initWithFileURL:url]; // setter will create this for us on disk
+    }
+}
+
+-(void)saveDatabase
+{
+    [self.previousDatabase.managedObjectContext save:nil];
+}
+
+- (void)setPreviousDatabase:(UIManagedDocument *)previousDatabase
+{
+    if (_previousDatabase != previousDatabase)
+    {
+        _previousDatabase = previousDatabase;
+        [self useDocument]; // setup the fetched controller
+    }
+}
+
+- (void)useDocument
+{
+    // Check for the status of the database
+    if (![[NSFileManager defaultManager] fileExistsAtPath:[self.previousDatabase.fileURL path]])
+    {
+        // does not exist on disk, so create it
+        [self.previousDatabase saveToURL:self.previousDatabase.fileURL forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success)
+         {
+             [self makeNavigationVisible];
+         }];
+    }
+    else if (self.previousDatabase.documentState == UIDocumentStateClosed)
+    {
+        // exists on disk, but we need to open it
+        [self.previousDatabase openWithCompletionHandler:^(BOOL success)
+         {
+             [self makeNavigationVisible];
+         }];
+    } else if (self.previousDatabase.documentState == UIDocumentStateNormal)
+    {
+        // already open and ready to use
+        [self makeNavigationVisible];
+    }
+}
+
+
 #pragma mark -
 #pragma mark PreviousTableViewControllerDelegate
 - (void)PreviousTableViewController:(PreviousTableViewController *)previousTableViewController didFinishWithImage:(StampedImage *)image forRow:(NSInteger)index
 {
     stampedImage = image;
-    projectNbr = index;
     [self performSegueWithIdentifier:@"edit" sender:self];
     [self dismissViewControllerAnimated:YES completion:nil];
     

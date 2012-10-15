@@ -12,4 +12,7 @@
 @interface LaunchMenuViewController : UIViewController
 <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, PreviousTableViewControllerDelegate>
 
+// Save current changes to core data database
+-(void)saveDatabase;
+
 @end

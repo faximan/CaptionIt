@@ -7,7 +7,6 @@
 //
 
 #import "EditViewController.h"
-#import "IOHandler.h"
 
 @interface EditViewController ()
 
@@ -46,10 +45,11 @@
 // Takes the current addons to the image and renders it to a bitmap
 - (UIImage *)renderCurrentImage
 {
+    UIImage *curImage = [self.stampedImage getOriginalImage];
     // Parentview should here have the same frame as the imageview. Cache the old frame, scale it to full photo resolution and render it.
     CGRect oldFrame = self.parentView.frame;
-    float scaleFactor = self.stampedImage.originalImage.size.width / self.imageView.frame.size.width;
-    self.parentView.frame = CGRectMake(self.parentView.frame.origin.x, self.parentView.frame.origin.y, self.stampedImage.originalImage.size.width, self.stampedImage.originalImage.size.height);
+    float scaleFactor = curImage.size.width / self.imageView.frame.size.width;
+    self.parentView.frame = CGRectMake(self.parentView.frame.origin.x, self.parentView.frame.origin.y, curImage.size.width, curImage.size.height);
     
     // Get the context
     UIGraphicsBeginImageContextWithOptions(self.parentView.bounds.size, self.parentView.opaque, 0.0);
@@ -125,7 +125,7 @@
 	if (color)
     {
 		self.textLabel.textColor = color;
-        self.stampedImage.textColor = color;
+        self.stampedImage.color = color;
 	}
 }
 
@@ -135,7 +135,7 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {    
     [textField resignFirstResponder];
-    self.stampedImage.stampedText = self.textLabel.text;
+    self.stampedImage.label = self.textLabel.text;
     return YES;
 }
 
@@ -174,7 +174,7 @@
 - (void)alignViews
 {
     // Set the imageview frame to be the same size as the image
-    [self.parentView setFrame:[self frameForImage:self.stampedImage.originalImage inViewAspectFit:_parentView.superview]];
+    [self.parentView setFrame:[self frameForImage:[self.stampedImage getOriginalImage] inViewAspectFit:_parentView.superview]];
     self.parentView.center = self.parentView.superview.center; // center on screen
     self.textLabel.center = self.imageView.center;
 }
@@ -182,9 +182,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.imageView.image = self.stampedImage.originalImage;
-    self.textLabel.textColor = self.stampedImage.textColor;
-    self.textLabel.text = self.stampedImage.stampedText;
+    self.imageView.image = [self.stampedImage getOriginalImage];
+    self.textLabel.textColor = self.stampedImage.color;
+    self.textLabel.text = self.stampedImage.label;
     [self alignViews];
 }
 
@@ -192,15 +192,6 @@
 {
     [super viewDidAppear:animated];
     [self alignViews];
-}
-
--(void)willMoveToParentViewController:(UIViewController *)parent
-{
-    if (!parent)
-    {
-        // Back button was pressed. Save current work
-        [IOHandler saveImage:self.stampedImage forIndex:self.projectNbr];
-    }
 }
 
 -(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration

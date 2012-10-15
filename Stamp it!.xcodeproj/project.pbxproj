@@ -9,14 +9,12 @@
 /* Begin PBXBuildFile section */
 		DE4D99741626B91F00936EBE /* BrightnessWheel.png in Resources */ = {isa = PBXBuildFile; fileRef = DE4D99721626B91F00936EBE /* BrightnessWheel.png */; };
 		DE4D99751626B91F00936EBE /* ColorWheel.png in Resources */ = {isa = PBXBuildFile; fileRef = DE4D99731626B91F00936EBE /* ColorWheel.png */; };
-		DE4D99781626C18200936EBE /* IOHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4D99771626C18200936EBE /* IOHandler.m */; };
 		DE4D997A1627118000936EBE /* license.txt in Resources */ = {isa = PBXBuildFile; fileRef = DE4D99791627118000936EBE /* license.txt */; };
 		DE6B38FA16255178009B41DC /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE6B38F916255178009B41DC /* Social.framework */; };
 		DE71B39F16002B9A00D2FF7A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE71B39E16002B9A00D2FF7A /* MessageUI.framework */; };
 		DEA33C72162A938800DBFB35 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA33C71162A938800DBFB35 /* QuartzCore.framework */; };
 		DEA33C77162B926600DBFB35 /* TextMyPhoto.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DEA33C75162B926600DBFB35 /* TextMyPhoto.xcdatamodeld */; };
 		DEA33C7C162B92B400DBFB35 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA33C79162B92B300DBFB35 /* EditViewController.m */; };
-		DEA33C7D162B92B400DBFB35 /* StampedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA33C7B162B92B400DBFB35 /* StampedImage.m */; };
 		DEA33C8C162B92E600DBFB35 /* MNBrightnessView.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA33C7F162B92E600DBFB35 /* MNBrightnessView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DEA33C8D162B92E600DBFB35 /* MNColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA33C81162B92E600DBFB35 /* MNColorPicker.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DEA33C8E162B92E600DBFB35 /* MNColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA33C83162B92E600DBFB35 /* MNColorView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -24,6 +22,10 @@
 		DEA33C90162B92E600DBFB35 /* MNMagnifyingView.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA33C87162B92E600DBFB35 /* MNMagnifyingView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DEA33C91162B92E600DBFB35 /* MNMobileFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA33C89162B92E600DBFB35 /* MNMobileFunctions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DEA33C92162B92E600DBFB35 /* UIColor+ColorSpaces.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA33C8B162B92E600DBFB35 /* UIColor+ColorSpaces.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DEA33C94162B93EC00DBFB35 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA33C93162B93EC00DBFB35 /* CoreData.framework */; };
+		DEA33C9E162B9DC600DBFB35 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA33C9D162B9DC600DBFB35 /* CoreDataTableViewController.m */; };
+		DEA33CA1162B9EC000DBFB35 /* StampedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA33CA0162B9EC000DBFB35 /* StampedImage.m */; };
+		DEA33CA4162B9EE900DBFB35 /* StampedImage+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA33CA3162B9EE900DBFB35 /* StampedImage+Create.m */; };
 		DEA4B8B416257BFD00E711AF /* stamp.png in Resources */ = {isa = PBXBuildFile; fileRef = DEA4B8B316257BFD00E711AF /* stamp.png */; };
 		DEA4B8B61625809B00E711AF /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA4B8B51625809B00E711AF /* AssetsLibrary.framework */; };
 		DEA991E116295AF000F0F07E /* UIImage+Tint.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA991E016295AF000F0F07E /* UIImage+Tint.m */; };
@@ -46,8 +48,6 @@
 /* Begin PBXFileReference section */
 		DE4D99721626B91F00936EBE /* BrightnessWheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BrightnessWheel.png; sourceTree = "<group>"; };
 		DE4D99731626B91F00936EBE /* ColorWheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ColorWheel.png; sourceTree = "<group>"; };
-		DE4D99761626C18200936EBE /* IOHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOHandler.h; sourceTree = "<group>"; };
-		DE4D99771626C18200936EBE /* IOHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IOHandler.m; sourceTree = "<group>"; };
 		DE4D99791627118000936EBE /* license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = license.txt; sourceTree = "<group>"; };
 		DE6B38F916255178009B41DC /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		DE71B39E16002B9A00D2FF7A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -55,8 +55,6 @@
 		DEA33C76162B926600DBFB35 /* TextMyPhoto.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TextMyPhoto.xcdatamodel; sourceTree = "<group>"; };
 		DEA33C78162B92B300DBFB35 /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
 		DEA33C79162B92B300DBFB35 /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
-		DEA33C7A162B92B300DBFB35 /* StampedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StampedImage.h; sourceTree = "<group>"; };
-		DEA33C7B162B92B400DBFB35 /* StampedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StampedImage.m; sourceTree = "<group>"; };
 		DEA33C7E162B92E600DBFB35 /* MNBrightnessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MNBrightnessView.h; path = TextMyPhoto/MNBrightnessView.h; sourceTree = "<group>"; };
 		DEA33C7F162B92E600DBFB35 /* MNBrightnessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MNBrightnessView.m; path = TextMyPhoto/MNBrightnessView.m; sourceTree = "<group>"; };
 		DEA33C80162B92E600DBFB35 /* MNColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MNColorPicker.h; path = TextMyPhoto/MNColorPicker.h; sourceTree = "<group>"; };
@@ -71,6 +69,13 @@
 		DEA33C89162B92E600DBFB35 /* MNMobileFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MNMobileFunctions.m; path = TextMyPhoto/MNMobileFunctions.m; sourceTree = "<group>"; };
 		DEA33C8A162B92E600DBFB35 /* UIColor+ColorSpaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+ColorSpaces.h"; path = "TextMyPhoto/UIColor+ColorSpaces.h"; sourceTree = "<group>"; };
 		DEA33C8B162B92E600DBFB35 /* UIColor+ColorSpaces.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+ColorSpaces.m"; path = "TextMyPhoto/UIColor+ColorSpaces.m"; sourceTree = "<group>"; };
+		DEA33C93162B93EC00DBFB35 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		DEA33C9C162B9DC600DBFB35 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
+		DEA33C9D162B9DC600DBFB35 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
+		DEA33C9F162B9EC000DBFB35 /* StampedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StampedImage.h; path = TextMyPhoto/StampedImage.h; sourceTree = "<group>"; };
+		DEA33CA0162B9EC000DBFB35 /* StampedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StampedImage.m; path = TextMyPhoto/StampedImage.m; sourceTree = "<group>"; };
+		DEA33CA2162B9EE900DBFB35 /* StampedImage+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "StampedImage+Create.h"; path = "TextMyPhoto/StampedImage+Create.h"; sourceTree = "<group>"; };
+		DEA33CA3162B9EE900DBFB35 /* StampedImage+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "StampedImage+Create.m"; path = "TextMyPhoto/StampedImage+Create.m"; sourceTree = "<group>"; };
 		DEA4B8B316257BFD00E711AF /* stamp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stamp.png; sourceTree = "<group>"; };
 		DEA4B8B51625809B00E711AF /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		DEA991DF16295AEF00F0F07E /* UIImage+Tint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Tint.h"; sourceTree = "<group>"; };
@@ -104,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEA33C94162B93EC00DBFB35 /* CoreData.framework in Frameworks */,
 				DEA33C72162A938800DBFB35 /* QuartzCore.framework in Frameworks */,
 				DEA4B8B61625809B00E711AF /* AssetsLibrary.framework in Frameworks */,
 				DE6B38FA16255178009B41DC /* Social.framework in Frameworks */,
@@ -144,7 +150,13 @@
 		DEA33C74162B921400DBFB35 /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				DEA33C9C162B9DC600DBFB35 /* CoreDataTableViewController.h */,
+				DEA33C9D162B9DC600DBFB35 /* CoreDataTableViewController.m */,
+				DEA33C9F162B9EC000DBFB35 /* StampedImage.h */,
+				DEA33CA0162B9EC000DBFB35 /* StampedImage.m */,
 				DEA33C75162B926600DBFB35 /* TextMyPhoto.xcdatamodeld */,
+				DEA33CA2162B9EE900DBFB35 /* StampedImage+Create.h */,
+				DEA33CA3162B9EE900DBFB35 /* StampedImage+Create.m */,
 			);
 			name = Database;
 			sourceTree = "<group>";
@@ -184,6 +196,7 @@
 		DEED1B9115EFA2A6004E33F3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DEA33C93162B93EC00DBFB35 /* CoreData.framework */,
 				DEA33C71162A938800DBFB35 /* QuartzCore.framework */,
 				DEA4B8B51625809B00E711AF /* AssetsLibrary.framework */,
 				DE6B38F916255178009B41DC /* Social.framework */,
@@ -200,12 +213,8 @@
 			children = (
 				DEA33C78162B92B300DBFB35 /* EditViewController.h */,
 				DEA33C79162B92B300DBFB35 /* EditViewController.m */,
-				DEA33C7A162B92B300DBFB35 /* StampedImage.h */,
-				DEA33C7B162B92B400DBFB35 /* StampedImage.m */,
 				DED06305161EBCB000FD976D /* LaunchMenuViewController.h */,
 				DED06306161EBCB000FD976D /* LaunchMenuViewController.m */,
-				DE4D99761626C18200936EBE /* IOHandler.h */,
-				DE4D99771626C18200936EBE /* IOHandler.m */,
 				DEFB03771627EC7A00DD1D85 /* PreviousTableViewController.h */,
 				DEFB03781627EC7A00DD1D85 /* PreviousTableViewController.m */,
 				DEFB037A1627FF4800DD1D85 /* PreviousTableViewCell.h */,
@@ -316,13 +325,11 @@
 				DEED1BA315EFA2A6004E33F3 /* AppDelegate.m in Sources */,
 				DED06307161EBCB000FD976D /* LaunchMenuViewController.m in Sources */,
 				DEF61DF6161F415200582C33 /* MyNavigationControllerViewController.m in Sources */,
-				DE4D99781626C18200936EBE /* IOHandler.m in Sources */,
 				DEFB03791627EC7A00DD1D85 /* PreviousTableViewController.m in Sources */,
 				DEFB037C1627FF4800DD1D85 /* PreviousTableViewCell.m in Sources */,
 				DEA991E116295AF000F0F07E /* UIImage+Tint.m in Sources */,
 				DEA33C77162B926600DBFB35 /* TextMyPhoto.xcdatamodeld in Sources */,
 				DEA33C7C162B92B400DBFB35 /* EditViewController.m in Sources */,
-				DEA33C7D162B92B400DBFB35 /* StampedImage.m in Sources */,
 				DEA33C8C162B92E600DBFB35 /* MNBrightnessView.m in Sources */,
 				DEA33C8D162B92E600DBFB35 /* MNColorPicker.m in Sources */,
 				DEA33C8E162B92E600DBFB35 /* MNColorView.m in Sources */,
@@ -330,6 +337,9 @@
 				DEA33C90162B92E600DBFB35 /* MNMagnifyingView.m in Sources */,
 				DEA33C91162B92E600DBFB35 /* MNMobileFunctions.m in Sources */,
 				DEA33C92162B92E600DBFB35 /* UIColor+ColorSpaces.m in Sources */,
+				DEA33C9E162B9DC600DBFB35 /* CoreDataTableViewController.m in Sources */,
+				DEA33CA1162B9EC000DBFB35 /* StampedImage.m in Sources */,
+				DEA33CA4162B9EE900DBFB35 /* StampedImage+Create.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
