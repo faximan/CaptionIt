@@ -20,20 +20,29 @@
 @property (nonatomic, weak) IBOutlet UIButton *prevButton;
 @property (nonatomic, strong) UIImagePickerController *imgPicker;
 
+@property (nonatomic) BOOL cameraAvailable;
+@property (nonatomic, weak) UIImage *pickedImage;
+@property (nonatomic, weak) StampedImage *stampedImage;
+
 // The database of previous projects
 @property (nonatomic, strong) UIManagedDocument *previousDatabase;
 
 @end
 
 @implementation LaunchMenuViewController
-{
-    bool cameraAvailable;
-    UIImage *pickedImage;
-    StampedImage* stampedImage;
-}
 
 #pragma mark -
 #pragma mark For selecting the image
+
+-(void)setPickedImage:(UIImage *)pickedImage
+{
+    if (pickedImage != _pickedImage)
+    {
+        _pickedImage = pickedImage;
+        self.stampedImage = nil;
+    }
+}
+
 // The device has a camera, return if it should be used for
 // getting the image or if it should be picked from the photo library.
 -(void)selectSourceTypeAndShowPicker
@@ -47,7 +56,7 @@
 -(IBAction)stampPhotoButtonPressed:(UIButton *)sender
 {
     // Check if the device has a camera
-    if(cameraAvailable)
+    if(self.cameraAvailable)
     {
         [self selectSourceTypeAndShowPicker];
     }
@@ -91,8 +100,8 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     // Get the selected image
-    pickedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-    if(pickedImage) //A image was actually selected/taken
+    self.pickedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    if(self.pickedImage) //A image was actually selected/taken
         [self performSegueWithIdentifier:@"edit" sender:nil];
     
     // Get rid of the picker controller.
@@ -130,20 +139,19 @@
         
         EditViewController *vc = [segue destinationViewController];
         // Create a new database entry if we have a new project
-        if (!stampedImage)
+        if (!self.stampedImage)
         {
-            StampedImage *newImage = [StampedImage createStampedImageWithImage:pickedImage inManagedObjectContext:self.previousDatabase.managedObjectContext];
+            StampedImage *newImage = [StampedImage createStampedImageWithImage:self.pickedImage inManagedObjectContext:self.previousDatabase.managedObjectContext];
             vc.stampedImage = newImage;
         }
         else
-            vc.stampedImage = stampedImage;
+            vc.stampedImage = self.stampedImage;
     }
     if ([[segue identifier] isEqualToString:@"previous"])
     {
         UINavigationController *nc = (UINavigationController *)[segue destinationViewController];
         PreviousTableViewController *vc = nc.viewControllers[0];
         vc.delegate = self;
-        stampedImage = nil;
         vc.previousDatabase = self.previousDatabase;
     }
 }
@@ -169,13 +177,11 @@
     [self addBorderToWindow];
 	
     // Make sure we know whether this device has a camera or not
-    cameraAvailable = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
+    self.cameraAvailable = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
     
     if (!self.imgPicker)
         self.imgPicker = [[UIImagePickerController alloc] init];
     self.imgPicker.delegate = self;
-    
-    stampedImage = nil;
 }
 
 // Hide navigation bar for this view
@@ -284,7 +290,7 @@
 #pragma mark PreviousTableViewControllerDelegate
 - (void)PreviousTableViewController:(PreviousTableViewController *)previousTableViewController didFinishWithImage:(StampedImage *)image forRow:(NSInteger)index
 {
-    stampedImage = image;
+    self.stampedImage = image;
     [self performSegueWithIdentifier:@"edit" sender:self];
     [self dismissViewControllerAnimated:YES completion:nil];
     

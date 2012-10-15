@@ -10,6 +10,8 @@
 #import "StampedImage+Create.h"
 #import "CoreDataTableViewController.h"
 
+#define MAX_CELL_HEIGHT 150.0f
+
 @protocol PreviousTableViewControllerDelegate;
 
 @interface PreviousTableViewController : CoreDataTableViewController
@@ -18,6 +20,10 @@
 
 // The database of previous projects
 @property (nonatomic, strong) UIManagedDocument *previousDatabase;
+
+// Returns the height of a cell in the table view
++(CGFloat)cellHeight;
++(CGFloat)cellWidth;
 
 @end
 

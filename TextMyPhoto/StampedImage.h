@@ -16,5 +16,6 @@
 @property (nonatomic, retain) NSData * originalImage;
 @property (nonatomic, retain) id color;
 @property (nonatomic, retain) NSDate * dateModified;
+@property (nonatomic, retain) NSData * thumbImage;
 
 @end

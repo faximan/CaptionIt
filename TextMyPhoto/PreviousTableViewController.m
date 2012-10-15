@@ -8,12 +8,20 @@
 
 #import "PreviousTableViewController.h"
 #import "PreviousTableViewCell.h"
-#import "UIImage+Tint.h"
+#import "UIImage+Utilities.h"
 #import <QuartzCore/QuartzCore.h>
 
-#define MAX_CELL_HEIGHT 150
-
 @implementation PreviousTableViewController
+
++(CGFloat)cellHeight
+{
+    return MAX_CELL_HEIGHT;
+}
+
++(CGFloat)cellWidth
+{
+    return [UIScreen mainScreen].bounds.size.width;
+}
 
 - (void)viewDidLoad
 {
@@ -40,12 +48,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"Previous Projects Cell";
     PreviousTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     StampedImage *stampedImage = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
-    cell.cellImage.image = [stampedImage getOriginalImage];
+    cell.cellImage.image = [stampedImage getThumbImage];
     
     // Set tint when pressed
     cell.cellImage.highlightedImage = [cell.cellImage.image tintedImageUsingColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.3]];
@@ -63,8 +71,7 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath: (NSIndexPath *) indexPath
 {
-    StampedImage *stampedImage = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    return MIN(MAX_CELL_HEIGHT, [stampedImage getOriginalImage].size.height);
+    return MAX_CELL_HEIGHT;
 }
 
 // Let the user only delete users by pressing "edit". No swiping.

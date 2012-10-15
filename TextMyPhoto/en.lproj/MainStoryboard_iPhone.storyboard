@@ -82,7 +82,7 @@
             </objects>
             <point key="canvasLocation" x="-240" y="109"/>
         </scene>
-        <!--Edit View Controller-->
+        <!--Edit View Controller - Edit-->
         <scene sceneID="955-gB-EcI">
             <objects>
                 <viewController id="ddt-II-aHa" customClass="EditViewController" sceneMemberID="viewController">
@@ -136,7 +136,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="1PA-17-OpK"/>
+                    <navigationItem key="navigationItem" title="Edit" id="1PA-17-OpK">
+                        <barButtonItem key="rightBarButtonItem" title="Share" style="done" id="N7K-jg-Wph">
+                            <connections>
+                                <action selector="shareButtonPressed:" destination="ddt-II-aHa" id="Met-Yp-n5O"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="imageView" destination="ugm-RH-hvx" id="5rO-CW-SxL"/>
@@ -158,7 +164,7 @@
                         <color key="backgroundColor" red="0.80101477581521741" green="0.80101477581521741" blue="0.80101477581521741" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="separatorColor" red="0.72131878396739135" green="0.72131878396739135" blue="0.72131878396739135" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="150" id="NMH-JU-UJW" customClass="PreviousTableViewCell">
+                            <tableViewCell opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Previous Projects Cell" rowHeight="150" id="NMH-JU-UJW" customClass="PreviousTableViewCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -243,45 +249,6 @@
         <image name="pinboard.png" width="640" height="1136"/>
         <image name="stamp.png" width="400" height="300"/>
     </resources>
-    <classes>
-        <class className="CoreDataTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CoreDataTableViewController.h"/>
-        </class>
-        <class className="EditViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="parentView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="textLabel" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="LaunchMenuViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LaunchMenuViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="previousButtonPressed:" candidateClass="UIButton"/>
-                <relationship kind="action" name="stampPhotoButtonPressed:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="boarderView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="pickButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="prevButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="MyNavigationControllerViewController" superclassName="UINavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MyNavigationControllerViewController.h"/>
-        </class>
-        <class className="PreviousTableViewCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PreviousTableViewCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="cellImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="customView" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="PreviousTableViewController" superclassName="CoreDataTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PreviousTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelButtonPressed:"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

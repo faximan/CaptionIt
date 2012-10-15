@@ -14,5 +14,7 @@
                 inManagedObjectContext:(NSManagedObjectContext *)context;
 
 -(UIImage *)getOriginalImage;
+-(UIImage *)getThumbImage;
+-(void)setUIImageThumbImage:(UIImage *)thumb;
 
 @end

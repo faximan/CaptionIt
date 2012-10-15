@@ -26,11 +26,8 @@
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application
+-(void)saveDatabase
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    
     // Save changes to Core Data database
     UIViewController *rc = self.window.rootViewController;
     if ([rc isKindOfClass:[MyNavigationControllerViewController class]])
@@ -42,6 +39,13 @@
                 [(LaunchMenuViewController *)ctrl saveDatabase];
         }
     }
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application
+{
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [self saveDatabase];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -59,16 +63,7 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     
     // Save changes to core data database
-    UIViewController *rc = self.window.rootViewController;
-    if ([rc isKindOfClass:[MyNavigationControllerViewController class]])
-    {
-        MyNavigationControllerViewController *nc = (MyNavigationControllerViewController *)rc;
-        for(UIViewController *ctrl in nc.viewControllers)
-        {
-            if ([ctrl respondsToSelector:@selector(saveDatabase)])
-                [(LaunchMenuViewController *)ctrl saveDatabase];
-        }
-    }
+    [self saveDatabase];
 }
 
 @end

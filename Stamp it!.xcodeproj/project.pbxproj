@@ -24,11 +24,13 @@
 		DEA33C92162B92E600DBFB35 /* UIColor+ColorSpaces.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA33C8B162B92E600DBFB35 /* UIColor+ColorSpaces.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DEA33C94162B93EC00DBFB35 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA33C93162B93EC00DBFB35 /* CoreData.framework */; };
 		DEA33C9E162B9DC600DBFB35 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA33C9D162B9DC600DBFB35 /* CoreDataTableViewController.m */; };
-		DEA33CA1162B9EC000DBFB35 /* StampedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA33CA0162B9EC000DBFB35 /* StampedImage.m */; };
 		DEA33CA4162B9EE900DBFB35 /* StampedImage+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA33CA3162B9EE900DBFB35 /* StampedImage+Create.m */; };
+		DEA33CA6162BE72F00DBFB35 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DEA33CA5162BE72E00DBFB35 /* Default.png */; };
+		DEA33CA8162BE74900DBFB35 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEA33CA7162BE74900DBFB35 /* Default@2x.png */; };
+		DEA33CAB162BEADE00DBFB35 /* StampedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA33CAA162BEADE00DBFB35 /* StampedImage.m */; };
 		DEA4B8B416257BFD00E711AF /* stamp.png in Resources */ = {isa = PBXBuildFile; fileRef = DEA4B8B316257BFD00E711AF /* stamp.png */; };
 		DEA4B8B61625809B00E711AF /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA4B8B51625809B00E711AF /* AssetsLibrary.framework */; };
-		DEA991E116295AF000F0F07E /* UIImage+Tint.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA991E016295AF000F0F07E /* UIImage+Tint.m */; };
+		DEA991E116295AF000F0F07E /* UIImage+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA991E016295AF000F0F07E /* UIImage+Utilities.m */; };
 		DED06304161EB90F00FD976D /* pinboard.png in Resources */ = {isa = PBXBuildFile; fileRef = DED06303161EB90F00FD976D /* pinboard.png */; };
 		DED06307161EBCB000FD976D /* LaunchMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DED06306161EBCB000FD976D /* LaunchMenuViewController.m */; };
 		DEED1B9315EFA2A6004E33F3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEED1B9215EFA2A6004E33F3 /* UIKit.framework */; };
@@ -72,14 +74,16 @@
 		DEA33C93162B93EC00DBFB35 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		DEA33C9C162B9DC600DBFB35 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
 		DEA33C9D162B9DC600DBFB35 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
-		DEA33C9F162B9EC000DBFB35 /* StampedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StampedImage.h; path = TextMyPhoto/StampedImage.h; sourceTree = "<group>"; };
-		DEA33CA0162B9EC000DBFB35 /* StampedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StampedImage.m; path = TextMyPhoto/StampedImage.m; sourceTree = "<group>"; };
 		DEA33CA2162B9EE900DBFB35 /* StampedImage+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "StampedImage+Create.h"; path = "TextMyPhoto/StampedImage+Create.h"; sourceTree = "<group>"; };
 		DEA33CA3162B9EE900DBFB35 /* StampedImage+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "StampedImage+Create.m"; path = "TextMyPhoto/StampedImage+Create.m"; sourceTree = "<group>"; };
+		DEA33CA5162BE72E00DBFB35 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		DEA33CA7162BE74900DBFB35 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		DEA33CA9162BEADE00DBFB35 /* StampedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StampedImage.h; path = TextMyPhoto/StampedImage.h; sourceTree = "<group>"; };
+		DEA33CAA162BEADE00DBFB35 /* StampedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StampedImage.m; path = TextMyPhoto/StampedImage.m; sourceTree = "<group>"; };
 		DEA4B8B316257BFD00E711AF /* stamp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stamp.png; sourceTree = "<group>"; };
 		DEA4B8B51625809B00E711AF /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
-		DEA991DF16295AEF00F0F07E /* UIImage+Tint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Tint.h"; sourceTree = "<group>"; };
-		DEA991E016295AF000F0F07E /* UIImage+Tint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tint.m"; sourceTree = "<group>"; };
+		DEA991DF16295AEF00F0F07E /* UIImage+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utilities.h"; sourceTree = "<group>"; };
+		DEA991E016295AF000F0F07E /* UIImage+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utilities.m"; sourceTree = "<group>"; };
 		DED06303161EB90F00FD976D /* pinboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinboard.png; sourceTree = "<group>"; };
 		DED06305161EBCB000FD976D /* LaunchMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchMenuViewController.h; sourceTree = "<group>"; };
 		DED06306161EBCB000FD976D /* LaunchMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchMenuViewController.m; sourceTree = "<group>"; };
@@ -152,9 +156,9 @@
 			children = (
 				DEA33C9C162B9DC600DBFB35 /* CoreDataTableViewController.h */,
 				DEA33C9D162B9DC600DBFB35 /* CoreDataTableViewController.m */,
-				DEA33C9F162B9EC000DBFB35 /* StampedImage.h */,
-				DEA33CA0162B9EC000DBFB35 /* StampedImage.m */,
 				DEA33C75162B926600DBFB35 /* TextMyPhoto.xcdatamodeld */,
+				DEA33CA9162BEADE00DBFB35 /* StampedImage.h */,
+				DEA33CAA162BEADE00DBFB35 /* StampedImage.m */,
 				DEA33CA2162B9EE900DBFB35 /* StampedImage+Create.h */,
 				DEA33CA3162B9EE900DBFB35 /* StampedImage+Create.m */,
 			);
@@ -164,6 +168,8 @@
 		DED062FF161EB85100FD976D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DEA33CA7162BE74900DBFB35 /* Default@2x.png */,
+				DEA33CA5162BE72E00DBFB35 /* Default.png */,
 				DEA4B8B316257BFD00E711AF /* stamp.png */,
 				DEF61DEF161F267100582C33 /* button_greycolor.png */,
 				DED06303161EB90F00FD976D /* pinboard.png */,
@@ -219,8 +225,8 @@
 				DEFB03781627EC7A00DD1D85 /* PreviousTableViewController.m */,
 				DEFB037A1627FF4800DD1D85 /* PreviousTableViewCell.h */,
 				DEFB037B1627FF4800DD1D85 /* PreviousTableViewCell.m */,
-				DEA991DF16295AEF00F0F07E /* UIImage+Tint.h */,
-				DEA991E016295AF000F0F07E /* UIImage+Tint.m */,
+				DEA991DF16295AEF00F0F07E /* UIImage+Utilities.h */,
+				DEA991E016295AF000F0F07E /* UIImage+Utilities.m */,
 			);
 			name = "Stamp It!";
 			path = TextMyPhoto;
@@ -311,6 +317,8 @@
 				DE4D99741626B91F00936EBE /* BrightnessWheel.png in Resources */,
 				DE4D99751626B91F00936EBE /* ColorWheel.png in Resources */,
 				DE4D997A1627118000936EBE /* license.txt in Resources */,
+				DEA33CA6162BE72F00DBFB35 /* Default.png in Resources */,
+				DEA33CA8162BE74900DBFB35 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,7 +335,7 @@
 				DEF61DF6161F415200582C33 /* MyNavigationControllerViewController.m in Sources */,
 				DEFB03791627EC7A00DD1D85 /* PreviousTableViewController.m in Sources */,
 				DEFB037C1627FF4800DD1D85 /* PreviousTableViewCell.m in Sources */,
-				DEA991E116295AF000F0F07E /* UIImage+Tint.m in Sources */,
+				DEA991E116295AF000F0F07E /* UIImage+Utilities.m in Sources */,
 				DEA33C77162B926600DBFB35 /* TextMyPhoto.xcdatamodeld in Sources */,
 				DEA33C7C162B92B400DBFB35 /* EditViewController.m in Sources */,
 				DEA33C8C162B92E600DBFB35 /* MNBrightnessView.m in Sources */,
@@ -338,8 +346,8 @@
 				DEA33C91162B92E600DBFB35 /* MNMobileFunctions.m in Sources */,
 				DEA33C92162B92E600DBFB35 /* UIColor+ColorSpaces.m in Sources */,
 				DEA33C9E162B9DC600DBFB35 /* CoreDataTableViewController.m in Sources */,
-				DEA33CA1162B9EC000DBFB35 /* StampedImage.m in Sources */,
 				DEA33CA4162B9EE900DBFB35 /* StampedImage+Create.m in Sources */,
+				DEA33CAB162BEADE00DBFB35 /* StampedImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

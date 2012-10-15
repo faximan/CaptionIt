@@ -59,6 +59,17 @@
     }
 }
 
+-(void)setThumbImage:(NSData *)thumbImage
+{
+    if (thumbImage != self.thumbImage)
+    {
+        [self willChangeValueForKey:@"thumbImage"];
+        [self setPrimitiveValue:thumbImage forKey:@"thumbImage"];
+        [self didChangeValueForKey:@"thumbImage"];
+        [self setPrimitiveValue:[NSDate date] forKey:@"dateModified"];
+    }
+}
+
 - (UIImage *)getOriginalImage
 {
     [self willAccessValueForKey:@"originalImage"];
@@ -66,5 +77,20 @@
     [self didAccessValueForKey:@"originalImage"];
     return image;
 }
+
+-(UIImage *)getThumbImage
+{
+    [self willAccessValueForKey:@"thumbImage"];
+    UIImage *image = [UIImage imageWithData:self.thumbImage];
+    [self didAccessValueForKey:@"thumbImage"];
+    return image;
+}
+
+-(void)setUIImageThumbImage:(UIImage *)thumb
+{
+    NSData *data = UIImagePNGRepresentation(thumb);
+    self.thumbImage = data;
+}
+
 
 @end

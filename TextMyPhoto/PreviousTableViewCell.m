@@ -25,15 +25,19 @@
     
     self.customView.hidden = !editing;
    
+    // Calculate new view position based on editing mode
     float viewXPos = editing ? SLIDE_DISTANCE : 0.0;
     for( UIView *subview in self.contentView.subviews )
     {
-        [subview.layer addAnimation: animation forKey: @"editingFade"];
+        // Move the view if it is not already in the right position
+        if (subview.frame.origin.x != viewXPos)
+        {
+            [subview.layer addAnimation: animation forKey: @"editingFade"];
         
-        // Move all subviews 10 points to the right
-        subview.frame = CGRectMake(viewXPos, subview.frame.origin.y, subview.frame.size.width, subview.frame.size.height);
-        [subview setNeedsDisplay];
-    }        
+            subview.frame = CGRectMake(viewXPos, subview.frame.origin.y, subview.frame.size.width, subview.frame.size.height);
+            [subview setNeedsDisplay];
+        }
+    }
 }
 
 @end

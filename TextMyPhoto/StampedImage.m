@@ -15,5 +15,6 @@
 @dynamic originalImage;
 @dynamic color;
 @dynamic dateModified;
+@dynamic thumbImage;
 
 @end

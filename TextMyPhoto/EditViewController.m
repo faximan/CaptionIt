@@ -7,6 +7,8 @@
 //
 
 #import "EditViewController.h"
+#import "PreviousTableViewController.h"
+#import "UIImage+Utilities.h"
 
 @interface EditViewController ()
 
@@ -17,30 +19,11 @@
 @end
 
 @implementation EditViewController
+{
+    BOOL thumbAlreadyUpToDate;
+}
 
 #pragma mark For sharing the image
-
-// Returns a CGRect that corresponds to the actual part of the screen containing image when added with Aspect Fit into imageview.
--(CGRect)frameForImage:(UIImage*)image inViewAspectFit:(UIView*)imageView
-{
-    float imageRatio = image.size.width / image.size.height;
-    float viewRatio = imageView.frame.size.width / imageView.frame.size.height;
-    
-    if(imageRatio < viewRatio)
-    {
-        float scale = imageView.frame.size.height / image.size.height;
-        float width = scale * image.size.width;
-        float topLeftX = (imageView.frame.size.width - width) * 0.5;
-        return CGRectMake(topLeftX, 0, width, imageView.frame.size.height);
-    }
-    else
-    {
-        float scale = imageView.frame.size.width / image.size.width;
-        float height = scale * image.size.height;
-        float topLeftY = (imageView.frame.size.height - height) * 0.5;
-        return CGRectMake(0, topLeftY, imageView.frame.size.width, height);
-    }
-}
 
 // Takes the current addons to the image and renders it to a bitmap
 - (UIImage *)renderCurrentImage
@@ -77,10 +60,47 @@
     self.textLabel.frame = oldLabelFrame;
     self.parentView.frame = oldFrame;
     self.textLabel.center = self.imageView.center;
+   
     return bitmap;
 }
 
--(void)shareButtonPressed
+-(void)renderAndSetThumb
+{
+    // Make sure to only render a new thumb if there are unstaged changes
+    if (thumbAlreadyUpToDate)
+        return;
+    
+    // Render the image full scale
+    UIImage* temp = [self renderCurrentImage];
+    CGFloat cellHeight = [PreviousTableViewController cellHeight];
+    CGFloat cellWidth = [PreviousTableViewController cellWidth];
+    
+    // Do not scale image if it is already small
+    if (temp.size.height <= cellHeight || temp.size.width <= cellWidth)
+        [self.stampedImage setUIImageThumbImage:temp];
+    
+    // Scale down image to be a good fit for the cell and do not store a bigger image than necessary
+    CGFloat heightScale = cellHeight / temp.size.height;
+    CGFloat widthScale = cellWidth / temp.size.width;
+    
+    CGFloat newWidth, newHeight;
+    
+    if (heightScale * temp.size.width < cellWidth)
+    {
+        newWidth = cellWidth;
+        newHeight = temp.size.height * widthScale;
+    }
+    else
+    {
+        newWidth = temp.size.width * heightScale;
+        newHeight = cellHeight;
+    }
+
+    [self.stampedImage setUIImageThumbImage:[UIImage imageWithImage:temp scaledToSize:CGSizeMake(newWidth, newHeight)]];
+    thumbAlreadyUpToDate = YES;
+}
+
+-(IBAction)shareButtonPressed:(id)sender
 {
     // Remove keyboard if in edit mode
     [self.textLabel resignFirstResponder];
@@ -122,10 +142,11 @@
 - (void)colorPicker:(MNColorPicker*)colorPicker didFinishWithColor:(UIColor *)color
 {
 	[self dismissViewControllerAnimated:YES completion:nil];
-	if (color)
+	if (color && color != self.textLabel.textColor)
     {
 		self.textLabel.textColor = color;
         self.stampedImage.color = color;
+        thumbAlreadyUpToDate = NO;
 	}
 }
 
@@ -135,7 +156,13 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {    
     [textField resignFirstResponder];
-    self.stampedImage.label = self.textLabel.text;
+    
+    if (self.stampedImage.label != self.textLabel.text)
+    {
+        self.stampedImage.label = self.textLabel.text;
+        thumbAlreadyUpToDate = NO;
+    }
+    
     return YES;
 }
 
@@ -158,34 +185,32 @@
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     
-    self.title = @"Edit";
-    
-    // Add share button to navigation bar
-    UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc]
-                                   initWithTitle:@"Share" style:UIBarButtonItemStyleDone target:self action:@selector(shareButtonPressed)];
-    self.navigationItem.rightBarButtonItems = @[buttonItem];
-    
-    if (!self.stampedImage)
-        self.stampedImage = [[StampedImage alloc] init];
-    
     self.textLabel.delegate = self;
+    
+    self.imageView.image = [self.stampedImage getOriginalImage];
+    self.textLabel.textColor = self.stampedImage.color;
+    self.textLabel.text = self.stampedImage.label;
+    thumbAlreadyUpToDate = NO;
 }
 
 - (void)alignViews
 {
     // Set the imageview frame to be the same size as the image
-    [self.parentView setFrame:[self frameForImage:[self.stampedImage getOriginalImage] inViewAspectFit:_parentView.superview]];
+    [self.parentView setFrame:[UIImage frameForImage:[self.stampedImage getOriginalImage] inViewAspectFit:_parentView.superview]];
     self.parentView.center = self.parentView.superview.center; // center on screen
     self.textLabel.center = self.imageView.center;
 }
 
-- (void)viewWillAppear:(BOOL)animated
+-(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.imageView.image = [self.stampedImage getOriginalImage];
-    self.textLabel.textColor = self.stampedImage.color;
-    self.textLabel.text = self.stampedImage.label;
     [self alignViews];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self renderAndSetThumb];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -214,6 +239,12 @@
 -(NSUInteger)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskAllButUpsideDown;
+}
+
+-(void)didReceiveMemoryWarning
+{
+    [self renderAndSetThumb];
+    [self didReceiveMemoryWarning];
 }
 
 @end

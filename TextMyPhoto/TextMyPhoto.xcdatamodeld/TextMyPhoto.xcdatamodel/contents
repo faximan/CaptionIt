@@ -5,8 +5,9 @@
         <attribute name="dateModified" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="label" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="originalImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="thumbImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="StampedImage" positionX="160" positionY="192" width="128" height="103"/>
+        <element name="StampedImage" positionX="160" positionY="192" width="128" height="118"/>
     </elements>
 </model>
