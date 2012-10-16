@@ -20,7 +20,7 @@
 
 @implementation EditViewController
 {
-    BOOL thumbAlreadyUpToDate;
+    BOOL thumbAlreadyUpToDate; // YES if there are unstaged changes that should be reflected when rendering a thumbimage, NO otherwise.
 }
 
 #pragma mark For sharing the image
@@ -64,14 +64,21 @@
     return bitmap;
 }
 
+// Renders a thumbimage of the current project and sets it to the current stampedImage.
 -(void)renderAndSetThumb
 {
     // Make sure to only render a new thumb if there are unstaged changes
     if (thumbAlreadyUpToDate)
         return;
     
+    // To avoid rendering the keyboard
+    [self.textLabel resignFirstResponder];
+    
     // Render the image full scale
     UIImage* temp = [self renderCurrentImage];
+    if (!temp) // error, do not save bogus data
+        return;
+    
     CGFloat cellHeight = [PreviousTableViewController cellHeight];
     CGFloat cellWidth = [PreviousTableViewController cellWidth];
     
@@ -95,7 +102,6 @@
         newWidth = temp.size.width * heightScale;
         newHeight = cellHeight;
     }
-
     [self.stampedImage setUIImageThumbImage:[UIImage imageWithImage:temp scaledToSize:CGSizeMake(newWidth, newHeight)]];
     thumbAlreadyUpToDate = YES;
 }
@@ -154,8 +160,8 @@
 
 // Called when the UITextField is in edit mode and return key is hit
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
-{    
-    [textField resignFirstResponder];
+{
+    [textField resignFirstResponder]; // remove keyboard
     
     if (self.stampedImage.label != self.textLabel.text)
     {

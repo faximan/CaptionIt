@@ -10,7 +10,7 @@
 #import "StampedImage+Create.h"
 #import "CoreDataTableViewController.h"
 
-#define MAX_CELL_HEIGHT 150.0f
+static const CGFloat MAX_CELL_HEIGHT = 150.0f;
 
 @protocol PreviousTableViewControllerDelegate;
 

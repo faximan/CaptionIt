@@ -9,9 +9,18 @@
 #import "PreviousTableViewCell.h"
 #import <QuartzCore/QuartzCore.h>
 
-#define SLIDE_DISTANCE 10.0 // Extra distance that all views should slide to the right 
+static const CGFloat SLIDE_DISTANCE = 10.0; // Extra distance that all views should slide to the right
+static const CGFloat ANIMATION_LENGTH = 0.2f; // Length of animation when editing (fade to white tint and slide to right).
 
 @implementation PreviousTableViewCell
+
+// Show highlight tint when selected
+-(void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
+{
+    [super setHighlighted:highlighted animated:animated];
+    self.highlightFade.hidden = !highlighted;
+    [self.highlightFade setNeedsDisplay];
+}
 
 // Make sure that the image slides to the right more than before
 // so that we have the same distance on both sides of the edit movie
@@ -20,10 +29,10 @@
     [super setEditing:editing animated:animated];
     
     CATransition *animation = [CATransition animation];
-    animation.duration = 0.2f;
+    animation.duration = ANIMATION_LENGTH;
     animation.type = kCATransitionFromLeft;
     
-    self.customView.hidden = !editing;
+    self.editFade.hidden = !editing;
    
     // Calculate new view position based on editing mode
     float viewXPos = editing ? SLIDE_DISTANCE : 0.0;

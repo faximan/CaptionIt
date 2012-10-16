@@ -20,3 +20,5 @@
 @property (nonatomic, strong) StampedImage *stampedImage;
 
 @end
+
+// TODO: Is the rendering heavy on the device? Should it be done asynchronusly?

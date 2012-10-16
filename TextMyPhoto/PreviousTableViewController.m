@@ -54,10 +54,7 @@
     StampedImage *stampedImage = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     cell.cellImage.image = [stampedImage getThumbImage];
-    
-    // Set tint when pressed
-    cell.cellImage.highlightedImage = [cell.cellImage.image tintedImageUsingColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.3]];
-    
+  
     // Add drop shadow
     cell.layer.shadowOffset = CGSizeMake(1, 0);
     cell.layer.shadowColor = [[UIColor blackColor] CGColor];
@@ -95,7 +92,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     StampedImage *stampedImage = [self.fetchedResultsController objectAtIndexPath:indexPath];
     [self.delegate PreviousTableViewController:self didFinishWithImage:stampedImage forRow:indexPath.row];
 }

@@ -10,19 +10,6 @@
 
 @implementation UIImage (Utilities)
 
-// Add a tint to an UIImage
-- (UIImage *)tintedImageUsingColor:(UIColor *)tintColor
-{
-    UIGraphicsBeginImageContext(self.size);
-    CGRect drawRect = CGRectMake(0, 0, self.size.width, self.size.height);
-    [self drawInRect:drawRect];
-    [tintColor set];
-    UIRectFillUsingBlendMode(drawRect, kCGBlendModeSourceAtop);
-    UIImage *tintedImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return tintedImage;
-}
-
 + (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize
 {
     UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);

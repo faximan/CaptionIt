@@ -11,7 +11,7 @@
 #import "EditViewController.h"
 #import "StampedImage+Create.h"
 
-#define BOARDER_WIDTH 3.5f
+static const CGFloat BOARDER_WIDTH = 3.5f;
 
 @interface LaunchMenuViewController ()
 
@@ -20,7 +20,6 @@
 @property (nonatomic, weak) IBOutlet UIButton *prevButton;
 @property (nonatomic, strong) UIImagePickerController *imgPicker;
 
-@property (nonatomic) BOOL cameraAvailable;
 @property (nonatomic, weak) UIImage *pickedImage;
 @property (nonatomic, weak) StampedImage *stampedImage;
 
@@ -30,6 +29,9 @@
 @end
 
 @implementation LaunchMenuViewController
+{
+    BOOL cameraAvailable;
+}
 
 #pragma mark -
 #pragma mark For selecting the image
@@ -56,7 +58,7 @@
 -(IBAction)stampPhotoButtonPressed:(UIButton *)sender
 {
     // Check if the device has a camera
-    if(self.cameraAvailable)
+    if(cameraAvailable)
     {
         [self selectSourceTypeAndShowPicker];
     }
@@ -177,7 +179,7 @@
     [self addBorderToWindow];
 	
     // Make sure we know whether this device has a camera or not
-    self.cameraAvailable = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
+    cameraAvailable = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
     
     if (!self.imgPicker)
         self.imgPicker = [[UIImagePickerController alloc] init];

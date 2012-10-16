@@ -11,7 +11,6 @@
 
 @interface UIImage (Utilities)
 
-- (UIImage *)tintedImageUsingColor:(UIColor *)tintColor;
 + (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize;
 + (CGRect)frameForImage:(UIImage*)image inViewAspectFit:(UIView*)imageView;
 @end
