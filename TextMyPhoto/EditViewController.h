@@ -13,9 +13,10 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 
 #import "StampedImage+Create.h"
+#import "FontPickerTableViewController.h"
 #import "MNColorPicker.h"
 
-@interface EditViewController : UIViewController < MFMailComposeViewControllerDelegate, UITextFieldDelegate, MNColorPickerDelegate>
+@interface EditViewController : UIViewController < MFMailComposeViewControllerDelegate, UITextFieldDelegate, MNColorPickerDelegate, FontPickerTableViewControllerDelegate>
 
 @property (nonatomic, strong) StampedImage *stampedImage;
 

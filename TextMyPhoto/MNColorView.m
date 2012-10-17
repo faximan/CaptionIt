@@ -31,7 +31,11 @@
 #pragma mark Properties
 
 @synthesize delegate=_delegate;
-@synthesize color=_color;
+
+-(UIColor *)color
+{
+    return _color;
+}
 
 - (void)setColor:(UIColor *)color {
 	if (color != _color) {

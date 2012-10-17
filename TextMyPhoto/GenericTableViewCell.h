@@ -1,5 +1,5 @@
 //
-//  PreviousTableViewCell.h
+//  GenericTableViewCell.h
 //  Stamp it!
 //
 //  Created by Alexander Faxå on 2012-10-12.
@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PreviousTableViewCell : UITableViewCell
+@interface GenericTableViewCell: UITableViewCell
 
-@property (nonatomic, weak) IBOutlet UIImageView *cellImage;
+@property (nonatomic, strong) UIImage *cellImage;
 @property (nonatomic, weak) IBOutlet UIView* editFade;
 @property (nonatomic, weak) IBOutlet UIView* highlightFade;
+
+@property (nonatomic, strong) NSAttributedString *label;
 
 @end

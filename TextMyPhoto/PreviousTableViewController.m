@@ -7,21 +7,11 @@
 //
 
 #import "PreviousTableViewController.h"
-#import "PreviousTableViewCell.h"
+#import "GenericTableViewCell.h"
 #import "UIImage+Utilities.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation PreviousTableViewController
-
-+(CGFloat)cellHeight
-{
-    return MAX_CELL_HEIGHT;
-}
-
-+(CGFloat)cellWidth
-{
-    return [UIScreen mainScreen].bounds.size.width;
-}
 
 - (void)viewDidLoad
 {
@@ -29,46 +19,20 @@
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 }
 
--(IBAction)cancelButtonPressed:(id)sender
-{
-    [self.delegate didCancelPreviousTableViewController:self];
-}
-
--(BOOL)shouldAutorotate
-{
-    return NO;
-}
-
--(NSUInteger)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskPortrait;
-}
-
 #pragma mark - Table view data source
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Previous Projects Cell";
-    PreviousTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    GenericTableViewCell *cell = (GenericTableViewCell *)[super tableView:tableView cellForRowAtIndexPath:indexPath];
     
     StampedImage *stampedImage = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
-    cell.cellImage.image = [stampedImage getThumbImage];
-  
-    // Add drop shadow
-    cell.layer.shadowOffset = CGSizeMake(1, 0);
-    cell.layer.shadowColor = [[UIColor blackColor] CGColor];
-    cell.layer.shadowRadius = 5;
-    cell.layer.shadowOpacity = .75;
-    CGRect shadowFrame = cell.layer.bounds;
-    CGPathRef shadowPath = [UIBezierPath bezierPathWithRect:shadowFrame].CGPath;
-    cell.layer.shadowPath = shadowPath;
-    return cell;
-}
+    cell.cellImage = [stampedImage getThumbImage];
+    
+    // TODO: Is this a performance hog?
+    cell.label = [PreviousTableViewController makeAttributedStringForString:stampedImage.label andFont:@"verdana" andColor:stampedImage.color];
 
-- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath: (NSIndexPath *) indexPath
-{
-    return MAX_CELL_HEIGHT;
+    return cell;
 }
 
 // Let the user only delete users by pressing "edit". No swiping.
@@ -93,7 +57,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     StampedImage *stampedImage = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    [self.delegate PreviousTableViewController:self didFinishWithImage:stampedImage forRow:indexPath.row];
+    
+    // Should respond to this when subclassing
+    if ([self.delegate respondsToSelector:@selector(PreviousTableViewController:didFinishWithImage:forRow:)])
+        [(id)self.delegate PreviousTableViewController:self didFinishWithImage:stampedImage forRow:indexPath.row];
 }
 
 #pragma mark-

@@ -11,6 +11,12 @@
 
 @interface UIImage (Utilities)
 
+// Resizes a image to the given size
 + (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize;
+
+// Crops out the center part of the image with passed width and height
+-(UIImage *)getCenterOfImageWithWidth:(CGFloat)width andHeight:(CGFloat) height;
+
+// Returns a CGRect that corresponds to the actual part of the screen containing image when added with Aspect Fit into imageview.
 + (CGRect)frameForImage:(UIImage*)image inViewAspectFit:(UIView*)imageView;
 @end

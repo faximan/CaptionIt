@@ -297,7 +297,7 @@ static const CGFloat BOARDER_WIDTH = 3.5f;
     
 }
 
-- (void)didCancelPreviousTableViewController:(PreviousTableViewController *)previousTableViewController
+- (void)didCancelGenericPictureTableViewController:(GenericPictureTableViewController *)genericTableViewController
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }

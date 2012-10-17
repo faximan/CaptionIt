@@ -19,7 +19,15 @@
     return newImage;
 }
 
-// Returns a CGRect that corresponds to the actual part of the screen containing image when added with Aspect Fit into imageview.
+-(UIImage *)getCenterOfImageWithWidth:(CGFloat)width andHeight:(CGFloat) height
+{
+    CGFloat newWidth = (self.size.width - width) / 2.0f;
+    CGFloat newHeight = (self.size.height - height) / 2.0f;    
+    
+    CGImageRef imageRef = CGImageCreateWithImageInRect([self CGImage], CGRectMake(newWidth, newHeight, width, height));
+    return [UIImage imageWithCGImage:imageRef];
+}
+
 +(CGRect)frameForImage:(UIImage*)image inViewAspectFit:(UIView*)imageView
 {
     float imageRatio = image.size.width / image.size.height;

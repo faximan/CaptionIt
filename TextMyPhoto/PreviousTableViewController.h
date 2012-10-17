@@ -8,28 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "StampedImage+Create.h"
-#import "CoreDataTableViewController.h"
-
-static const CGFloat MAX_CELL_HEIGHT = 150.0f;
+#import "GenericPictureTableViewController.h"
 
 @protocol PreviousTableViewControllerDelegate;
 
-@interface PreviousTableViewController : CoreDataTableViewController
-
-@property (nonatomic, weak) id<PreviousTableViewControllerDelegate> delegate;
+@interface PreviousTableViewController : GenericPictureTableViewController
 
 // The database of previous projects
 @property (nonatomic, strong) UIManagedDocument *previousDatabase;
 
-// Returns the height of a cell in the table view
-+(CGFloat)cellHeight;
-+(CGFloat)cellWidth;
-
 @end
 
-@protocol PreviousTableViewControllerDelegate <NSObject>
+@protocol PreviousTableViewControllerDelegate <GenericPictureTableViewControllerDelegate>
 - (void)PreviousTableViewController:(PreviousTableViewController *)previousTableViewController didFinishWithImage:(StampedImage *)image forRow:(NSInteger)index;
-
-- (void)didCancelPreviousTableViewController:(PreviousTableViewController *)previousTableViewController;
 
 @end

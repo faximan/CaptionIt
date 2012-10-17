@@ -79,30 +79,7 @@
     if (!temp) // error, do not save bogus data
         return;
     
-    CGFloat cellHeight = [PreviousTableViewController cellHeight];
-    CGFloat cellWidth = [PreviousTableViewController cellWidth];
-    
-    // Do not scale image if it is already small
-    if (temp.size.height <= cellHeight || temp.size.width <= cellWidth)
-        [self.stampedImage setUIImageThumbImage:temp];
-    
-    // Scale down image to be a good fit for the cell and do not store a bigger image than necessary
-    CGFloat heightScale = cellHeight / temp.size.height;
-    CGFloat widthScale = cellWidth / temp.size.width;
-    
-    CGFloat newWidth, newHeight;
-    
-    if (heightScale * temp.size.width < cellWidth)
-    {
-        newWidth = cellWidth;
-        newHeight = temp.size.height * widthScale;
-    }
-    else
-    {
-        newWidth = temp.size.width * heightScale;
-        newHeight = cellHeight;
-    }
-    [self.stampedImage setUIImageThumbImage:[UIImage imageWithImage:temp scaledToSize:CGSizeMake(newWidth, newHeight)]];
+    [self.stampedImage setUIImageThumbImage:[PreviousTableViewController modifyImageToFillCell:temp]];
     thumbAlreadyUpToDate = YES;
 }
 
@@ -251,6 +228,31 @@
 {
     [self renderAndSetThumb];
     [self didReceiveMemoryWarning];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"pick font"])
+    {
+        UINavigationController *nc = (UINavigationController *)[segue destinationViewController];
+        FontPickerTableViewController *fontPicker = nc.viewControllers[0];
+        fontPicker.delegate = self;
+        
+        // Set the properties for rending the font nicely
+        fontPicker.curImage = [FontPickerTableViewController modifyImageToFillCell:[self.stampedImage getOriginalImage]];
+        fontPicker.curString = self.stampedImage.label;
+        fontPicker.curColor = self.stampedImage.color;
+    }
+}
+
+-(void)genericPictureTableViewController:(GenericPictureTableViewController *)genericTableViewController didFinishWithFont:(NSString *)font
+{
+    
+}
+
+-(void)didCancelGenericPictureTableViewController:(GenericPictureTableViewController *)genericTableViewController
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

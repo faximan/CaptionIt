@@ -100,6 +100,11 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="6PV-JU-c7o"/>
+                                    <barButtonItem title="Font" style="plain" id="COY-DQ-YRF">
+                                        <connections>
+                                            <segue destination="vIN-Kl-P61" kind="modal" identifier="pick font" id="VbG-uY-tMU"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem title="Color" style="plain" id="fw9-Nl-9X7">
                                         <connections>
                                             <action selector="changeColor" destination="ddt-II-aHa" id="1bo-z2-Tlh"/>
@@ -164,23 +169,19 @@
                         <color key="backgroundColor" red="0.80101477581521741" green="0.80101477581521741" blue="0.80101477581521741" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="separatorColor" red="0.72131878396739135" green="0.72131878396739135" blue="0.72131878396739135" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell opaque="NO" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Previous Projects Cell" rowHeight="150" id="NMH-JU-UJW" customClass="PreviousTableViewCell">
+                            <tableViewCell opaque="NO" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Generic Cell" rowHeight="150" id="NMH-JU-UJW" customClass="GenericTableViewCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" id="T7F-Be-Cmu">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
-                                        <view alpha="0.50000000000000011" contentMode="scaleToFill" id="PsE-b4-dPO">
+                                        <view alpha="0.50000000000000011" contentMode="scaleToFill" id="PsE-b4-dPO" userLabel="editFade">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         </view>
-                                        <view alpha="0.30000000000000004" contentMode="scaleToFill" id="6Iw-LP-JcN">
+                                        <view alpha="0.30000000000000004" contentMode="scaleToFill" id="6Iw-LP-JcN" userLabel="highlightFade">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -190,9 +191,8 @@
                                 </view>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <outlet property="cellImage" destination="T7F-Be-Cmu" id="h5d-Lr-kXQ"/>
-                                    <outlet property="editFade" destination="PsE-b4-dPO" id="r5Q-Bc-b2x"/>
-                                    <outlet property="highlightFade" destination="6Iw-LP-JcN" id="N0W-fK-w4Z"/>
+                                    <outlet property="editFade" destination="PsE-b4-dPO" id="jrS-gJ-uw9"/>
+                                    <outlet property="highlightFade" destination="6Iw-LP-JcN" id="jnm-nR-cht"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -204,14 +204,14 @@
                     <navigationItem key="navigationItem" title="Previous" id="qd4-s2-D3a">
                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="MK7-gQ-VMR">
                             <connections>
-                                <action selector="cancelButtonPressed:" destination="lba-vh-wsa" id="hst-5W-gyd"/>
+                                <action selector="cancelButtonPressed:" destination="lba-vh-wsa" id="kLK-dn-jGr"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ic2-kw-FXl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="719" y="738"/>
+            <point key="canvasLocation" x="749" y="738"/>
         </scene>
         <!--My Navigation Controller View Controller-->
         <scene sceneID="mfy-VO-6mk">
@@ -249,6 +249,79 @@
             </objects>
             <point key="canvasLocation" x="193" y="738"/>
         </scene>
+        <!--Font Picker Table View Controller - Font Picker-->
+        <scene sceneID="TL9-L4-CCW">
+            <objects>
+                <tableViewController id="heI-Ub-iiv" customClass="FontPickerTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="175" sectionHeaderHeight="22" sectionFooterHeight="22" id="eHX-dj-IGO">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.80101477580000002" green="0.80101477580000002" blue="0.80101477580000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="separatorColor" red="0.72131878400000005" green="0.72131878400000005" blue="0.72131878400000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <prototypes>
+                            <tableViewCell opaque="NO" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Generic Cell" rowHeight="150" id="tgO-SB-jTC" customClass="GenericTableViewCell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="150"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view alpha="0.5" contentMode="scaleToFill" id="pzV-0M-mUL" userLabel="editFade">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        </view>
+                                        <view alpha="0.30000001192092896" contentMode="scaleToFill" id="y1g-tR-Xfn" userLabel="highlightFade">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="editFade" destination="pzV-0M-mUL" id="RKa-BF-7JP"/>
+                                    <outlet property="highlightFade" destination="y1g-tR-Xfn" id="Dr3-fU-niw"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="heI-Ub-iiv" id="Tyj-ZW-vDc"/>
+                            <outlet property="delegate" destination="heI-Ub-iiv" id="c4g-Lb-wbr"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Font Picker" id="5kG-ts-zYk">
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="l8q-DM-fHF">
+                            <connections>
+                                <action selector="cancelButtonPressed:" destination="heI-Ub-iiv" id="vVY-NJ-50c"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uzV-EE-uZY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1439" y="109"/>
+        </scene>
+        <!--My Navigation Controller View Controller-->
+        <scene sceneID="8nt-Hw-qTd">
+            <objects>
+                <navigationController id="vIN-Kl-P61" customClass="MyNavigationControllerViewController" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cN2-sH-2wz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="heI-Ub-iiv" kind="relationship" relationship="rootViewController" id="MBZ-aK-qTK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="86g-iD-UYe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="913" y="109"/>
+        </scene>
     </scenes>
     <resources>
         <image name="button_greycolor.png" width="200" height="200"/>
@@ -262,10 +335,25 @@
         <class className="EditViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/EditViewController.h"/>
             <relationships>
-                <relationship kind="action" name="shareButtonPressed:"/>
                 <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="parentView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="textLabel" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="FontPickerTableViewController" superclassName="GenericPictureTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FontPickerTableViewController.h"/>
+        </class>
+        <class className="GenericPictureTableViewController" superclassName="CoreDataTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GenericPictureTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelButtonPressed:"/>
+            </relationships>
+        </class>
+        <class className="GenericTableViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GenericTableViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="editFade" candidateClass="UIView"/>
+                <relationship kind="outlet" name="highlightFade" candidateClass="UIView"/>
             </relationships>
         </class>
         <class className="LaunchMenuViewController" superclassName="UIViewController">
@@ -279,15 +367,7 @@
         <class className="MyNavigationControllerViewController" superclassName="UINavigationController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MyNavigationControllerViewController.h"/>
         </class>
-        <class className="PreviousTableViewCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PreviousTableViewCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="cellImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="editFade" candidateClass="UIView"/>
-                <relationship kind="outlet" name="highlightFade" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="PreviousTableViewController" superclassName="CoreDataTableViewController">
+        <class className="PreviousTableViewController" superclassName="GenericPictureTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PreviousTableViewController.h"/>
         </class>
     </classes>

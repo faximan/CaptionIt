@@ -16,6 +16,8 @@
 		DE5023E2162E70E800F3E506 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5023DD162E70E800F3E506 /* Default@2x.png */; };
 		DE5023E3162E70E800F3E506 /* pinboard.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5023DE162E70E800F3E506 /* pinboard.png */; };
 		DE5023E4162E70E800F3E506 /* stamp.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5023DF162E70E800F3E506 /* stamp.png */; };
+		DE5023E7162E7C5900F3E506 /* GenericPictureTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5023E6162E7C5900F3E506 /* GenericPictureTableViewController.m */; };
+		DE5023EB162E839100F3E506 /* FontPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5023EA162E839100F3E506 /* FontPickerTableViewController.m */; };
 		DE6B38FA16255178009B41DC /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE6B38F916255178009B41DC /* Social.framework */; };
 		DE71B39F16002B9A00D2FF7A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE71B39E16002B9A00D2FF7A /* MessageUI.framework */; };
 		DEA33C72162A938800DBFB35 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA33C71162A938800DBFB35 /* QuartzCore.framework */; };
@@ -44,7 +46,7 @@
 		DEED1BA915EFA2A6004E33F3 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEED1BA715EFA2A6004E33F3 /* MainStoryboard_iPad.storyboard */; };
 		DEF61DF6161F415200582C33 /* MyNavigationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF61DF5161F415200582C33 /* MyNavigationControllerViewController.m */; };
 		DEFB03791627EC7A00DD1D85 /* PreviousTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFB03781627EC7A00DD1D85 /* PreviousTableViewController.m */; };
-		DEFB037C1627FF4800DD1D85 /* PreviousTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFB037B1627FF4800DD1D85 /* PreviousTableViewCell.m */; };
+		DEFB037C1627FF4800DD1D85 /* GenericTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFB037B1627FF4800DD1D85 /* GenericTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +60,10 @@
 		DE5023DD162E70E800F3E506 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "TextMyPhoto/Resources/Default@2x.png"; sourceTree = "<group>"; };
 		DE5023DE162E70E800F3E506 /* pinboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pinboard.png; path = TextMyPhoto/Resources/pinboard.png; sourceTree = "<group>"; };
 		DE5023DF162E70E800F3E506 /* stamp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stamp.png; path = TextMyPhoto/Resources/stamp.png; sourceTree = "<group>"; };
+		DE5023E5162E7C5800F3E506 /* GenericPictureTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenericPictureTableViewController.h; path = TextMyPhoto/GenericPictureTableViewController.h; sourceTree = "<group>"; };
+		DE5023E6162E7C5900F3E506 /* GenericPictureTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GenericPictureTableViewController.m; path = TextMyPhoto/GenericPictureTableViewController.m; sourceTree = "<group>"; };
+		DE5023E9162E839100F3E506 /* FontPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FontPickerTableViewController.h; path = TextMyPhoto/FontPickerTableViewController.h; sourceTree = "<group>"; };
+		DE5023EA162E839100F3E506 /* FontPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FontPickerTableViewController.m; path = TextMyPhoto/FontPickerTableViewController.m; sourceTree = "<group>"; };
 		DE6B38F916255178009B41DC /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		DE71B39E16002B9A00D2FF7A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		DEA33C71162A938800DBFB35 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -102,10 +108,10 @@
 		DEED1BA815EFA2A6004E33F3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		DEF61DF4161F415200582C33 /* MyNavigationControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyNavigationControllerViewController.h; sourceTree = "<group>"; };
 		DEF61DF5161F415200582C33 /* MyNavigationControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyNavigationControllerViewController.m; sourceTree = "<group>"; };
-		DEFB03771627EC7A00DD1D85 /* PreviousTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviousTableViewController.h; sourceTree = "<group>"; };
-		DEFB03781627EC7A00DD1D85 /* PreviousTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousTableViewController.m; sourceTree = "<group>"; };
-		DEFB037A1627FF4800DD1D85 /* PreviousTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviousTableViewCell.h; sourceTree = "<group>"; };
-		DEFB037B1627FF4800DD1D85 /* PreviousTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousTableViewCell.m; sourceTree = "<group>"; };
+		DEFB03771627EC7A00DD1D85 /* PreviousTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreviousTableViewController.h; path = TextMyPhoto/PreviousTableViewController.h; sourceTree = "<group>"; };
+		DEFB03781627EC7A00DD1D85 /* PreviousTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreviousTableViewController.m; path = TextMyPhoto/PreviousTableViewController.m; sourceTree = "<group>"; };
+		DEFB037A1627FF4800DD1D85 /* GenericTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenericTableViewCell.h; path = TextMyPhoto/GenericTableViewCell.h; sourceTree = "<group>"; };
+		DEFB037B1627FF4800DD1D85 /* GenericTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GenericTableViewCell.m; path = TextMyPhoto/GenericTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,11 +157,26 @@
 			name = MNColorPicker;
 			sourceTree = "<group>";
 		};
-		DEA33C74162B921400DBFB35 /* Database */ = {
+		DE5023E8162E832900F3E506 /* TableViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				DE5023D2162E709C00F3E506 /* CoreDataTableViewController.h */,
 				DE5023D3162E709C00F3E506 /* CoreDataTableViewController.m */,
+				DE5023E5162E7C5800F3E506 /* GenericPictureTableViewController.h */,
+				DE5023E6162E7C5900F3E506 /* GenericPictureTableViewController.m */,
+				DEFB03771627EC7A00DD1D85 /* PreviousTableViewController.h */,
+				DEFB03781627EC7A00DD1D85 /* PreviousTableViewController.m */,
+				DEFB037A1627FF4800DD1D85 /* GenericTableViewCell.h */,
+				DEFB037B1627FF4800DD1D85 /* GenericTableViewCell.m */,
+				DE5023E9162E839100F3E506 /* FontPickerTableViewController.h */,
+				DE5023EA162E839100F3E506 /* FontPickerTableViewController.m */,
+			);
+			name = TableViewControllers;
+			sourceTree = "<group>";
+		};
+		DEA33C74162B921400DBFB35 /* Database */ = {
+			isa = PBXGroup;
+			children = (
 				DEA33C75162B926600DBFB35 /* TextMyPhoto.xcdatamodeld */,
 				DEA33CA9162BEADE00DBFB35 /* StampedImage.h */,
 				DEA33CAA162BEADE00DBFB35 /* StampedImage.m */,
@@ -184,6 +205,7 @@
 				DED062FF161EB85100FD976D /* Resources */,
 				DEF61DEA161F22B100582C33 /* Storyboards */,
 				DE4D995B1626B5AC00936EBE /* MNColorPicker */,
+				DE5023E8162E832900F3E506 /* TableViewControllers */,
 				DEA33C74162B921400DBFB35 /* Database */,
 				DEED1B9815EFA2A6004E33F3 /* Stamp It! */,
 				DEED1B9115EFA2A6004E33F3 /* Frameworks */,
@@ -221,10 +243,6 @@
 				DEA33C79162B92B300DBFB35 /* EditViewController.m */,
 				DED06305161EBCB000FD976D /* LaunchMenuViewController.h */,
 				DED06306161EBCB000FD976D /* LaunchMenuViewController.m */,
-				DEFB03771627EC7A00DD1D85 /* PreviousTableViewController.h */,
-				DEFB03781627EC7A00DD1D85 /* PreviousTableViewController.m */,
-				DEFB037A1627FF4800DD1D85 /* PreviousTableViewCell.h */,
-				DEFB037B1627FF4800DD1D85 /* PreviousTableViewCell.m */,
 				DEA991DF16295AEF00F0F07E /* UIImage+Utilities.h */,
 				DEA991E016295AF000F0F07E /* UIImage+Utilities.m */,
 			);
@@ -334,7 +352,7 @@
 				DED06307161EBCB000FD976D /* LaunchMenuViewController.m in Sources */,
 				DEF61DF6161F415200582C33 /* MyNavigationControllerViewController.m in Sources */,
 				DEFB03791627EC7A00DD1D85 /* PreviousTableViewController.m in Sources */,
-				DEFB037C1627FF4800DD1D85 /* PreviousTableViewCell.m in Sources */,
+				DEFB037C1627FF4800DD1D85 /* GenericTableViewCell.m in Sources */,
 				DEA991E116295AF000F0F07E /* UIImage+Utilities.m in Sources */,
 				DEA33C77162B926600DBFB35 /* TextMyPhoto.xcdatamodeld in Sources */,
 				DEA33C7C162B92B400DBFB35 /* EditViewController.m in Sources */,
@@ -348,6 +366,8 @@
 				DEA33CA4162B9EE900DBFB35 /* StampedImage+Create.m in Sources */,
 				DEA33CAB162BEADE00DBFB35 /* StampedImage.m in Sources */,
 				DE5023D4162E709C00F3E506 /* CoreDataTableViewController.m in Sources */,
+				DE5023E7162E7C5900F3E506 /* GenericPictureTableViewController.m in Sources */,
+				DE5023EB162E839100F3E506 /* FontPickerTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
