@@ -7,9 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DE4D99741626B91F00936EBE /* BrightnessWheel.png in Resources */ = {isa = PBXBuildFile; fileRef = DE4D99721626B91F00936EBE /* BrightnessWheel.png */; };
-		DE4D99751626B91F00936EBE /* ColorWheel.png in Resources */ = {isa = PBXBuildFile; fileRef = DE4D99731626B91F00936EBE /* ColorWheel.png */; };
-		DE4D997A1627118000936EBE /* license.txt in Resources */ = {isa = PBXBuildFile; fileRef = DE4D99791627118000936EBE /* license.txt */; };
+		DE5023D4162E709C00F3E506 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5023D3162E709C00F3E506 /* CoreDataTableViewController.m */; };
+		DE5023D6162E70B700F3E506 /* license.txt in Resources */ = {isa = PBXBuildFile; fileRef = DE5023D5162E70B700F3E506 /* license.txt */; };
+		DE5023D9162E70CC00F3E506 /* BrightnessWheel.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5023D7162E70CC00F3E506 /* BrightnessWheel.png */; };
+		DE5023DA162E70CC00F3E506 /* ColorWheel.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5023D8162E70CC00F3E506 /* ColorWheel.png */; };
+		DE5023E0162E70E800F3E506 /* button_greycolor.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5023DB162E70E800F3E506 /* button_greycolor.png */; };
+		DE5023E1162E70E800F3E506 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5023DC162E70E800F3E506 /* Default.png */; };
+		DE5023E2162E70E800F3E506 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5023DD162E70E800F3E506 /* Default@2x.png */; };
+		DE5023E3162E70E800F3E506 /* pinboard.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5023DE162E70E800F3E506 /* pinboard.png */; };
+		DE5023E4162E70E800F3E506 /* stamp.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5023DF162E70E800F3E506 /* stamp.png */; };
 		DE6B38FA16255178009B41DC /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE6B38F916255178009B41DC /* Social.framework */; };
 		DE71B39F16002B9A00D2FF7A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE71B39E16002B9A00D2FF7A /* MessageUI.framework */; };
 		DEA33C72162A938800DBFB35 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA33C71162A938800DBFB35 /* QuartzCore.framework */; };
@@ -23,15 +29,10 @@
 		DEA33C91162B92E600DBFB35 /* MNMobileFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA33C89162B92E600DBFB35 /* MNMobileFunctions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DEA33C92162B92E600DBFB35 /* UIColor+ColorSpaces.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA33C8B162B92E600DBFB35 /* UIColor+ColorSpaces.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DEA33C94162B93EC00DBFB35 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA33C93162B93EC00DBFB35 /* CoreData.framework */; };
-		DEA33C9E162B9DC600DBFB35 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA33C9D162B9DC600DBFB35 /* CoreDataTableViewController.m */; };
 		DEA33CA4162B9EE900DBFB35 /* StampedImage+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA33CA3162B9EE900DBFB35 /* StampedImage+Create.m */; };
-		DEA33CA6162BE72F00DBFB35 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DEA33CA5162BE72E00DBFB35 /* Default.png */; };
-		DEA33CA8162BE74900DBFB35 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEA33CA7162BE74900DBFB35 /* Default@2x.png */; };
 		DEA33CAB162BEADE00DBFB35 /* StampedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA33CAA162BEADE00DBFB35 /* StampedImage.m */; };
-		DEA4B8B416257BFD00E711AF /* stamp.png in Resources */ = {isa = PBXBuildFile; fileRef = DEA4B8B316257BFD00E711AF /* stamp.png */; };
 		DEA4B8B61625809B00E711AF /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA4B8B51625809B00E711AF /* AssetsLibrary.framework */; };
 		DEA991E116295AF000F0F07E /* UIImage+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA991E016295AF000F0F07E /* UIImage+Utilities.m */; };
-		DED06304161EB90F00FD976D /* pinboard.png in Resources */ = {isa = PBXBuildFile; fileRef = DED06303161EB90F00FD976D /* pinboard.png */; };
 		DED06307161EBCB000FD976D /* LaunchMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DED06306161EBCB000FD976D /* LaunchMenuViewController.m */; };
 		DEED1B9315EFA2A6004E33F3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEED1B9215EFA2A6004E33F3 /* UIKit.framework */; };
 		DEED1B9515EFA2A6004E33F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEED1B9415EFA2A6004E33F3 /* Foundation.framework */; };
@@ -41,16 +42,22 @@
 		DEED1BA315EFA2A6004E33F3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DEED1BA215EFA2A6004E33F3 /* AppDelegate.m */; };
 		DEED1BA615EFA2A6004E33F3 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEED1BA415EFA2A6004E33F3 /* MainStoryboard_iPhone.storyboard */; };
 		DEED1BA915EFA2A6004E33F3 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEED1BA715EFA2A6004E33F3 /* MainStoryboard_iPad.storyboard */; };
-		DEF61DF0161F267100582C33 /* button_greycolor.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF61DEF161F267100582C33 /* button_greycolor.png */; };
 		DEF61DF6161F415200582C33 /* MyNavigationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF61DF5161F415200582C33 /* MyNavigationControllerViewController.m */; };
 		DEFB03791627EC7A00DD1D85 /* PreviousTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFB03781627EC7A00DD1D85 /* PreviousTableViewController.m */; };
 		DEFB037C1627FF4800DD1D85 /* PreviousTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFB037B1627FF4800DD1D85 /* PreviousTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		DE4D99721626B91F00936EBE /* BrightnessWheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BrightnessWheel.png; sourceTree = "<group>"; };
-		DE4D99731626B91F00936EBE /* ColorWheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ColorWheel.png; sourceTree = "<group>"; };
-		DE4D99791627118000936EBE /* license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = license.txt; sourceTree = "<group>"; };
+		DE5023D2162E709C00F3E506 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreDataTableViewController.h; path = TextMyPhoto/CoreDataTableViewController.h; sourceTree = "<group>"; };
+		DE5023D3162E709C00F3E506 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreDataTableViewController.m; path = TextMyPhoto/CoreDataTableViewController.m; sourceTree = "<group>"; };
+		DE5023D5162E70B700F3E506 /* license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = license.txt; path = TextMyPhoto/license.txt; sourceTree = "<group>"; };
+		DE5023D7162E70CC00F3E506 /* BrightnessWheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BrightnessWheel.png; path = TextMyPhoto/Resources/BrightnessWheel.png; sourceTree = "<group>"; };
+		DE5023D8162E70CC00F3E506 /* ColorWheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ColorWheel.png; path = TextMyPhoto/Resources/ColorWheel.png; sourceTree = "<group>"; };
+		DE5023DB162E70E800F3E506 /* button_greycolor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_greycolor.png; path = TextMyPhoto/Resources/button_greycolor.png; sourceTree = "<group>"; };
+		DE5023DC162E70E800F3E506 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = TextMyPhoto/Resources/Default.png; sourceTree = "<group>"; };
+		DE5023DD162E70E800F3E506 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "TextMyPhoto/Resources/Default@2x.png"; sourceTree = "<group>"; };
+		DE5023DE162E70E800F3E506 /* pinboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pinboard.png; path = TextMyPhoto/Resources/pinboard.png; sourceTree = "<group>"; };
+		DE5023DF162E70E800F3E506 /* stamp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stamp.png; path = TextMyPhoto/Resources/stamp.png; sourceTree = "<group>"; };
 		DE6B38F916255178009B41DC /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		DE71B39E16002B9A00D2FF7A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		DEA33C71162A938800DBFB35 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -72,19 +79,13 @@
 		DEA33C8A162B92E600DBFB35 /* UIColor+ColorSpaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+ColorSpaces.h"; path = "TextMyPhoto/UIColor+ColorSpaces.h"; sourceTree = "<group>"; };
 		DEA33C8B162B92E600DBFB35 /* UIColor+ColorSpaces.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+ColorSpaces.m"; path = "TextMyPhoto/UIColor+ColorSpaces.m"; sourceTree = "<group>"; };
 		DEA33C93162B93EC00DBFB35 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		DEA33C9C162B9DC600DBFB35 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
-		DEA33C9D162B9DC600DBFB35 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
 		DEA33CA2162B9EE900DBFB35 /* StampedImage+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "StampedImage+Create.h"; path = "TextMyPhoto/StampedImage+Create.h"; sourceTree = "<group>"; };
 		DEA33CA3162B9EE900DBFB35 /* StampedImage+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "StampedImage+Create.m"; path = "TextMyPhoto/StampedImage+Create.m"; sourceTree = "<group>"; };
-		DEA33CA5162BE72E00DBFB35 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		DEA33CA7162BE74900DBFB35 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		DEA33CA9162BEADE00DBFB35 /* StampedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StampedImage.h; path = TextMyPhoto/StampedImage.h; sourceTree = "<group>"; };
 		DEA33CAA162BEADE00DBFB35 /* StampedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StampedImage.m; path = TextMyPhoto/StampedImage.m; sourceTree = "<group>"; };
-		DEA4B8B316257BFD00E711AF /* stamp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stamp.png; sourceTree = "<group>"; };
 		DEA4B8B51625809B00E711AF /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		DEA991DF16295AEF00F0F07E /* UIImage+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utilities.h"; sourceTree = "<group>"; };
 		DEA991E016295AF000F0F07E /* UIImage+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utilities.m"; sourceTree = "<group>"; };
-		DED06303161EB90F00FD976D /* pinboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinboard.png; sourceTree = "<group>"; };
 		DED06305161EBCB000FD976D /* LaunchMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchMenuViewController.h; sourceTree = "<group>"; };
 		DED06306161EBCB000FD976D /* LaunchMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchMenuViewController.m; sourceTree = "<group>"; };
 		DEED1B8E15EFA2A6004E33F3 /* Stamp it!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stamp it!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,7 +100,6 @@
 		DEED1BA215EFA2A6004E33F3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DEED1BA515EFA2A6004E33F3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		DEED1BA815EFA2A6004E33F3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		DEF61DEF161F267100582C33 /* button_greycolor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_greycolor.png; sourceTree = "<group>"; };
 		DEF61DF4161F415200582C33 /* MyNavigationControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyNavigationControllerViewController.h; sourceTree = "<group>"; };
 		DEF61DF5161F415200582C33 /* MyNavigationControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyNavigationControllerViewController.m; sourceTree = "<group>"; };
 		DEFB03771627EC7A00DD1D85 /* PreviousTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviousTableViewController.h; sourceTree = "<group>"; };
@@ -130,6 +130,9 @@
 		DE4D995B1626B5AC00936EBE /* MNColorPicker */ = {
 			isa = PBXGroup;
 			children = (
+				DE5023D7162E70CC00F3E506 /* BrightnessWheel.png */,
+				DE5023D8162E70CC00F3E506 /* ColorWheel.png */,
+				DE5023D5162E70B700F3E506 /* license.txt */,
 				DEA33C7E162B92E600DBFB35 /* MNBrightnessView.h */,
 				DEA33C7F162B92E600DBFB35 /* MNBrightnessView.m */,
 				DEA33C80162B92E600DBFB35 /* MNColorPicker.h */,
@@ -144,9 +147,6 @@
 				DEA33C89162B92E600DBFB35 /* MNMobileFunctions.m */,
 				DEA33C8A162B92E600DBFB35 /* UIColor+ColorSpaces.h */,
 				DEA33C8B162B92E600DBFB35 /* UIColor+ColorSpaces.m */,
-				DE4D99791627118000936EBE /* license.txt */,
-				DE4D99721626B91F00936EBE /* BrightnessWheel.png */,
-				DE4D99731626B91F00936EBE /* ColorWheel.png */,
 			);
 			name = MNColorPicker;
 			sourceTree = "<group>";
@@ -154,8 +154,8 @@
 		DEA33C74162B921400DBFB35 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				DEA33C9C162B9DC600DBFB35 /* CoreDataTableViewController.h */,
-				DEA33C9D162B9DC600DBFB35 /* CoreDataTableViewController.m */,
+				DE5023D2162E709C00F3E506 /* CoreDataTableViewController.h */,
+				DE5023D3162E709C00F3E506 /* CoreDataTableViewController.m */,
 				DEA33C75162B926600DBFB35 /* TextMyPhoto.xcdatamodeld */,
 				DEA33CA9162BEADE00DBFB35 /* StampedImage.h */,
 				DEA33CAA162BEADE00DBFB35 /* StampedImage.m */,
@@ -168,11 +168,11 @@
 		DED062FF161EB85100FD976D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				DEA33CA7162BE74900DBFB35 /* Default@2x.png */,
-				DEA33CA5162BE72E00DBFB35 /* Default.png */,
-				DEA4B8B316257BFD00E711AF /* stamp.png */,
-				DEF61DEF161F267100582C33 /* button_greycolor.png */,
-				DED06303161EB90F00FD976D /* pinboard.png */,
+				DE5023DB162E70E800F3E506 /* button_greycolor.png */,
+				DE5023DC162E70E800F3E506 /* Default.png */,
+				DE5023DD162E70E800F3E506 /* Default@2x.png */,
+				DE5023DE162E70E800F3E506 /* pinboard.png */,
+				DE5023DF162E70E800F3E506 /* stamp.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -311,14 +311,14 @@
 				DEED1B9D15EFA2A6004E33F3 /* InfoPlist.strings in Resources */,
 				DEED1BA615EFA2A6004E33F3 /* MainStoryboard_iPhone.storyboard in Resources */,
 				DEED1BA915EFA2A6004E33F3 /* MainStoryboard_iPad.storyboard in Resources */,
-				DED06304161EB90F00FD976D /* pinboard.png in Resources */,
-				DEF61DF0161F267100582C33 /* button_greycolor.png in Resources */,
-				DEA4B8B416257BFD00E711AF /* stamp.png in Resources */,
-				DE4D99741626B91F00936EBE /* BrightnessWheel.png in Resources */,
-				DE4D99751626B91F00936EBE /* ColorWheel.png in Resources */,
-				DE4D997A1627118000936EBE /* license.txt in Resources */,
-				DEA33CA6162BE72F00DBFB35 /* Default.png in Resources */,
-				DEA33CA8162BE74900DBFB35 /* Default@2x.png in Resources */,
+				DE5023D6162E70B700F3E506 /* license.txt in Resources */,
+				DE5023D9162E70CC00F3E506 /* BrightnessWheel.png in Resources */,
+				DE5023DA162E70CC00F3E506 /* ColorWheel.png in Resources */,
+				DE5023E0162E70E800F3E506 /* button_greycolor.png in Resources */,
+				DE5023E1162E70E800F3E506 /* Default.png in Resources */,
+				DE5023E2162E70E800F3E506 /* Default@2x.png in Resources */,
+				DE5023E3162E70E800F3E506 /* pinboard.png in Resources */,
+				DE5023E4162E70E800F3E506 /* stamp.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,9 +345,9 @@
 				DEA33C90162B92E600DBFB35 /* MNMagnifyingView.m in Sources */,
 				DEA33C91162B92E600DBFB35 /* MNMobileFunctions.m in Sources */,
 				DEA33C92162B92E600DBFB35 /* UIColor+ColorSpaces.m in Sources */,
-				DEA33C9E162B9DC600DBFB35 /* CoreDataTableViewController.m in Sources */,
 				DEA33CA4162B9EE900DBFB35 /* StampedImage+Create.m in Sources */,
 				DEA33CAB162BEADE00DBFB35 /* StampedImage.m in Sources */,
+				DE5023D4162E709C00F3E506 /* CoreDataTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

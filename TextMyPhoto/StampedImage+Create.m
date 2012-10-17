@@ -15,15 +15,21 @@
 {
     StampedImage* stampedImage = nil;
     stampedImage = [NSEntityDescription insertNewObjectForEntityForName:@"StampedImage"                                                     inManagedObjectContext:context];
-    [stampedImage setImage:originalImage];
+    [stampedImage setUIImageOriginalImage:originalImage];
     return stampedImage;
 }
 
 // Custom setters to make sure date modified is kept accurate
-- (void)setImage:(UIImage *)originalImage
+- (void)setUIImageOriginalImage:(UIImage *)originalImage
 {
     NSData *data = UIImagePNGRepresentation(originalImage);
     self.originalImage = data;
+}
+
+-(void)setUIImageThumbImage:(UIImage *)thumb
+{
+    NSData *data = UIImagePNGRepresentation(thumb);
+    self.thumbImage = data;
 }
 
 -(void)setLabel:(NSString *)label
@@ -33,7 +39,7 @@
         [self willChangeValueForKey:@"label"];
         [self setPrimitiveValue:label forKey:@"label"];
         [self didChangeValueForKey:@"label"];
-        [self setPrimitiveValue:[NSDate date] forKey:@"dateModified"];
+        self.dateModified = [NSDate date];
     }
 }
 
@@ -44,7 +50,7 @@
         [self willChangeValueForKey:@"color"];
         [self setPrimitiveValue:color forKey:@"color"];
         [self didChangeValueForKey:@"color"];
-        [self setPrimitiveValue:[NSDate date] forKey:@"dateModified"];
+        self.dateModified = [NSDate date];
     }
 }
 
@@ -55,7 +61,7 @@
         [self willChangeValueForKey:@"originalImage"];
         [self setPrimitiveValue:originalImage forKey:@"originalImage"];
         [self didChangeValueForKey:@"originalImage"];
-        [self setPrimitiveValue:[NSDate date] forKey:@"dateModified"];
+        self.dateModified = [NSDate date];
     }
 }
 
@@ -66,7 +72,7 @@
         [self willChangeValueForKey:@"thumbImage"];
         [self setPrimitiveValue:thumbImage forKey:@"thumbImage"];
         [self didChangeValueForKey:@"thumbImage"];
-        [self setPrimitiveValue:[NSDate date] forKey:@"dateModified"];
+        self.dateModified = [NSDate date];
     }
 }
 
@@ -85,12 +91,5 @@
     [self didAccessValueForKey:@"thumbImage"];
     return image;
 }
-
--(void)setUIImageThumbImage:(UIImage *)thumb
-{
-    NSData *data = UIImagePNGRepresentation(thumb);
-    self.thumbImage = data;
-}
-
 
 @end

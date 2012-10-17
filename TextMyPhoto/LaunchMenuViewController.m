@@ -169,7 +169,6 @@ static const CGFloat BOARDER_WIDTH = 3.5f;
     
     [self.boarderView.layer setBorderColor:[UIColor blackColor].CGColor];
     [self.boarderView.layer setBorderWidth:BOARDER_WIDTH];
-    [self.boarderView setBackgroundColor:[UIColor clearColor]];
 }
 
 - (void)viewDidLoad
@@ -238,7 +237,7 @@ static const CGFloat BOARDER_WIDTH = 3.5f;
 
 -(void)loadDatabase
 {
-    // Create the database if it is not set
+    // Create the database if it is not already loaded
     if (!self.previousDatabase)
     {
         NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
