@@ -69,6 +69,8 @@
     if (!string)
         string = @"";
     NSMutableAttributedString *fontString = [[NSMutableAttributedString alloc] initWithString:string];
+    
+    // TODO: Remove 30.0f
     [fontString addAttribute:NSFontAttributeName value:[UIFont fontWithName:font size:30.0f] range:wholeString];
     [fontString addAttribute:NSParagraphStyleAttributeName value:style range:wholeString];
     

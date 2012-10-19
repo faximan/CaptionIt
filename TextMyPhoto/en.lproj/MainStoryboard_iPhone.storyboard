@@ -328,49 +328,6 @@
         <image name="pinboard.png" width="640" height="1136"/>
         <image name="stamp.png" width="400" height="300"/>
     </resources>
-    <classes>
-        <class className="CoreDataTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CoreDataTableViewController.h"/>
-        </class>
-        <class className="EditViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="parentView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="textLabel" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="FontPickerTableViewController" superclassName="GenericPictureTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FontPickerTableViewController.h"/>
-        </class>
-        <class className="GenericPictureTableViewController" superclassName="CoreDataTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GenericPictureTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelButtonPressed:"/>
-            </relationships>
-        </class>
-        <class className="GenericTableViewCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GenericTableViewCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="editFade" candidateClass="UIView"/>
-                <relationship kind="outlet" name="highlightFade" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="LaunchMenuViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LaunchMenuViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="boarderView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="pickButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="prevButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="MyNavigationControllerViewController" superclassName="UINavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MyNavigationControllerViewController.h"/>
-        </class>
-        <class className="PreviousTableViewController" superclassName="GenericPictureTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PreviousTableViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

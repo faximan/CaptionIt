@@ -29,8 +29,8 @@
     
     cell.cellImage = [stampedImage getThumbImage];
     
-    // TODO: Is this a performance hog?
-    cell.label = [PreviousTableViewController makeAttributedStringForString:stampedImage.label andFont:@"verdana" andColor:stampedImage.color];
+    // TODO: Is this a performance hog? Remove verdana
+    cell.label = [PreviousTableViewController makeAttributedStringForString:stampedImage.label andFont:stampedImage.font andColor:stampedImage.color];
 
     return cell;
 }

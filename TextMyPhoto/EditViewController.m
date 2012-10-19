@@ -19,9 +19,6 @@
 @end
 
 @implementation EditViewController
-{
-    BOOL thumbAlreadyUpToDate; // YES if there are unstaged changes that should be reflected when rendering a thumbimage, NO otherwise.
-}
 
 #pragma mark For sharing the image
 
@@ -62,25 +59,6 @@
     self.textLabel.center = self.imageView.center;
    
     return bitmap;
-}
-
-// Renders a thumbimage of the current project and sets it to the current stampedImage.
--(void)renderAndSetThumb
-{
-    // Make sure to only render a new thumb if there are unstaged changes
-    if (thumbAlreadyUpToDate)
-        return;
-    
-    // To avoid rendering the keyboard
-    [self.textLabel resignFirstResponder];
-    
-    // Render the image full scale
-    UIImage* temp = [self renderCurrentImage];
-    if (!temp) // error, do not save bogus data
-        return;
-    
-    [self.stampedImage setUIImageThumbImage:[PreviousTableViewController modifyImageToFillCell:temp]];
-    thumbAlreadyUpToDate = YES;
 }
 
 -(IBAction)shareButtonPressed:(id)sender
@@ -129,7 +107,6 @@
     {
 		self.textLabel.textColor = color;
         self.stampedImage.color = color;
-        thumbAlreadyUpToDate = NO;
 	}
 }
 
@@ -141,10 +118,7 @@
     [textField resignFirstResponder]; // remove keyboard
     
     if (self.stampedImage.label != self.textLabel.text)
-    {
         self.stampedImage.label = self.textLabel.text;
-        thumbAlreadyUpToDate = NO;
-    }
     
     return YES;
 }
@@ -173,7 +147,8 @@
     self.imageView.image = [self.stampedImage getOriginalImage];
     self.textLabel.textColor = self.stampedImage.color;
     self.textLabel.text = self.stampedImage.label;
-    thumbAlreadyUpToDate = NO;
+    
+    [self.stampedImage setUIImageThumbImage:[PreviousTableViewController modifyImageToFillCell:self.imageView.image]];
 }
 
 - (void)alignViews
@@ -188,12 +163,6 @@
 {
     [super viewWillAppear:animated];
     [self alignViews];
-}
-
--(void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self renderAndSetThumb];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -224,12 +193,6 @@
     return UIInterfaceOrientationMaskAllButUpsideDown;
 }
 
--(void)didReceiveMemoryWarning
-{
-    [self renderAndSetThumb];
-    [self didReceiveMemoryWarning];
-}
-
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"pick font"])
@@ -245,9 +208,11 @@
     }
 }
 
--(void)genericPictureTableViewController:(GenericPictureTableViewController *)genericTableViewController didFinishWithFont:(NSString *)font
+-(void)fontPickerTableViewController:(FontPickerTableViewController *)fontPickerTableViewControllerfontPickerTableViewController didFinishWithFont:(NSString *)font
 {
-    
+    self.stampedImage.font = font;
+    self.textLabel.font = [UIFont fontWithName:self.stampedImage.font size:[self.textLabel.font pointSize]];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)didCancelGenericPictureTableViewController:(GenericPictureTableViewController *)genericTableViewController

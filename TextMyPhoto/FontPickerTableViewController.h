@@ -23,6 +23,6 @@
 
 @protocol FontPickerTableViewControllerDelegate <GenericPictureTableViewControllerDelegate>
 
-- (void)genericPictureTableViewController:(GenericPictureTableViewController *)genericTableViewController didFinishWithFont:(NSString *)font;
+- (void)fontPickerTableViewController:(FontPickerTableViewController *)fontPickerTableViewControllerfontPickerTableViewController didFinishWithFont:(NSString *)font;
 
 @end

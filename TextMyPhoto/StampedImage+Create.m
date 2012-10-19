@@ -8,6 +8,9 @@
 
 #import "StampedImage+Create.h"
 
+#define DEFAULT_FONT @"verdana"
+#define DEFAULT_COLOR [UIColor whiteColor]
+
 @implementation StampedImage (Create)
 
 +(StampedImage *)createStampedImageWithImage:(UIImage *)originalImage
@@ -16,6 +19,11 @@
     StampedImage* stampedImage = nil;
     stampedImage = [NSEntityDescription insertNewObjectForEntityForName:@"StampedImage"                                                     inManagedObjectContext:context];
     [stampedImage setUIImageOriginalImage:originalImage];
+    
+    // Set default font and color
+    stampedImage.font = DEFAULT_FONT;
+    stampedImage.color = DEFAULT_COLOR;
+    
     return stampedImage;
 }
 
@@ -50,6 +58,17 @@
         [self willChangeValueForKey:@"color"];
         [self setPrimitiveValue:color forKey:@"color"];
         [self didChangeValueForKey:@"color"];
+        self.dateModified = [NSDate date];
+    }
+}
+
+-(void)setFont:(NSString *)font
+{
+    if (font != self.font)
+    {
+        [self willChangeValueForKey:@"font"];
+        [self setPrimitiveValue:font forKey:@"font"];
+        [self didChangeValueForKey:@"font"];
         self.dateModified = [NSDate date];
     }
 }

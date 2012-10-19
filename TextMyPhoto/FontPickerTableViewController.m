@@ -56,8 +56,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {    
     // Should respond to this when subclassing
-    if ([self.delegate respondsToSelector:@selector(genericPictureTableViewController:didFinishWithFont:)])
-        [(id)self.delegate genericPictureTableViewController:self didFinishWithFont:@"Papyrus"];
+    if ([self.delegate respondsToSelector:@selector(fontPickerTableViewController:didFinishWithFont:)])
+        [(id)self.delegate fontPickerTableViewController:self didFinishWithFont:fontArray[indexPath.row]];
 }
 
 @end
