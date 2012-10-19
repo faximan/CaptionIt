@@ -33,9 +33,11 @@ static const CGFloat ANIMATION_LENGTH = 0.2f; // Length of animation when editin
     animation.type = kCATransitionFromLeft;
     
     self.editFade.hidden = !editing;
-   
+
     // Calculate new view position based on editing mode
     float viewXPos = editing ? SLIDE_DISTANCE : 0.0;
+    
+    // Move the view if it is not already in the right position
     for( UIView *subview in self.contentView.subviews )
     {
         // Move the view if it is not already in the right position
@@ -43,16 +45,20 @@ static const CGFloat ANIMATION_LENGTH = 0.2f; // Length of animation when editin
         {
             [subview.layer addAnimation: animation forKey: @"editingFade"];
         
-            subview.frame = CGRectMake(viewXPos, subview.frame.origin.y, subview.frame.size.width, subview.frame.size.height);
+            CGRect frame = subview.frame;
+            frame.origin.x = viewXPos;
+            subview.frame = frame;
             [subview setNeedsDisplay];
         }
     }
 }
-
+/*
 -(void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
     UIGraphicsPushContext(UIGraphicsGetCurrentContext());
+   
+    //rect.origin.x = (self.editing) ? 30.0 : 0.0;
     
     [_cellImage drawInRect:rect];
     
@@ -65,6 +71,6 @@ static const CGFloat ANIMATION_LENGTH = 0.2f; // Length of animation when editin
         [_label drawAtPoint:CGPointMake(x, y)];
     }
     UIGraphicsPopContext();
-}
+}*/
 
 @end

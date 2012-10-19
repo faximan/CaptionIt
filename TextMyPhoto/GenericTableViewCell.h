@@ -10,10 +10,9 @@
 
 @interface GenericTableViewCell: UITableViewCell
 
-@property (nonatomic, strong) UIImage *cellImage;
+@property (nonatomic, weak) IBOutlet UIImageView *cellImage;
 @property (nonatomic, weak) IBOutlet UIView* editFade;
 @property (nonatomic, weak) IBOutlet UIView* highlightFade;
-
-@property (nonatomic, strong) NSAttributedString *label;
+@property (nonatomic, weak) IBOutlet UITextField *label;
 
 @end

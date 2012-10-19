@@ -25,19 +25,20 @@
     [self.tableView reloadData];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (GenericTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     GenericTableViewCell *cell = (GenericTableViewCell *)[super tableView:tableView cellForRowAtIndexPath:indexPath];
     
     // Set the image
-    cell.cellImage = self.curImage;
+    cell.cellImage.image = self.curImage;
     
     // Set the string to be the font name if no string is set
     NSString *label = (!self.curString || [self.curString isEqualToString:@""]) ? fontArray[indexPath.row] : self.curString;
     
-    cell.label = [FontPickerTableViewController makeAttributedStringForString:label andFont:fontArray[indexPath.row] andColor:self.curColor];
-    
-    [cell setNeedsDisplay];
+    cell.label.text = label;
+    cell.label.textColor = self.curColor;
+    // TODO: Remove 30.0
+    cell.label.font = [UIFont fontWithName:fontArray[indexPath.row] size:30.0f];
     return cell;
 }
 

@@ -8,8 +8,6 @@
 
 #import "PreviousTableViewController.h"
 #import "GenericTableViewCell.h"
-#import "UIImage+Utilities.h"
-#import <QuartzCore/QuartzCore.h>
 
 @implementation PreviousTableViewController
 
@@ -17,21 +15,23 @@
 {
     [super viewDidLoad];
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (GenericTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     GenericTableViewCell *cell = (GenericTableViewCell *)[super tableView:tableView cellForRowAtIndexPath:indexPath];
     
     StampedImage *stampedImage = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
-    cell.cellImage = [stampedImage getThumbImage];
-    
-    // TODO: Is this a performance hog? Remove verdana
-    cell.label = [PreviousTableViewController makeAttributedStringForString:stampedImage.label andFont:stampedImage.font andColor:stampedImage.color];
-
+    cell.cellImage.image = [stampedImage getThumbImage];
+    cell.label.text = stampedImage.label;
+    // TODO: Size
+    cell.label.font = [UIFont fontWithName:stampedImage.font size:30.0f];
+    cell.label.textColor = stampedImage.color;
     return cell;
 }
 
