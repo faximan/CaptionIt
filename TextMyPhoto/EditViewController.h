@@ -7,16 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MessageUI/MFMailComposeViewController.h>
 #import <QuartzCore/QuartzCore.h>
-#import <Social/Social.h>
-#import <AssetsLibrary/AssetsLibrary.h>
 
 #import "StampedImage+Create.h"
+#import "Label.h"
 #import "FontPickerTableViewController.h"
 #import "MNColorPicker.h"
+#import "CustomLabel.h"
 
-@interface EditViewController : UIViewController < MFMailComposeViewControllerDelegate, UITextFieldDelegate, MNColorPickerDelegate, FontPickerTableViewControllerDelegate>
+@interface EditViewController : UIViewController <CustomLabelDelegate , MNColorPickerDelegate, FontPickerTableViewControllerDelegate>
 
 @property (nonatomic, strong) StampedImage *stampedImage;
 

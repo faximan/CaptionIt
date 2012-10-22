@@ -31,6 +31,9 @@
     
     // Set the image
     cell.cellImage.image = self.curImage;
+    cell.label.text = fontArray[indexPath.row];
+    cell.label.font = [UIFont fontWithName:fontArray[indexPath.row] size:30.0f];
+    cell.label.textColor = self.curColor;
     
     // Set the string to be the font name if no string is set
     return cell;

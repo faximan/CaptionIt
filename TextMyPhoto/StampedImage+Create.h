@@ -17,4 +17,6 @@
 -(UIImage *)getThumbImage;
 -(void)setUIImageThumbImage:(UIImage *)thumb;
 
+-(void)updateLabel:(UITextView *)label;
+
 @end

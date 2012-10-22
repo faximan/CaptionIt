@@ -58,7 +58,7 @@
     return [[UIImage imageWithImage:image scaledToSize:CGSizeMake(newWidth, newHeight)] getCenterOfImageWithWidth:cellWidth andHeight:cellHeight];
 }
 
-+(NSAttributedString *)makeAttributedStringForString:(NSString *)string andFont:(NSString *)font andColor:(UIColor *)color
+/*+(NSAttributedString *)makeAttributedStringForString:(NSString *)string andFont:(NSString *)font andColor:(UIColor *)color
 {
     NSRange wholeString = NSMakeRange(0, [string length]);
     
@@ -70,14 +70,13 @@
         string = @"";
     NSMutableAttributedString *fontString = [[NSMutableAttributedString alloc] initWithString:string];
     
-    // TODO: Remove 30.0f
     [fontString addAttribute:NSFontAttributeName value:[UIFont fontWithName:font size:30.0f] range:wholeString];
     [fontString addAttribute:NSParagraphStyleAttributeName value:style range:wholeString];
     
     if (color)
         [fontString addAttribute:NSForegroundColorAttributeName value:color range:wholeString];
     return fontString;
-}
+}*/
 
 -(IBAction)cancelButtonPressed:(id)sender
 {

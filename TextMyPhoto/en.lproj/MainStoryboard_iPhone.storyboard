@@ -94,17 +94,12 @@
                                 <rect key="frame" x="0.0" y="372" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem style="plain" systemItem="compose" id="jve-V4-t1f">
-                                        <connections>
-                                            <action selector="addText" destination="ddt-II-aHa" id="WRz-X8-1QN"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="6PV-JU-c7o"/>
                                     <barButtonItem title="Font" style="plain" id="COY-DQ-YRF">
                                         <connections>
                                             <segue destination="vIN-Kl-P61" kind="modal" identifier="pick font" id="VbG-uY-tMU"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="6PV-JU-c7o"/>
                                     <barButtonItem title="Color" style="plain" id="fw9-Nl-9X7">
                                         <connections>
                                             <action selector="changeColor" destination="ddt-II-aHa" id="1bo-z2-Tlh"/>
@@ -112,21 +107,25 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <view contentMode="scaleToFill" id="eZZ-XU-nPf" userLabel="Container view">
+                            <view contentMode="scaleToFill" id="eZZ-XU-nPf" userLabel="Container view" customClass="UIScrollView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="372"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" id="P6S-F7-iX9" userLabel="Parent View">
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" id="P6S-F7-iX9" userLabel="Parent View" customClass="UIScrollView">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="372"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" id="ugm-RH-hvx">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" id="ugm-RH-hvx">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="372"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="5yl-FM-uU3" appends="YES" id="UL6-Lc-eTk"/>
+                                        </connections>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -145,9 +144,15 @@
                     <connections>
                         <outlet property="imageView" destination="ugm-RH-hvx" id="5rO-CW-SxL"/>
                         <outlet property="parentView" destination="P6S-F7-iX9" id="Hxh-ml-muX"/>
+                        <outlet property="scrollView" destination="eZZ-XU-nPf" id="fYf-uV-Pfl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cDA-Me-df1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="5yl-FM-uU3" userLabel="Add label Gesture Recognizer">
+                    <connections>
+                        <action selector="addLabel:" destination="ddt-II-aHa" id="21D-Cn-mh5"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="389" y="109"/>
         </scene>
@@ -272,6 +277,13 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </view>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CV5-wc-7qN">
+                                            <rect key="frame" x="0.0" y="43" width="320" height="63"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
@@ -279,6 +291,7 @@
                                 <connections>
                                     <outlet property="cellImage" destination="jfV-42-Llj" id="eXw-ku-EG1"/>
                                     <outlet property="highlightFade" destination="y1g-tR-Xfn" id="Dr3-fU-niw"/>
+                                    <outlet property="label" destination="CV5-wc-7qN" id="ZKA-Ki-K8F"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

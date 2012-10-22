@@ -26,7 +26,7 @@ static const CGFloat MAX_CELL_HEIGHT = 150.0f;
 +(UIImage *)modifyImageToFillCell:(UIImage *)image;
 
 // Creates a centered attributed string object for given string, font and color
-+(NSAttributedString *)makeAttributedStringForString:(NSString *)string andFont:(NSString *)font andColor:(UIColor *)color;
+//+(NSAttributedString *)makeAttributedStringForString:(NSString *)string andFont:(NSString *)font andColor:(UIColor *)color;
 
 -(IBAction)cancelButtonPressed:(id)sender;
 

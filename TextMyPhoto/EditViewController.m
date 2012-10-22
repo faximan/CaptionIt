@@ -15,10 +15,15 @@
 @property (nonatomic, weak) IBOutlet UIImageView *imageView;
 @property (nonatomic, weak) IBOutlet UIView *parentView; // The view that contains the picture and all the addons.
 @property (nonatomic, weak) NSSet* labels;
+@property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 
 @end
 
 @implementation EditViewController
+{
+    BOOL inTextAddMode; // make sure to not add more labels in text add mode
+    UITextView *activeField;
+}
 
 #pragma mark For sharing the image
 
@@ -36,27 +41,40 @@
         
     // Render the image
     [self.imageView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    self.parentView.frame = oldFrame;
     
     // Render the text on top of the image
-    // Scale to render sharp (cache old frame)
-//    CGRect oldLabelFrame = self.textLabel.frame;
-  //  CGFloat oldFontSize = self.textLabel.font.pointSize;
-   // self.textLabel.font = [UIFont systemFontOfSize:self.textLabel.font.pointSize * scaleFactor];
-   // self.textLabel.frame = CGRectMake(oldLabelFrame.origin.x, oldLabelFrame.origin.y, oldLabelFrame.size.width * scaleFactor, oldLabelFrame.size.height * scaleFactor);
-   // self.textLabel.center = self.imageView.center;
-    
-    // Translate the context to where the label is to render it at the correct position
-   // CGContextTranslateCTM(UIGraphicsGetCurrentContext(), self.textLabel.frame.origin.x, self.textLabel.frame.origin.y);
-    //[self.textLabel.layer renderInContext:UIGraphicsGetCurrentContext()];
+    for (UIView *view in self.parentView.subviews)
+    {
+        if ([view isKindOfClass:[UITextView class]])
+        {
+            UITextView *curLabel = (UITextView *)view;
+           
+            CGRect oldLabelFrame = curLabel.frame;
+            UIFont *oldFont = curLabel.font;
+            curLabel.font = [UIFont fontWithName:oldFont.fontName size:oldFont.pointSize * scaleFactor];
+            
+            CGRect newLabelFrame = oldLabelFrame;
+            newLabelFrame.size.height *= scaleFactor;
+            newLabelFrame.size.width *= scaleFactor;
+            newLabelFrame.origin.x *= scaleFactor;
+            newLabelFrame.origin.y *= scaleFactor;
+            curLabel.frame = newLabelFrame;
+            
+            // Move to new position and render
+            CGContextTranslateCTM(UIGraphicsGetCurrentContext(), newLabelFrame.origin.x, newLabelFrame.origin.y);
+            [curLabel.layer renderInContext:UIGraphicsGetCurrentContext()];
+            CGContextTranslateCTM(UIGraphicsGetCurrentContext(), -newLabelFrame.origin.x, -newLabelFrame.origin.y);
+            
+            // Put back
+            curLabel.frame = oldLabelFrame;
+            curLabel.font = oldFont;
+        }
+    }
     
     // Convert to UIImage
     UIImage *bitmap = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
-    //self.textLabel.font = [UIFont systemFontOfSize:oldFontSize];
-   // self.textLabel.frame = oldLabelFrame;
-    self.parentView.frame = oldFrame;
-   // self.textLabel.center = self.imageView.center;
    
     return bitmap;
 }
@@ -64,8 +82,7 @@
 -(IBAction)shareButtonPressed:(id)sender
 {
     // Remove keyboard if in edit mode
-    //TODO: check
-    //[self.textLabel resignFirstResponder];
+    [self resignFirstResponder];
     
     UIImage *renderedImage = [self renderCurrentImage];
     if (!renderedImage) // Error when rendering
@@ -83,11 +100,26 @@
 }
 
 #pragma mark For editing the image
-- (IBAction)addText
+- (IBAction)addLabel:(UILongPressGestureRecognizer *)sender
 {
-    // Set the textlabel to be in edit mode
-    //TODO:
-    //[self.textLabel becomeFirstResponder];
+    // Do not add another label if one is already being edited
+    if (!inTextAddMode)
+    {
+        // Get tap location
+        CGPoint location = [sender locationInView:self.parentView];
+        
+        CustomLabel *newLabel = [[CustomLabel alloc] initWithStampedImage:self.stampedImage
+                                                                withFrame:CGRectMake(location.x, location.y ,CUSTOM_LABEL_DEFAULT_FRAME_WIDTH, CUSTOM_LABEL_DEFAULT_FRAME_HEIGHT)
+                                                                  andText:@""
+                                                                  andSize:CUSTOM_LABEL_DEFAULT_FONT_SIZE];
+        newLabel.delegate = self;
+        
+        // Update database
+        newLabel.tag = [self.stampedImage.labels count]; // id
+        
+        [self.parentView addSubview:newLabel];
+        [newLabel becomeFirstResponder];
+    }
 }
 
 // Pull up the color picker
@@ -106,20 +138,61 @@
 {
 	[self dismissViewControllerAnimated:YES completion:nil];
 	if (color && color != self.stampedImage.color)
+    {
         self.stampedImage.color = color;
+        
+        // Change font for all labels
+        for (UIView *view in self.parentView.subviews)
+            if ([view isKindOfClass:[UITextView class]])
+            {
+                ((UITextView *)view).textColor = color;
+                [view setNeedsDisplay];
+            }
+    }
 }
 
-#pragma mark UITextField delegate
+#pragma mark UITextView delegate
 
-// Called when the UITextField is in edit mode and return key is hit
--(BOOL)textFieldShouldReturn:(UITextField *)textField
+-(void)textViewDidBeginEditing:(UITextView *)textView
 {
-    // TODO: change
-    //[textField resignFirstResponder]; // remove keyboard
+    activeField = textView;
+    inTextAddMode = YES;
+}
+
+-(void)textViewDidEndEditing:(UITextView *)textView
+{
+    inTextAddMode = NO;
     
-    // TODO: Update text only if changed
+    [self.stampedImage updateLabel:textView];
     
+    // remove empty labels
+    if ([textView.text isEqualToString:@""])
+        [textView removeFromSuperview];
+}
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    // Remove keyboard on carrige return
+    if ([text isEqualToString:@"\n"])
+    {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    
+    // Calculate new textsize
+    NSString *newString = [NSString stringWithFormat:@"%@%@%@", [textView.text substringToIndex:range.location], text, [textView.text substringFromIndex:range.location + range.length]];
+    
+    CGRect frame = textView.frame;   
+    frame.size = [newString sizeWithFont:textView.font];
+    frame.size.width += CUSTOM_LABEL_PADDING;
+    frame.size.height += CUSTOM_LABEL_PADDING;
+    textView.frame = frame;
     return YES;
+}
+
+-(void)customLabeldidChangeSizeOrPosition:(CustomLabel *)customLabel
+{
+    [self.stampedImage updateLabel:customLabel];
 }
 
 #pragma mark View Stuff
@@ -141,13 +214,22 @@
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     
-    //self.textLabel.delegate = self;
-    
     self.imageView.image = [self.stampedImage getOriginalImage];
-    //self.textLabel.textColor = self.stampedImage.color;
-    //self.textLabel.text = self.stampedImage.label;
     
-    [self.stampedImage setUIImageThumbImage:[PreviousTableViewController modifyImageToFillCell:self.imageView.image]];
+    // Add all labels
+    for (Label *label in self.stampedImage.labels)
+    {
+        CustomLabel *newLabel = [[CustomLabel alloc] initWithStampedImage:self.stampedImage
+                                                                withFrame:CGRectMake([label.x floatValue], [label.y floatValue], [label.width floatValue], [label.height floatValue])
+                                                                  andText:label.text
+                                                                  andSize:[label.fontSize floatValue]];
+        newLabel.delegate = self;
+        [self.parentView addSubview:newLabel];
+    }
+    
+    // Generate thumb if there is none since before
+    if (!self.stampedImage.thumbImage)
+        [self.stampedImage setUIImageThumbImage:[PreviousTableViewController modifyImageToFillCell:self.imageView.image]];
 }
 
 - (void)alignViews
@@ -161,6 +243,16 @@
 {
     [super viewWillAppear:animated];
     [self alignViews];
+    
+    [self registerForKeyboardNotifications];
+    
+    inTextAddMode = NO;
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -183,12 +275,12 @@
 
 -(BOOL)shouldAutorotate
 {
-    return YES;
+    return NO;
 }
 
 -(NSUInteger)supportedInterfaceOrientations
 {
-    return UIInterfaceOrientationMaskAllButUpsideDown;
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -201,15 +293,70 @@
         
         // Set the properties for rending the font nicely
         fontPicker.curImage = [FontPickerTableViewController modifyImageToFillCell:[self.stampedImage getOriginalImage]];
-   //     fontPicker.curString = self.stampedImage.label;
         fontPicker.curColor = self.stampedImage.color;
     }
 }
 
+// Call this method somewhere in your view controller setup code.
+- (void)registerForKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
+// Called when the UIKeyboardDidShowNotification is sent.
+- (void)keyboardWasShown:(NSNotification*)aNotification
+{
+    NSDictionary* info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+    self.scrollView.contentInset = contentInsets;
+    self.scrollView.scrollIndicatorInsets = contentInsets;
+    
+    // If active text field is hidden by keyboard, scroll it so it's visible
+    // Your application might not need or want this behavior.
+    CGRect aRect = self.view.frame;
+    aRect.size.height -= kbSize.height;
+    
+    CGPoint convertedPointToView = [activeField.superview convertPoint:activeField.frame.origin toView:self.view];
+    convertedPointToView.y += activeField.frame.size.height;
+
+    if (!CGRectContainsPoint(aRect, convertedPointToView))
+    {
+        CGPoint scrollPoint = CGPointMake(0.0, convertedPointToView.y -kbSize.height + (self.view.frame.size.height - self.scrollView.frame.size.height));
+        [self.scrollView setContentOffset:scrollPoint animated:YES];
+    }
+}
+
+// Called when the UIKeyboardWillHideNotification is sent
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification
+{
+    [self.scrollView setContentOffset:CGPointZero animated:YES];
+}
+
+
+#pragma mark -
+#pragma mark FontPickerTableViewControllerDelegate
+
 -(void)fontPickerTableViewController:(FontPickerTableViewController *)fontPickerTableViewControllerfontPickerTableViewController didFinishWithFont:(NSString *)font
 {
     self.stampedImage.font = font;
- //   self.textLabel.font = [UIFont fontWithName:self.stampedImage.font size:[self.textLabel.font pointSize]];
+    
+    // Change font for all labels
+    for (UIView *view in self.parentView.subviews)
+        if ([view isKindOfClass:[UITextView class]])
+        {
+            ((UITextView *)view).font = [UIFont fontWithName:font size:((UITextView *)view).font.pointSize];
+            [view setNeedsDisplay];
+        }
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

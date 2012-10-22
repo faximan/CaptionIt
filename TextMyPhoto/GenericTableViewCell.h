@@ -13,5 +13,6 @@
 @property (nonatomic, weak) IBOutlet UIImageView *cellImage;
 @property (nonatomic, weak) IBOutlet UIView* editFade;
 @property (nonatomic, weak) IBOutlet UIView* highlightFade;
+@property (nonatomic, weak) IBOutlet UILabel* label;
 
 @end

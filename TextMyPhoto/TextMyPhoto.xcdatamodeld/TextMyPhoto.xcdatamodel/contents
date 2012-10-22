@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="12C60" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Label" representedClassName="Label" syncable="YES">
+        <attribute name="fontSize" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="height" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="nbr" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="width" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="x" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="y" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <relationship name="stampedImage" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="StampedImage" inverseName="labels" inverseEntity="StampedImage" syncable="YES"/>
     </entity>
     <entity name="StampedImage" representedClassName="StampedImage" syncable="YES">
@@ -13,7 +19,7 @@
         <relationship name="labels" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Label" inverseName="stampedImage" inverseEntity="Label" syncable="YES"/>
     </entity>
     <elements>
+        <element name="Label" positionX="430" positionY="252" width="128" height="163"/>
         <element name="StampedImage" positionX="160" positionY="192" width="128" height="133"/>
-        <element name="Label" positionX="430" positionY="252" width="128" height="73"/>
     </elements>
 </model>
