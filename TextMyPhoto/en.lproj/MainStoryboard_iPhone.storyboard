@@ -125,13 +125,6 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" id="QUm-zg-KU8">
-                                                <rect key="frame" x="0.0" y="158" width="320" height="56"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
                                         </subviews>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
@@ -152,7 +145,6 @@
                     <connections>
                         <outlet property="imageView" destination="ugm-RH-hvx" id="5rO-CW-SxL"/>
                         <outlet property="parentView" destination="P6S-F7-iX9" id="Hxh-ml-muX"/>
-                        <outlet property="textLabel" destination="QUm-zg-KU8" id="yxP-ls-we6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cDA-Me-df1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -190,12 +182,6 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </view>
-                                        <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" id="sDx-wa-adX">
-                                            <rect key="frame" x="0.0" y="60" width="320" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
@@ -204,7 +190,6 @@
                                     <outlet property="cellImage" destination="p5W-wA-6F3" id="Dag-G8-VrB"/>
                                     <outlet property="editFade" destination="kRF-fZ-kEZ" id="peD-RF-Eg7"/>
                                     <outlet property="highlightFade" destination="ak5-X0-xNb" id="Bcb-sQ-3Qv"/>
-                                    <outlet property="label" destination="sDx-wa-adX" id="JCQ-iK-IlF"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -287,12 +272,6 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </view>
-                                        <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" id="wpv-It-Tth">
-                                            <rect key="frame" x="0.0" y="60" width="320" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
@@ -300,7 +279,6 @@
                                 <connections>
                                     <outlet property="cellImage" destination="jfV-42-Llj" id="eXw-ku-EG1"/>
                                     <outlet property="highlightFade" destination="y1g-tR-Xfn" id="Dr3-fU-niw"/>
-                                    <outlet property="label" destination="wpv-It-Tth" id="U4V-Jz-FAY"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -346,53 +324,6 @@
         <image name="pinboard.png" width="640" height="1136"/>
         <image name="stamp.png" width="400" height="300"/>
     </resources>
-    <classes>
-        <class className="CoreDataTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CoreDataTableViewController.h"/>
-        </class>
-        <class className="EditViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="parentView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="textLabel" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="FontPickerTableViewController" superclassName="GenericPictureTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FontPickerTableViewController.h"/>
-        </class>
-        <class className="GenericPictureTableViewController" superclassName="CoreDataTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GenericPictureTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelButtonPressed:"/>
-            </relationships>
-        </class>
-        <class className="GenericTableViewCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GenericTableViewCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="cellImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="editFade" candidateClass="UIView"/>
-                <relationship kind="outlet" name="highlightFade" candidateClass="UIView"/>
-                <relationship kind="outlet" name="label" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="LaunchMenuViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LaunchMenuViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="previousButtonPressed:" candidateClass="UIButton"/>
-                <relationship kind="action" name="stampPhotoButtonPressed:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="boarderView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="pickButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="prevButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="MyNavigationControllerViewController" superclassName="UINavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MyNavigationControllerViewController.h"/>
-        </class>
-        <class className="PreviousTableViewController" superclassName="GenericPictureTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PreviousTableViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

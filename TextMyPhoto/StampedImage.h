@@ -2,21 +2,30 @@
 //  StampedImage.h
 //  Stamp it!
 //
-//  Created by Alexander Faxå on 2012-10-17.
+//  Created by Alexander Faxå on 2012-10-19.
 //  Copyright (c) 2012 Alexander Faxå. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class Label;
 
 @interface StampedImage : NSManagedObject
 
 @property (nonatomic, retain) id color;
 @property (nonatomic, retain) NSDate * dateModified;
-@property (nonatomic, retain) NSString * label;
+@property (nonatomic, retain) NSString * font;
 @property (nonatomic, retain) NSData * originalImage;
 @property (nonatomic, retain) NSData * thumbImage;
-@property (nonatomic, retain) NSString * font;
+@property (nonatomic, retain) NSSet *labels;
+@end
+
+@interface StampedImage (CoreDataGeneratedAccessors)
+
+- (void)addLabelsObject:(Label *)value;
+- (void)removeLabelsObject:(Label *)value;
+- (void)addLabels:(NSSet *)values;
+- (void)removeLabels:(NSSet *)values;
 
 @end

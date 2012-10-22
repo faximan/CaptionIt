@@ -18,9 +18,10 @@
 		DE5023E4162E70E800F3E506 /* stamp.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5023DF162E70E800F3E506 /* stamp.png */; };
 		DE5023E7162E7C5900F3E506 /* GenericPictureTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5023E6162E7C5900F3E506 /* GenericPictureTableViewController.m */; };
 		DE5023EB162E839100F3E506 /* FontPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5023EA162E839100F3E506 /* FontPickerTableViewController.m */; };
-		DE5023EE162EB62300F3E506 /* StampedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5023ED162EB62300F3E506 /* StampedImage.m */; };
 		DE6B38FA16255178009B41DC /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE6B38F916255178009B41DC /* Social.framework */; };
 		DE71B39F16002B9A00D2FF7A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE71B39E16002B9A00D2FF7A /* MessageUI.framework */; };
+		DE8D0BCC16314CA500A21DBB /* StampedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8D0BCB16314CA500A21DBB /* StampedImage.m */; };
+		DE8D0BCF16314CA600A21DBB /* Label.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8D0BCE16314CA500A21DBB /* Label.m */; };
 		DEA33C72162A938800DBFB35 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA33C71162A938800DBFB35 /* QuartzCore.framework */; };
 		DEA33C77162B926600DBFB35 /* TextMyPhoto.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DEA33C75162B926600DBFB35 /* TextMyPhoto.xcdatamodeld */; };
 		DEA33C7C162B92B400DBFB35 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA33C79162B92B300DBFB35 /* EditViewController.m */; };
@@ -64,10 +65,12 @@
 		DE5023E6162E7C5900F3E506 /* GenericPictureTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GenericPictureTableViewController.m; path = TextMyPhoto/GenericPictureTableViewController.m; sourceTree = "<group>"; };
 		DE5023E9162E839100F3E506 /* FontPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FontPickerTableViewController.h; path = TextMyPhoto/FontPickerTableViewController.h; sourceTree = "<group>"; };
 		DE5023EA162E839100F3E506 /* FontPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FontPickerTableViewController.m; path = TextMyPhoto/FontPickerTableViewController.m; sourceTree = "<group>"; };
-		DE5023EC162EB62300F3E506 /* StampedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StampedImage.h; path = TextMyPhoto/StampedImage.h; sourceTree = "<group>"; };
-		DE5023ED162EB62300F3E506 /* StampedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StampedImage.m; path = TextMyPhoto/StampedImage.m; sourceTree = "<group>"; };
 		DE6B38F916255178009B41DC /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		DE71B39E16002B9A00D2FF7A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		DE8D0BCA16314CA500A21DBB /* StampedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StampedImage.h; path = TextMyPhoto/StampedImage.h; sourceTree = "<group>"; };
+		DE8D0BCB16314CA500A21DBB /* StampedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StampedImage.m; path = TextMyPhoto/StampedImage.m; sourceTree = "<group>"; };
+		DE8D0BCD16314CA500A21DBB /* Label.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Label.h; path = TextMyPhoto/Label.h; sourceTree = "<group>"; };
+		DE8D0BCE16314CA500A21DBB /* Label.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Label.m; path = TextMyPhoto/Label.m; sourceTree = "<group>"; };
 		DEA33C71162A938800DBFB35 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DEA33C76162B926600DBFB35 /* TextMyPhoto.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TextMyPhoto.xcdatamodel; sourceTree = "<group>"; };
 		DEA33C78162B92B300DBFB35 /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
@@ -177,9 +180,11 @@
 		DEA33C74162B921400DBFB35 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				DE5023EC162EB62300F3E506 /* StampedImage.h */,
-				DE5023ED162EB62300F3E506 /* StampedImage.m */,
 				DEA33C75162B926600DBFB35 /* TextMyPhoto.xcdatamodeld */,
+				DE8D0BCD16314CA500A21DBB /* Label.h */,
+				DE8D0BCE16314CA500A21DBB /* Label.m */,
+				DE8D0BCA16314CA500A21DBB /* StampedImage.h */,
+				DE8D0BCB16314CA500A21DBB /* StampedImage.m */,
 				DEA33CA2162B9EE900DBFB35 /* StampedImage+Create.h */,
 				DEA33CA3162B9EE900DBFB35 /* StampedImage+Create.m */,
 			);
@@ -367,7 +372,8 @@
 				DE5023D4162E709C00F3E506 /* CoreDataTableViewController.m in Sources */,
 				DE5023E7162E7C5900F3E506 /* GenericPictureTableViewController.m in Sources */,
 				DE5023EB162E839100F3E506 /* FontPickerTableViewController.m in Sources */,
-				DE5023EE162EB62300F3E506 /* StampedImage.m in Sources */,
+				DE8D0BCC16314CA500A21DBB /* StampedImage.m in Sources */,
+				DE8D0BCF16314CA600A21DBB /* Label.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

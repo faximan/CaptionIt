@@ -28,10 +28,6 @@
     StampedImage *stampedImage = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     cell.cellImage.image = [stampedImage getThumbImage];
-    cell.label.text = stampedImage.label;
-    // TODO: Size
-    cell.label.font = [UIFont fontWithName:stampedImage.font size:30.0f];
-    cell.label.textColor = stampedImage.color;
     return cell;
 }
 

@@ -33,12 +33,6 @@
     cell.cellImage.image = self.curImage;
     
     // Set the string to be the font name if no string is set
-    NSString *label = (!self.curString || [self.curString isEqualToString:@""]) ? fontArray[indexPath.row] : self.curString;
-    
-    cell.label.text = label;
-    cell.label.textColor = self.curColor;
-    // TODO: Remove 30.0
-    cell.label.font = [UIFont fontWithName:fontArray[indexPath.row] size:30.0f];
     return cell;
 }
 

@@ -17,7 +17,6 @@
 
 @property (nonatomic, strong) UIImage *curImage;
 @property (nonatomic, strong) UIColor *curColor;
-@property (nonatomic, strong) NSString *curString;
 
 @end
 

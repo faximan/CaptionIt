@@ -40,17 +40,6 @@
     self.thumbImage = data;
 }
 
--(void)setLabel:(NSString *)label
-{
-    if (label != self.label)
-    {
-        [self willChangeValueForKey:@"label"];
-        [self setPrimitiveValue:label forKey:@"label"];
-        [self didChangeValueForKey:@"label"];
-        self.dateModified = [NSDate date];
-    }
-}
-
 -(void)setColor:(id)color
 {
     if (color != self.color)
