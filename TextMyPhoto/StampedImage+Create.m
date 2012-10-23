@@ -39,8 +39,11 @@
 // inserting a new label if there is no match
 -(void)updateLabel:(UITextView *)label
 {
+    NSNumber* tagNumber = @(label.tag);
     NSSet *result = [self fetchObjectsForEntityName:@"Label" withPredicate:
-     @"(stampedImage = %@) AND (nbr = %d)", self, label.tag];
+     @"(nbr = %@) AND (stampedImage.dateModified = %@)",  tagNumber, self.dateModified];
+    
+    // Date modified is considered to be the unique key of a stamped image
     
     if (result && [result count] < 2)
     {
@@ -64,8 +67,6 @@
         newLabel.text = label.text;
         newLabel.stampedImage = self;
         self.dateModified = [NSDate date];
-        
-        NSLog(@"The current stamped image contains %d labels", [self.labels count]);
     }
     else
     {

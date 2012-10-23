@@ -11,12 +11,13 @@
 
 @implementation CustomLabel
 
--(UITextView *)initWithStampedImage:(StampedImage *)stampedImage withFrame:(CGRect)frame andText:(NSString *)text andSize:(CGFloat)size
+-(UITextView *)initWithStampedImage:(StampedImage *)stampedImage withFrame:(CGRect)frame andText:(NSString *)text andSize:(CGFloat)size andTag:(NSInteger)tag
 {
     if (self = [super initWithFrame:frame])
     {
         self.textColor = stampedImage.color;
         self.text = text;
+        self.tag = tag;
         
         self.font = [UIFont fontWithName:stampedImage.font size:size];
         self.autocorrectionType = UITextAutocorrectionTypeNo;

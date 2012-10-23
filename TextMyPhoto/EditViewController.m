@@ -111,11 +111,9 @@
         CustomLabel *newLabel = [[CustomLabel alloc] initWithStampedImage:self.stampedImage
                                                                 withFrame:CGRectMake(location.x, location.y ,CUSTOM_LABEL_DEFAULT_FRAME_WIDTH, CUSTOM_LABEL_DEFAULT_FRAME_HEIGHT)
                                                                   andText:@""
-                                                                  andSize:CUSTOM_LABEL_DEFAULT_FONT_SIZE];
+                                                                  andSize:CUSTOM_LABEL_DEFAULT_FONT_SIZE
+                                                                   andTag:[self.stampedImage.labels count]];
         newLabel.delegate = self;
-        
-        // Update database
-        newLabel.tag = [self.stampedImage.labels count]; // id
         
         [self.parentView addSubview:newLabel];
         [newLabel becomeFirstResponder];
@@ -127,7 +125,8 @@
 {
     MNColorPicker *colorPicker = [[MNColorPicker alloc] init];
 	colorPicker.delegate = self;
-	colorPicker.color = self.view.backgroundColor;
+	colorPicker.color = self.stampedImage.color;
+    colorPicker.stampedImage = self.stampedImage;
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:colorPicker];
     [self presentViewController:navigationController animated:YES completion:nil];
 }
@@ -222,9 +221,13 @@
         CustomLabel *newLabel = [[CustomLabel alloc] initWithStampedImage:self.stampedImage
                                                                 withFrame:CGRectMake([label.x floatValue], [label.y floatValue], [label.width floatValue], [label.height floatValue])
                                                                   andText:label.text
-                                                                  andSize:[label.fontSize floatValue]];
+                                                                  andSize:[label.fontSize floatValue]
+                                                                   andTag:[label.nbr integerValue]];
         newLabel.delegate = self;
-        [self.parentView addSubview:newLabel];
+        
+        // Only add labels that contain text
+        if (![newLabel.text isEqualToString:@""])
+            [self.parentView addSubview:newLabel];
     }
     
     // Generate thumb if there is none since before
@@ -253,6 +256,12 @@
 {
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [self resignFirstResponder];
+    
+    // Update thumbImage of current stamped image
+    UIImage *newThumb = [self renderCurrentImage];
+    [self.stampedImage setUIImageThumbImage:[PreviousTableViewController modifyImageToFillCell:newThumb]];
 }
 
 -(void)viewDidAppear:(BOOL)animated

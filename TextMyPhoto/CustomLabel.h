@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Alexander Faxå. All rights reserved.
 //
 
-/** Custom UITextField drawn on stamped image in edit mode */
+/** Custom UITextView drawn on stamped image in edit mode */
 #import <UIKit/UIKit.h>
 #import "StampedImage.h"
 
@@ -20,7 +20,7 @@ static const CGFloat CUSTOM_LABEL_PADDING = 20.0f;
 
 @interface CustomLabel : UITextView
 
--(UITextView *)initWithStampedImage:(StampedImage *)stampedImage withFrame:(CGRect)frame andText:(NSString *)text andSize:(CGFloat)size;
+-(UITextView *)initWithStampedImage:(StampedImage *)stampedImage withFrame:(CGRect)frame andText:(NSString *)text andSize:(CGFloat)size andTag:(NSInteger)tag;
 
 @end
 
