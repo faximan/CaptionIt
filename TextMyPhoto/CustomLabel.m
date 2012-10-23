@@ -41,16 +41,18 @@
 
 // When textview is moved
 -(void)didMoveCustomLabel:(UIPanGestureRecognizer *)sender
-{
+{    
     if ([sender state] == UIGestureRecognizerStateBegan || [sender state] == UIGestureRecognizerStateChanged)
     {
         CGPoint translatedPoint = [sender translationInView:self.superview];
         
         [self setCenter:CGPointMake(self.center.x + translatedPoint.x, self.center.y+translatedPoint.y)];
         [sender setTranslation:CGPointZero inView:self.superview];
-        
+    }
+    else if ([sender state] == UIGestureRecognizerStateEnded)
+    {
         if ([self.delegate respondsToSelector:@selector(customLabeldidChangeSizeOrPosition:)])
-            [self.delegate performSelector:@selector(customLabeldidChangeSizeOrPosition:)];
+            [((id<CustomLabelDelegate>)self.delegate) customLabeldidChangeSizeOrPosition:self];
     }
 }
 
@@ -75,13 +77,15 @@
             self.frame = oldFrame;
             self.font = newFont;
             
-            self.center = oldCenter;
-            
-            if ([self.delegate respondsToSelector:@selector(customLabeldidChangeSizeOrPosition:)])
-                [self.delegate performSelector:@selector(customLabeldidChangeSizeOrPosition:)];
-            
+            self.center = oldCenter;            
         }
     }
+    else if ([sender state] == UIGestureRecognizerStateEnded)
+    {
+        if ([self.delegate respondsToSelector:@selector(customLabeldidChangeSizeOrPosition:)])
+            [((id<CustomLabelDelegate>)self.delegate) customLabeldidChangeSizeOrPosition:self];
+    }
+
     [sender setScale:1.0f];
 }
 @end

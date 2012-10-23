@@ -15,4 +15,8 @@
 @property (nonatomic, weak) IBOutlet UIView* highlightFade;
 @property (nonatomic, weak) IBOutlet UILabel* label;
 
+// Returns the height of a cell in the table view
++(CGFloat)cellHeight;
++(CGFloat)cellWidth;
+
 @end

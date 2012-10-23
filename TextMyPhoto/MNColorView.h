@@ -4,17 +4,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "StampedImage+Create.h"
 
 @protocol MNColorViewDelegate;
 
 
-@interface MNColorView : UIView {
-	id <MNColorViewDelegate> _delegate;
+@interface MNColorView : UIView
+{
+    StampedImage *_stampedImage;
 	UIColor *_color;
 }
 
-@property (readwrite, assign) id <MNColorViewDelegate> delegate;
-@property (readwrite, retain) UIColor *color;
+@property (readwrite, weak) id <MNColorViewDelegate> delegate;
+@property (readwrite, strong) StampedImage* stampedImage;
+@property (readwrite, strong) UIColor *color;
 
 @end
 

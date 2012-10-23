@@ -8,21 +8,14 @@
 #import "UIColor+ColorSpaces.h"
 #import "MNMobileFunctions.h"
 
-
-@interface MNBrightnessView ()
-@end
-
-
 @implementation MNBrightnessView
 
-
 - (id)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-
+    if (self = [super initWithFrame:frame])
+    {
 		_magnifyingView = [[MNMagnifyingView alloc] initWithFrame:CGRectMake(0,0,15,15)];
 		[self addSubview:_magnifyingView];
-		[_magnifyingView release];
-		
+    
 		self.clipsToBounds = NO;
 		_interfaceOrientation = [UIDevice currentDevice].orientation;
 		
@@ -33,16 +26,15 @@
 }
 
 
-
 #pragma mark -
 #pragma mark Properties
 
-@synthesize delegate = _delegate;
-
-- (CGFloat)brightness {
+- (CGFloat)brightness
+{
 	CGFloat brightness;
 	
-	if (UIInterfaceOrientationIsPortrait(_interfaceOrientation)) {
+	if (UIInterfaceOrientationIsPortrait(_interfaceOrientation))
+    {
 		brightness =  1.f - (_magnifyingView.center.x / self.bounds.size.width);
 	} else {
 		brightness =  1.f - (_magnifyingView.center.y / self.bounds.size.height);
@@ -52,12 +44,13 @@
 	return brightness;
 }
 
-- (void)setBrightness:(CGFloat)brightness {
-
+- (void)setBrightness:(CGFloat)brightness
+{
 	brightness = 1-brightness;
 	
 	CGPoint center;
-	if (UIInterfaceOrientationIsPortrait(_interfaceOrientation)) {
+	if (UIInterfaceOrientationIsPortrait(_interfaceOrientation))
+    {
 		center.x = (self.bounds.size.width * brightness);
 		center.y = CGRectGetMidY(self.bounds);
 	} else {
@@ -73,8 +66,8 @@
 #pragma mark Methods
 
 
-- (void)setHue:(CGFloat)hue saturation:(CGFloat)saturation {
-	
+- (void)setHue:(CGFloat)hue saturation:(CGFloat)saturation
+{	
 	UIColor *startColor = [UIColor colorWithHue:hue saturation:saturation brightness:1.0f alpha:1.0f];
 	UIColor *endColor = [UIColor colorWithHue:hue saturation:saturation brightness:0.0f alpha:1.0f];
 	
@@ -91,14 +84,16 @@
 }
 
 
-- (void)updateToInterfaceOrientation: (UIInterfaceOrientation)interfaceOrientation {
+- (void)updateToInterfaceOrientation: (UIInterfaceOrientation)interfaceOrientation
+{
 	_interfaceOrientation = interfaceOrientation;
 	self.brightness = self.brightness;
 	[self setNeedsDisplay];
 }
 
 
-- (void)drawRect:(CGRect)rect {
+- (void)drawRect:(CGRect)rect
+{
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	
 	CGContextSaveGState(context);
@@ -106,7 +101,8 @@
 	MNCGContextAddRoundedRectToPath(context,rect,6);
 	
 	CGContextClip(context);
-	if (UIInterfaceOrientationIsPortrait(_interfaceOrientation)) {
+	if (UIInterfaceOrientationIsPortrait(_interfaceOrientation))
+    {
 		CGContextDrawLinearGradient(context, _gradient, CGPointMake(0,0), CGPointMake(self.bounds.size.width,0), 0);
 	} else {
 		CGContextDrawLinearGradient(context, _gradient, CGPointMake(0,0), CGPointMake(0,self.bounds.size.height), 0);		
@@ -115,20 +111,15 @@
 	
 }
 
-
-- (void)dealloc {
-	CGGradientRelease(_gradient);
-    [super dealloc];
-}
-
-
-- (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event {
+- (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event
+{
 	
 	UITouch* touch = [touches anyObject];
 	CGPoint point = [touch locationInView:self];
 	CGRect bounds = self.bounds;
 	
-	if (UIInterfaceOrientationIsPortrait(_interfaceOrientation)) {
+	if (UIInterfaceOrientationIsPortrait(_interfaceOrientation))
+    {
 		if (point.x < bounds.origin.x) point.x = bounds.origin.x;
 		if (point.x > CGRectGetMaxX(bounds)) point.x = CGRectGetMaxX(bounds);
 		point.y = CGRectGetMidY(self.bounds);
@@ -138,7 +129,6 @@
 		point.x = CGRectGetMidX(self.bounds);
 	}
 
-	
 	_magnifyingView.center = point;
 	[_magnifyingView setNeedsDisplay];
 	
@@ -147,7 +137,8 @@
 }
 
 
-- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
+- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
+{
 	[self touchesMoved:touches withEvent:event];
 }
 

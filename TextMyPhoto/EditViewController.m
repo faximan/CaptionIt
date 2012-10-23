@@ -7,8 +7,9 @@
 //
 
 #import "EditViewController.h"
-#import "PreviousTableViewController.h"
 #import "UIImage+Utilities.h"
+#import "UIImage+Utilities.h"
+#import "GenericTableViewCell.h"
 
 @interface EditViewController ()
 
@@ -125,7 +126,7 @@
 {
     MNColorPicker *colorPicker = [[MNColorPicker alloc] init];
 	colorPicker.delegate = self;
-	colorPicker.color = self.stampedImage.color;
+    colorPicker.color = self.stampedImage.color;
     colorPicker.stampedImage = self.stampedImage;
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:colorPicker];
     [self presentViewController:navigationController animated:YES completion:nil];
@@ -155,12 +156,18 @@
 -(void)textViewDidBeginEditing:(UITextView *)textView
 {
     activeField = textView;
+    
+    // We should not be able to move around/resize textview when it is being edited
+    textView.userInteractionEnabled = NO;
     inTextAddMode = YES;
 }
 
 -(void)textViewDidEndEditing:(UITextView *)textView
 {
     inTextAddMode = NO;
+    
+    // enable moving and resizing
+    textView.userInteractionEnabled = YES;
     
     [self.stampedImage updateLabel:textView];
     
@@ -232,7 +239,7 @@
     
     // Generate thumb if there is none since before
     if (!self.stampedImage.thumbImage)
-        [self.stampedImage setUIImageThumbImage:[PreviousTableViewController modifyImageToFillCell:self.imageView.image]];
+        [self.stampedImage setUIImageThumbImage:[UIImage modifyImage:self.imageView.image toFillRectWithWidth:[GenericTableViewCell cellWidth] andHeight:[GenericTableViewCell cellHeight]]];
 }
 
 - (void)alignViews
@@ -261,7 +268,7 @@
     
     // Update thumbImage of current stamped image
     UIImage *newThumb = [self renderCurrentImage];
-    [self.stampedImage setUIImageThumbImage:[PreviousTableViewController modifyImageToFillCell:newThumb]];
+    [self.stampedImage setUIImageThumbImage:[UIImage modifyImage:newThumb toFillRectWithWidth:[GenericTableViewCell cellWidth] andHeight:[GenericTableViewCell cellHeight]]];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -301,7 +308,7 @@
         fontPicker.delegate = self;
         
         // Set the properties for rending the font nicely
-        fontPicker.curImage = [FontPickerTableViewController modifyImageToFillCell:[self.stampedImage getOriginalImage]];
+        fontPicker.curImage = [UIImage modifyImage:[self.stampedImage getOriginalImage] toFillRectWithWidth:[GenericTableViewCell cellWidth] andHeight:[GenericTableViewCell cellHeight]];
         fontPicker.curColor = self.stampedImage.color;
     }
 }

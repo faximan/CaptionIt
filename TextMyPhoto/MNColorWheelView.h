@@ -10,18 +10,17 @@
 @protocol MNColorWheelViewDelegate;
 
 @interface MNColorWheelView : UIView  <MNBrightnessViewDelegate>{
-	id <MNColorWheelViewDelegate> _delegate;
 	UIImage *_colorWheelImage;
 	UIImage *_brightnessImage;
 	MNMagnifyingView *_magnifyingView;
-	MNBrightnessView *_brightnessView;
+    MNBrightnessView *_brightnessView;
 	
 	CGFloat _hue;
 	CGFloat _saturation;
 }
 
-@property (nonatomic, assign) id <MNColorWheelViewDelegate> delegate;
-@property (readwrite, assign) UIColor *color;
+@property (nonatomic, weak) id <MNColorWheelViewDelegate> delegate;
+@property (readwrite, weak) UIColor *color;
 - (void)setBrightnessView:(MNBrightnessView *)brightnessView;
 
 @end

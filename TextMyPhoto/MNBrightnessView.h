@@ -7,15 +7,15 @@
 @class MNMagnifyingView;
 @protocol MNBrightnessViewDelegate;
 
-@interface MNBrightnessView : UIView {
-	id <MNBrightnessViewDelegate> _delegate;
+@interface MNBrightnessView : UIView
+{
 	CGGradientRef _gradient;
 	MNMagnifyingView *_magnifyingView;
 	UIInterfaceOrientation _interfaceOrientation;
 }
 
 // Properties
-@property (assign) id <MNBrightnessViewDelegate> delegate;
+@property (weak) id <MNBrightnessViewDelegate> delegate;
 @property (readwrite) CGFloat brightness;
 
 // methods

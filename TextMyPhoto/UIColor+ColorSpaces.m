@@ -60,8 +60,6 @@
 	
 }
 
-
-
 #pragma mark -
 #pragma mark RGB
 
@@ -100,7 +98,6 @@
 	const CGFloat *c = CGColorGetComponents(self.CGColor);
 	return c[CGColorGetNumberOfComponents(self.CGColor)-1];
 }
-
 
 #pragma mark -
 #pragma mark HSV

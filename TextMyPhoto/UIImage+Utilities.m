@@ -49,4 +49,31 @@
     }
 }
 
++(UIImage *)modifyImage:(UIImage *)image toFillRectWithWidth:(CGFloat)width andHeight:(CGFloat)height
+{
+       // Do not scale image if it is already small
+    if (image.size.height <= height || image.size.width <= width)
+        return image;
+    
+    // Scale down image to be a good fit for the cell and do not store a bigger image than necessary
+    CGFloat heightScale = height / image.size.height;
+    CGFloat widthScale = width / image.size.width;
+    
+    CGFloat newWidth, newHeight;
+    
+    if (heightScale * image.size.width < width)
+    {
+        newWidth = width;
+        newHeight = image.size.height * widthScale;
+    }
+    else
+    {
+        newWidth = image.size.width * heightScale;
+        newHeight = height;
+    }
+    
+    // Scale down the image to the calculated new size and crop out the center part to get an image as big as the thumb should be
+    return [[UIImage imageWithImage:image scaledToSize:CGSizeMake(newWidth, newHeight)] getCenterOfImageWithWidth:width andHeight:height];
+}
+
 @end

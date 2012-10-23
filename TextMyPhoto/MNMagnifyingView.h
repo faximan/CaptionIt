@@ -6,10 +6,9 @@
 #import <UIKit/UIKit.h>
 
 
-@interface MNMagnifyingView : UIView {
-	UIColor *_color;
-}
+@interface MNMagnifyingView : UIView
 
-@property (retain) UIColor *color;
+@property (strong) UIColor *color;
+@property (strong) UILabel *sampleLabel;
 
 @end
