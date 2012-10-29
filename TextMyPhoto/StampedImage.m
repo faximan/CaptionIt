@@ -2,7 +2,7 @@
 //  StampedImage.m
 //  Stamp it!
 //
-//  Created by Alexander Faxå on 2012-10-19.
+//  Created by Alexander Faxå on 2012-10-28.
 //  Copyright (c) 2012 Alexander Faxå. All rights reserved.
 //
 
@@ -17,6 +17,7 @@
 @dynamic font;
 @dynamic originalImage;
 @dynamic thumbImage;
+@dynamic inverted;
 @dynamic labels;
 
 @end

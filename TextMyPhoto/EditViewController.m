@@ -1,6 +1,6 @@
 //
 //  EditViewController.m
-//  TextMyPhoto
+//  Stamp it!
 //
 //  Created by Alexander Faxå on 2012-10-05.
 //  Copyright (c) 2012 Alexander Faxå. All rights reserved.
@@ -13,8 +13,7 @@
 
 @interface EditViewController ()
 
-@property (nonatomic, weak) IBOutlet UIImageView *imageView;
-@property (nonatomic, weak) IBOutlet UIView *parentView; // The view that contains the picture and all the addons.
+@property (nonatomic, weak) IBOutlet InverseableView *parentView; // The view that contains the picture and all the addons.
 @property (nonatomic, weak) NSSet* labels;
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 
@@ -29,49 +28,55 @@
 #pragma mark For sharing the image
 
 // Takes the current addons to the image and renders it to a bitmap
+    // FIXME: How heavy is this?
 - (UIImage *)renderCurrentImage
 {
-    UIImage *curImage = [self.stampedImage getOriginalImage];
+    UIImage *curImage = self.parentView.image;
+    float scaleFactor = curImage.size.width / self.parentView.frame.size.width;
+    
     // Parentview should here have the same frame as the imageview. Cache the old frame, scale it to full photo resolution and render it.
     CGRect oldFrame = self.parentView.frame;
-    float scaleFactor = curImage.size.width / self.imageView.frame.size.width;
-    self.parentView.frame = CGRectMake(self.parentView.frame.origin.x, self.parentView.frame.origin.y, curImage.size.width, curImage.size.height);
-    
-    // Get the context
-    UIGraphicsBeginImageContextWithOptions(self.parentView.bounds.size, self.parentView.opaque, 0.0);
-        
-    // Render the image
-    [self.imageView.layer renderInContext:UIGraphicsGetCurrentContext()];
-    self.parentView.frame = oldFrame;
+    CGRect tempFrame = oldFrame;
+    tempFrame.size = curImage.size;
+    self.parentView.frame = tempFrame;
     
     // Render the text on top of the image
-    for (UIView *view in self.parentView.subviews)
+    // Resize labels to the correct size
+    for (UITextView *curLabel in self.parentView.subviews)
     {
-        if ([view isKindOfClass:[UITextView class]])
-        {
-            UITextView *curLabel = (UITextView *)view;
-           
-            CGRect oldLabelFrame = curLabel.frame;
-            UIFont *oldFont = curLabel.font;
-            curLabel.font = [UIFont fontWithName:oldFont.fontName size:oldFont.pointSize * scaleFactor];
-            
-            CGRect newLabelFrame = oldLabelFrame;
-            newLabelFrame.size.height *= scaleFactor;
-            newLabelFrame.size.width *= scaleFactor;
-            newLabelFrame.origin.x *= scaleFactor;
-            newLabelFrame.origin.y *= scaleFactor;
-            curLabel.frame = newLabelFrame;
-            
-            // Move to new position and render
-            CGContextTranslateCTM(UIGraphicsGetCurrentContext(), newLabelFrame.origin.x, newLabelFrame.origin.y);
-            [curLabel.layer renderInContext:UIGraphicsGetCurrentContext()];
-            CGContextTranslateCTM(UIGraphicsGetCurrentContext(), -newLabelFrame.origin.x, -newLabelFrame.origin.y);
-            
-            // Put back
-            curLabel.frame = oldLabelFrame;
-            curLabel.font = oldFont;
-        }
+        curLabel.font = [UIFont fontWithName:curLabel.font.fontName size:curLabel.font.pointSize * scaleFactor];
+        
+        CGRect newLabelFrame = curLabel.frame;
+        newLabelFrame.size.height *= scaleFactor;
+        newLabelFrame.size.width *= scaleFactor;
+        newLabelFrame.origin.x *= scaleFactor;
+        newLabelFrame.origin.y *= scaleFactor;
+        curLabel.frame = newLabelFrame;
     }
+    
+    // Get the context
+    UIGraphicsBeginImageContextWithOptions(self.parentView.bounds.size, self.parentView.opaque, 0.0f);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    // Render the scene
+    [self.parentView.layer renderInContext:context];
+    
+    // Move back the labels and resize them
+    for (UITextView *curLabel in self.parentView.subviews)
+    {
+        curLabel.font = [UIFont fontWithName:curLabel.font.fontName size:curLabel.font.pointSize / scaleFactor];
+        
+        CGRect newLabelFrame = curLabel.frame;
+        newLabelFrame.size.height /= scaleFactor;
+        newLabelFrame.size.width /= scaleFactor;
+        newLabelFrame.origin.x /= scaleFactor;
+        newLabelFrame.origin.y /= scaleFactor;
+        curLabel.frame = newLabelFrame;
+    }
+    
+    // Set back the old frame
+    self.parentView.frame = oldFrame;
     
     // Convert to UIImage
     UIImage *bitmap = UIGraphicsGetImageFromCurrentImageContext();
@@ -114,6 +119,9 @@
                                                                   andText:@""
                                                                   andSize:CUSTOM_LABEL_DEFAULT_FONT_SIZE
                                                                    andTag:[self.stampedImage.labels count]];
+        
+        // Remove useless padding.
+        newLabel.contentInset = UIEdgeInsetsMake(-8,-8,-8,-8);
         newLabel.delegate = self;
         
         [self.parentView addSubview:newLabel];
@@ -122,7 +130,7 @@
 }
 
 // Pull up the color picker
-- (IBAction)changeColor
+- (IBAction)changeColor:(id)sender
 {
     MNColorPicker *colorPicker = [[MNColorPicker alloc] init];
 	colorPicker.delegate = self;
@@ -132,23 +140,24 @@
     [self presentViewController:navigationController animated:YES completion:nil];
 }
 
+// Inverse the text using a mask
+- (IBAction)inverseText:(id)sender
+{
+    // Invert text and picture
+    self.parentView.inverseMode = !self.parentView.inverseMode;
+    self.stampedImage.inverted = [NSNumber numberWithBool:self.parentView.inverseMode];
+}
+
 #pragma mark MNColorPickerDelegate
 
 - (void)colorPicker:(MNColorPicker*)colorPicker didFinishWithColor:(UIColor *)color
 {
-	[self dismissViewControllerAnimated:YES completion:nil];
 	if (color && color != self.stampedImage.color)
     {
         self.stampedImage.color = color;
-        
-        // Change font for all labels
-        for (UIView *view in self.parentView.subviews)
-            if ([view isKindOfClass:[UITextView class]])
-            {
-                ((UITextView *)view).textColor = color;
-                [view setNeedsDisplay];
-            }
+        [self.parentView setNeedsDisplay];
     }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark UITextView delegate
@@ -170,6 +179,7 @@
     textView.userInteractionEnabled = YES;
     
     [self.stampedImage updateLabel:textView];
+    [self.parentView setNeedsDisplay];
     
     // remove empty labels
     if ([textView.text isEqualToString:@""])
@@ -193,12 +203,20 @@
     frame.size.width += CUSTOM_LABEL_PADDING;
     frame.size.height += CUSTOM_LABEL_PADDING;
     textView.frame = frame;
+    
+    [self.parentView setNeedsDisplay];
     return YES;
 }
 
 -(void)customLabeldidChangeSizeOrPosition:(CustomLabel *)customLabel
 {
     [self.stampedImage updateLabel:customLabel];
+    [self.parentView setNeedsDisplay];
+}
+
+-(void)customLabelIsChangingSizeOrPosition:(CustomLabel *)customLabel
+{
+    [self.parentView setNeedsDisplay];
 }
 
 #pragma mark View Stuff
@@ -220,7 +238,9 @@
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     
-    self.imageView.image = [self.stampedImage getOriginalImage];
+    self.parentView.image = [self.stampedImage getOriginalImage];
+    self.parentView.inverseMode = [self.stampedImage.inverted boolValue];
+    self.parentView.delegate = self;
     
     // Add all labels
     for (Label *label in self.stampedImage.labels)
@@ -237,9 +257,11 @@
             [self.parentView addSubview:newLabel];
     }
     
+    [self.parentView setNeedsDisplay];
+    
     // Generate thumb if there is none since before
     if (!self.stampedImage.thumbImage)
-        [self.stampedImage setUIImageThumbImage:[UIImage modifyImage:self.imageView.image toFillRectWithWidth:[GenericTableViewCell cellWidth] andHeight:[GenericTableViewCell cellHeight]]];
+        [self.stampedImage setUIImageThumbImage:[UIImage modifyImage:self.parentView.image toFillRectWithWidth:[GenericTableViewCell cellWidth] andHeight:[GenericTableViewCell cellHeight]]];
 }
 
 - (void)alignViews
@@ -357,7 +379,6 @@
     [self.scrollView setContentOffset:CGPointZero animated:YES];
 }
 
-
 #pragma mark -
 #pragma mark FontPickerTableViewControllerDelegate
 
@@ -373,12 +394,20 @@
             [view setNeedsDisplay];
         }
     
+    [self.parentView setNeedsDisplay];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)didCancelGenericPictureTableViewController:(GenericPictureTableViewController *)genericTableViewController
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark -
+#pragma mark InverseableViewDeleate
+-(UIColor *)colorForStampedImage
+{
+    return self.stampedImage.color;
 }
 
 @end

@@ -18,7 +18,7 @@
 		DE5023E4162E70E800F3E506 /* stamp.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5023DF162E70E800F3E506 /* stamp.png */; };
 		DE5023E7162E7C5900F3E506 /* GenericPictureTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5023E6162E7C5900F3E506 /* GenericPictureTableViewController.m */; };
 		DE5023EB162E839100F3E506 /* FontPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5023EA162E839100F3E506 /* FontPickerTableViewController.m */; };
-		DE8D0BCC16314CA500A21DBB /* StampedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8D0BCB16314CA500A21DBB /* StampedImage.m */; };
+		DE6E062E163681D700616ADA /* InverseableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE6E062D163681D700616ADA /* InverseableView.m */; };
 		DEA33C72162A938800DBFB35 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA33C71162A938800DBFB35 /* QuartzCore.framework */; };
 		DEA33C77162B926600DBFB35 /* TextMyPhoto.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DEA33C75162B926600DBFB35 /* TextMyPhoto.xcdatamodeld */; };
 		DEA33C7C162B92B400DBFB35 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA33C79162B92B300DBFB35 /* EditViewController.m */; };
@@ -41,6 +41,7 @@
 		DEED1BA315EFA2A6004E33F3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DEED1BA215EFA2A6004E33F3 /* AppDelegate.m */; };
 		DEED1BA615EFA2A6004E33F3 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEED1BA415EFA2A6004E33F3 /* MainStoryboard_iPhone.storyboard */; };
 		DEED1BA915EFA2A6004E33F3 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEED1BA715EFA2A6004E33F3 /* MainStoryboard_iPad.storyboard */; };
+		DEF42FF5163D71B60078CAE1 /* StampedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF42FF4163D71B60078CAE1 /* StampedImage.m */; };
 		DEF61DF6161F415200582C33 /* MyNavigationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF61DF5161F415200582C33 /* MyNavigationControllerViewController.m */; };
 		DEF9B0F91634E97F006EBD7F /* CustomLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF9B0F81634E97F006EBD7F /* CustomLabel.m */; };
 		DEF9B1071635AB61006EBD7F /* Label.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF9B1061635AB61006EBD7F /* Label.m */; };
@@ -63,8 +64,8 @@
 		DE5023E6162E7C5900F3E506 /* GenericPictureTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GenericPictureTableViewController.m; path = TextMyPhoto/GenericPictureTableViewController.m; sourceTree = "<group>"; };
 		DE5023E9162E839100F3E506 /* FontPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FontPickerTableViewController.h; path = TextMyPhoto/FontPickerTableViewController.h; sourceTree = "<group>"; };
 		DE5023EA162E839100F3E506 /* FontPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FontPickerTableViewController.m; path = TextMyPhoto/FontPickerTableViewController.m; sourceTree = "<group>"; };
-		DE8D0BCA16314CA500A21DBB /* StampedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StampedImage.h; path = TextMyPhoto/StampedImage.h; sourceTree = "<group>"; };
-		DE8D0BCB16314CA500A21DBB /* StampedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StampedImage.m; path = TextMyPhoto/StampedImage.m; sourceTree = "<group>"; };
+		DE6E062C163681D700616ADA /* InverseableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InverseableView.h; sourceTree = "<group>"; };
+		DE6E062D163681D700616ADA /* InverseableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InverseableView.m; sourceTree = "<group>"; };
 		DEA33C71162A938800DBFB35 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DEA33C76162B926600DBFB35 /* TextMyPhoto.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TextMyPhoto.xcdatamodel; sourceTree = "<group>"; };
 		DEA33C78162B92B300DBFB35 /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
@@ -102,6 +103,8 @@
 		DEED1BA215EFA2A6004E33F3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DEED1BA515EFA2A6004E33F3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		DEED1BA815EFA2A6004E33F3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		DEF42FF3163D71B60078CAE1 /* StampedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StampedImage.h; path = TextMyPhoto/StampedImage.h; sourceTree = "<group>"; };
+		DEF42FF4163D71B60078CAE1 /* StampedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StampedImage.m; path = TextMyPhoto/StampedImage.m; sourceTree = "<group>"; };
 		DEF61DF4161F415200582C33 /* MyNavigationControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyNavigationControllerViewController.h; sourceTree = "<group>"; };
 		DEF61DF5161F415200582C33 /* MyNavigationControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyNavigationControllerViewController.m; sourceTree = "<group>"; };
 		DEF9B0F71634E97F006EBD7F /* CustomLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLabel.h; sourceTree = "<group>"; };
@@ -175,10 +178,10 @@
 			isa = PBXGroup;
 			children = (
 				DEA33C75162B926600DBFB35 /* TextMyPhoto.xcdatamodeld */,
+				DEF42FF3163D71B60078CAE1 /* StampedImage.h */,
+				DEF42FF4163D71B60078CAE1 /* StampedImage.m */,
 				DEF9B1051635AB61006EBD7F /* Label.h */,
 				DEF9B1061635AB61006EBD7F /* Label.m */,
-				DE8D0BCA16314CA500A21DBB /* StampedImage.h */,
-				DE8D0BCB16314CA500A21DBB /* StampedImage.m */,
 				DEA33CA2162B9EE900DBFB35 /* StampedImage+Create.h */,
 				DEA33CA3162B9EE900DBFB35 /* StampedImage+Create.m */,
 			);
@@ -243,6 +246,8 @@
 				DEA991E016295AF000F0F07E /* UIImage+Utilities.m */,
 				DEF9B0F71634E97F006EBD7F /* CustomLabel.h */,
 				DEF9B0F81634E97F006EBD7F /* CustomLabel.m */,
+				DE6E062C163681D700616ADA /* InverseableView.h */,
+				DE6E062D163681D700616ADA /* InverseableView.m */,
 			);
 			name = "Stamp It!";
 			path = TextMyPhoto;
@@ -365,9 +370,10 @@
 				DE5023D4162E709C00F3E506 /* CoreDataTableViewController.m in Sources */,
 				DE5023E7162E7C5900F3E506 /* GenericPictureTableViewController.m in Sources */,
 				DE5023EB162E839100F3E506 /* FontPickerTableViewController.m in Sources */,
-				DE8D0BCC16314CA500A21DBB /* StampedImage.m in Sources */,
 				DEF9B0F91634E97F006EBD7F /* CustomLabel.m in Sources */,
 				DEF9B1071635AB61006EBD7F /* Label.m in Sources */,
+				DE6E062E163681D700616ADA /* InverseableView.m in Sources */,
+				DEF42FF5163D71B60078CAE1 /* StampedImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,7 +431,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -446,7 +452,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

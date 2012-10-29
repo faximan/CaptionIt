@@ -100,9 +100,15 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="6PV-JU-c7o"/>
+                                    <barButtonItem title="Inverse" style="plain" id="HIO-cg-9wH">
+                                        <connections>
+                                            <action selector="inverseText:" destination="ddt-II-aHa" id="gQs-Zu-zNg"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="FTa-pK-oRd"/>
                                     <barButtonItem title="Color" style="plain" id="fw9-Nl-9X7">
                                         <connections>
-                                            <action selector="changeColor" destination="ddt-II-aHa" id="1bo-z2-Tlh"/>
+                                            <action selector="changeColor:" destination="ddt-II-aHa" id="qW7-qu-ozA"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -111,16 +117,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="372"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <view clipsSubviews="YES" contentMode="scaleToFill" id="P6S-F7-iX9" userLabel="Parent View" customClass="UIScrollView">
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" id="P6S-F7-iX9" userLabel="Parent View" customClass="InverseableView">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="372"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" id="ugm-RH-hvx">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="372"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            </imageView>
-                                        </subviews>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <gestureRecognizers/>
                                         <connections>
@@ -142,8 +141,7 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="imageView" destination="ugm-RH-hvx" id="5rO-CW-SxL"/>
-                        <outlet property="parentView" destination="P6S-F7-iX9" id="Hxh-ml-muX"/>
+                        <outlet property="parentView" destination="P6S-F7-iX9" id="Ptb-ji-0my"/>
                         <outlet property="scrollView" destination="eZZ-XU-nPf" id="fYf-uV-Pfl"/>
                     </connections>
                 </viewController>

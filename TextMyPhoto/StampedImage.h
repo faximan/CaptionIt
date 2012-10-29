@@ -2,7 +2,7 @@
 //  StampedImage.h
 //  Stamp it!
 //
-//  Created by Alexander Faxå on 2012-10-19.
+//  Created by Alexander Faxå on 2012-10-28.
 //  Copyright (c) 2012 Alexander Faxå. All rights reserved.
 //
 
@@ -18,6 +18,7 @@
 @property (nonatomic, retain) NSString * font;
 @property (nonatomic, retain) NSData * originalImage;
 @property (nonatomic, retain) NSData * thumbImage;
+@property (nonatomic, retain) NSNumber * inverted;
 @property (nonatomic, retain) NSSet *labels;
 @end
 

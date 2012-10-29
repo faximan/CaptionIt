@@ -1,6 +1,6 @@
 //
 //  EditViewController.h
-//  TextMyPhoto
+//  Stamp it!
 //
 //  Created by Alexander Faxå on 2012-10-05.
 //  Copyright (c) 2012 Alexander Faxå. All rights reserved.
@@ -14,8 +14,9 @@
 #import "FontPickerTableViewController.h"
 #import "MNColorPicker.h"
 #import "CustomLabel.h"
+#import "InverseableView.h"
 
-@interface EditViewController : UIViewController <CustomLabelDelegate , MNColorPickerDelegate, FontPickerTableViewControllerDelegate>
+@interface EditViewController : UIViewController <CustomLabelDelegate , MNColorPickerDelegate, FontPickerTableViewControllerDelegate, InversableViewDelegate>
 
 @property (nonatomic, strong) StampedImage *stampedImage;
 

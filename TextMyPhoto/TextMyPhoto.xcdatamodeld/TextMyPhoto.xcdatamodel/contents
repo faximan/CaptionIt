@@ -14,12 +14,13 @@
         <attribute name="color" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="dateModified" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="font" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="inverted" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="originalImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="thumbImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <relationship name="labels" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Label" inverseName="stampedImage" inverseEntity="Label" syncable="YES"/>
     </entity>
     <elements>
         <element name="Label" positionX="430" positionY="252" width="128" height="163"/>
-        <element name="StampedImage" positionX="160" positionY="192" width="128" height="133"/>
+        <element name="StampedImage" positionX="160" positionY="192" width="128" height="150"/>
     </elements>
 </model>

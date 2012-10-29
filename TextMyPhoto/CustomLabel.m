@@ -48,6 +48,9 @@
         
         [self setCenter:CGPointMake(self.center.x + translatedPoint.x, self.center.y+translatedPoint.y)];
         [sender setTranslation:CGPointZero inView:self.superview];
+
+        if ([self.delegate respondsToSelector:@selector(customLabelIsChangingSizeOrPosition:)])
+            [((id<CustomLabelDelegate>)self.delegate) customLabelIsChangingSizeOrPosition:self];
     }
     else if ([sender state] == UIGestureRecognizerStateEnded)
     {
@@ -77,7 +80,10 @@
             self.frame = oldFrame;
             self.font = newFont;
             
-            self.center = oldCenter;            
+            self.center = oldCenter;
+            
+            if ([self.delegate respondsToSelector:@selector(customLabelIsChangingSizeOrPosition:)])
+                [((id<CustomLabelDelegate>)self.delegate) customLabelIsChangingSizeOrPosition:self];
         }
     }
     else if ([sender state] == UIGestureRecognizerStateEnded)

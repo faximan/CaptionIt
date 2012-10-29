@@ -11,6 +11,7 @@
 
 #define DEFAULT_FONT @"verdana"
 #define DEFAULT_COLOR [UIColor whiteColor]
+#define DEFAULT_INVERTED NO
 
 @implementation StampedImage (Create)
 
@@ -24,6 +25,7 @@
     // Set default font and color
     stampedImage.font = DEFAULT_FONT;
     stampedImage.color = DEFAULT_COLOR;
+    stampedImage.inverted = DEFAULT_INVERTED;
     
     return stampedImage;
 }
@@ -143,6 +145,17 @@
         [self willChangeValueForKey:@"font"];
         [self setPrimitiveValue:font forKey:@"font"];
         [self didChangeValueForKey:@"font"];
+        self.dateModified = [NSDate date];
+    }
+}
+
+-(void)setInverted:(NSNumber *)inverted
+{
+    if (inverted != self.inverted)
+    {
+        [self willChangeValueForKey:@"inverted"];
+        [self setPrimitiveValue:inverted forKey:@"inverted"];
+        [self didChangeValueForKey:@"inverted"];
         self.dateModified = [NSDate date];
     }
 }

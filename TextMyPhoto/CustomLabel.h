@@ -27,4 +27,5 @@ static const CGFloat CUSTOM_LABEL_PADDING = 20.0f;
 @protocol CustomLabelDelegate <UITextViewDelegate>
 @optional
 -(void)customLabeldidChangeSizeOrPosition:(CustomLabel *)customLabel;
+-(void)customLabelIsChangingSizeOrPosition:(CustomLabel *)customLabel;
 @end
