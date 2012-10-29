@@ -42,6 +42,12 @@
     }
 }
 
+-(void)addSubview:(UIView *)view
+{
+    [super addSubview:view];
+    [self setLabelColors];
+}
+
 // Make sure to update graphics when new frame is set
 -(void)setFrame:(CGRect)frame
 {
