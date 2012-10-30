@@ -7,15 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DE3130D9164014990095B75A /* orange_fabric.png in Resources */ = {isa = PBXBuildFile; fileRef = DE3130D8164014990095B75A /* orange_fabric.png */; };
+		DE3130DB164017740095B75A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DE3130DA164017740095B75A /* Default.png */; };
+		DE3130DD164017770095B75A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE3130DC164017770095B75A /* Default@2x.png */; };
 		DE5023D4162E709C00F3E506 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5023D3162E709C00F3E506 /* CoreDataTableViewController.m */; };
 		DE5023D6162E70B700F3E506 /* license.txt in Resources */ = {isa = PBXBuildFile; fileRef = DE5023D5162E70B700F3E506 /* license.txt */; };
 		DE5023D9162E70CC00F3E506 /* BrightnessWheel.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5023D7162E70CC00F3E506 /* BrightnessWheel.png */; };
 		DE5023DA162E70CC00F3E506 /* ColorWheel.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5023D8162E70CC00F3E506 /* ColorWheel.png */; };
 		DE5023E0162E70E800F3E506 /* button_greycolor.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5023DB162E70E800F3E506 /* button_greycolor.png */; };
-		DE5023E1162E70E800F3E506 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5023DC162E70E800F3E506 /* Default.png */; };
-		DE5023E2162E70E800F3E506 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5023DD162E70E800F3E506 /* Default@2x.png */; };
-		DE5023E3162E70E800F3E506 /* pinboard.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5023DE162E70E800F3E506 /* pinboard.png */; };
-		DE5023E4162E70E800F3E506 /* stamp.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5023DF162E70E800F3E506 /* stamp.png */; };
 		DE5023E7162E7C5900F3E506 /* GenericPictureTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5023E6162E7C5900F3E506 /* GenericPictureTableViewController.m */; };
 		DE5023EB162E839100F3E506 /* FontPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5023EA162E839100F3E506 /* FontPickerTableViewController.m */; };
 		DE6E062E163681D700616ADA /* InverseableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE6E062D163681D700616ADA /* InverseableView.m */; };
@@ -50,16 +49,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DE3130D8164014990095B75A /* orange_fabric.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = orange_fabric.png; path = TextMyPhoto/Resources/orange_fabric.png; sourceTree = "<group>"; };
+		DE3130DA164017740095B75A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		DE3130DC164017770095B75A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		DE5023D2162E709C00F3E506 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreDataTableViewController.h; path = TextMyPhoto/CoreDataTableViewController.h; sourceTree = "<group>"; };
 		DE5023D3162E709C00F3E506 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreDataTableViewController.m; path = TextMyPhoto/CoreDataTableViewController.m; sourceTree = "<group>"; };
 		DE5023D5162E70B700F3E506 /* license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = license.txt; path = TextMyPhoto/license.txt; sourceTree = "<group>"; };
 		DE5023D7162E70CC00F3E506 /* BrightnessWheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BrightnessWheel.png; path = TextMyPhoto/Resources/BrightnessWheel.png; sourceTree = "<group>"; };
 		DE5023D8162E70CC00F3E506 /* ColorWheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ColorWheel.png; path = TextMyPhoto/Resources/ColorWheel.png; sourceTree = "<group>"; };
 		DE5023DB162E70E800F3E506 /* button_greycolor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_greycolor.png; path = TextMyPhoto/Resources/button_greycolor.png; sourceTree = "<group>"; };
-		DE5023DC162E70E800F3E506 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = TextMyPhoto/Resources/Default.png; sourceTree = "<group>"; };
-		DE5023DD162E70E800F3E506 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "TextMyPhoto/Resources/Default@2x.png"; sourceTree = "<group>"; };
-		DE5023DE162E70E800F3E506 /* pinboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pinboard.png; path = TextMyPhoto/Resources/pinboard.png; sourceTree = "<group>"; };
-		DE5023DF162E70E800F3E506 /* stamp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stamp.png; path = TextMyPhoto/Resources/stamp.png; sourceTree = "<group>"; };
 		DE5023E5162E7C5800F3E506 /* GenericPictureTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenericPictureTableViewController.h; path = TextMyPhoto/GenericPictureTableViewController.h; sourceTree = "<group>"; };
 		DE5023E6162E7C5900F3E506 /* GenericPictureTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GenericPictureTableViewController.m; path = TextMyPhoto/GenericPictureTableViewController.m; sourceTree = "<group>"; };
 		DE5023E9162E839100F3E506 /* FontPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FontPickerTableViewController.h; path = TextMyPhoto/FontPickerTableViewController.h; sourceTree = "<group>"; };
@@ -191,11 +189,10 @@
 		DED062FF161EB85100FD976D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DE3130D8164014990095B75A /* orange_fabric.png */,
 				DE5023DB162E70E800F3E506 /* button_greycolor.png */,
-				DE5023DC162E70E800F3E506 /* Default.png */,
-				DE5023DD162E70E800F3E506 /* Default@2x.png */,
-				DE5023DE162E70E800F3E506 /* pinboard.png */,
-				DE5023DF162E70E800F3E506 /* stamp.png */,
+				DE3130DC164017770095B75A /* Default@2x.png */,
+				DE3130DA164017740095B75A /* Default.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -336,10 +333,9 @@
 				DE5023D9162E70CC00F3E506 /* BrightnessWheel.png in Resources */,
 				DE5023DA162E70CC00F3E506 /* ColorWheel.png in Resources */,
 				DE5023E0162E70E800F3E506 /* button_greycolor.png in Resources */,
-				DE5023E1162E70E800F3E506 /* Default.png in Resources */,
-				DE5023E2162E70E800F3E506 /* Default@2x.png in Resources */,
-				DE5023E3162E70E800F3E506 /* pinboard.png in Resources */,
-				DE5023E4162E70E800F3E506 /* stamp.png in Resources */,
+				DE3130D9164014990095B75A /* orange_fabric.png in Resources */,
+				DE3130DB164017740095B75A /* Default.png in Resources */,
+				DE3130DD164017770095B75A /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
