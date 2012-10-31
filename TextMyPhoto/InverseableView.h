@@ -16,9 +16,16 @@
 @property (nonatomic, strong) UIImage *image;
 @property (nonatomic, weak) id<InversableViewDelegate> delegate;
 
+// Set all label fonts to be that of the current image
+-(void)setLabelFonts;
+
+// Set all label colors to be that of the current image
+-(void)setLabelColors;
+
 @end
 
 @protocol InversableViewDelegate <NSObject>
 /* Return the color of the current label */
 -(UIColor *)colorForStampedImage;
+-(NSString *)fontForStampedImage;
 @end

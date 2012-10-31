@@ -42,6 +42,15 @@
     }
 }
 
+-(void)setLabelFonts
+{
+    for (UITextView *textView in self.subviews)
+    {
+        textView.font = [UIFont fontWithName:[self.delegate fontForStampedImage] size:textView.font.pointSize];
+        [textView setNeedsDisplay];
+    }
+}
+
 -(void)addSubview:(UIView *)view
 {
     [super addSubview:view];

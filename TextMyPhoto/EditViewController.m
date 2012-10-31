@@ -155,7 +155,7 @@
 	if (color && color != self.stampedImage.color)
     {
         self.stampedImage.color = color;
-        [self.parentView setNeedsDisplay];
+        [self.parentView setLabelColors];
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -331,12 +331,12 @@
     if ([[segue identifier] isEqualToString:@"pick font"])
     {
         UINavigationController *nc = (UINavigationController *)[segue destinationViewController];
-        FontPickerTableViewController *fontPicker = nc.viewControllers[0];
-        fontPicker.delegate = self;
+        StylePickerCollectionViewController *stylePicker = nc.viewControllers[0];
+        stylePicker.delegate = self;
         
         // Set the properties for rending the font nicely
-        fontPicker.curImage = [UIImage modifyImage:[self.stampedImage getOriginalImage] toFillRectWithWidth:[GenericTableViewCell cellWidth] andHeight:[GenericTableViewCell cellHeight]];
-        fontPicker.curColor = self.stampedImage.color;
+        stylePicker.curImage = [UIImage modifyImage:[self.stampedImage getOriginalImage] toFillRectWithWidth:[GenericTableViewCell cellWidth] andHeight:[GenericTableViewCell cellHeight]];
+        stylePicker.curColor = self.stampedImage.color;
     }
 }
 
@@ -385,25 +385,17 @@
 }
 
 #pragma mark -
-#pragma mark FontPickerTableViewControllerDelegate
+#pragma mark StylePickerCollectionViewControllerDelegate
 
--(void)fontPickerTableViewController:(FontPickerTableViewController *)fontPickerTableViewControllerfontPickerTableViewController didFinishWithFont:(NSString *)font
+-(void)stylePickerCollectionViewController:(StylePickerCollectionViewController *)stylePickerCollectionViewController didFinishWithFont:(NSString *)font
 {
     self.stampedImage.font = font;
+    [self.parentView setLabelFonts];
     
-    // Change font for all labels
-    for (UIView *view in self.parentView.subviews)
-        if ([view isKindOfClass:[UITextView class]])
-        {
-            ((UITextView *)view).font = [UIFont fontWithName:font size:((UITextView *)view).font.pointSize];
-            [view setNeedsDisplay];
-        }
-    
-    [self.parentView setNeedsDisplay];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)didCancelGenericPictureTableViewController:(GenericPictureTableViewController *)genericTableViewController
+-(void)didCancelGenericCollectionViewController:(GenericCollectionViewController *)genericCollectionViewController
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -413,6 +405,11 @@
 -(UIColor *)colorForStampedImage
 {
     return self.stampedImage.color;
+}
+
+-(NSString *)fontForStampedImage
+{
+    return self.stampedImage.font;
 }
 
 @end

@@ -11,12 +11,12 @@
 
 #import "StampedImage+Create.h"
 #import "Label.h"
-#import "FontPickerTableViewController.h"
+#import "StylePickerCollectionViewController.h"
 #import "MNColorPicker.h"
 #import "CustomLabel.h"
 #import "InverseableView.h"
 
-@interface EditViewController : UIViewController <CustomLabelDelegate , MNColorPickerDelegate, FontPickerTableViewControllerDelegate, InversableViewDelegate>
+@interface EditViewController : UIViewController <CustomLabelDelegate , MNColorPickerDelegate, StylePickerCollectionViewControllerDelegate, InversableViewDelegate>
 
 @property (nonatomic, strong) StampedImage *stampedImage;
 
