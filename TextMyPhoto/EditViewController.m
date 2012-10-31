@@ -8,7 +8,7 @@
 
 #import "EditViewController.h"
 #import "PreviousCollectionViewController.h"
-#import "GenericTableViewCell.h"
+#import "StylePickerCollectionViewController.h"
 #import "UIImage+Utilities.h"
 
 @interface EditViewController ()
@@ -46,12 +46,8 @@
     {
         curLabel.font = [UIFont fontWithName:curLabel.font.fontName size:curLabel.font.pointSize * scaleFactor];
         
-        CGRect newLabelFrame = curLabel.frame;
-        newLabelFrame.size.height *= scaleFactor;
-        newLabelFrame.size.width *= scaleFactor;
-        newLabelFrame.origin.x *= scaleFactor;
-        newLabelFrame.origin.y *= scaleFactor;
-        curLabel.frame = newLabelFrame;
+        // Make sure to put the label in the right place
+        curLabel.frame = CGRectMake(curLabel.frame.origin.x * scaleFactor, curLabel.frame.origin.y * scaleFactor, curLabel.frame.size.width, curLabel.frame.size.height);
     }
     
     // Get the context
@@ -67,12 +63,8 @@
     {
         curLabel.font = [UIFont fontWithName:curLabel.font.fontName size:curLabel.font.pointSize / scaleFactor];
         
-        CGRect newLabelFrame = curLabel.frame;
-        newLabelFrame.size.height /= scaleFactor;
-        newLabelFrame.size.width /= scaleFactor;
-        newLabelFrame.origin.x /= scaleFactor;
-        newLabelFrame.origin.y /= scaleFactor;
-        curLabel.frame = newLabelFrame;
+        // Make sure to put the label in the right place
+        curLabel.frame = CGRectMake(curLabel.frame.origin.x / scaleFactor, curLabel.frame.origin.y / scaleFactor, curLabel.frame.size.width, curLabel.frame.size.height);
     }
     
     // Set back the old frame
@@ -103,6 +95,9 @@
     [[UIActivityViewController alloc] initWithActivityItems:dataToShare
                                       applicationActivities:nil];
     [self presentViewController:activityViewController animated:YES completion:nil];
+    
+    // Set thumb as well
+    [self setThumbFromImage:renderedImage];
 }
 
 #pragma mark For editing the image
@@ -119,9 +114,6 @@
                                                                   andText:@""
                                                                   andSize:CUSTOM_LABEL_DEFAULT_FONT_SIZE
                                                                    andTag:[self.stampedImage.labels count]];
-        
-        // Remove useless padding.
-        newLabel.contentInset = UIEdgeInsetsMake(-8,-8,-8,-8);
         newLabel.delegate = self;
         
         [self.parentView addSubview:newLabel];
@@ -167,7 +159,9 @@
     activeField = textView;
     
     // We should not be able to move around/resize textview when it is being edited
-    textView.userInteractionEnabled = NO;
+    for (UITextView *tw in self.parentView.subviews)
+        tw.userInteractionEnabled = NO;
+    
     inTextAddMode = YES;
 }
 
@@ -176,7 +170,8 @@
     inTextAddMode = NO;
     
     // enable moving and resizing
-    textView.userInteractionEnabled = YES;
+    for (UITextView *tw in self.parentView.subviews)
+        tw.userInteractionEnabled = YES;
     
     [self.stampedImage updateLabel:textView];
     [self.parentView setNeedsDisplay];
@@ -198,11 +193,7 @@
     // Calculate new textsize
     NSString *newString = [NSString stringWithFormat:@"%@%@%@", [textView.text substringToIndex:range.location], text, [textView.text substringFromIndex:range.location + range.length]];
     
-    CGRect frame = textView.frame;   
-    frame.size = [newString sizeWithFont:textView.font];
-    frame.size.width += CUSTOM_LABEL_PADDING;
-    frame.size.height += CUSTOM_LABEL_PADDING;
-    textView.frame = frame;
+    [((CustomLabel *)textView) updateFrameForText:newString];
     
     [self.parentView setNeedsDisplay];
     return YES;
@@ -295,6 +286,8 @@
     [self resignFirstResponder];
     
     // Update thumbImage of current stamped image
+    
+    // TODO: When should we actually set thumb and save database?
     [self setThumbFromImage:[self renderCurrentImage]];
 }
 
@@ -335,7 +328,7 @@
         stylePicker.delegate = self;
         
         // Set the properties for rending the font nicely
-        stylePicker.curImage = [UIImage modifyImage:[self.stampedImage getOriginalImage] toFillRectWithWidth:[GenericTableViewCell cellWidth] andHeight:[GenericTableViewCell cellHeight]];
+        stylePicker.curImage = [UIImage modifyImage:[self.stampedImage getOriginalImage] toFillRectWithWidth:STYLE_PICKER_CELL_IMAGE_WIDTH andHeight:STYLE_PICKER_CELL_IMAGE_HEIGHT];
         stylePicker.curColor = self.stampedImage.color;
     }
 }

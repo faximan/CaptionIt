@@ -23,3 +23,7 @@
 @end
 
 // TODO: Is the rendering heavy on the device? Should it be done asynchronusly?
+
+// _______________________---------------_________________
+// TODO: When should we actually set thumb and save database?
+// _______________________---------------_________________

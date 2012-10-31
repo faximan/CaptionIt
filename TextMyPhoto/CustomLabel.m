@@ -11,7 +11,7 @@
 
 @implementation CustomLabel
 
--(UITextView *)initWithStampedImage:(StampedImage *)stampedImage withFrame:(CGRect)frame andText:(NSString *)text andSize:(CGFloat)size andTag:(NSInteger)tag
+-(CustomLabel *)initWithStampedImage:(StampedImage *)stampedImage withFrame:(CGRect)frame andText:(NSString *)text andSize:(CGFloat)size andTag:(NSInteger)tag
 {
     if (self = [super initWithFrame:frame])
     {
@@ -29,6 +29,9 @@
         // DEBUG: Make sure to show bounds
         self.layer.borderColor = [[UIColor redColor] CGColor];
         self.layer.borderWidth = 1.0f;
+        
+        // Remove useless padding.
+        self.contentInset = UIEdgeInsetsMake(-8,-8,-8,-8);
         
         // Add pan gesture recognizer
         UIGestureRecognizer *panGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didMoveCustomLabel:)];
@@ -59,6 +62,28 @@
     }
 }
 
+-(void)setFont:(UIFont *)font
+{
+    if (font != self.font)
+    {       
+        [super setFont:font];
+        [self updateFrameForText:self.text];
+    }
+}
+
+-(void)updateFrameForText:(NSString *)string
+{
+    // Remove useless padding.
+    self.contentInset = UIEdgeInsetsMake(-8,-8,-8,-8);
+    
+    // Calculate new frame size
+    CGRect oldFrame = self.frame;
+    oldFrame.size = [string sizeWithFont:self.font];
+    oldFrame.size.height += CUSTOM_LABEL_PADDING;
+    oldFrame.size.width += CUSTOM_LABEL_PADDING;
+    self.frame = oldFrame;
+}
+
 -(void)didPinchCustomLabel:(UIPinchGestureRecognizer *)sender
 {
     if ([sender state] == UIGestureRecognizerStateBegan || [sender state] == UIGestureRecognizerStateChanged)
@@ -66,20 +91,13 @@
         CGFloat newFontSize = self.font.pointSize * sender.scale;
             
         // Do not make the font too small.
-        if (newFontSize >= CUSTOM_LABEL_MIN_FONT_SIZE)
+        if (newFontSize >= CUSTOM_LABEL_MIN_FONT_SIZE &&
+            newFontSize <= CUSTOM_LABEL_MAX_FONT_SIZE)
         {
             // Resize around center of label
             CGPoint oldCenter = self.center;
-            
             // Calculate new frame and font size
-            CGRect oldFrame = self.frame;
-            UIFont *newFont = [UIFont fontWithName:self.font.fontName size:newFontSize];
-            oldFrame.size = [self.text sizeWithFont:newFont];
-            oldFrame.size.height += CUSTOM_LABEL_PADDING;
-            oldFrame.size.width += CUSTOM_LABEL_PADDING;
-            self.frame = oldFrame;
-            self.font = newFont;
-            
+            self.font = [UIFont fontWithName:self.font.fontName size:newFontSize];
             self.center = oldCenter;
             
             if ([self.delegate respondsToSelector:@selector(customLabelIsChangingSizeOrPosition:)])
