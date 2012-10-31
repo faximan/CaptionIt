@@ -152,7 +152,7 @@ static const CGFloat BOARDER_WIDTH = 3.5f;
     if ([[segue identifier] isEqualToString:@"previous"])
     {
         UINavigationController *nc = (UINavigationController *)[segue destinationViewController];
-        PreviousTableViewController *vc = nc.viewControllers[0];
+        PreviousCollectionViewController *vc = nc.viewControllers[0];
         vc.delegate = self;
         vc.previousDatabase = self.previousDatabase;
     }
@@ -288,16 +288,15 @@ static const CGFloat BOARDER_WIDTH = 3.5f;
 
 
 #pragma mark -
-#pragma mark PreviousTableViewControllerDelegate
-- (void)PreviousTableViewController:(PreviousTableViewController *)previousTableViewController didFinishWithImage:(StampedImage *)image forRow:(NSInteger)index
+#pragma mark PreviousCollectionViewControllerDelegate
+- (void)PreviousCollectionViewController:(PreviousCollectionViewController *)previousCollectionViewController didFinishWithImage:(StampedImage *)image forRow:(NSInteger)index
 {
     self.stampedImage = image;
     [self performSegueWithIdentifier:@"edit" sender:self];
     [self dismissViewControllerAnimated:YES completion:nil];
-    
 }
 
-- (void)didCancelGenericPictureTableViewController:(GenericPictureTableViewController *)genericTableViewController
+- (void)didCancelGenericCollectionViewController:(GenericCollectionViewController *)genericCollectionViewController
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }

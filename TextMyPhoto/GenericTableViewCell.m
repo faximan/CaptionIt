@@ -63,25 +63,4 @@ static const CGFloat ANIMATION_LENGTH = 0.2f; // Length of animation when editin
         }
     }
 }
-/*
--(void)drawRect:(CGRect)rect
-{
-    [super drawRect:rect];
-    UIGraphicsPushContext(UIGraphicsGetCurrentContext());
-   
-    //rect.origin.x = (self.editing) ? 30.0 : 0.0;
-    
-    [_cellImage drawInRect:rect];
-    
-    if (_label)
-    {
-        // Center drawing of string
-        CGFloat y = (rect.size.height - _label.size.height) / 2.0f;
-        CGFloat x = (rect.size.width - _label.size.width) / 2.0f;
-        
-        [_label drawAtPoint:CGPointMake(x, y)];
-    }
-    UIGraphicsPopContext();
-}*/
-
 @end

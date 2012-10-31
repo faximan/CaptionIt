@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PreviousTableViewController.h"
+#import "PreviousCollectionViewController.h"
 
 @interface LaunchMenuViewController : UIViewController
-<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, PreviousTableViewControllerDelegate>
+<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, PreviousCollectionViewControllerDelegate>
 
 // Save current changes to core data database
 -(void)saveDatabase;

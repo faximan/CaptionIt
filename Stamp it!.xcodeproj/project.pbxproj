@@ -10,6 +10,11 @@
 		DE3130D9164014990095B75A /* orange_fabric.png in Resources */ = {isa = PBXBuildFile; fileRef = DE3130D8164014990095B75A /* orange_fabric.png */; };
 		DE3130DB164017740095B75A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DE3130DA164017740095B75A /* Default.png */; };
 		DE3130DD164017770095B75A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE3130DC164017770095B75A /* Default@2x.png */; };
+		DE3130E0164018760095B75A /* CoreDataCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE3130DF164018760095B75A /* CoreDataCollectionViewController.m */; };
+		DE3130E416401E0C0095B75A /* GenericCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE3130E316401E0C0095B75A /* GenericCollectionViewController.m */; };
+		DE3130E716401F080095B75A /* GenericCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DE3130E616401F080095B75A /* GenericCollectionViewCell.m */; };
+		DE3130EA1640207B0095B75A /* PreviousCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE3130E91640207B0095B75A /* PreviousCollectionViewController.m */; };
+		DE3130EC1640C0B80095B75A /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = DE3130EB1640C0B80095B75A /* delete.png */; };
 		DE5023D4162E709C00F3E506 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5023D3162E709C00F3E506 /* CoreDataTableViewController.m */; };
 		DE5023D6162E70B700F3E506 /* license.txt in Resources */ = {isa = PBXBuildFile; fileRef = DE5023D5162E70B700F3E506 /* license.txt */; };
 		DE5023D9162E70CC00F3E506 /* BrightnessWheel.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5023D7162E70CC00F3E506 /* BrightnessWheel.png */; };
@@ -52,6 +57,15 @@
 		DE3130D8164014990095B75A /* orange_fabric.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = orange_fabric.png; path = TextMyPhoto/Resources/orange_fabric.png; sourceTree = "<group>"; };
 		DE3130DA164017740095B75A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		DE3130DC164017770095B75A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		DE3130DE164018760095B75A /* CoreDataCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreDataCollectionViewController.h; path = TextMyPhoto/CoreDataCollectionViewController.h; sourceTree = "<group>"; };
+		DE3130DF164018760095B75A /* CoreDataCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreDataCollectionViewController.m; path = TextMyPhoto/CoreDataCollectionViewController.m; sourceTree = "<group>"; };
+		DE3130E216401E0C0095B75A /* GenericCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenericCollectionViewController.h; path = TextMyPhoto/GenericCollectionViewController.h; sourceTree = "<group>"; };
+		DE3130E316401E0C0095B75A /* GenericCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GenericCollectionViewController.m; path = TextMyPhoto/GenericCollectionViewController.m; sourceTree = "<group>"; };
+		DE3130E516401F080095B75A /* GenericCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenericCollectionViewCell.h; path = TextMyPhoto/GenericCollectionViewCell.h; sourceTree = "<group>"; };
+		DE3130E616401F080095B75A /* GenericCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GenericCollectionViewCell.m; path = TextMyPhoto/GenericCollectionViewCell.m; sourceTree = "<group>"; };
+		DE3130E81640207B0095B75A /* PreviousCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreviousCollectionViewController.h; path = TextMyPhoto/PreviousCollectionViewController.h; sourceTree = "<group>"; };
+		DE3130E91640207B0095B75A /* PreviousCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreviousCollectionViewController.m; path = TextMyPhoto/PreviousCollectionViewController.m; sourceTree = "<group>"; };
+		DE3130EB1640C0B80095B75A /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = delete.png; path = TextMyPhoto/Resources/delete.png; sourceTree = "<group>"; };
 		DE5023D2162E709C00F3E506 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreDataTableViewController.h; path = TextMyPhoto/CoreDataTableViewController.h; sourceTree = "<group>"; };
 		DE5023D3162E709C00F3E506 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreDataTableViewController.m; path = TextMyPhoto/CoreDataTableViewController.m; sourceTree = "<group>"; };
 		DE5023D5162E70B700F3E506 /* license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = license.txt; path = TextMyPhoto/license.txt; sourceTree = "<group>"; };
@@ -131,6 +145,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DE3130E116401CE60095B75A /* CollectionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DE3130DE164018760095B75A /* CoreDataCollectionViewController.h */,
+				DE3130DF164018760095B75A /* CoreDataCollectionViewController.m */,
+				DE3130E216401E0C0095B75A /* GenericCollectionViewController.h */,
+				DE3130E316401E0C0095B75A /* GenericCollectionViewController.m */,
+				DE3130E516401F080095B75A /* GenericCollectionViewCell.h */,
+				DE3130E616401F080095B75A /* GenericCollectionViewCell.m */,
+				DE3130E81640207B0095B75A /* PreviousCollectionViewController.h */,
+				DE3130E91640207B0095B75A /* PreviousCollectionViewController.m */,
+			);
+			name = CollectionViewController;
+			sourceTree = "<group>";
+		};
 		DE4D995B1626B5AC00936EBE /* MNColorPicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,6 +218,7 @@
 		DED062FF161EB85100FD976D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DE3130EB1640C0B80095B75A /* delete.png */,
 				DE3130D8164014990095B75A /* orange_fabric.png */,
 				DE5023DB162E70E800F3E506 /* button_greycolor.png */,
 				DE3130DC164017770095B75A /* Default@2x.png */,
@@ -205,6 +235,7 @@
 				DEF61DEA161F22B100582C33 /* Storyboards */,
 				DE4D995B1626B5AC00936EBE /* MNColorPicker */,
 				DE5023E8162E832900F3E506 /* TableViewControllers */,
+				DE3130E116401CE60095B75A /* CollectionViewController */,
 				DEA33C74162B921400DBFB35 /* Database */,
 				DEED1B9815EFA2A6004E33F3 /* Stamp It! */,
 				DEED1B9115EFA2A6004E33F3 /* Frameworks */,
@@ -336,6 +367,7 @@
 				DE3130D9164014990095B75A /* orange_fabric.png in Resources */,
 				DE3130DB164017740095B75A /* Default.png in Resources */,
 				DE3130DD164017770095B75A /* Default@2x.png in Resources */,
+				DE3130EC1640C0B80095B75A /* delete.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,6 +402,10 @@
 				DEF9B1071635AB61006EBD7F /* Label.m in Sources */,
 				DE6E062E163681D700616ADA /* InverseableView.m in Sources */,
 				DEF42FF5163D71B60078CAE1 /* StampedImage.m in Sources */,
+				DE3130E0164018760095B75A /* CoreDataCollectionViewController.m in Sources */,
+				DE3130E416401E0C0095B75A /* GenericCollectionViewController.m in Sources */,
+				DE3130E716401F080095B75A /* GenericCollectionViewCell.m in Sources */,
+				DE3130EA1640207B0095B75A /* PreviousCollectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

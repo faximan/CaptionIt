@@ -7,9 +7,9 @@
 //
 
 #import "EditViewController.h"
-#import "UIImage+Utilities.h"
-#import "UIImage+Utilities.h"
+#import "PreviousCollectionViewController.h"
 #import "GenericTableViewCell.h"
+#import "UIImage+Utilities.h"
 
 @interface EditViewController ()
 
@@ -261,7 +261,13 @@
     
     // Generate thumb if there is none since before
     if (!self.stampedImage.thumbImage)
-        [self.stampedImage setUIImageThumbImage:[UIImage modifyImage:self.parentView.image toFillRectWithWidth:[GenericTableViewCell cellWidth] andHeight:[GenericTableViewCell cellHeight]]];
+        [self setThumbFromImage:self.parentView.image];
+}
+
+- (void)setThumbFromImage:(UIImage *)image
+{
+    CGSize thumbSize = [PreviousCollectionViewController cellImageSizeForImage:self.parentView.image];
+    [self.stampedImage setUIImageThumbImage:[UIImage modifyImage:image toFillRectWithWidth:thumbSize.width andHeight:thumbSize.height]];
 }
 
 - (void)alignViews
@@ -289,8 +295,7 @@
     [self resignFirstResponder];
     
     // Update thumbImage of current stamped image
-    UIImage *newThumb = [self renderCurrentImage];
-    [self.stampedImage setUIImageThumbImage:[UIImage modifyImage:newThumb toFillRectWithWidth:[GenericTableViewCell cellWidth] andHeight:[GenericTableViewCell cellHeight]]];
+    [self setThumbFromImage:[self renderCurrentImage]];
 }
 
 -(void)viewDidAppear:(BOOL)animated
