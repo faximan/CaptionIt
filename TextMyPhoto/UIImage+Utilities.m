@@ -121,7 +121,6 @@
     __block NSError *assetError = nil;
     dispatch_semaphore_t sema = dispatch_semaphore_create(0);
     
-    NSLog(@"%d", [image imageOrientation]);
     [library writeImageToSavedPhotosAlbum:[image CGImage]
                               orientation:(ALAssetOrientation)[image imageOrientation]
                           completionBlock:^(NSURL *assetURL, NSError *error){

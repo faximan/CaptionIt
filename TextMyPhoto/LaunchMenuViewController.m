@@ -184,6 +184,7 @@ static const CGFloat BOARDER_WIDTH = 3.5f;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self loadDatabase];
     
     [self addBorderToWindow];
 	
@@ -200,9 +201,6 @@ static const CGFloat BOARDER_WIDTH = 3.5f;
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
-    
-    // Create database
-    [self loadDatabase];
 }
 
 // Because opening of the database is asynchronus
@@ -236,6 +234,8 @@ static const CGFloat BOARDER_WIDTH = 3.5f;
 // Returns the number of projects stored in the database
 -(NSUInteger)numProjectsInDatabase
 {
+    NSAssert(self.previousDatabase.managedObjectContext, nil);
+    
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"StampedImage"];
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"dateModified" ascending:YES];
     request.sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
@@ -251,15 +251,17 @@ static const CGFloat BOARDER_WIDTH = 3.5f;
     if (!self.previousDatabase)
     {
         NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-        url = [url URLByAppendingPathComponent:@"Default Previous Projects Database"];
-        // url is now "<Documents Directory>/Default Previous Projects Database"
+        url = [url URLByAppendingPathComponent:@"previous_database"];
+        // url is now "<Documents Directory>/previous_database"
         self.previousDatabase = [[UIManagedDocument alloc] initWithFileURL:url]; // setter will create this for us on disk
     }
 }
 
--(void)saveDatabase
+-(BOOL)saveDatabase
 {
-    [self.previousDatabase.managedObjectContext save:nil];
+    NSAssert(self.previousDatabase, nil);
+    NSLog(@"%d", [self numProjectsInDatabase]);
+    return [self.previousDatabase.managedObjectContext save:nil];
 }
 
 - (void)setPreviousDatabase:(UIManagedDocument *)previousDatabase
@@ -267,7 +269,7 @@ static const CGFloat BOARDER_WIDTH = 3.5f;
     if (_previousDatabase != previousDatabase)
     {
         _previousDatabase = previousDatabase;
-        [self useDocument]; // setup the fetched controller
+        [self useDocument]; // set up the fetched controller
     }
 }
 
@@ -279,7 +281,10 @@ static const CGFloat BOARDER_WIDTH = 3.5f;
         // does not exist on disk, so create it
         [self.previousDatabase saveToURL:self.previousDatabase.fileURL forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success)
          {
-             [self makeNavigationVisible];
+             if (success)
+                 [self makeNavigationVisible];
+             else
+                 NSLog(@"Failed to create database");
          }];
     }
     else if (self.previousDatabase.documentState == UIDocumentStateClosed)
@@ -287,7 +292,10 @@ static const CGFloat BOARDER_WIDTH = 3.5f;
         // exists on disk, but we need to open it
         [self.previousDatabase openWithCompletionHandler:^(BOOL success)
          {
-             [self makeNavigationVisible];
+             if (success)
+                 [self makeNavigationVisible];
+             else
+                 NSLog(@"Failed to open database");
          }];
     } else if (self.previousDatabase.documentState == UIDocumentStateNormal)
     {

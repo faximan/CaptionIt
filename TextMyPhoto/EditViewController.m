@@ -261,13 +261,15 @@
                 // Save image to camera roll since it is a newly captured image
                 self.imageToStampURL = [UIImage saveImageToAssetLibrary:self.imageToStamp];
             }
-            [self setUpTheImageWhenURLIsSet];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self setUpTheImageWhenURLIsSet];});
         }
         else
         {
             if (!self.imageToStamp)
                 self.imageToStamp = [UIImage getImageFromAssetURL:[NSURL URLWithString:self.stampedImage.originalImageURL]];
-            [self setUpTheImageWhenURLIsSet];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self setUpTheImageWhenURLIsSet];});
         }
     });
 }
@@ -283,11 +285,10 @@
     
     // Generate thumb if there is none since before
     if (!self.stampedImage.thumbImage)
-        [self setThumbFromImage:self.imageToStamp];
+        dispatch_async(dispatch_queue_create("backgroundQueue", NULL),^{[self setThumbFromImage:self.imageToStamp];});
     
     // Set up the view on the main thread
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self setUpViewWithStampedImage];});
+    [self setUpViewWithStampedImage];
 }
 
 -(void)setUpViewWithStampedImage

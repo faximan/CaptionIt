@@ -13,6 +13,6 @@
 <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, PreviousCollectionViewControllerDelegate>
 
 // Save current changes to core data database
--(void)saveDatabase;
+-(BOOL)saveDatabase;
 
 @end
