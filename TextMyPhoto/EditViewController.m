@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 Alexander Faxå. All rights reserved.
 //
 
+#import <AssetsLibrary/AssetsLibrary.h>
+
 #import "EditViewController.h"
 #import "PreviousCollectionViewController.h"
 #import "StylePickerCollectionViewController.h"
@@ -17,18 +19,22 @@
 @property (nonatomic, weak) NSSet* labels;
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 
+@property (nonatomic, weak) IBOutlet UIToolbar *toolbar;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *shareButton;
+
 @end
 
 @implementation EditViewController
 {
     BOOL inTextAddMode; // make sure to not add more labels in text add mode
     UITextView *activeField;
+    
+    BOOL needsNewThumbRendering; // only save the project when settings have been made to the stamped image object
 }
 
 #pragma mark For sharing the image
 
 // Takes the current addons to the image and renders it to a bitmap
-    // FIXME: How heavy is this?
 - (UIImage *)renderCurrentImage
 {
     UIImage *curImage = self.parentView.image;
@@ -79,6 +85,8 @@
 
 -(IBAction)shareButtonPressed:(id)sender
 {
+    NSAssert(self.stampedImage, nil);
+    
     // Remove keyboard if in edit mode
     [self resignFirstResponder];
     
@@ -136,6 +144,7 @@
 - (IBAction)inverseText:(id)sender
 {
     // Invert text and picture
+    needsNewThumbRendering = YES;
     self.parentView.inverseMode = !self.parentView.inverseMode;
     self.stampedImage.inverted = [NSNumber numberWithBool:self.parentView.inverseMode];
 }
@@ -146,6 +155,7 @@
 {
 	if (color && color != self.stampedImage.color)
     {
+        needsNewThumbRendering = YES;
         self.stampedImage.color = color;
         [self.parentView setLabelColors];
     }
@@ -168,6 +178,7 @@
 -(void)textViewDidEndEditing:(UITextView *)textView
 {
     inTextAddMode = NO;
+    needsNewThumbRendering = YES;
     
     // enable moving and resizing
     for (UITextView *tw in self.parentView.subviews)
@@ -202,6 +213,7 @@
 -(void)customLabeldidChangeSizeOrPosition:(CustomLabel *)customLabel
 {
     [self.stampedImage updateLabel:customLabel];
+    needsNewThumbRendering = YES;
     [self.parentView setNeedsDisplay];
 }
 
@@ -229,7 +241,82 @@
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     
-    self.parentView.image = [self.stampedImage getOriginalImage];
+    // The stamped image has not been created yet
+    [self.spinner startAnimating];
+    [self setToolbarVisible:NO];
+    self.navigationItem.rightBarButtonItem = nil;
+    
+    [self loadImageToBeCaptioned];
+}
+
+-(void)loadImageToBeCaptioned
+{
+    dispatch_async(dispatch_queue_create("backgroundQueue", NULL),^{
+        if (!self.stampedImage) // A new project is being created
+        {
+            NSAssert(self.imageToStamp && self.database, nil);
+            
+            if (!self.imageToStampURL)
+            {
+                // Save image to camera roll since it is a newly captured image
+                ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+                // Request to save the image to camera roll
+                [library writeImageToSavedPhotosAlbum:[self.imageToStamp CGImage]
+                                          orientation:(ALAssetOrientation)[self.imageToStamp imageOrientation]
+                                      completionBlock:^(NSURL *assetURL, NSError *error){
+                    if (error)
+                    {
+                        NSLog(@"error while saving new image to URL");
+                    }
+                    else
+                    {
+                        self.imageToStampURL = assetURL;
+                        [self setUpTheImageWhenURLIsSet];
+                    }
+                }];
+            }
+            else  // Image already in the assets library
+                [self setUpTheImageWhenURLIsSet];
+        }
+        else
+        {
+            if (!self.imageToStamp)
+                self.imageToStamp = [UIImage getImageFromAssetURL:[NSURL URLWithString:self.stampedImage.originalImageURL]];
+            [self setUpTheImageWhenURLIsSet];
+        }
+    });
+}
+
+-(void)setUpTheImageWhenURLIsSet
+{
+    NSAssert(self.imageToStamp, nil);
+    if (!self.stampedImage) // create the database entry
+    {
+        self.stampedImage = [StampedImage createStampedImageWithImageURL:self.imageToStampURL inManagedObjectContext:self.database.managedObjectContext];
+       
+    }
+    
+    // Generate thumb if there is none since before
+    if (!self.stampedImage.thumbImage)
+        [self setThumbFromImage:self.imageToStamp];
+    
+    // Set up the view on the main thread
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self setUpViewWithStampedImage];});
+}
+
+-(void)setUpViewWithStampedImage
+{
+    [self.spinner stopAnimating];
+    [self setToolbarVisible:YES];
+    self.navigationItem.rightBarButtonItem = self.shareButton;
+    
+    // Set the image for the view and do not take it from the core data object if not needed
+    NSAssert(self.stampedImage && self.imageToStamp, nil);
+    
+    self.parentView.image = self.imageToStamp;
+    [self alignViews];
+    
     self.parentView.inverseMode = [self.stampedImage.inverted boolValue];
     self.parentView.delegate = self;
     
@@ -249,32 +336,27 @@
     }
     
     [self.parentView setNeedsDisplay];
-    
-    // Generate thumb if there is none since before
-    if (!self.stampedImage.thumbImage)
-        [self setThumbFromImage:self.parentView.image];
 }
 
 - (void)setThumbFromImage:(UIImage *)image
 {
-    CGSize thumbSize = [PreviousCollectionViewController cellImageSizeForImage:self.parentView.image];
+    CGSize thumbSize = [PreviousCollectionViewController cellImageSizeForImage:image];
     [self.stampedImage setUIImageThumbImage:[UIImage modifyImage:image toFillRectWithWidth:thumbSize.width andHeight:thumbSize.height]];
+    needsNewThumbRendering = NO;
 }
 
 - (void)alignViews
 {
+    NSAssert(self.parentView.image, nil);
     // Set the imageview frame to be the same size as the image
-    [self.parentView setFrame:[UIImage frameForImage:[self.stampedImage getOriginalImage] inViewAspectFit:_parentView.superview]];
-    self.parentView.center = self.parentView.superview.center; // center on screen
+    [self.parentView setFrame:[UIImage frameForImage:self.parentView.image inViewAspectFit:self.scrollView]];
+    self.parentView.center = self.scrollView.center; // center on screen
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self alignViews];
-    
     [self registerForKeyboardNotifications];
-    
     inTextAddMode = NO;
 }
 
@@ -286,15 +368,36 @@
     [self resignFirstResponder];
     
     // Update thumbImage of current stamped image
-    
-    // TODO: When should we actually set thumb and save database?
-    [self setThumbFromImage:[self renderCurrentImage]];
+    if (self.stampedImage && needsNewThumbRendering)
+        [self setThumbFromImage:[self renderCurrentImage]];
 }
 
--(void)viewDidAppear:(BOOL)animated
+- (void)setToolbarVisible:(BOOL)show
 {
-    [super viewDidAppear:animated];
-    [self alignViews];
+    if (show == YES && self.toolbar.hidden == YES)
+    {        
+        // Move the frame out of sight
+        CGRect frame = self.toolbar.frame;
+        
+        // Put the toolbar below the main view
+        frame.origin.y = self.view.frame.origin.y + self.view.frame.size.height;
+        self.toolbar.frame = frame;
+        
+        // Display it nicely
+        self.toolbar.hidden = NO;
+        frame.origin.y -= frame.size.height;
+        [self.view bringSubviewToFront:self.toolbar];
+        
+        [UIView animateWithDuration:0.5f
+                         animations:^(void) {
+                             self.toolbar.frame = frame;
+                         }
+         ];
+    }
+    else if (show == NO && self.toolbar.hidden == NO)
+    {
+        self.toolbar.hidden = YES;
+    }
 }
 
 -(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
@@ -323,12 +426,14 @@
 {
     if ([[segue identifier] isEqualToString:@"pick font"])
     {
+        NSAssert(self.parentView.image, nil);
+        
         UINavigationController *nc = (UINavigationController *)[segue destinationViewController];
         StylePickerCollectionViewController *stylePicker = nc.viewControllers[0];
         stylePicker.delegate = self;
         
         // Set the properties for rending the font nicely
-        stylePicker.curImage = [UIImage modifyImage:[self.stampedImage getOriginalImage] toFillRectWithWidth:STYLE_PICKER_CELL_IMAGE_WIDTH andHeight:STYLE_PICKER_CELL_IMAGE_HEIGHT];
+        stylePicker.curImage = [UIImage modifyImage:self.parentView.image toFillRectWithWidth:STYLE_PICKER_CELL_IMAGE_WIDTH andHeight:STYLE_PICKER_CELL_IMAGE_HEIGHT];
         stylePicker.curColor = self.stampedImage.color;
     }
 }
@@ -382,8 +487,12 @@
 
 -(void)stylePickerCollectionViewController:(StylePickerCollectionViewController *)stylePickerCollectionViewController didFinishWithFont:(NSString *)font
 {
-    self.stampedImage.font = font;
-    [self.parentView setLabelFonts];
+    if (font != self.stampedImage.font)
+    {
+        needsNewThumbRendering = YES;
+        self.stampedImage.font = font;
+        [self.parentView setLabelFonts];
+    }
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }

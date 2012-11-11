@@ -16,6 +16,8 @@
 		DE3130EA1640207B0095B75A /* PreviousCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE3130E91640207B0095B75A /* PreviousCollectionViewController.m */; };
 		DE3130EC1640C0B80095B75A /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = DE3130EB1640C0B80095B75A /* delete.png */; };
 		DE3130EF1640D29C0095B75A /* StylePickerCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE3130EE1640D29C0095B75A /* StylePickerCollectionViewController.m */; };
+		DE49C98A164FBD7800C25929 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE49C989164FBD7800C25929 /* AssetsLibrary.framework */; };
+		DE49C98D164FBF0E00C25929 /* StampedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = DE49C98C164FBF0E00C25929 /* StampedImage.m */; };
 		DE5023D4162E709C00F3E506 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5023D3162E709C00F3E506 /* CoreDataTableViewController.m */; };
 		DE5023D6162E70B700F3E506 /* license.txt in Resources */ = {isa = PBXBuildFile; fileRef = DE5023D5162E70B700F3E506 /* license.txt */; };
 		DE5023D9162E70CC00F3E506 /* BrightnessWheel.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5023D7162E70CC00F3E506 /* BrightnessWheel.png */; };
@@ -46,7 +48,6 @@
 		DEED1BA315EFA2A6004E33F3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DEED1BA215EFA2A6004E33F3 /* AppDelegate.m */; };
 		DEED1BA615EFA2A6004E33F3 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEED1BA415EFA2A6004E33F3 /* MainStoryboard_iPhone.storyboard */; };
 		DEED1BA915EFA2A6004E33F3 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEED1BA715EFA2A6004E33F3 /* MainStoryboard_iPad.storyboard */; };
-		DEF42FF5163D71B60078CAE1 /* StampedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF42FF4163D71B60078CAE1 /* StampedImage.m */; };
 		DEF61DF6161F415200582C33 /* MyNavigationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF61DF5161F415200582C33 /* MyNavigationControllerViewController.m */; };
 		DEF9B0F91634E97F006EBD7F /* CustomLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF9B0F81634E97F006EBD7F /* CustomLabel.m */; };
 		DEF9B1071635AB61006EBD7F /* Label.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF9B1061635AB61006EBD7F /* Label.m */; };
@@ -69,6 +70,9 @@
 		DE3130EB1640C0B80095B75A /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = delete.png; path = TextMyPhoto/Resources/delete.png; sourceTree = "<group>"; };
 		DE3130ED1640D29C0095B75A /* StylePickerCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StylePickerCollectionViewController.h; path = TextMyPhoto/StylePickerCollectionViewController.h; sourceTree = "<group>"; };
 		DE3130EE1640D29C0095B75A /* StylePickerCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StylePickerCollectionViewController.m; path = TextMyPhoto/StylePickerCollectionViewController.m; sourceTree = "<group>"; };
+		DE49C989164FBD7800C25929 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		DE49C98B164FBF0E00C25929 /* StampedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StampedImage.h; path = TextMyPhoto/StampedImage.h; sourceTree = "<group>"; };
+		DE49C98C164FBF0E00C25929 /* StampedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StampedImage.m; path = TextMyPhoto/StampedImage.m; sourceTree = "<group>"; };
 		DE5023D2162E709C00F3E506 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreDataTableViewController.h; path = TextMyPhoto/CoreDataTableViewController.h; sourceTree = "<group>"; };
 		DE5023D3162E709C00F3E506 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreDataTableViewController.m; path = TextMyPhoto/CoreDataTableViewController.m; sourceTree = "<group>"; };
 		DE5023D5162E70B700F3E506 /* license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = license.txt; path = TextMyPhoto/license.txt; sourceTree = "<group>"; };
@@ -106,20 +110,18 @@
 		DEA991E016295AF000F0F07E /* UIImage+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utilities.m"; sourceTree = "<group>"; };
 		DED06305161EBCB000FD976D /* LaunchMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchMenuViewController.h; sourceTree = "<group>"; };
 		DED06306161EBCB000FD976D /* LaunchMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchMenuViewController.m; sourceTree = "<group>"; };
-		DEED1B8E15EFA2A6004E33F3 /* Stamp it!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stamp it!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEED1B8E15EFA2A6004E33F3 /* Caption it!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Caption it!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEED1B9215EFA2A6004E33F3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DEED1B9415EFA2A6004E33F3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DEED1B9615EFA2A6004E33F3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		DEED1B9A15EFA2A6004E33F3 /* Stamp it!-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Stamp it!-Info.plist"; sourceTree = "<group>"; };
+		DEED1B9A15EFA2A6004E33F3 /* Caption it!-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Caption it!-Info.plist"; sourceTree = "<group>"; };
 		DEED1B9C15EFA2A6004E33F3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DEED1B9E15EFA2A6004E33F3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		DEED1BA015EFA2A6004E33F3 /* Stamp it!-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Stamp it!-Prefix.pch"; sourceTree = "<group>"; };
+		DEED1BA015EFA2A6004E33F3 /* Caption it!-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Caption it!-Prefix.pch"; sourceTree = "<group>"; };
 		DEED1BA115EFA2A6004E33F3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DEED1BA215EFA2A6004E33F3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DEED1BA515EFA2A6004E33F3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		DEED1BA815EFA2A6004E33F3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		DEF42FF3163D71B60078CAE1 /* StampedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StampedImage.h; path = TextMyPhoto/StampedImage.h; sourceTree = "<group>"; };
-		DEF42FF4163D71B60078CAE1 /* StampedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StampedImage.m; path = TextMyPhoto/StampedImage.m; sourceTree = "<group>"; };
 		DEF61DF4161F415200582C33 /* MyNavigationControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyNavigationControllerViewController.h; sourceTree = "<group>"; };
 		DEF61DF5161F415200582C33 /* MyNavigationControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyNavigationControllerViewController.m; sourceTree = "<group>"; };
 		DEF9B0F71634E97F006EBD7F /* CustomLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLabel.h; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE49C98A164FBD7800C25929 /* AssetsLibrary.framework in Frameworks */,
 				DEA33C94162B93EC00DBFB35 /* CoreData.framework in Frameworks */,
 				DEA33C72162A938800DBFB35 /* QuartzCore.framework in Frameworks */,
 				DEED1B9315EFA2A6004E33F3 /* UIKit.framework in Frameworks */,
@@ -209,9 +212,9 @@
 		DEA33C74162B921400DBFB35 /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				DE49C98B164FBF0E00C25929 /* StampedImage.h */,
+				DE49C98C164FBF0E00C25929 /* StampedImage.m */,
 				DEA33C75162B926600DBFB35 /* TextMyPhoto.xcdatamodeld */,
-				DEF42FF3163D71B60078CAE1 /* StampedImage.h */,
-				DEF42FF4163D71B60078CAE1 /* StampedImage.m */,
 				DEF9B1051635AB61006EBD7F /* Label.h */,
 				DEF9B1061635AB61006EBD7F /* Label.m */,
 				DEA33CA2162B9EE900DBFB35 /* StampedImage+Create.h */,
@@ -251,7 +254,7 @@
 		DEED1B8F15EFA2A6004E33F3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DEED1B8E15EFA2A6004E33F3 /* Stamp it!.app */,
+				DEED1B8E15EFA2A6004E33F3 /* Caption it!.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 		DEED1B9115EFA2A6004E33F3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DE49C989164FBD7800C25929 /* AssetsLibrary.framework */,
 				DEA33C93162B93EC00DBFB35 /* CoreData.framework */,
 				DEA33C71162A938800DBFB35 /* QuartzCore.framework */,
 				DEED1B9215EFA2A6004E33F3 /* UIKit.framework */,
@@ -293,10 +297,10 @@
 				DEF61DF5161F415200582C33 /* MyNavigationControllerViewController.m */,
 				DEED1BA115EFA2A6004E33F3 /* AppDelegate.h */,
 				DEED1BA215EFA2A6004E33F3 /* AppDelegate.m */,
-				DEED1B9A15EFA2A6004E33F3 /* Stamp it!-Info.plist */,
+				DEED1B9A15EFA2A6004E33F3 /* Caption it!-Info.plist */,
 				DEED1B9B15EFA2A6004E33F3 /* InfoPlist.strings */,
 				DEED1B9E15EFA2A6004E33F3 /* main.m */,
-				DEED1BA015EFA2A6004E33F3 /* Stamp it!-Prefix.pch */,
+				DEED1BA015EFA2A6004E33F3 /* Caption it!-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			path = TextMyPhoto;
@@ -314,9 +318,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DEED1B8D15EFA2A6004E33F3 /* Stamp it! */ = {
+		DEED1B8D15EFA2A6004E33F3 /* Caption it! */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DEED1BAF15EFA2A6004E33F3 /* Build configuration list for PBXNativeTarget "Stamp it!" */;
+			buildConfigurationList = DEED1BAF15EFA2A6004E33F3 /* Build configuration list for PBXNativeTarget "Caption it!" */;
 			buildPhases = (
 				DEED1B8A15EFA2A6004E33F3 /* Sources */,
 				DEED1B8B15EFA2A6004E33F3 /* Frameworks */,
@@ -326,9 +330,9 @@
 			);
 			dependencies = (
 			);
-			name = "Stamp it!";
+			name = "Caption it!";
 			productName = TextMyPhoto;
-			productReference = DEED1B8E15EFA2A6004E33F3 /* Stamp it!.app */;
+			productReference = DEED1B8E15EFA2A6004E33F3 /* Caption it!.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -340,7 +344,7 @@
 				LastUpgradeCheck = 0440;
 				ORGANIZATIONNAME = "Alexander Faxå";
 			};
-			buildConfigurationList = DEED1B8815EFA2A6004E33F3 /* Build configuration list for PBXProject "Stamp it!" */;
+			buildConfigurationList = DEED1B8815EFA2A6004E33F3 /* Build configuration list for PBXProject "Caption it!" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -352,7 +356,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DEED1B8D15EFA2A6004E33F3 /* Stamp it! */,
+				DEED1B8D15EFA2A6004E33F3 /* Caption it! */,
 			);
 		};
 /* End PBXProject section */
@@ -406,12 +410,12 @@
 				DEF9B0F91634E97F006EBD7F /* CustomLabel.m in Sources */,
 				DEF9B1071635AB61006EBD7F /* Label.m in Sources */,
 				DE6E062E163681D700616ADA /* InverseableView.m in Sources */,
-				DEF42FF5163D71B60078CAE1 /* StampedImage.m in Sources */,
 				DE3130E0164018760095B75A /* CoreDataCollectionViewController.m in Sources */,
 				DE3130E416401E0C0095B75A /* GenericCollectionViewController.m in Sources */,
 				DE3130E716401F080095B75A /* GenericCollectionViewCell.m in Sources */,
 				DE3130EA1640207B0095B75A /* PreviousCollectionViewController.m in Sources */,
 				DE3130EF1640D29C0095B75A /* StylePickerCollectionViewController.m in Sources */,
+				DE49C98D164FBF0E00C25929 /* StampedImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,10 +506,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TextMyPhoto/Stamp it!-Prefix.pch";
-				INFOPLIST_FILE = "TextMyPhoto/Stamp it!-Info.plist";
+				GCC_PREFIX_HEADER = "TextMyPhoto/Caption it!-Prefix.pch";
+				INFOPLIST_FILE = "TextMyPhoto/Caption it!-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = "Stamp it!";
+				PRODUCT_NAME = "Caption it!";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -515,10 +519,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TextMyPhoto/Stamp it!-Prefix.pch";
-				INFOPLIST_FILE = "TextMyPhoto/Stamp it!-Info.plist";
+				GCC_PREFIX_HEADER = "TextMyPhoto/Caption it!-Prefix.pch";
+				INFOPLIST_FILE = "TextMyPhoto/Caption it!-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = "Stamp it!";
+				PRODUCT_NAME = "Caption it!";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -527,7 +531,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DEED1B8815EFA2A6004E33F3 /* Build configuration list for PBXProject "Stamp it!" */ = {
+		DEED1B8815EFA2A6004E33F3 /* Build configuration list for PBXProject "Caption it!" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DEED1BAD15EFA2A6004E33F3 /* Debug */,
@@ -536,7 +540,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DEED1BAF15EFA2A6004E33F3 /* Build configuration list for PBXNativeTarget "Stamp it!" */ = {
+		DEED1BAF15EFA2A6004E33F3 /* Build configuration list for PBXNativeTarget "Caption it!" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DEED1BB015EFA2A6004E33F3 /* Debug */,

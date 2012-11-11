@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 Alexander Faxå. All rights reserved.
 //
 
+#import <AssetsLibrary/AssetsLibrary.h>
+
 #import "UIImage+Utilities.h"
 
 @implementation UIImage (Utilities)
@@ -19,14 +21,14 @@
     return newImage;
 }
 
--(UIImage *)getCenterOfImageWithWidth:(CGFloat)width andHeight:(CGFloat) height
+/*-(UIImage *)getCenterOfImageWithWidth:(CGFloat)width andHeight:(CGFloat) height
 {
     CGFloat newWidth = (self.size.width - width) / 2.0f;
     CGFloat newHeight = (self.size.height - height) / 2.0f;    
     
     CGImageRef imageRef = CGImageCreateWithImageInRect([self CGImage], CGRectMake(newWidth, newHeight, width, height));
     return [UIImage imageWithCGImage:imageRef];
-}
+}*/
 
 +(CGRect)frameForImage:(UIImage*)image inViewAspectFit:(UIView*)imageView
 {
@@ -72,8 +74,43 @@
         newHeight = height;
     }
     
-    // Scale down the image to the calculated new size and crop out the center part to get an image as big as the thumb should be
-    return [[UIImage imageWithImage:image scaledToSize:CGSizeMake(newWidth, newHeight)] getCenterOfImageWithWidth:width andHeight:height];
+    // Scale down the image to the calculated new size
+    return [UIImage imageWithImage:image scaledToSize:CGSizeMake(newWidth, newHeight)];
+}
+
+// This is synchronus!
++(UIImage *)getImageFromAssetURL:(NSURL *)url
+{
+    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];    
+    __block UIImage *result = nil;
+    __block NSError *assetError = nil;
+    dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+    
+    [library assetForURL:url resultBlock:^(ALAsset *asset)
+    {
+        ALAssetRepresentation *rep = [asset defaultRepresentation];
+        CGImageRef iref = [rep fullResolutionImage];
+        if (iref)
+            result = [UIImage imageWithCGImage:iref];
+        dispatch_semaphore_signal(sema);
+    } failureBlock:^(NSError *error) {
+        assetError = error;
+        dispatch_semaphore_signal(sema);
+    }];
+    
+    if ([NSThread isMainThread]) {
+        while (!result && !assetError) {
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+        }
+    }
+    else {
+        dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+    }
+    
+    if (assetError)
+        NSLog(@"Error when fetching from asset library");
+    
+    return result;
 }
 
 @end

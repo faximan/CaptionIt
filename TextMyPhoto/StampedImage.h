@@ -1,8 +1,8 @@
 //
 //  StampedImage.h
-//  Stamp it!
+//  Caption it!
 //
-//  Created by Alexander Faxå on 2012-10-28.
+//  Created by Alexander Faxå on 2012-11-11.
 //  Copyright (c) 2012 Alexander Faxå. All rights reserved.
 //
 
@@ -16,9 +16,9 @@
 @property (nonatomic, retain) id color;
 @property (nonatomic, retain) NSDate * dateModified;
 @property (nonatomic, retain) NSString * font;
-@property (nonatomic, retain) NSData * originalImage;
-@property (nonatomic, retain) NSData * thumbImage;
 @property (nonatomic, retain) NSNumber * inverted;
+@property (nonatomic, retain) NSString * originalImageURL;
+@property (nonatomic, retain) NSData * thumbImage;
 @property (nonatomic, retain) NSSet *labels;
 @end
 

@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "EditViewController.h"
 #import "StampedImage+Create.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
 static const CGFloat BOARDER_WIDTH = 3.5f;
 
@@ -21,6 +22,7 @@ static const CGFloat BOARDER_WIDTH = 3.5f;
 @property (nonatomic, strong) UIImagePickerController *imgPicker;
 
 @property (nonatomic, weak) UIImage *pickedImage;
+@property (nonatomic, weak) NSURL *pickedImageURL;
 @property (nonatomic, weak) StampedImage *stampedImage;
 
 // The database of previous projects
@@ -104,7 +106,12 @@ static const CGFloat BOARDER_WIDTH = 3.5f;
     // Get the selected image
     self.pickedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
     if(self.pickedImage) //A image was actually selected/taken
+    {
+        // Only old images have a URL at this time
+        self.pickedImageURL = ([info objectForKey:UIImagePickerControllerMediaMetadata]) ?
+        nil : [info objectForKey:UIImagePickerControllerReferenceURL];
         [self performSegueWithIdentifier:@"edit" sender:nil];
+    }
     
     // Get rid of the picker controller.
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -140,11 +147,14 @@ static const CGFloat BOARDER_WIDTH = 3.5f;
         [self.navigationController setNavigationBarHidden:NO animated:NO];
         
         EditViewController *vc = [segue destinationViewController];
+            
         // Create a new database entry if we have a new project
         if (!self.stampedImage)
         {
-            StampedImage *newImage = [StampedImage createStampedImageWithImage:self.pickedImage inManagedObjectContext:self.previousDatabase.managedObjectContext];
-            vc.stampedImage = newImage;
+            NSAssert(self.pickedImage, nil);
+            vc.imageToStamp = self.pickedImage;
+            vc.imageToStampURL = self.pickedImageURL;
+            vc.database = self.previousDatabase;
         }
         else
             vc.stampedImage = self.stampedImage;

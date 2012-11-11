@@ -15,7 +15,7 @@
         <attribute name="dateModified" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="font" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="inverted" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="originalImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="originalImageURL" optional="YES" attributeType="String" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="thumbImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <relationship name="labels" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Label" inverseName="stampedImage" inverseEntity="Label" syncable="YES"/>
     </entity>

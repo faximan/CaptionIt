@@ -10,13 +10,11 @@
 
 @interface StampedImage (Create)
 
-+(StampedImage *)createStampedImageWithImage:(UIImage *)originalImage
++(StampedImage *)createStampedImageWithImageURL:(NSURL *)originalImageURL
                 inManagedObjectContext:(NSManagedObjectContext *)context;
 
--(UIImage *)getOriginalImage;
 -(UIImage *)getThumbImage;
 -(void)setUIImageThumbImage:(UIImage *)thumb;
-
 -(void)updateLabel:(UITextView *)label;
 
 @end

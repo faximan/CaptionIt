@@ -54,7 +54,9 @@ static const CGFloat SAMPLE_FONT_SIZE = 30.0f;
 	if (stampedImage != _stampedImage)
     {
 		_stampedImage = stampedImage;
-        sampleImage = [UIImage modifyImage:stampedImage.getOriginalImage toFillRectWithWidth:self.bounds.size.width andHeight:self.bounds.size.height];
+        
+        // TODO: Make sure image is passed to this popover
+        //sampleImage = [UIImage modifyImage:stampedImage.getOriginalImage toFillRectWithWidth:self.bounds.size.width andHeight:self.bounds.size.height];
         
         // Create attributed string with sample text
         NSMutableAttributedString *as = [[NSMutableAttributedString alloc] initWithString:SAMPLE_TEXT];

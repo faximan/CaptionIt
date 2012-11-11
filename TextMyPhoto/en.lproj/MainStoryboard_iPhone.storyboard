@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="UQI-gi-ezZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="UQI-gi-ezZ">
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
         <!--Launch Menu View Controller-->
@@ -89,6 +88,7 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="C1B-U6-582">
                                 <rect key="frame" x="0.0" y="372" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <barButtonItem title="Style" style="plain" id="COY-DQ-YRF">
                                         <connections>
@@ -125,8 +125,12 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="whiteLarge" id="2c7-DA-iZ2" userLabel="Spinner">
+                                <rect key="frame" x="141" y="190" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Edit" id="1PA-17-OpK">
                         <barButtonItem key="rightBarButtonItem" title="Share" style="done" id="N7K-jg-Wph">
@@ -139,6 +143,9 @@
                     <connections>
                         <outlet property="parentView" destination="P6S-F7-iX9" id="Ptb-ji-0my"/>
                         <outlet property="scrollView" destination="eZZ-XU-nPf" id="fYf-uV-Pfl"/>
+                        <outlet property="shareButton" destination="N7K-jg-Wph" id="60M-Yn-3vI"/>
+                        <outlet property="spinner" destination="2c7-DA-iZ2" id="gPG-wu-O5o"/>
+                        <outlet property="toolbar" destination="C1B-U6-582" id="1Op-CU-jYR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cDA-Me-df1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -393,7 +400,7 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jKn-91-IxG">
-                            <size key="itemSize" width="305" height="212"/>
+                            <size key="itemSize" width="310" height="212"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="12"/>
@@ -404,27 +411,27 @@
                         </imageView>
                         <cells>
                             <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Collection view cell" id="OF1-i6-gbU" customClass="GenericCollectionViewCell">
-                                <rect key="frame" x="7" y="5" width="305" height="212"/>
+                                <rect key="frame" x="5" y="5" width="310" height="212"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="305" height="212"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="310" height="212"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" id="7o8-Wz-GMg" userLabel="White view">
-                                            <rect key="frame" x="12" y="12" width="281" height="196"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <rect key="frame" x="12" y="12" width="286" height="196"/>
+                                            <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                             <subviews>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" id="Kem-xx-7YZ">
-                                                    <rect key="frame" x="8" y="8" width="265" height="180"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <rect key="frame" x="8" y="8" width="270" height="180"/>
+                                                    <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" id="ygW-ff-Tdl">
-                                                            <rect key="frame" x="0.0" y="0.0" width="265" height="180"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="270" height="180"/>
+                                                            <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                                         </imageView>
                                                         <view hidden="YES" alpha="0.30000001192092896" contentMode="scaleToFill" id="mXF-KA-EID" userLabel="highlightFade">
-                                                            <rect key="frame" x="0.0" y="0.0" width="265" height="180"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="270" height="180"/>
+                                                            <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </view>
                                                     </subviews>

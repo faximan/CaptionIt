@@ -19,11 +19,10 @@
 @interface EditViewController : UIViewController <CustomLabelDelegate , MNColorPickerDelegate, StylePickerCollectionViewControllerDelegate, InversableViewDelegate>
 
 @property (nonatomic, strong) StampedImage *stampedImage;
+@property (nonatomic, strong) UIManagedDocument* database;
+@property (nonatomic, strong) UIImage *imageToStamp;
+@property (nonatomic, strong) NSURL *imageToStampURL;
+
+@property (nonatomic, weak) IBOutlet UIActivityIndicatorView* spinner;
 
 @end
-
-// TODO: Is the rendering heavy on the device? Should it be done asynchronusly?
-
-// _______________________---------------_________________
-// TODO: When should we actually set thumb and save database?
-// _______________________---------------_________________

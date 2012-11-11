@@ -15,26 +15,19 @@
 
 @implementation StampedImage (Create)
 
-+(StampedImage *)createStampedImageWithImage:(UIImage *)originalImage
-                inManagedObjectContext:(NSManagedObjectContext *)context
++(StampedImage *)createStampedImageWithImageURL:(NSURL *)originalImageURL
+                      inManagedObjectContext:(NSManagedObjectContext *)context
 {
     StampedImage* stampedImage = nil;
     stampedImage = [NSEntityDescription insertNewObjectForEntityForName:@"StampedImage"                                                     inManagedObjectContext:context];
-    [stampedImage setUIImageOriginalImage:originalImage];
     
     // Set default font and color
     stampedImage.font = DEFAULT_FONT;
     stampedImage.color = DEFAULT_COLOR;
     stampedImage.inverted = DEFAULT_INVERTED;
+    stampedImage.originalImageURL = [originalImageURL absoluteString];
     
     return stampedImage;
-}
-
-// Custom setters to make sure date modified is kept accurate
-- (void)setUIImageOriginalImage:(UIImage *)originalImage
-{
-    NSData *data = UIImagePNGRepresentation(originalImage);
-    self.originalImage = data;
 }
 
 // Finds the right label in the database and updates it accordingly
@@ -160,13 +153,13 @@
     }
 }
 
--(void)setOriginalImage:(NSData *)originalImage
+-(void)setOriginalImageURL:(NSString *)originalImageURL
 {
-    if (originalImage != self.originalImage)
+    if (originalImageURL != self.originalImageURL)
     {
-        [self willChangeValueForKey:@"originalImage"];
-        [self setPrimitiveValue:originalImage forKey:@"originalImage"];
-        [self didChangeValueForKey:@"originalImage"];
+        [self willChangeValueForKey:@"originalImageURL"];
+        [self setPrimitiveValue:originalImageURL forKey:@"originalImageURL"];
+        [self didChangeValueForKey:@"originalImageURL"];
         self.dateModified = [NSDate date];
     }
 }
@@ -180,14 +173,6 @@
         [self didChangeValueForKey:@"thumbImage"];
         self.dateModified = [NSDate date];
     }
-}
-
-- (UIImage *)getOriginalImage
-{
-    [self willAccessValueForKey:@"originalImage"];
-    UIImage *image = [UIImage imageWithData:self.originalImage];
-    [self didAccessValueForKey:@"originalImage"];
-    return image;
 }
 
 -(UIImage *)getThumbImage
