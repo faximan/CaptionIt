@@ -25,5 +25,10 @@
 +(UIImage *)modifyImage:(UIImage *)image toFillRectWithWidth:(CGFloat)width andHeight:(CGFloat)height;
 
 // Fetch an image from the given url. Returns nil if error.
+// SYNCHRONUS!
 +(UIImage *)getImageFromAssetURL:(NSURL *)url;
+
+// Save an image to the assert library. Return the URL
+// SYNCHRONUS!
++(NSURL *)saveImageToAssetLibrary:(UIImage *)image;
 @end

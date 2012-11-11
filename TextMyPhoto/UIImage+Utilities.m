@@ -91,7 +91,7 @@
         ALAssetRepresentation *rep = [asset defaultRepresentation];
         CGImageRef iref = [rep fullResolutionImage];
         if (iref)
-            result = [UIImage imageWithCGImage:iref];
+            result = [UIImage imageWithCGImage:iref scale:1.0 orientation:[rep orientation]];
         dispatch_semaphore_signal(sema);
     } failureBlock:^(NSError *error) {
         assetError = error;
@@ -110,6 +110,44 @@
     if (assetError)
         NSLog(@"Error when fetching from asset library");
     
+    return result;
+}
+
+
++(NSURL *)saveImageToAssetLibrary:(UIImage *)image
+{
+    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    __block NSURL *result = nil;
+    __block NSError *assetError = nil;
+    dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+    
+    NSLog(@"%d", [image imageOrientation]);
+    [library writeImageToSavedPhotosAlbum:[image CGImage]
+                              orientation:(ALAssetOrientation)[image imageOrientation]
+                          completionBlock:^(NSURL *assetURL, NSError *error){
+                              if (error)
+                              {
+                                  assetError = error;
+                                  dispatch_semaphore_signal(sema);
+                              }
+                              else
+                              {
+                                  result = assetURL;
+                                  dispatch_semaphore_signal(sema);
+                              }
+                          }];
+    
+    if ([NSThread isMainThread]) {
+        while (!result && !assetError) {
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+        }
+    }
+    else {
+        dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+    }
+    
+    if (assetError)
+        NSLog(@"Error when writing to asset library");
     return result;
 }
 

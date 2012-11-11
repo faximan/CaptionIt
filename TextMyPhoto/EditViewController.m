@@ -259,24 +259,9 @@
             if (!self.imageToStampURL)
             {
                 // Save image to camera roll since it is a newly captured image
-                ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-                // Request to save the image to camera roll
-                [library writeImageToSavedPhotosAlbum:[self.imageToStamp CGImage]
-                                          orientation:(ALAssetOrientation)[self.imageToStamp imageOrientation]
-                                      completionBlock:^(NSURL *assetURL, NSError *error){
-                    if (error)
-                    {
-                        NSLog(@"error while saving new image to URL");
-                    }
-                    else
-                    {
-                        self.imageToStampURL = assetURL;
-                        [self setUpTheImageWhenURLIsSet];
-                    }
-                }];
+                self.imageToStampURL = [UIImage saveImageToAssetLibrary:self.imageToStamp];
             }
-            else  // Image already in the assets library
-                [self setUpTheImageWhenURLIsSet];
+            [self setUpTheImageWhenURLIsSet];
         }
         else
         {
@@ -388,7 +373,7 @@
         frame.origin.y -= frame.size.height;
         [self.view bringSubviewToFront:self.toolbar];
         
-        [UIView animateWithDuration:0.5f
+        [UIView animateWithDuration:0.3f
                          animations:^(void) {
                              self.toolbar.frame = frame;
                          }

@@ -10,7 +10,7 @@
 #import "GenericCollectionViewCell.h"
 
 static const CGFloat PREVIOUS_THUMB_WIDTH = 270.0f;
-static const CGFloat CELL_WIDTH = 315.0f;
+static const CGFloat CELL_WIDTH = 310.0f;
 
 
 @implementation PreviousCollectionViewController
