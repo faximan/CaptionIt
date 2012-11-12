@@ -19,8 +19,8 @@
 {
     if (self = [super initWithFrame:frame])
     {
-		_colorWheelImage = [UIImage imageNamed:@"ColorWheel.png"];
-		_brightnessImage = [UIImage imageNamed:@"BrightnessWheel.png"];
+		_colorWheelImage = [UIImage imageNamed:@"ColorWheel.png"].CGImage;
+		_brightnessImage = [UIImage imageNamed:@"BrightnessWheel.png"].CGImage;
 		
 		_magnifyingView = [[MNMagnifyingView alloc] initWithFrame:CGRectMake(0,0,15,15)];
 		[self addSubview:_magnifyingView];
@@ -40,8 +40,10 @@
 
 - (void)drawRect:(CGRect)rect
 {
-	[_colorWheelImage drawInRect:rect];
-	[_brightnessImage drawInRect:rect blendMode:kCGBlendModeDarken alpha:1-_brightnessView.brightness];
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextDrawImage(context, rect, _colorWheelImage);
+    CGContextSetAlpha(context, 1-_brightnessView.brightness);
+    CGContextDrawImage(context, rect, _brightnessImage);
 }
 
 #pragma mark -

@@ -11,12 +11,13 @@
 
 @interface MNColorView : UIView
 {
-    StampedImage *_stampedImage;
 	UIColor *_color;
+    NSString *_currentFont;
 }
 
 @property (readwrite, weak) id <MNColorViewDelegate> delegate;
-@property (readwrite, strong) StampedImage* stampedImage;
+@property (readwrite, strong) UIImage *currentImage;
+@property (readwrite, strong) NSString *currrentFont;
 @property (readwrite, strong) UIColor *color;
 
 @end

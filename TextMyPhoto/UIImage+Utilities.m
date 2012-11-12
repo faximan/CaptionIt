@@ -21,14 +21,14 @@
     return newImage;
 }
 
-/*-(UIImage *)getCenterOfImageWithWidth:(CGFloat)width andHeight:(CGFloat) height
+-(UIImage *)getCenterOfImageWithWidth:(CGFloat)width andHeight:(CGFloat) height
 {
-    CGFloat newWidth = (self.size.width - width) / 2.0f;
-    CGFloat newHeight = (self.size.height - height) / 2.0f;    
+    CGFloat newOriginX = (self.size.width - width) / 2.0f;
+    CGFloat newOriginY = (self.size.height - height) / 2.0f;
     
-    CGImageRef imageRef = CGImageCreateWithImageInRect([self CGImage], CGRectMake(newWidth, newHeight, width, height));
+    CGImageRef imageRef = CGImageCreateWithImageInRect([self CGImage], CGRectMake(newOriginX, newOriginY, width, height));
     return [UIImage imageWithCGImage:imageRef];
-}*/
+}
 
 +(CGRect)frameForImage:(UIImage*)image inViewAspectFit:(UIView*)imageView
 {

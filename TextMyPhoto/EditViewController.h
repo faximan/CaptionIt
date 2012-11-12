@@ -21,6 +21,7 @@
 @property (nonatomic, strong) StampedImage *stampedImage;
 @property (nonatomic, strong) UIManagedDocument* database;
 @property (nonatomic, strong) UIImage *imageToStamp;
+@property (nonatomic, strong) UIImage *colorPreviewImage;
 @property (nonatomic, strong) NSURL *imageToStampURL;
 
 @property (nonatomic, weak) IBOutlet UIActivityIndicatorView* spinner;

@@ -23,11 +23,11 @@
 	self = [super initWithNibName:nil bundle:nil];
 	if (self != nil) {
 		self.color = [UIColor whiteColor];
-        self.stampedImage = nil;
+        self.currentImage = nil;
+        self.currentFont = nil;
 		self.continuous = NO;
-		if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+		if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 			self.contentSizeForViewInPopover = CGSizeMake(320, 420);
-		}		
 	}
 	return self;
 }
@@ -63,7 +63,8 @@
 	[super viewDidLoad];
 	[self _layoutViewsForInterfaceOrientation:self.interfaceOrientation];
 	_colorView.color = self.color;
-    _colorView.stampedImage = self.stampedImage;
+    _colorView.currentImage = self.currentImage;
+    _colorView.currrentFont = self.currentFont;
 	_colorWheelView.color = self.color;
 	[_brightnessView setHue:[self.color mn_hueComponent] saturation:[self.color mn_saturationComponent]];
 	_brightnessView.brightness = [self.color mn_brightnessComponent];
@@ -71,17 +72,31 @@
 
 #pragma mark -
 #pragma mark Properties
-- (StampedImage *)stampedImage
+-(NSString *)currentFont
 {
-    return _stampedImage;
+    return _currentFont;
 }
 
--(void)setStampedImage:(StampedImage *)stampedImage
+-(void)setCurrentFont:(NSString *)currentFont
 {
-    if (_stampedImage != stampedImage)
+    if (currentFont != _currentFont)
     {
-        _stampedImage = stampedImage;
-        _colorView.stampedImage = stampedImage;
+        _currentFont = currentFont;
+        _colorView.currrentFont = currentFont;
+    }
+}
+
+- (UIImage *)currentImage
+{
+    return _currentImage;
+}
+
+-(void)setCurrentImage:(UIImage *)currentImage
+{
+    if (currentImage != _currentImage)
+    {
+        _currentImage = currentImage;
+        _colorView.currentImage = currentImage;
     }
 }
 
@@ -108,14 +123,17 @@
 
 - (void)_layoutViewsForInterfaceOrientation: (UIInterfaceOrientation)interfaceOrientation {
 
-	if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
-		_colorView.frame = CGRectMake(35, 20, 250, 40);
-		_colorWheelView.frame = CGRectMake(35, 80, 250, 250);
-		_brightnessView.frame = CGRectMake(35, 360, 250, 30);
-	} else {
-		_colorView.frame = CGRectMake(50, 10, 40, 250);
-		_colorWheelView.frame = CGRectMake(120,10, 250, 250);
-		_brightnessView.frame = CGRectMake(400,10, 30, 250);
+	if (UIInterfaceOrientationIsPortrait(interfaceOrientation))
+    {
+		_colorView.frame = COLORVIEW_FRAME_PORTRAIT;
+		_colorWheelView.frame = COLORWHEELVIEW_FRAME_PORTRAIT;
+		_brightnessView.frame = BRIGHTNESSVIEW_FRAME_PORTRAIT;
+	}
+    else
+    {
+		_colorView.frame = COLORVIEW_FRAME_LANDSCAPE;
+		_colorWheelView.frame = COLORWHEELVIEW_FRAME_LANDSCAPE;
+		_brightnessView.frame = BRIGHTNESSVIEW_FRAME_LANDSCAPE;
 	}
 	[_colorView setNeedsDisplay];
 	[_brightnessView updateToInterfaceOrientation:interfaceOrientation];

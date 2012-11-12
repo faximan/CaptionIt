@@ -31,7 +31,19 @@
     
     BOOL needsNewThumbRendering; // only save the project when settings have been made to the stamped image object
 }
+#pragma mark Properties
+-(void)setImageToStamp:(UIImage *)imageToStamp
+{
+    if (imageToStamp != _imageToStamp)
+    {
+        _imageToStamp = imageToStamp;
+        
+        // The preview image is no longer valid
+        self.colorPreviewImage = nil;
+    }
+}
 
+#pragma mark -
 #pragma mark For sharing the image
 
 // Takes the current addons to the image and renders it to a bitmap
@@ -108,6 +120,7 @@
     [self setThumbFromImage:renderedImage];
 }
 
+#pragma mark -
 #pragma mark For editing the image
 - (IBAction)addLabel:(UILongPressGestureRecognizer *)sender
 {
@@ -132,10 +145,23 @@
 // Pull up the color picker
 - (IBAction)changeColor:(id)sender
 {
+    NSAssert(self.imageToStamp && self.stampedImage, nil);
+    
     MNColorPicker *colorPicker = [[MNColorPicker alloc] init];
 	colorPicker.delegate = self;
     colorPicker.color = self.stampedImage.color;
-    colorPicker.stampedImage = self.stampedImage;
+    colorPicker.currentFont = self.stampedImage.font;
+    
+    if (!self.colorPreviewImage)
+    {
+        CGRect colorPreviewFrame = COLORVIEW_FRAME_PORTRAIT;
+        
+        UIImage *newPreviewImage = [[UIImage modifyImage:self.imageToStamp toFillRectWithWidth:colorPreviewFrame.size.width andHeight:colorPreviewFrame.size.height] getCenterOfImageWithWidth:colorPreviewFrame.size.width andHeight:colorPreviewFrame.size.height];
+        // Shrink preview image and cache it for fast drawing
+        self.colorPreviewImage = newPreviewImage;
+    }
+    colorPicker.currentImage = self.colorPreviewImage;
+    
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:colorPicker];
     [self presentViewController:navigationController animated:YES completion:nil];
 }
@@ -149,6 +175,7 @@
     self.stampedImage.inverted = [NSNumber numberWithBool:self.parentView.inverseMode];
 }
 
+#pragma mark -
 #pragma mark MNColorPickerDelegate
 
 - (void)colorPicker:(MNColorPicker*)colorPicker didFinishWithColor:(UIColor *)color
@@ -158,10 +185,12 @@
         needsNewThumbRendering = YES;
         self.stampedImage.color = color;
         [self.parentView setLabelColors];
+        [self.parentView setNeedsDisplay];
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+#pragma mark -
 #pragma mark UITextView delegate
 
 -(void)textViewDidBeginEditing:(UITextView *)textView
@@ -222,6 +251,7 @@
     [self.parentView setNeedsDisplay];
 }
 
+#pragma mark -
 #pragma mark View Stuff
 // Show a UIAlertView with the passed title and message
 // Only one button called "OK" is added to dissmiss the alert.
@@ -293,16 +323,14 @@
 
 -(void)setUpViewWithStampedImage
 {
+    NSAssert(self.stampedImage && self.imageToStamp, nil);
+    
+    // Remove "waiting" UI elements
     [self.spinner stopAnimating];
     [self setToolbarVisible:YES];
     self.navigationItem.rightBarButtonItem = self.shareButton;
     
-    // Set the image for the view and do not take it from the core data object if not needed
-    NSAssert(self.stampedImage && self.imageToStamp, nil);
-    
-    self.parentView.image = self.imageToStamp;
-    [self alignViews];
-    
+    self.parentView.image = self.imageToStamp;    
     self.parentView.inverseMode = [self.stampedImage.inverted boolValue];
     self.parentView.delegate = self;
     
@@ -321,6 +349,7 @@
             [self.parentView addSubview:newLabel];
     }
     
+    [self alignViews];
     [self.parentView setNeedsDisplay];
 }
 
@@ -353,9 +382,11 @@
     
     [self resignFirstResponder];
     
+    
+    // TODO: When should be render a new thumb?
     // Update thumbImage of current stamped image
-    if (self.stampedImage && needsNewThumbRendering)
-        [self setThumbFromImage:[self renderCurrentImage]];
+   // if (self.stampedImage && self.imageToStamp && needsNewThumbRendering)
+  //      [self setThumbFromImage:[self renderCurrentImage]];
 }
 
 - (void)setToolbarVisible:(BOOL)show

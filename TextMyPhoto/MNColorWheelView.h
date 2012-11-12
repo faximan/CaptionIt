@@ -10,8 +10,8 @@
 @protocol MNColorWheelViewDelegate;
 
 @interface MNColorWheelView : UIView  <MNBrightnessViewDelegate>{
-	UIImage *_colorWheelImage;
-	UIImage *_brightnessImage;
+	CGImageRef _colorWheelImage;
+	CGImageRef _brightnessImage;
 	MNMagnifyingView *_magnifyingView;
     MNBrightnessView *_brightnessView;
 	

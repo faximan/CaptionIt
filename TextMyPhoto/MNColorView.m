@@ -8,11 +8,11 @@
 #import "UIImage+Utilities.h"
 
 #define SAMPLE_TEXT @"Sample"
+#define DEFAULT_FONT @"verdana"
 static const CGFloat SAMPLE_FONT_SIZE = 30.0f;
 
 @implementation MNColorView
 {
-    UIImage *sampleImage;
     NSAttributedString *attrString;
 }
 
@@ -23,6 +23,7 @@ static const CGFloat SAMPLE_FONT_SIZE = 30.0f;
         // Initialization code
 		self.color = [UIColor blackColor];
 		self.backgroundColor = [UIColor clearColor];
+        self.currrentFont = DEFAULT_FONT;
     }
     return self;
 }
@@ -43,33 +44,28 @@ static const CGFloat SAMPLE_FONT_SIZE = 30.0f;
 		[self setNeedsDisplay];
 	}
 }
-
--(StampedImage *)stampedImage
+-(NSString *)currrentFont
 {
-    return _stampedImage;
+    return _currentFont;
 }
 
-- (void)setStampedImage:(StampedImage *)stampedImage
+- (void)setCurrrentFont:(NSString *)currrentFont
 {
-	if (stampedImage != _stampedImage)
+    if (currrentFont != _currentFont)
     {
-		_stampedImage = stampedImage;
-        
-        // TODO: Make sure image is passed to this popover
-        //sampleImage = [UIImage modifyImage:stampedImage.getOriginalImage toFillRectWithWidth:self.bounds.size.width andHeight:self.bounds.size.height];
-        
+        _currentFont = currrentFont;
         // Create attributed string with sample text
         NSMutableAttributedString *as = [[NSMutableAttributedString alloc] initWithString:SAMPLE_TEXT];
         NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+        [style setAlignment:NSTextAlignmentCenter];
         
         NSRange entireString = NSMakeRange(0, [SAMPLE_TEXT length]);
         
-        [style setAlignment:NSTextAlignmentCenter];
         [as addAttribute:NSParagraphStyleAttributeName value:style range:entireString];
-        [as addAttribute:NSFontAttributeName value:[UIFont fontWithName:_stampedImage.font size:SAMPLE_FONT_SIZE] range:entireString];
+        [as addAttribute:NSFontAttributeName value:[UIFont fontWithName:self.currrentFont size:SAMPLE_FONT_SIZE] range:entireString];
         attrString = as;
 		[self setNeedsDisplay];
-	}
+    }
 }
 
 
@@ -84,8 +80,7 @@ static const CGFloat SAMPLE_FONT_SIZE = 30.0f;
 	MNCGContextAddRoundedRectToPath(context,rect,7);
 	CGContextClip(context);
 	
-    // Draw image
-    [sampleImage drawInRect:rect];
+    [self.currentImage drawInRect:rect];
     
     // Draw centered sample text with the most up to date color
     NSMutableAttributedString *as = [attrString mutableCopy];
