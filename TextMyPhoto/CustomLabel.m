@@ -27,8 +27,8 @@
         self.showsVerticalScrollIndicator = NO;
         
         // DEBUG: Make sure to show bounds
-        //self.layer.borderColor = [[UIColor redColor] CGColor];
-        //self.layer.borderWidth = 1.0f;
+        self.layer.borderColor = [[UIColor redColor] CGColor];
+        self.layer.borderWidth = 1.0f;
         
         // Remove useless padding.
         self.contentInset = UIEdgeInsetsMake(-8,-8,-8,-8);

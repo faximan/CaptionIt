@@ -16,11 +16,12 @@
         <attribute name="font" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="inverted" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="originalImageURL" optional="YES" attributeType="String" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="shouldFade" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="thumbImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <relationship name="labels" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Label" inverseName="stampedImage" inverseEntity="Label" syncable="YES"/>
     </entity>
     <elements>
         <element name="Label" positionX="430" positionY="252" width="128" height="163"/>
-        <element name="StampedImage" positionX="160" positionY="192" width="128" height="150"/>
+        <element name="StampedImage" positionX="160" positionY="192" width="128" height="165"/>
     </elements>
 </model>

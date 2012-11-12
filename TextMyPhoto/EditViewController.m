@@ -183,6 +183,13 @@
     self.stampedImage.inverted = [NSNumber numberWithBool:self.labelContainerView.inverseMode];
 }
 
+- (IBAction)toggleFade:(id)sender
+{
+    needsNewThumbRendering = YES;
+    self.labelContainerView.shouldFade = !self.labelContainerView.shouldFade;
+    self.stampedImage.shouldFade = [NSNumber numberWithBool:self.labelContainerView.shouldFade];
+}
+
 #pragma mark -
 #pragma mark MNColorPickerDelegate
 
@@ -340,21 +347,22 @@
     
     self.originalImage.image = self.imageToStamp;
     self.labelContainerView.inverseMode = [self.stampedImage.inverted boolValue];
+    self.labelContainerView.shouldFade = [self.stampedImage.shouldFade boolValue];
     self.labelContainerView.delegate = self;
     
     // Add all labels
     for (Label *label in self.stampedImage.labels)
     {
-        CustomLabel *newLabel = [[CustomLabel alloc] initWithStampedImage:self.stampedImage
-                                                                withFrame:CGRectMake([label.x floatValue], [label.y floatValue], [label.width floatValue], [label.height floatValue])
-                                                                  andText:label.text
-                                                                  andSize:[label.fontSize floatValue]
-                                                                   andTag:[label.nbr integerValue]];
-        newLabel.delegate = self;
-        
-        // Only add labels that contain text
-        if (![newLabel.text isEqualToString:@""])
+        if (![label.text isEqualToString:@""])
+        {
+            CustomLabel *newLabel = [[CustomLabel alloc] initWithStampedImage:self.stampedImage
+                withFrame:CGRectMake([label.x floatValue], [label.y floatValue], [label.width floatValue], [label.height floatValue])
+                andText:label.text
+                andSize:[label.fontSize floatValue]
+                andTag:[label.nbr integerValue]];
+            newLabel.delegate = self;
             [self.labelContainerView addSubview:newLabel];
+        }
     }
     
     [self alignViews];
@@ -517,6 +525,7 @@
         needsNewThumbRendering = YES;
         self.stampedImage.font = font;
         [self.labelContainerView setLabelFonts];
+        [self.labelContainerView setNeedsDisplay];
     }
     
     [self dismissViewControllerAnimated:YES completion:nil];

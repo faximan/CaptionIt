@@ -13,6 +13,7 @@
 @interface InverseableView : UIView
 
 @property (nonatomic) BOOL inverseMode;
+@property (nonatomic) BOOL shouldFade;
 @property (nonatomic, weak) id<InversableViewDelegate> delegate;
 
 // Set all label fonts to be that of the current image

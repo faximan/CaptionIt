@@ -8,6 +8,9 @@
 
 #import "InverseableView.h"
 
+#define OPAQUE 1.0f
+#define FADE 0.5f
+
 @implementation InverseableView
 {
     BOOL _inverseMode;
@@ -30,6 +33,16 @@
     }
 }
 
+-(void)setShouldFade:(BOOL)shouldFade
+{
+    if (shouldFade != _shouldFade)
+    {
+        _shouldFade = shouldFade;
+        [self setLabelColors];
+        [self setNeedsDisplay];
+    }
+}
+
 -(void)setLabelColors
 {
     // Set the color of the label dependent on the inverse mode
@@ -38,6 +51,7 @@
     for (UITextView *textView in self.subviews)
     {
         textView.textColor = textColor;
+        textView.alpha = (self.shouldFade) ? FADE : OPAQUE;
         [textView setNeedsDisplay];
     }
 }
@@ -77,8 +91,16 @@
 - (UIImage*)squareOfSize:(CGSize)size withColor:(UIColor *)color
 {
     UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
     [color setFill];
-    CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(0, 0, size.width, size.height));
+    
+    // DEBUG
+    if (self.shouldFade)
+        CGContextSetAlpha(context, FADE);
+    else
+        CGContextSetAlpha(context, OPAQUE);
+    
+    CGContextFillRect(context, CGRectMake(0, 0, size.width, size.height));
     UIImage *square = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return square;

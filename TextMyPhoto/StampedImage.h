@@ -2,7 +2,7 @@
 //  StampedImage.h
 //  Caption it!
 //
-//  Created by Alexander Faxå on 2012-11-11.
+//  Created by Alexander Faxå on 2012-11-12.
 //  Copyright (c) 2012 Alexander Faxå. All rights reserved.
 //
 
@@ -19,6 +19,7 @@
 @property (nonatomic, retain) NSNumber * inverted;
 @property (nonatomic, retain) NSString * originalImageURL;
 @property (nonatomic, retain) NSData * thumbImage;
+@property (nonatomic, retain) NSNumber * shouldFade;
 @property (nonatomic, retain) NSSet *labels;
 @end
 

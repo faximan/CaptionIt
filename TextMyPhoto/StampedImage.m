@@ -2,7 +2,7 @@
 //  StampedImage.m
 //  Caption it!
 //
-//  Created by Alexander Faxå on 2012-11-11.
+//  Created by Alexander Faxå on 2012-11-12.
 //  Copyright (c) 2012 Alexander Faxå. All rights reserved.
 //
 
@@ -18,6 +18,7 @@
 @dynamic inverted;
 @dynamic originalImageURL;
 @dynamic thumbImage;
+@dynamic shouldFade;
 @dynamic labels;
 
 @end

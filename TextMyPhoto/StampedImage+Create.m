@@ -12,6 +12,7 @@
 #define DEFAULT_FONT @"verdana"
 #define DEFAULT_COLOR [UIColor whiteColor]
 #define DEFAULT_INVERTED NO
+#define DEFAULT_FADE NO
 
 @implementation StampedImage (Create)
 
@@ -25,6 +26,7 @@
     stampedImage.font = DEFAULT_FONT;
     stampedImage.color = DEFAULT_COLOR;
     stampedImage.inverted = DEFAULT_INVERTED;
+    stampedImage.shouldFade = DEFAULT_FADE;
     stampedImage.originalImageURL = [originalImageURL absoluteString];
     
     return stampedImage;
@@ -33,82 +35,27 @@
 // Finds the right label in the database and updates it accordingly
 // inserting a new label if there is no match
 -(void)updateLabel:(UITextView *)label
-{
-    NSNumber* tagNumber = @(label.tag);
-    NSSet *result = [self fetchObjectsForEntityName:@"Label" withPredicate:
-     @"(nbr = %@) AND (stampedImage.dateModified = %@)",  tagNumber, self.dateModified];
+{    
+    Label *curLabel = nil; // the label to be updated
     
-    // Date modified is considered to be the unique key of a stamped image
+    // Search for this label to see if it already exists
+    for (Label *iLabel in self.labels)
+        if (iLabel.nbr == @(label.tag))
+            curLabel = iLabel;
     
-    if (result && [result count] < 2)
-    {
-        Label *newLabel = nil;
-        if (![result count])
-        {
-            // insert new object
-            newLabel = [NSEntityDescription insertNewObjectForEntityForName:@"Label" inManagedObjectContext:[self managedObjectContext]];
-        }
-        else
-        {
-            newLabel = [result anyObject]; // Should only be one
-        }
-        // Update label
-        newLabel.nbr = @(label.tag);
-        newLabel.x = @(label.frame.origin.x);
-        newLabel.y = @(label.frame.origin.y);
-        newLabel.height = @(label.frame.size.height);
-        newLabel.width = @(label.frame.size.width);
-        newLabel.fontSize = @(label.font.pointSize);
-        newLabel.text = label.text;
-        newLabel.stampedImage = self;
-        self.dateModified = [NSDate date];
-    }
-    else
-        NSLog(@"Error when fetching from db in updateLabel:()");
-}
+    if (!curLabel) // create new label
+        curLabel = [NSEntityDescription insertNewObjectForEntityForName:@"Label" inManagedObjectContext:[self managedObjectContext]];
 
-// Convenience method to fetch the array of objects for a given Entity
-// name in the context, optionally limiting by a predicate or by a predicate
-// made from a format NSString and variable arguments.
-//
-- (NSSet *)fetchObjectsForEntityName:(NSString *)newEntityName
-                       withPredicate:(id)stringOrPredicate, ...
-{
-    NSEntityDescription *entity = [NSEntityDescription
-                                   entityForName:newEntityName inManagedObjectContext:self.managedObjectContext];
-    
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entity];
-    
-    if (stringOrPredicate)
-    {
-        NSPredicate *predicate;
-        if ([stringOrPredicate isKindOfClass:[NSString class]])
-        {
-            va_list variadicArguments;
-            va_start(variadicArguments, stringOrPredicate);
-            predicate = [NSPredicate predicateWithFormat:stringOrPredicate
-                                               arguments:variadicArguments];
-            va_end(variadicArguments);
-        }
-        else
-        {
-            NSAssert([stringOrPredicate isKindOfClass:[NSPredicate class]],
-                      @"Second parameter passed to %s is of unexpected class %@",
-                      sel_getName(_cmd), [stringOrPredicate class]);
-            predicate = (NSPredicate *)stringOrPredicate;
-        }
-        [request setPredicate:predicate];
-    }
-    
-    NSError *error = nil;
-    NSArray *results = [self.managedObjectContext executeFetchRequest:request error:&error];
-    if (error != nil)
-    {
-        [NSException raise:NSGenericException format:@"%@", [error description]];
-    }
-    
-    return [NSSet setWithArray:results];
+    // Update label
+    curLabel.nbr = @(label.tag);
+    curLabel.x = @(label.frame.origin.x);
+    curLabel.y = @(label.frame.origin.y);
+    curLabel.height = @(label.frame.size.height);
+    curLabel.width = @(label.frame.size.width);
+    curLabel.fontSize = @(label.font.pointSize);
+    curLabel.text = label.text;
+    curLabel.stampedImage = self;
+    self.dateModified = [NSDate date];
 }
 
 -(void)setUIImageThumbImage:(UIImage *)thumb
@@ -146,6 +93,17 @@
         [self willChangeValueForKey:@"inverted"];
         [self setPrimitiveValue:inverted forKey:@"inverted"];
         [self didChangeValueForKey:@"inverted"];
+        self.dateModified = [NSDate date];
+    }
+}
+
+-(void)setShouldFade:(NSNumber *)shouldFade
+{
+    if (shouldFade != self.shouldFade)
+    {
+        [self willChangeValueForKey:@"shouldFade"];
+        [self setPrimitiveValue:shouldFade forKey:@"shouldFade"];
+        [self didChangeValueForKey:@"shouldFade"];
         self.dateModified = [NSDate date];
     }
 }
