@@ -15,7 +15,8 @@
 
 @interface EditViewController ()
 
-@property (nonatomic, weak) IBOutlet InverseableView *parentView; // The view that contains the picture and all the addons.
+@property (nonatomic, weak) IBOutlet InverseableView *labelContainerView; // The view that contains the picture and all the addons.
+@property (nonatomic, weak) IBOutlet UIImageView *originalImage;
 @property (nonatomic, weak) NSSet* labels;
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 
@@ -49,18 +50,23 @@
 // Takes the current addons to the image and renders it to a bitmap
 - (UIImage *)renderCurrentImage
 {
-    UIImage *curImage = self.parentView.image;
-    float scaleFactor = curImage.size.width / self.parentView.frame.size.width;
+    NSAssert(self.imageToStamp, nil);
     
-    // Parentview should here have the same frame as the imageview. Cache the old frame, scale it to full photo resolution and render it.
-    CGRect oldFrame = self.parentView.frame;
-    CGRect tempFrame = oldFrame;
-    tempFrame.size = curImage.size;
-    self.parentView.frame = tempFrame;
+    float scaleFactor = self.imageToStamp.size.width / self.labelContainerView.frame.size.width;
+    
+    // labelContainerView should here have the same frame as the imageview. Cache the old frame, scale it to full photo resolution and render it.
+    CGRect oldLabelViewFrame = self.labelContainerView.frame;
+    CGRect oldImageViewFrame = self.originalImage.frame;
+    CGRect tempLabelFrame = oldLabelViewFrame;
+    CGRect tempImageFrame = oldImageViewFrame;
+    tempLabelFrame.size = self.imageToStamp.size;
+    tempImageFrame.size = self.imageToStamp.size;
+    self.labelContainerView.frame = tempLabelFrame;
+    self.originalImage.frame = tempImageFrame;
     
     // Render the text on top of the image
     // Resize labels to the correct size
-    for (UITextView *curLabel in self.parentView.subviews)
+    for (UITextView *curLabel in self.labelContainerView.subviews)
     {
         curLabel.font = [UIFont fontWithName:curLabel.font.fontName size:curLabel.font.pointSize * scaleFactor];
         
@@ -69,15 +75,16 @@
     }
     
     // Get the context
-    UIGraphicsBeginImageContextWithOptions(self.parentView.bounds.size, self.parentView.opaque, 0.0f);
+    UIGraphicsBeginImageContextWithOptions(self.labelContainerView.bounds.size, YES, 0.0f);
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     // Render the scene
-    [self.parentView.layer renderInContext:context];
+    [self.originalImage.layer renderInContext:context];
+    [self.labelContainerView.layer renderInContext:context];
     
     // Move back the labels and resize them
-    for (UITextView *curLabel in self.parentView.subviews)
+    for (UITextView *curLabel in self.labelContainerView.subviews)
     {
         curLabel.font = [UIFont fontWithName:curLabel.font.fontName size:curLabel.font.pointSize / scaleFactor];
         
@@ -86,7 +93,8 @@
     }
     
     // Set back the old frame
-    self.parentView.frame = oldFrame;
+    self.labelContainerView.frame = oldLabelViewFrame;
+    self.originalImage.frame = oldImageViewFrame;
     
     // Convert to UIImage
     UIImage *bitmap = UIGraphicsGetImageFromCurrentImageContext();
@@ -117,7 +125,7 @@
     [self presentViewController:activityViewController animated:YES completion:nil];
     
     // Set thumb as well
-    [self setThumbFromImage:renderedImage];
+    //[self setThumbFromImage:renderedImage];
 }
 
 #pragma mark -
@@ -128,7 +136,7 @@
     if (!inTextAddMode)
     {
         // Get tap location
-        CGPoint location = [sender locationInView:self.parentView];
+        CGPoint location = [sender locationInView:self.labelContainerView];
         
         CustomLabel *newLabel = [[CustomLabel alloc] initWithStampedImage:self.stampedImage
                                                                 withFrame:CGRectMake(location.x, location.y ,CUSTOM_LABEL_DEFAULT_FRAME_WIDTH, CUSTOM_LABEL_DEFAULT_FRAME_HEIGHT)
@@ -137,7 +145,7 @@
                                                                    andTag:[self.stampedImage.labels count]];
         newLabel.delegate = self;
         
-        [self.parentView addSubview:newLabel];
+        [self.labelContainerView addSubview:newLabel];
         [newLabel becomeFirstResponder];
     }
 }
@@ -171,8 +179,8 @@
 {
     // Invert text and picture
     needsNewThumbRendering = YES;
-    self.parentView.inverseMode = !self.parentView.inverseMode;
-    self.stampedImage.inverted = [NSNumber numberWithBool:self.parentView.inverseMode];
+    self.labelContainerView.inverseMode = !self.labelContainerView.inverseMode;
+    self.stampedImage.inverted = [NSNumber numberWithBool:self.labelContainerView.inverseMode];
 }
 
 #pragma mark -
@@ -184,8 +192,8 @@
     {
         needsNewThumbRendering = YES;
         self.stampedImage.color = color;
-        [self.parentView setLabelColors];
-        [self.parentView setNeedsDisplay];
+        [self.labelContainerView setLabelColors];
+        [self.labelContainerView setNeedsDisplay];
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -198,7 +206,7 @@
     activeField = textView;
     
     // We should not be able to move around/resize textview when it is being edited
-    for (UITextView *tw in self.parentView.subviews)
+    for (UITextView *tw in self.labelContainerView.subviews)
         tw.userInteractionEnabled = NO;
     
     inTextAddMode = YES;
@@ -210,11 +218,11 @@
     needsNewThumbRendering = YES;
     
     // enable moving and resizing
-    for (UITextView *tw in self.parentView.subviews)
+    for (UITextView *tw in self.labelContainerView.subviews)
         tw.userInteractionEnabled = YES;
     
     [self.stampedImage updateLabel:textView];
-    [self.parentView setNeedsDisplay];
+    [self.labelContainerView setNeedsDisplay];
     
     // remove empty labels
     if ([textView.text isEqualToString:@""])
@@ -235,7 +243,7 @@
     
     [((CustomLabel *)textView) updateFrameForText:newString];
     
-    [self.parentView setNeedsDisplay];
+    [self.labelContainerView setNeedsDisplay];
     return YES;
 }
 
@@ -243,12 +251,12 @@
 {
     [self.stampedImage updateLabel:customLabel];
     needsNewThumbRendering = YES;
-    [self.parentView setNeedsDisplay];
+    [self.labelContainerView setNeedsDisplay];
 }
 
 -(void)customLabelIsChangingSizeOrPosition:(CustomLabel *)customLabel
 {
-    [self.parentView setNeedsDisplay];
+    [self.labelContainerView setNeedsDisplay];
 }
 
 #pragma mark -
@@ -330,9 +338,9 @@
     [self setToolbarVisible:YES];
     self.navigationItem.rightBarButtonItem = self.shareButton;
     
-    self.parentView.image = self.imageToStamp;    
-    self.parentView.inverseMode = [self.stampedImage.inverted boolValue];
-    self.parentView.delegate = self;
+    self.originalImage.image = self.imageToStamp;
+    self.labelContainerView.inverseMode = [self.stampedImage.inverted boolValue];
+    self.labelContainerView.delegate = self;
     
     // Add all labels
     for (Label *label in self.stampedImage.labels)
@@ -346,11 +354,11 @@
         
         // Only add labels that contain text
         if (![newLabel.text isEqualToString:@""])
-            [self.parentView addSubview:newLabel];
+            [self.labelContainerView addSubview:newLabel];
     }
     
     [self alignViews];
-    [self.parentView setNeedsDisplay];
+    [self.labelContainerView setNeedsDisplay];
 }
 
 - (void)setThumbFromImage:(UIImage *)image
@@ -362,10 +370,10 @@
 
 - (void)alignViews
 {
-    NSAssert(self.parentView.image, nil);
+    NSAssert(self.originalImage.image, nil);
     // Set the imageview frame to be the same size as the image
-    [self.parentView setFrame:[UIImage frameForImage:self.parentView.image inViewAspectFit:self.scrollView]];
-    self.parentView.center = self.scrollView.center; // center on screen
+    [self.labelContainerView setFrame:[UIImage frameForImage:self.originalImage.image inViewAspectFit:self.scrollView]];
+    self.labelContainerView.center = self.scrollView.center; // center on screen
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -419,13 +427,13 @@
 
 -(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-    // Reset parent view before auto rotation to shrink it later
-    self.parentView.frame = self.parentView.superview.frame;
+    // Reset labelContainerView before auto rotation to shrink it later
+    self.labelContainerView.frame = self.labelContainerView.superview.frame;
 }
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-    // Shrink parent view to fit image
+    // Shrink labelContainerView to fit image
     [self alignViews];
 }
 
@@ -443,14 +451,14 @@
 {
     if ([[segue identifier] isEqualToString:@"pick font"])
     {
-        NSAssert(self.parentView.image, nil);
+        NSAssert(self.imageToStamp, nil);
         
         UINavigationController *nc = (UINavigationController *)[segue destinationViewController];
         StylePickerCollectionViewController *stylePicker = nc.viewControllers[0];
         stylePicker.delegate = self;
         
         // Set the properties for rending the font nicely
-        stylePicker.curImage = [UIImage modifyImage:self.parentView.image toFillRectWithWidth:STYLE_PICKER_CELL_IMAGE_WIDTH andHeight:STYLE_PICKER_CELL_IMAGE_HEIGHT];
+        stylePicker.curImage = [[UIImage modifyImage:self.imageToStamp toFillRectWithWidth:STYLE_PICKER_CELL_IMAGE_WIDTH andHeight:STYLE_PICKER_CELL_IMAGE_HEIGHT] getCenterOfImageWithWidth:STYLE_PICKER_CELL_IMAGE_WIDTH andHeight:STYLE_PICKER_CELL_IMAGE_HEIGHT];;
         stylePicker.curColor = self.stampedImage.color;
     }
 }
@@ -508,7 +516,7 @@
     {
         needsNewThumbRendering = YES;
         self.stampedImage.font = font;
-        [self.parentView setLabelFonts];
+        [self.labelContainerView setLabelFonts];
     }
     
     [self dismissViewControllerAnimated:YES completion:nil];

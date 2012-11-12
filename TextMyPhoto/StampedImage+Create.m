@@ -64,10 +64,7 @@
         self.dateModified = [NSDate date];
     }
     else
-    {
-        NSLog(@"Error! Handle this");
-        NSAssert(NO,nil);
-    }
+        NSLog(@"Error when fetching from db in updateLabel:()");
 }
 
 // Convenience method to fetch the array of objects for a given Entity

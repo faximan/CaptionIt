@@ -103,12 +103,10 @@
 - (void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
-    [self.image drawInRect:rect];
     
     if (self.inverseMode)
     {
         UIColor *curColor = [self.delegate colorForStampedImage];
-        // FIXME: This might be very heavy on the device. IS IT?
         
         // Create mask and draw every label in the mask with font
         CGImageRef mask = [self createMaskWithSize:rect.size shape:^{

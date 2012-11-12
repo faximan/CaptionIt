@@ -260,7 +260,6 @@ static const CGFloat BOARDER_WIDTH = 3.5f;
 -(BOOL)saveDatabase
 {
     NSAssert(self.previousDatabase, nil);
-    NSLog(@"%d", [self numProjectsInDatabase]);
     return [self.previousDatabase.managedObjectContext save:nil];
 }
 
