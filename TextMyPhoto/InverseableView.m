@@ -7,6 +7,7 @@
 //
 
 #import "InverseableView.h"
+#import "CustomLabel.h"
 
 #define OPAQUE 1.0f
 #define FADE 0.5f
@@ -14,6 +15,7 @@
 @implementation InverseableView
 {
     BOOL _inverseMode;
+    CustomLabel *labelBeingPinched;
 }
 
 #pragma mark-
@@ -78,16 +80,46 @@
     [self setNeedsDisplay];
 }
 
-- (id)initWithFrame:(CGRect)frame
+-(IBAction)didPinchInverseableView:(UIPinchGestureRecognizer *)sender
 {
-    self = [super initWithFrame:frame];
-    if (self)
+    if ([sender state] == UIGestureRecognizerStateBegan)
     {
-        self.inverseMode = NO;
-        [self setLabelColors];
+        CGPoint touch = [sender locationInView:self];
+        for (CustomLabel *label in self.subviews)
+            if ([label pointInside:[self convertPoint:touch toView:label] withEvent:nil])
+                labelBeingPinched = label;
     }
-    return self;
+    else if ([sender state] == UIGestureRecognizerStateChanged)
+    {
+        if (!labelBeingPinched) // no label was pinched
+            return;
+        
+       CGFloat newFontSize = labelBeingPinched.font.pointSize * sender.scale;
+        
+        // Do not make the font too small.
+        if (newFontSize >= CUSTOM_LABEL_MIN_FONT_SIZE &&
+            newFontSize <= CUSTOM_LABEL_MAX_FONT_SIZE)
+        {
+            // Resize around center of label
+            CGPoint oldCenter = labelBeingPinched.center;
+            // Calculate new frame and font size
+            labelBeingPinched.font = [UIFont fontWithName:labelBeingPinched.font.fontName size:newFontSize];
+            labelBeingPinched.center = oldCenter;
+            
+            // Tell the delagate that we are being resized
+            if ([labelBeingPinched.delegate respondsToSelector:@selector(customLabelIsChangingSizeOrPosition:)])
+                [((id<CustomLabelDelegate>)labelBeingPinched.delegate) customLabelIsChangingSizeOrPosition:labelBeingPinched];
+        }
+    }
+    else if ([sender state] == UIGestureRecognizerStateEnded)
+    {
+        // Tell the delagate that we have been resized
+        if ([labelBeingPinched.delegate respondsToSelector:@selector(customLabeldidChangeSizeOrPosition:)])
+            [((id<CustomLabelDelegate>)labelBeingPinched.delegate) customLabeldidChangeSizeOrPosition:labelBeingPinched];
+    }
+    [sender setScale:1.0f];
 }
+
 - (UIImage*)squareOfSize:(CGSize)size withColor:(UIColor *)color
 {
     UIGraphicsBeginImageContextWithOptions(size, NO, 0);
