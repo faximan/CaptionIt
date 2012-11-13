@@ -27,6 +27,12 @@ static const CGFloat CELL_WIDTH = 310.0f;
     [self.collectionView reloadData];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.collectionView reloadData];
+}
+
 -(IBAction)editButtonPressed:(id)sender
 {
     UIBarButtonItem *editButton = (UIBarButtonItem *)sender;

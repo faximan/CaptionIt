@@ -321,11 +321,19 @@
 
 -(void)setUpTheImageWhenURLIsSet
 {
-    NSAssert(self.imageToStamp, nil);
+    if (!self.imageToStamp) // image not found in library
+    {
+        // It is no longer any need to keep this object around
+        [self.database.managedObjectContext deleteObject:self.stampedImage];
+        [self.database.managedObjectContext save:nil];
+        [self showAlertWithTitle:@"Error" andMessage:@"This picture does no longer exist in the photo library on your device."];
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+    
     if (!self.stampedImage) // create the database entry
     {
         self.stampedImage = [StampedImage createStampedImageWithImageURL:self.imageToStampURL inManagedObjectContext:self.database.managedObjectContext];
-       
     }
     
     // Generate thumb if there is none since before

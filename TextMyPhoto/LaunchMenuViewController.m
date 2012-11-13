@@ -154,10 +154,10 @@ static const CGFloat BOARDER_WIDTH = 3.5f;
             NSAssert(self.pickedImage, nil);
             vc.imageToStamp = self.pickedImage;
             vc.imageToStampURL = self.pickedImageURL;
-            vc.database = self.previousDatabase;
         }
         else
             vc.stampedImage = self.stampedImage;
+        vc.database = self.previousDatabase;
     }
     if ([[segue identifier] isEqualToString:@"previous"])
     {
@@ -241,8 +241,13 @@ static const CGFloat BOARDER_WIDTH = 3.5f;
     request.sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
     
     NSError *error = nil;
-    NSUInteger numProjects = [self.previousDatabase.managedObjectContext countForFetchRequest:request error:&error];
-    return (error) ? 0 : numProjects;
+    NSArray *projects = [self.previousDatabase.managedObjectContext executeFetchRequest:request error:&error];
+    int projCnt = 0;
+    for (StampedImage *si in projects)
+        if (![si isDeleted]) // deleted projects are no longer valid
+            projCnt++;
+    
+    return (error) ? 0 : projCnt;
 }
 
 -(void)loadDatabase
