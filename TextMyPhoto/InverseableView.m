@@ -12,6 +12,8 @@
 #define OPAQUE 1.0f
 #define FADE 0.5f
 
+#define SCALE_DOWN_FACTOR 3.0f // scale down to improve performance
+
 @implementation InverseableView
 {
     BOOL _inverseMode;
@@ -126,7 +128,6 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     [color setFill];
     
-    // DEBUG
     if (self.shouldFade)
         CGContextSetAlpha(context, FADE);
     else
@@ -160,10 +161,11 @@
     
     if (self.inverseMode)
     {
+        // Create mask and draw every label in the mask with font
+        
         UIColor *curColor = [self.delegate colorForStampedImage];
         
-        // Create mask and draw every label in the mask with font
-        CGImageRef mask = [self createMaskWithSize:rect.size shape:^{
+        CGImageRef mask = [self createMaskWithSize:CGSizeMake(rect.size.width/SCALE_DOWN_FACTOR, rect.size.height/SCALE_DOWN_FACTOR) shape:^{
             [[UIColor blackColor] setFill];
             CGContextFillRect(UIGraphicsGetCurrentContext(), rect);
             [[UIColor whiteColor] setFill];
@@ -171,14 +173,14 @@
             for (UITextView *textView in self.subviews)
             {
                 NSString *text = textView.text;
-                UIFont *font = textView.font;
-                CGPoint origin = textView.frame.origin;
+                UIFont *font = [UIFont fontWithName:textView.font.fontName size:textView.font.pointSize/SCALE_DOWN_FACTOR];
+                CGPoint origin = CGPointMake(textView.frame.origin.x/SCALE_DOWN_FACTOR, textView.frame.origin.y/SCALE_DOWN_FACTOR);
                 [text drawAtPoint:origin withFont:font];
             }}];
         
-        CGImageRef cutoutRef = CGImageCreateWithMask([self squareOfSize:rect.size withColor:curColor].CGImage, mask);
+        CGImageRef cutoutRef = CGImageCreateWithMask([self squareOfSize:CGSizeMake(rect.size.width/SCALE_DOWN_FACTOR, rect.size.height/SCALE_DOWN_FACTOR) withColor:curColor].CGImage, mask);
         CGImageRelease(mask);
-        UIImage *cutout = [UIImage imageWithCGImage:cutoutRef scale:[[UIScreen mainScreen] scale] orientation:UIImageOrientationUp];
+        UIImage* cutout = [UIImage imageWithCGImage:cutoutRef scale:[UIScreen mainScreen].scale orientation:UIImageOrientationUp];
         CGImageRelease(cutoutRef);
         [cutout drawInRect:rect];
     }
