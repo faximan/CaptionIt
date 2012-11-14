@@ -247,7 +247,7 @@ static const CGFloat BOARDER_WIDTH = 3.5f;
         if (![si isDeleted]) // deleted projects are no longer valid
             projCnt++;
     
-    return (error) ? 0 : projCnt;
+    return (error) ? 0 : projCnt; // fetch error zeros num projects
 }
 
 -(void)loadDatabase

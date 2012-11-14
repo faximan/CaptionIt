@@ -22,6 +22,7 @@
 
 @property (nonatomic, weak) IBOutlet UIToolbar *toolbar;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *shareButton;
+@property (nonatomic, weak) IBOutlet UIImageView *tapToAddLabelNotificationImage;
 
 @end
 
@@ -146,6 +147,7 @@
         newLabel.delegate = self;
         
         [self.labelContainerView addSubview:newLabel];
+        newLabel.returnKeyType = UIReturnKeyDone;
         [newLabel becomeFirstResponder];
     }
 }
@@ -325,7 +327,6 @@
     {
         // It is no longer any need to keep this object around
         [self.database.managedObjectContext deleteObject:self.stampedImage];
-        [self.database.managedObjectContext save:nil];
         [self showAlertWithTitle:@"Error" andMessage:@"This picture does no longer exist in the photo library on your device."];
         [self.navigationController popViewControllerAnimated:YES];
         return;
@@ -369,12 +370,34 @@
                 andSize:[label.fontSize floatValue]
                 andTag:[label.nbr integerValue]];
             newLabel.delegate = self;
+            newLabel.returnKeyType = UIReturnKeyDone;
             [self.labelContainerView addSubview:newLabel];
         }
     }
     
     [self alignViews];
+    
+    [self showHelperToAddCaption];
     [self.labelContainerView setNeedsDisplay];
+}
+
+-(void)showHelperToAddCaption
+{
+    // Animate fade in and out of helper view
+    [UIView animateWithDuration:0.5f delay:0.5f options:UIViewAnimationOptionTransitionCrossDissolve
+                     animations:^{
+                         self.tapToAddLabelNotificationImage.alpha = 1.0;
+                     }
+                     completion:^(BOOL finished) {
+                         // Do some stuff
+                         [UIView animateWithDuration:0.5f delay:2.0f options:UIViewAnimationOptionTransitionCrossDissolve
+                                          animations:^{
+                                              self.tapToAddLabelNotificationImage.alpha = 0.0;
+                                          }
+                                          completion:nil
+                          ];
+                     }
+     ];
 }
 
 - (void)setThumbFromImage:(UIImage *)image
@@ -397,6 +420,7 @@
     [super viewWillAppear:animated];
     [self registerForKeyboardNotifications];
     inTextAddMode = NO;
+    self.tapToAddLabelNotificationImage.alpha = 0.0f; // hidden by default
 }
 
 -(void)viewWillDisappear:(BOOL)animated

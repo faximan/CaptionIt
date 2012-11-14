@@ -140,6 +140,10 @@
                                 <rect key="frame" x="141" y="190" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="tapToAddCaptionHelper.png" id="7cd-FD-oTS" userLabel="Helper to add caption view">
+                                <rect key="frame" x="40" y="189" width="240" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -157,11 +161,12 @@
                         <outlet property="scrollView" destination="eZZ-XU-nPf" id="fYf-uV-Pfl"/>
                         <outlet property="shareButton" destination="N7K-jg-Wph" id="60M-Yn-3vI"/>
                         <outlet property="spinner" destination="2c7-DA-iZ2" id="gPG-wu-O5o"/>
+                        <outlet property="tapToAddLabelNotificationImage" destination="7cd-FD-oTS" id="yO3-Zx-Vmy"/>
                         <outlet property="toolbar" destination="C1B-U6-582" id="1Op-CU-jYR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cDA-Me-df1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="5yl-FM-uU3" userLabel="Add label Gesture Recognizer">
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.20000000000000004" id="5yl-FM-uU3" userLabel="Add label Gesture Recognizer">
                     <connections>
                         <action selector="addLabel:" destination="ddt-II-aHa" id="21D-Cn-mh5"/>
                     </connections>
@@ -511,6 +516,7 @@
         <image name="delete.png" width="110" height="110"/>
         <image name="launch_button_highlight.png" width="200" height="200"/>
         <image name="orange_fabric.png" width="640" height="960"/>
+        <image name="tapToAddCaptionHelper.png" width="480" height="72"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

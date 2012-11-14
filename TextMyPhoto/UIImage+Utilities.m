@@ -14,8 +14,8 @@
 
 + (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize
 {
-    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
-    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0f);
+    [image drawInRect:CGRectMake(0.0f, 0.0f, newSize.width, newSize.height)];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return newImage;
@@ -26,8 +26,9 @@
     CGFloat newOriginX = (self.size.width - width) / 2.0f;
     CGFloat newOriginY = (self.size.height - height) / 2.0f;
     
-    CGImageRef imageRef = CGImageCreateWithImageInRect([self CGImage], CGRectMake(newOriginX, newOriginY, width, height));
-    return [UIImage imageWithCGImage:imageRef];
+    CGImageRef imageRef = CGImageCreateWithImageInRect([self CGImage], CGRectMake(newOriginX*self.scale, newOriginY*self.scale, width*self.scale, height*self.scale));
+    
+    return [UIImage imageWithCGImage:imageRef scale:self.scale orientation:self.imageOrientation];
 }
 
 +(CGRect)frameForImage:(UIImage*)image inViewAspectFit:(UIView*)imageView

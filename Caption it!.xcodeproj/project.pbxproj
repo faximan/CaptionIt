@@ -17,13 +17,11 @@
 		DE3130EC1640C0B80095B75A /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = DE3130EB1640C0B80095B75A /* delete.png */; };
 		DE3130EF1640D29C0095B75A /* StylePickerCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE3130EE1640D29C0095B75A /* StylePickerCollectionViewController.m */; };
 		DE49C98A164FBD7800C25929 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE49C989164FBD7800C25929 /* AssetsLibrary.framework */; };
-		DE5023D4162E709C00F3E506 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5023D3162E709C00F3E506 /* CoreDataTableViewController.m */; };
 		DE5023D6162E70B700F3E506 /* license.txt in Resources */ = {isa = PBXBuildFile; fileRef = DE5023D5162E70B700F3E506 /* license.txt */; };
 		DE5023D9162E70CC00F3E506 /* BrightnessWheel.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5023D7162E70CC00F3E506 /* BrightnessWheel.png */; };
 		DE5023DA162E70CC00F3E506 /* ColorWheel.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5023D8162E70CC00F3E506 /* ColorWheel.png */; };
 		DE5023E0162E70E800F3E506 /* launch_button_highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5023DB162E70E800F3E506 /* launch_button_highlight.png */; };
-		DE5023E7162E7C5900F3E506 /* GenericPictureTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5023E6162E7C5900F3E506 /* GenericPictureTableViewController.m */; };
-		DE5023EB162E839100F3E506 /* FontPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5023EA162E839100F3E506 /* FontPickerTableViewController.m */; };
+		DE604E661653500800F8952B /* tapToAddCaptionHelper.png in Resources */ = {isa = PBXBuildFile; fileRef = DE604E651653500800F8952B /* tapToAddCaptionHelper.png */; };
 		DE6E062E163681D700616ADA /* InverseableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE6E062D163681D700616ADA /* InverseableView.m */; };
 		DEA33C72162A938800DBFB35 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA33C71162A938800DBFB35 /* QuartzCore.framework */; };
 		DEA33C77162B926600DBFB35 /* TextMyPhoto.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DEA33C75162B926600DBFB35 /* TextMyPhoto.xcdatamodeld */; };
@@ -51,8 +49,6 @@
 		DEF61DF6161F415200582C33 /* MyNavigationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF61DF5161F415200582C33 /* MyNavigationControllerViewController.m */; };
 		DEF9B0F91634E97F006EBD7F /* CustomLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF9B0F81634E97F006EBD7F /* CustomLabel.m */; };
 		DEF9B1071635AB61006EBD7F /* Label.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF9B1061635AB61006EBD7F /* Label.m */; };
-		DEFB03791627EC7A00DD1D85 /* PreviousTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFB03781627EC7A00DD1D85 /* PreviousTableViewController.m */; };
-		DEFB037C1627FF4800DD1D85 /* GenericTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFB037B1627FF4800DD1D85 /* GenericTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,16 +67,11 @@
 		DE3130ED1640D29C0095B75A /* StylePickerCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StylePickerCollectionViewController.h; path = TextMyPhoto/StylePickerCollectionViewController.h; sourceTree = "<group>"; };
 		DE3130EE1640D29C0095B75A /* StylePickerCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StylePickerCollectionViewController.m; path = TextMyPhoto/StylePickerCollectionViewController.m; sourceTree = "<group>"; };
 		DE49C989164FBD7800C25929 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
-		DE5023D2162E709C00F3E506 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreDataTableViewController.h; path = TextMyPhoto/CoreDataTableViewController.h; sourceTree = "<group>"; };
-		DE5023D3162E709C00F3E506 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreDataTableViewController.m; path = TextMyPhoto/CoreDataTableViewController.m; sourceTree = "<group>"; };
 		DE5023D5162E70B700F3E506 /* license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = license.txt; path = TextMyPhoto/license.txt; sourceTree = "<group>"; };
 		DE5023D7162E70CC00F3E506 /* BrightnessWheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BrightnessWheel.png; path = TextMyPhoto/Resources/BrightnessWheel.png; sourceTree = "<group>"; };
 		DE5023D8162E70CC00F3E506 /* ColorWheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ColorWheel.png; path = TextMyPhoto/Resources/ColorWheel.png; sourceTree = "<group>"; };
 		DE5023DB162E70E800F3E506 /* launch_button_highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launch_button_highlight.png; path = TextMyPhoto/Resources/launch_button_highlight.png; sourceTree = "<group>"; };
-		DE5023E5162E7C5800F3E506 /* GenericPictureTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenericPictureTableViewController.h; path = TextMyPhoto/GenericPictureTableViewController.h; sourceTree = "<group>"; };
-		DE5023E6162E7C5900F3E506 /* GenericPictureTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GenericPictureTableViewController.m; path = TextMyPhoto/GenericPictureTableViewController.m; sourceTree = "<group>"; };
-		DE5023E9162E839100F3E506 /* FontPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FontPickerTableViewController.h; path = TextMyPhoto/FontPickerTableViewController.h; sourceTree = "<group>"; };
-		DE5023EA162E839100F3E506 /* FontPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FontPickerTableViewController.m; path = TextMyPhoto/FontPickerTableViewController.m; sourceTree = "<group>"; };
+		DE604E651653500800F8952B /* tapToAddCaptionHelper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tapToAddCaptionHelper.png; path = TextMyPhoto/Resources/tapToAddCaptionHelper.png; sourceTree = "<group>"; };
 		DE6E062C163681D700616ADA /* InverseableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InverseableView.h; sourceTree = "<group>"; };
 		DE6E062D163681D700616ADA /* InverseableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InverseableView.m; sourceTree = "<group>"; };
 		DEA33C71162A938800DBFB35 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -128,10 +119,6 @@
 		DEF9B0F81634E97F006EBD7F /* CustomLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLabel.m; sourceTree = "<group>"; };
 		DEF9B1051635AB61006EBD7F /* Label.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Label.h; path = TextMyPhoto/Label.h; sourceTree = "<group>"; };
 		DEF9B1061635AB61006EBD7F /* Label.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Label.m; path = TextMyPhoto/Label.m; sourceTree = "<group>"; };
-		DEFB03771627EC7A00DD1D85 /* PreviousTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreviousTableViewController.h; path = TextMyPhoto/PreviousTableViewController.h; sourceTree = "<group>"; };
-		DEFB03781627EC7A00DD1D85 /* PreviousTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreviousTableViewController.m; path = TextMyPhoto/PreviousTableViewController.m; sourceTree = "<group>"; };
-		DEFB037A1627FF4800DD1D85 /* GenericTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenericTableViewCell.h; path = TextMyPhoto/GenericTableViewCell.h; sourceTree = "<group>"; };
-		DEFB037B1627FF4800DD1D85 /* GenericTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GenericTableViewCell.m; path = TextMyPhoto/GenericTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,23 +179,6 @@
 			name = MNColorPicker;
 			sourceTree = "<group>";
 		};
-		DE5023E8162E832900F3E506 /* TableViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				DE5023D2162E709C00F3E506 /* CoreDataTableViewController.h */,
-				DE5023D3162E709C00F3E506 /* CoreDataTableViewController.m */,
-				DE5023E5162E7C5800F3E506 /* GenericPictureTableViewController.h */,
-				DE5023E6162E7C5900F3E506 /* GenericPictureTableViewController.m */,
-				DEFB03771627EC7A00DD1D85 /* PreviousTableViewController.h */,
-				DEFB03781627EC7A00DD1D85 /* PreviousTableViewController.m */,
-				DEFB037A1627FF4800DD1D85 /* GenericTableViewCell.h */,
-				DEFB037B1627FF4800DD1D85 /* GenericTableViewCell.m */,
-				DE5023E9162E839100F3E506 /* FontPickerTableViewController.h */,
-				DE5023EA162E839100F3E506 /* FontPickerTableViewController.m */,
-			);
-			name = TableViewControllers;
-			sourceTree = "<group>";
-		};
 		DEA33C74162B921400DBFB35 /* Database */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,6 +196,7 @@
 		DED062FF161EB85100FD976D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DE604E651653500800F8952B /* tapToAddCaptionHelper.png */,
 				DE3130EB1640C0B80095B75A /* delete.png */,
 				DE3130D8164014990095B75A /* orange_fabric.png */,
 				DE5023DB162E70E800F3E506 /* launch_button_highlight.png */,
@@ -242,7 +213,6 @@
 				DED062FF161EB85100FD976D /* Resources */,
 				DEF61DEA161F22B100582C33 /* Storyboards */,
 				DE4D995B1626B5AC00936EBE /* MNColorPicker */,
-				DE5023E8162E832900F3E506 /* TableViewControllers */,
 				DE3130E116401CE60095B75A /* CollectionViewController */,
 				DEA33C74162B921400DBFB35 /* Database */,
 				DEED1B9815EFA2A6004E33F3 /* Stamp It! */,
@@ -377,6 +347,7 @@
 				DE3130DB164017740095B75A /* Default.png in Resources */,
 				DE3130DD164017770095B75A /* Default@2x.png in Resources */,
 				DE3130EC1640C0B80095B75A /* delete.png in Resources */,
+				DE604E661653500800F8952B /* tapToAddCaptionHelper.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,8 +362,6 @@
 				DEED1BA315EFA2A6004E33F3 /* AppDelegate.m in Sources */,
 				DED06307161EBCB000FD976D /* LaunchMenuViewController.m in Sources */,
 				DEF61DF6161F415200582C33 /* MyNavigationControllerViewController.m in Sources */,
-				DEFB03791627EC7A00DD1D85 /* PreviousTableViewController.m in Sources */,
-				DEFB037C1627FF4800DD1D85 /* GenericTableViewCell.m in Sources */,
 				DEA991E116295AF000F0F07E /* UIImage+Utilities.m in Sources */,
 				DEA33C77162B926600DBFB35 /* TextMyPhoto.xcdatamodeld in Sources */,
 				DEA33C7C162B92B400DBFB35 /* EditViewController.m in Sources */,
@@ -404,9 +373,6 @@
 				DEA33C91162B92E600DBFB35 /* MNMobileFunctions.m in Sources */,
 				DEA33C92162B92E600DBFB35 /* UIColor+ColorSpaces.m in Sources */,
 				DEA33CA4162B9EE900DBFB35 /* StampedImage+Create.m in Sources */,
-				DE5023D4162E709C00F3E506 /* CoreDataTableViewController.m in Sources */,
-				DE5023E7162E7C5900F3E506 /* GenericPictureTableViewController.m in Sources */,
-				DE5023EB162E839100F3E506 /* FontPickerTableViewController.m in Sources */,
 				DEF9B0F91634E97F006EBD7F /* CustomLabel.m in Sources */,
 				DEF9B1071635AB61006EBD7F /* Label.m in Sources */,
 				DE6E062E163681D700616ADA /* InverseableView.m in Sources */,
