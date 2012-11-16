@@ -12,6 +12,7 @@
 #import "PreviousCollectionViewController.h"
 #import "StylePickerCollectionViewController.h"
 #import "UIImage+Utilities.h"
+#import "LoadingView.h"
 
 @interface EditViewController ()
 
@@ -22,6 +23,7 @@
 
 @property (nonatomic, weak) IBOutlet UIToolbar *toolbar;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *shareButton;
+@property (nonatomic, weak) IBOutlet LoadingView *loadingView;
 @property (nonatomic, weak) IBOutlet UIImageView *tapToAddLabelNotificationImage;
 
 @end
@@ -51,6 +53,7 @@
 // Takes the current addons to the image and renders it to a bitmap
 - (UIImage *)renderCurrentImage
 {
+    self.loadingView.hidden = NO;
     NSAssert(self.imageToStamp, nil);
     
     float scaleFactor = self.imageToStamp.size.width / self.labelContainerView.frame.size.width;
@@ -84,6 +87,10 @@
     [self.originalImage.layer renderInContext:context];
     [self.labelContainerView.layer renderInContext:context];
     
+    // Convert to UIImage
+    UIImage *bitmap = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
     // Move back the labels and resize them
     for (UITextView *curLabel in self.labelContainerView.subviews)
     {
@@ -97,17 +104,13 @@
     self.labelContainerView.frame = oldLabelViewFrame;
     self.originalImage.frame = oldImageViewFrame;
     
-    // Convert to UIImage
-    UIImage *bitmap = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-   
+    self.loadingView.hidden = YES;
     return bitmap;
 }
 
 -(IBAction)shareButtonPressed:(id)sender
 {
     NSAssert(self.stampedImage, nil);
-    
     // Remove keyboard if in edit mode
     [self resignFirstResponder];
     
@@ -115,18 +118,18 @@
     if (!renderedImage) // Error when rendering
     {
         [self showAlertWithTitle:@"Error" andMessage:@"Your image could not be prepared for sharing."];
-        return;
+    }
+    else
+    {
+        // Pull up a list of places to share this photo to.
+        NSArray* dataToShare = @[renderedImage];
+        UIActivityViewController* activityViewController =
+        [[UIActivityViewController alloc] initWithActivityItems:dataToShare
+                                          applicationActivities:nil];
+        [self presentViewController:activityViewController animated:YES completion:nil];
     }
     
-    // Pull up a list of places to share this photo to.
-    NSArray* dataToShare = @[renderedImage];
-    UIActivityViewController* activityViewController =
-    [[UIActivityViewController alloc] initWithActivityItems:dataToShare
-                                      applicationActivities:nil];
-    [self presentViewController:activityViewController animated:YES completion:nil];
-    
-    // Set thumb as well
-    //[self setThumbFromImage:renderedImage];
+    [self setThumb];
 }
 
 #pragma mark -
@@ -289,7 +292,7 @@
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     
     // The stamped image has not been created yet
-    [self.spinner startAnimating];
+    self.loadingView.hidden = NO;
     [self setToolbarVisible:NO];
     self.navigationItem.rightBarButtonItem = nil;
     
@@ -298,7 +301,7 @@
 
 -(void)loadImageToBeCaptioned
 {
-    dispatch_async(dispatch_queue_create("backgroundQueue", NULL),^{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
         if (!self.stampedImage) // A new project is being created
         {
             NSAssert(self.imageToStamp && self.database, nil);
@@ -316,33 +319,50 @@
             if (!self.imageToStamp)
                 self.imageToStamp = [UIImage getImageFromAssetURL:[NSURL URLWithString:self.stampedImage.originalImageURL]];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self setUpTheImageWhenURLIsSet];});
+                if (!self.imageToStamp) // image not found in library
+                    [self deleteProjectSinceImageWasNotFound];
+                else
+                    [self setUpTheImageWhenURLIsSet];});
         }
     });
 }
 
+-(void)deleteProjectSinceImageWasNotFound
+{
+    // It is no longer any need to keep this object around
+    [self.database.managedObjectContext deleteObject:self.stampedImage];
+    [self showAlertWithTitle:@"Error" andMessage:@"This picture does no longer exist in the photo library on your device."];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 -(void)setUpTheImageWhenURLIsSet
 {
-    if (!self.imageToStamp) // image not found in library
-    {
-        // It is no longer any need to keep this object around
-        [self.database.managedObjectContext deleteObject:self.stampedImage];
-        [self showAlertWithTitle:@"Error" andMessage:@"This picture does no longer exist in the photo library on your device."];
-        [self.navigationController popViewControllerAnimated:YES];
-        return;
-    }
+    NSAssert(self.imageToStamp, nil);
     
     if (!self.stampedImage) // create the database entry
     {
         self.stampedImage = [StampedImage createStampedImageWithImageURL:self.imageToStampURL inManagedObjectContext:self.database.managedObjectContext];
     }
     
-    // Generate thumb if there is none since before
-    if (!self.stampedImage.thumbImage)
-        dispatch_async(dispatch_queue_create("backgroundQueue", NULL),^{[self setThumbFromImage:self.imageToStamp];});
-    
-    // Set up the view on the main thread
-    [self setUpViewWithStampedImage];
+    // Scale down image if it is too big (on background thread)
+    // and set up the view when finished
+    CGFloat widthScale = self.imageToStamp.size.width / MAX_ORIGINAL_IMAGE_WIDTH_FOR_RENDERING;
+    CGFloat heightScale = self.imageToStamp.size.height / MAX_ORIGINAL_IMAGE_HEIGHT_FOR_RENDERING;
+    if (widthScale > 1.0f || heightScale > 1.0f)
+    {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
+            if (widthScale > heightScale)
+            {
+                self.imageToStamp = [UIImage imageWithImage:self.imageToStamp scaledToSize:CGSizeMake(MAX_ORIGINAL_IMAGE_WIDTH_FOR_RENDERING, self.imageToStamp.size.height / widthScale)];
+            }else{
+                self.imageToStamp = [UIImage imageWithImage:self.imageToStamp scaledToSize:CGSizeMake(self.imageToStamp.size.width / heightScale, MAX_ORIGINAL_IMAGE_HEIGHT_FOR_RENDERING)];
+            }
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 [self setUpViewWithStampedImage];});
+        });
+    }
+    else
+        [self setUpViewWithStampedImage];
 }
 
 -(void)setUpViewWithStampedImage
@@ -350,7 +370,7 @@
     NSAssert(self.stampedImage && self.imageToStamp, nil);
     
     // Remove "waiting" UI elements
-    [self.spinner stopAnimating];
+    self.loadingView.hidden = YES;
     [self setToolbarVisible:YES];
     self.navigationItem.rightBarButtonItem = self.shareButton;
     
@@ -379,6 +399,10 @@
     
     [self showHelperToAddCaption];
     [self.labelContainerView setNeedsDisplay];
+    
+    // Generate thumb if there is none since before
+    if (!self.stampedImage.thumbImage)
+        [self setThumb];
 }
 
 -(void)showHelperToAddCaption
@@ -400,18 +424,35 @@
      ];
 }
 
-- (void)setThumbFromImage:(UIImage *)image
+- (void)setThumb
 {
-    CGSize thumbSize = [PreviousCollectionViewController cellImageSizeForImage:image];
-    [self.stampedImage setUIImageThumbImage:[UIImage modifyImage:image toFillRectWithWidth:thumbSize.width andHeight:thumbSize.height]];
-    needsNewThumbRendering = NO;
+    NSAssert(self.originalImage, nil);
+    
+    if (needsNewThumbRendering)
+    {
+        // Render the image in the background
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            UIGraphicsBeginImageContextWithOptions(self.originalImage.frame.size, YES, 0.0f);
+            CGContextRef context = UIGraphicsGetCurrentContext();
+            [self.originalImage.layer renderInContext:context];
+            [self.labelContainerView.layer renderInContext:context];
+            UIImage *thumb = UIGraphicsGetImageFromCurrentImageContext();
+            
+            CGSize thumbSize = [PreviousCollectionViewController cellImageSizeForImageSize:self.originalImage.frame.size];
+            [self.stampedImage setUIImageThumbImage:[UIImage imageWithImage:thumb scaledToSize:thumbSize]];
+        });
+        needsNewThumbRendering = NO;
+    }
 }
 
 - (void)alignViews
 {
     NSAssert(self.originalImage.image, nil);
     // Set the imageview frame to be the same size as the image
-    [self.labelContainerView setFrame:[UIImage frameForImage:self.originalImage.image inViewAspectFit:self.scrollView]];
+    [self.originalImage setFrame:[UIImage frameForImage:self.originalImage.image inViewAspectFit:self.scrollView]];
+    [self.labelContainerView setFrame:self.originalImage.frame];
+    self.originalImage.center = self.scrollView.center;
     self.labelContainerView.center = self.scrollView.center; // center on screen
 }
 
@@ -429,12 +470,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [self resignFirstResponder];
-    
-    
-    // TODO: When should be render a new thumb?
-    // Update thumbImage of current stamped image
-   // if (self.stampedImage && self.imageToStamp && needsNewThumbRendering)
-  //      [self setThumbFromImage:[self renderCurrentImage]];
+    [self setThumb];
 }
 
 - (void)setToolbarVisible:(BOOL)show

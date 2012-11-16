@@ -19,7 +19,7 @@
 -(IBAction)editButtonPressed:(id)sender;
 -(IBAction)deleteButtonPressed:(id)sender;
 
-+(CGSize)cellImageSizeForImage:(UIImage *)image;
++(CGSize)cellImageSizeForImageSize:(CGSize)imageSize;
 
 @end
 

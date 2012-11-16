@@ -63,9 +63,9 @@ static const CGFloat CELL_WIDTH = 310.0f;
     [self.previousDatabase.managedObjectContext deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
 }
 
-+(CGSize)cellImageSizeForImage:(UIImage *)image
++(CGSize)cellImageSizeForImageSize:(CGSize)imageSize
 {
-    return CGSizeMake(PREVIOUS_THUMB_WIDTH, image.size.height * (PREVIOUS_THUMB_WIDTH / image.size.width));
+    return CGSizeMake(PREVIOUS_THUMB_WIDTH, imageSize.height * (PREVIOUS_THUMB_WIDTH / imageSize.width));
 }
 
 #pragma mark - Collection view data source

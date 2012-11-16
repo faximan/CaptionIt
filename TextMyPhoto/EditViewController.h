@@ -24,6 +24,4 @@
 @property (nonatomic, strong) UIImage *colorPreviewImage;
 @property (nonatomic, strong) NSURL *imageToStampURL;
 
-@property (nonatomic, weak) IBOutlet UIActivityIndicatorView* spinner;
-
 @end

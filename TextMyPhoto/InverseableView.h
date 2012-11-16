@@ -10,7 +10,7 @@
 
 @protocol InversableViewDelegate;
 
-@interface InverseableView : UIView
+@interface InverseableView : UIView <NSCopying>
 
 @property (nonatomic) BOOL inverseMode;
 @property (nonatomic) BOOL shouldFade;

@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+#define MAX_ORIGINAL_IMAGE_WIDTH_FOR_RENDERING 800
+#define MAX_ORIGINAL_IMAGE_HEIGHT_FOR_RENDERING 800
+
 @class Label;
 
 @interface StampedImage : NSManagedObject

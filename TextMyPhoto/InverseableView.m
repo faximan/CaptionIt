@@ -20,6 +20,14 @@
     CustomLabel *labelBeingPinched;
 }
 
+-(id)copyWithZone:(NSZone *)zone
+{
+    InverseableView *copy = [[InverseableView allocWithZone:zone] initWithFrame:self.frame];
+    copy.inverseMode = self.inverseMode;
+    copy.shouldFade = self.shouldFade;
+    return copy;
+}
+
 #pragma mark-
 #pragma mark properties
 -(BOOL)inverseMode

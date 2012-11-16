@@ -19,8 +19,8 @@
 {
     if (self = [super initWithFrame:frame])
     {
-		_colorWheelImage = [UIImage imageNamed:@"ColorWheel.png"].CGImage;
-		_brightnessImage = [UIImage imageNamed:@"BrightnessWheel.png"].CGImage;
+		_colorWheelImage = [UIImage imageNamed:@"ColorWheel.png"];
+		_brightnessImage = [UIImage imageNamed:@"BrightnessWheel.png"];
 		
 		_magnifyingView = [[MNMagnifyingView alloc] initWithFrame:CGRectMake(0,0,15,15)];
 		[self addSubview:_magnifyingView];
@@ -41,9 +41,11 @@
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextDrawImage(context, rect, _colorWheelImage);
+    CGContextTranslateCTM(context, 0.0, _colorWheelImage.size.height);
+    CGContextScaleCTM(context, 1.0, -1.0); // flip vertical
+    CGContextDrawImage(context, rect, _colorWheelImage.CGImage);
     CGContextSetAlpha(context, 1-_brightnessView.brightness);
-    CGContextDrawImage(context, rect, _brightnessImage);
+    CGContextDrawImage(context, rect, _brightnessImage.CGImage);
 }
 
 #pragma mark -

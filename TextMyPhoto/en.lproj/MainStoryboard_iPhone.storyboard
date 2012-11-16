@@ -136,14 +136,24 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="whiteLarge" id="2c7-DA-iZ2" userLabel="Spinner">
-                                <rect key="frame" x="141" y="190" width="37" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="tapToAddCaptionHelper.png" id="7cd-FD-oTS" userLabel="Helper to add caption view">
-                                <rect key="frame" x="40" y="189" width="240" height="38"/>
+                                <rect key="frame" x="40" y="167" width="240" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <view contentMode="scaleToFill" id="Ezr-O4-Kg5" userLabel="LoadingBackgroundView" customClass="LoadingView">
+                                <rect key="frame" x="74" y="137" width="173" height="98"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" animating="YES" style="whiteLarge" id="5jy-H0-Fbh" userLabel="spinner">
+                                        <rect key="frame" x="68" y="30" width="37" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="spinner" destination="5jy-H0-Fbh" id="SFb-Qf-kZn"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -157,10 +167,10 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="labelContainerView" destination="P6S-F7-iX9" id="YuP-Fm-LYg"/>
+                        <outlet property="loadingView" destination="Ezr-O4-Kg5" id="zDb-bd-LYa"/>
                         <outlet property="originalImage" destination="DrZ-a0-drU" id="BhT-sQ-tKy"/>
                         <outlet property="scrollView" destination="eZZ-XU-nPf" id="fYf-uV-Pfl"/>
                         <outlet property="shareButton" destination="N7K-jg-Wph" id="60M-Yn-3vI"/>
-                        <outlet property="spinner" destination="2c7-DA-iZ2" id="gPG-wu-O5o"/>
                         <outlet property="tapToAddLabelNotificationImage" destination="7cd-FD-oTS" id="yO3-Zx-Vmy"/>
                         <outlet property="toolbar" destination="C1B-U6-582" id="1Op-CU-jYR"/>
                     </connections>

@@ -28,7 +28,9 @@
     
     CGImageRef imageRef = CGImageCreateWithImageInRect([self CGImage], CGRectMake(newOriginX*self.scale, newOriginY*self.scale, width*self.scale, height*self.scale));
     
-    return [UIImage imageWithCGImage:imageRef scale:self.scale orientation:self.imageOrientation];
+    UIImage *result = [UIImage imageWithCGImage:imageRef scale:self.scale orientation:self.imageOrientation];
+    CGImageRelease(imageRef);
+    return result;
 }
 
 +(CGRect)frameForImage:(UIImage*)image inViewAspectFit:(UIView*)imageView
