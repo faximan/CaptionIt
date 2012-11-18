@@ -6,17 +6,31 @@
 //  Copyright (c) 2012 Alexander Faxå. All rights reserved.
 //
 
+#define MY_APP_ID @"6J9L7GH884.Capture-it-.Capture-it-"
+#define NBR_SHARED_PICTURES_UNTIL_RATE_ALERT 5
+#define USES_UNTIL_RATE_ALERT 3
+#define DAYS_UNTIL_RATE_ALERT 2
+
 #import "AppDelegate.h"
 #import "MyNavigationControllerViewController.h"
 #import "LaunchMenuViewController.h"
+#import "Appirater.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Set "Rate my App ID"
+    [Appirater setAppId:MY_APP_ID];
+    
     // Set custom color of toolbars
     [[UIToolbar appearance] setTintColor:[UIColor grayColor]];
     [[UINavigationBar appearance] setTintColor:[UIColor grayColor]];
+   
+    [Appirater appLaunched:YES];
+    [Appirater setSignificantEventsUntilPrompt:NBR_SHARED_PICTURES_UNTIL_RATE_ALERT];
+    [Appirater setDaysUntilPrompt:DAYS_UNTIL_RATE_ALERT];
+    [Appirater setUsesUntilPrompt:USES_UNTIL_RATE_ALERT];
     return YES;
 }
 							
@@ -51,6 +65,7 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [Appirater appEnteredForeground:YES];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

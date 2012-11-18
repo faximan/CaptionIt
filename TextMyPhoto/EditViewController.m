@@ -13,6 +13,7 @@
 #import "StylePickerCollectionViewController.h"
 #import "UIImage+Utilities.h"
 #import "LoadingView.h"
+#import "Appirater.h"
 
 @interface EditViewController ()
 
@@ -126,10 +127,15 @@
         UIActivityViewController* activityViewController =
         [[UIActivityViewController alloc] initWithActivityItems:dataToShare
                                           applicationActivities:nil];
+        
+        // Set app rater significant when user completes sharing
+        [activityViewController setCompletionHandler:^(NSString *activityType, BOOL completed) {
+            [Appirater userDidSignificantEvent:YES];
+        }];
         [self presentViewController:activityViewController animated:YES completion:nil];
     }
     
-    [self setThumb];
+    [self setThumb];    
 }
 
 #pragma mark -
