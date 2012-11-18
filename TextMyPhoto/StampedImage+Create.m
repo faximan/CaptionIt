@@ -35,13 +35,25 @@
 // Finds the right label in the database and updates it accordingly
 // inserting a new label if there is no match
 -(void)updateLabel:(UITextView *)label
-{    
+{
+    NSAssert(label, nil);
     Label *curLabel = nil; // the label to be updated
     
     // Search for this label to see if it already exists
     for (Label *iLabel in self.labels)
         if (iLabel.nbr == @(label.tag))
             curLabel = iLabel;
+    
+    // Delete label if there is no text
+    if ([label.text isEqualToString:@""])
+    {
+        if (curLabel)
+        {
+            [self removeLabelsObject:curLabel];
+            [self.managedObjectContext deleteObject:curLabel];
+        }
+        return;
+    }
     
     if (!curLabel) // create new label
         curLabel = [NSEntityDescription insertNewObjectForEntityForName:@"Label" inManagedObjectContext:[self managedObjectContext]];

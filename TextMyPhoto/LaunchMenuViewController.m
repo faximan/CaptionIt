@@ -72,9 +72,19 @@ static const CGFloat BOARDER_WIDTH = 3.5f;
 }
 
 -(IBAction)previousButtonPressed:(UIButton *)sender
-{
+{    
     if (self.previousDatabase.documentState != UIDocumentStateNormal)
     {
+        if (self.previousDatabase.documentState == UIDocumentStateClosed)
+            NSLog(@"Closed");
+        if (self.previousDatabase.documentState == UIDocumentStateEditingDisabled)
+            NSLog(@"Editing disabled");
+        if (self.previousDatabase.documentState == UIDocumentStateInConflict)
+            NSLog(@"In conflict");
+        if (self.previousDatabase.documentState == UIDocumentStateSavingError)
+            NSLog(@"Saving error");
+        
+        
         // Error when opening database
         UIAlertView *alert = [[UIAlertView alloc]
                               initWithTitle:@"Error"
@@ -220,12 +230,6 @@ static const CGFloat BOARDER_WIDTH = 3.5f;
 -(NSUInteger)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskPortrait;
-}
-
--(void)didReceiveMemoryWarning
-{
-    [self saveDatabase];    
-    [super didReceiveMemoryWarning];
 }
 
 #pragma mark-

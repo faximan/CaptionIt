@@ -14,6 +14,7 @@
 
 -(IBAction)cancelButtonPressed:(id)sender
 {
+    self.fetchedResultsController.delegate = nil;
     [self.delegate didCancelGenericCollectionViewController:self];
 }
 
@@ -52,6 +53,7 @@
 // Override to do something else than dissmissing
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    self.fetchedResultsController.delegate = nil;
     [self.delegate didCancelGenericCollectionViewController:self];
 }
 

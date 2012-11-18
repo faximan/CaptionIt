@@ -36,6 +36,7 @@
         // Add pan gesture recognizer
         UIGestureRecognizer *panGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didMoveCustomLabel:)];
         [self addGestureRecognizer:panGR];
+        self.returnKeyType = UIReturnKeyDone;
     }
     return self;
 }

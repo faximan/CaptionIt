@@ -156,7 +156,6 @@
         newLabel.delegate = self;
         
         [self.labelContainerView addSubview:newLabel];
-        newLabel.returnKeyType = UIReturnKeyDone;
         [newLabel becomeFirstResponder];
     }
 }
@@ -385,6 +384,8 @@
     self.labelContainerView.shouldFade = [self.stampedImage.shouldFade boolValue];
     self.labelContainerView.delegate = self;
     
+    NSLog(@"Nbr of labels: %d", [self.stampedImage.labels count]);
+    
     // Add all labels
     for (Label *label in self.stampedImage.labels)
     {
@@ -396,15 +397,16 @@
                 andSize:[label.fontSize floatValue]
                 andTag:[label.nbr integerValue]];
             newLabel.delegate = self;
-            newLabel.returnKeyType = UIReturnKeyDone;
             [self.labelContainerView addSubview:newLabel];
         }
     }
     
     [self alignViews];
-    
-    [self showHelperToAddCaption];
     [self.labelContainerView setNeedsDisplay];
+    
+    // Show helper iff no label has been added
+    if (![self.stampedImage.labels count])
+        [self showHelperToAddCaption];
     
     // Generate thumb if there is none since before
     if (!self.stampedImage.thumbImage)

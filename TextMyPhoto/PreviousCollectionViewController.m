@@ -138,6 +138,8 @@ static const CGFloat CELL_WIDTH = 310.0f;
         // already open and ready to use
         [self setupFetchedResultsController];
     }
+    else
+        NSLog(@"document state in useDocument is not normal");
 }
 
 - (void)setPreviousDatabase:(UIManagedDocument *)previousDatabase
