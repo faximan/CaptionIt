@@ -569,11 +569,14 @@
     self.scrollView.scrollIndicatorInsets = contentInsets;
     
     // If active text field is hidden by keyboard, scroll it so it's visible
-    // Your application might not need or want this behavior.
     CGRect aRect = self.view.frame;
     aRect.size.height -= kbSize.height;
     
-    CGPoint convertedPointToView = [activeField.superview convertPoint:activeField.frame.origin toView:self.view];
+    CGPoint currentPoint = activeField.frame.origin;
+    NSString *heightCheckString = @"W";
+    currentPoint.y += [heightCheckString sizeWithFont:[UIFont fontWithName:self.stampedImage.font size:CUSTOM_LABEL_DEFAULT_FONT_SIZE]].height;
+    
+    CGPoint convertedPointToView = [activeField.superview convertPoint:currentPoint toView:self.view];
     convertedPointToView.y += activeField.frame.size.height;
 
     if (!CGRectContainsPoint(aRect, convertedPointToView))
