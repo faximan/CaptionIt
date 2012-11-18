@@ -30,6 +30,8 @@
         self.layer.borderColor = [[UIColor redColor] CGColor];
         self.layer.borderWidth = 1.0f;
         
+        [self addDropShadow];
+        
         // Remove useless padding.
         self.contentInset = UIEdgeInsetsMake(-8,-8,-8,-8);
         
@@ -39,6 +41,15 @@
         self.returnKeyType = UIReturnKeyDone;
     }
     return self;
+}
+
+-(void)addDropShadow
+{
+    // Add drop shadow
+    self.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+    self.layer.shadowColor = [[UIColor blackColor] CGColor];
+    self.layer.shadowRadius = 1.0f;
+    self.layer.shadowOpacity = 0.75f;
 }
 
 -(void)setFont:(UIFont *)font
