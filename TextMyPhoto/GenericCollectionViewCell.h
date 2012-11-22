@@ -15,6 +15,7 @@
 @property (nonatomic, weak) IBOutlet UIView* highlightFade;
 @property (nonatomic, weak) IBOutlet UILabel* label;
 @property (nonatomic, weak) IBOutlet UIButton* deleteButton;
+@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *spinner;
 
 // Returns the height of a cell in the table view
 +(CGFloat)cellHeight;

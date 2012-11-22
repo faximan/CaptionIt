@@ -8,11 +8,13 @@
 
 #import "StampedImage+Create.h"
 #import "Label.h"
+#import "FilterPickerCollectionViewController.h"
 
 #define DEFAULT_FONT @"verdana"
 #define DEFAULT_COLOR [UIColor whiteColor]
 #define DEFAULT_INVERTED NO
 #define DEFAULT_FADE NO
+#define DEFAULT_FILTER FILTER_NORMAL
 
 @implementation StampedImage (Create)
 
@@ -28,6 +30,7 @@
     stampedImage.inverted = DEFAULT_INVERTED;
     stampedImage.shouldFade = DEFAULT_FADE;
     stampedImage.originalImageURL = [originalImageURL absoluteString];
+    stampedImage.filterType = DEFAULT_FILTER;
     
     return stampedImage;
 }
@@ -105,6 +108,17 @@
         [self willChangeValueForKey:@"inverted"];
         [self setPrimitiveValue:inverted forKey:@"inverted"];
         [self didChangeValueForKey:@"inverted"];
+        self.dateModified = [NSDate date];
+    }
+}
+
+-(void)setFilterType:(NSNumber *)filterType
+{
+    if (filterType != self.filterType)
+    {
+        [self willChangeValueForKey:@"filterType"];
+        [self setPrimitiveValue:filterType forKey:@"filterType"];
+        [self didChangeValueForKey:@"filterType"];
         self.dateModified = [NSDate date];
     }
 }

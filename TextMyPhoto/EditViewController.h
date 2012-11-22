@@ -12,11 +12,12 @@
 #import "StampedImage+Create.h"
 #import "Label.h"
 #import "StylePickerCollectionViewController.h"
+#import "FilterPickerCollectionViewController.h"
 #import "MNColorPicker.h"
 #import "CustomLabel.h"
 #import "InverseableView.h"
 
-@interface EditViewController : UIViewController <CustomLabelDelegate , MNColorPickerDelegate, StylePickerCollectionViewControllerDelegate, InversableViewDelegate>
+@interface EditViewController : UIViewController <CustomLabelDelegate , MNColorPickerDelegate, StylePickerCollectionViewControllerDelegate, FilterPickerCollectionViewControllerDelegate, InversableViewDelegate>
 
 @property (nonatomic, strong) StampedImage *stampedImage;
 @property (nonatomic, strong) UIManagedDocument* database;

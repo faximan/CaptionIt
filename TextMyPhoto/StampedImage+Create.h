@@ -8,6 +8,9 @@
 
 #import "StampedImage.h"
 
+#define MAX_ORIGINAL_IMAGE_WIDTH_FOR_RENDERING 800
+#define MAX_ORIGINAL_IMAGE_HEIGHT_FOR_RENDERING 800
+
 @interface StampedImage (Create)
 
 +(StampedImage *)createStampedImageWithImageURL:(NSURL *)originalImageURL

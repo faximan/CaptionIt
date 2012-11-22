@@ -2,15 +2,12 @@
 //  StampedImage.h
 //  Caption it!
 //
-//  Created by Alexander Faxå on 2012-11-12.
+//  Created by Alexander Faxå on 2012-11-22.
 //  Copyright (c) 2012 Alexander Faxå. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-
-#define MAX_ORIGINAL_IMAGE_WIDTH_FOR_RENDERING 800
-#define MAX_ORIGINAL_IMAGE_HEIGHT_FOR_RENDERING 800
 
 @class Label;
 
@@ -21,8 +18,9 @@
 @property (nonatomic, retain) NSString * font;
 @property (nonatomic, retain) NSNumber * inverted;
 @property (nonatomic, retain) NSString * originalImageURL;
-@property (nonatomic, retain) NSData * thumbImage;
 @property (nonatomic, retain) NSNumber * shouldFade;
+@property (nonatomic, retain) NSData * thumbImage;
+@property (nonatomic, retain) NSNumber * filterType;
 @property (nonatomic, retain) NSSet *labels;
 @end
 

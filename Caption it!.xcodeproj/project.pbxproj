@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DE0066B0165DCAB600470F88 /* FilterPickerCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0066AF165DCAB600470F88 /* FilterPickerCollectionViewController.m */; };
+		DE0066B4165DD18400470F88 /* StampedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0066B3165DD18400470F88 /* StampedImage.m */; };
+		DE0066CC165DE04200470F88 /* BezierCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0066B8165DE04200470F88 /* BezierCurve.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DE0066CD165DE04200470F88 /* CatmullRomSpline.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0066BA165DE04200470F88 /* CatmullRomSpline.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DE0066CE165DE04200470F88 /* CubicBezierCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0066BD165DE04200470F88 /* CubicBezierCurve.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DE0066CF165DE04200470F88 /* LinearBezierCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0066BF165DE04200470F88 /* LinearBezierCurve.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DE0066D0165DE04200470F88 /* NSArray_PointArray.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0066C1165DE04200470F88 /* NSArray_PointArray.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DE0066D1165DE04200470F88 /* QuadraticBezierCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0066C3165DE04200470F88 /* QuadraticBezierCurve.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DE0066D2165DE04200470F88 /* Spline.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0066C5165DE04200470F88 /* Spline.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DE0066D3165DE04200470F88 /* ImageFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0066C7165DE04200470F88 /* ImageFilter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DE0066E4165E21B800470F88 /* FILTER_NORMAL.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0066E0165E21B800470F88 /* FILTER_NORMAL.png */; };
+		DE0066E5165E21B800470F88 /* FILTER_BW.JPG in Resources */ = {isa = PBXBuildFile; fileRef = DE0066E1165E21B800470F88 /* FILTER_BW.JPG */; };
+		DE0066E6165E21B800470F88 /* FILTER_SEPIA.JPG in Resources */ = {isa = PBXBuildFile; fileRef = DE0066E2165E21B800470F88 /* FILTER_SEPIA.JPG */; };
+		DE0066E7165E21B800470F88 /* FILTER_CONTRAST.JPG in Resources */ = {isa = PBXBuildFile; fileRef = DE0066E3165E21B800470F88 /* FILTER_CONTRAST.JPG */; };
 		DE1E26D016562065007D290D /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1E26CF16562065007D290D /* LoadingView.m */; };
 		DE3130D9164014990095B75A /* orange_fabric.png in Resources */ = {isa = PBXBuildFile; fileRef = DE3130D8164014990095B75A /* orange_fabric.png */; };
 		DE3130DB164017740095B75A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DE3130DA164017740095B75A /* Default.png */; };
@@ -42,7 +56,6 @@
 		DEA33C92162B92E600DBFB35 /* UIColor+ColorSpaces.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA33C8B162B92E600DBFB35 /* UIColor+ColorSpaces.m */; };
 		DEA33C94162B93EC00DBFB35 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA33C93162B93EC00DBFB35 /* CoreData.framework */; };
 		DEA33CA4162B9EE900DBFB35 /* StampedImage+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA33CA3162B9EE900DBFB35 /* StampedImage+Create.m */; };
-		DEA3B2A21650DBA00067D798 /* StampedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA3B2A11650DBA00067D798 /* StampedImage.m */; };
 		DEA991E116295AF000F0F07E /* UIImage+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA991E016295AF000F0F07E /* UIImage+Utilities.m */; };
 		DED06307161EBCB000FD976D /* LaunchMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DED06306161EBCB000FD976D /* LaunchMenuViewController.m */; };
 		DEED1B9315EFA2A6004E33F3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEED1B9215EFA2A6004E33F3 /* UIKit.framework */; };
@@ -59,6 +72,31 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DE0066AE165DCAB600470F88 /* FilterPickerCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterPickerCollectionViewController.h; path = TextMyPhoto/FilterPickerCollectionViewController.h; sourceTree = "<group>"; };
+		DE0066AF165DCAB600470F88 /* FilterPickerCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterPickerCollectionViewController.m; path = TextMyPhoto/FilterPickerCollectionViewController.m; sourceTree = "<group>"; };
+		DE0066B2165DD18400470F88 /* StampedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StampedImage.h; path = TextMyPhoto/StampedImage.h; sourceTree = "<group>"; };
+		DE0066B3165DD18400470F88 /* StampedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StampedImage.m; path = TextMyPhoto/StampedImage.m; sourceTree = "<group>"; };
+		DE0066B7165DE04200470F88 /* BezierCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BezierCurve.h; sourceTree = "<group>"; };
+		DE0066B8165DE04200470F88 /* BezierCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BezierCurve.m; sourceTree = "<group>"; };
+		DE0066B9165DE04200470F88 /* CatmullRomSpline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatmullRomSpline.h; sourceTree = "<group>"; };
+		DE0066BA165DE04200470F88 /* CatmullRomSpline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatmullRomSpline.m; sourceTree = "<group>"; };
+		DE0066BB165DE04200470F88 /* CGPointArithmetic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGPointArithmetic.h; sourceTree = "<group>"; };
+		DE0066BC165DE04200470F88 /* CubicBezierCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CubicBezierCurve.h; sourceTree = "<group>"; };
+		DE0066BD165DE04200470F88 /* CubicBezierCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CubicBezierCurve.m; sourceTree = "<group>"; };
+		DE0066BE165DE04200470F88 /* LinearBezierCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinearBezierCurve.h; sourceTree = "<group>"; };
+		DE0066BF165DE04200470F88 /* LinearBezierCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinearBezierCurve.m; sourceTree = "<group>"; };
+		DE0066C0165DE04200470F88 /* NSArray_PointArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSArray_PointArray.h; sourceTree = "<group>"; };
+		DE0066C1165DE04200470F88 /* NSArray_PointArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArray_PointArray.m; sourceTree = "<group>"; };
+		DE0066C2165DE04200470F88 /* QuadraticBezierCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuadraticBezierCurve.h; sourceTree = "<group>"; };
+		DE0066C3165DE04200470F88 /* QuadraticBezierCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuadraticBezierCurve.m; sourceTree = "<group>"; };
+		DE0066C4165DE04200470F88 /* Spline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spline.h; sourceTree = "<group>"; };
+		DE0066C5165DE04200470F88 /* Spline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spline.m; sourceTree = "<group>"; };
+		DE0066C6165DE04200470F88 /* ImageFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageFilter.h; sourceTree = "<group>"; };
+		DE0066C7165DE04200470F88 /* ImageFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageFilter.m; sourceTree = "<group>"; };
+		DE0066E0165E21B800470F88 /* FILTER_NORMAL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FILTER_NORMAL.png; sourceTree = "<group>"; };
+		DE0066E1165E21B800470F88 /* FILTER_BW.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = FILTER_BW.JPG; sourceTree = "<group>"; };
+		DE0066E2165E21B800470F88 /* FILTER_SEPIA.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = FILTER_SEPIA.JPG; sourceTree = "<group>"; };
+		DE0066E3165E21B800470F88 /* FILTER_CONTRAST.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = FILTER_CONTRAST.JPG; sourceTree = "<group>"; };
 		DE1E26CE16562065007D290D /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
 		DE1E26CF16562065007D290D /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
 		DE3130D8164014990095B75A /* orange_fabric.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = orange_fabric.png; path = TextMyPhoto/Resources/orange_fabric.png; sourceTree = "<group>"; };
@@ -132,8 +170,6 @@
 		DEA33C93162B93EC00DBFB35 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		DEA33CA2162B9EE900DBFB35 /* StampedImage+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "StampedImage+Create.h"; path = "TextMyPhoto/StampedImage+Create.h"; sourceTree = "<group>"; };
 		DEA33CA3162B9EE900DBFB35 /* StampedImage+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "StampedImage+Create.m"; path = "TextMyPhoto/StampedImage+Create.m"; sourceTree = "<group>"; };
-		DEA3B2A01650DBA00067D798 /* StampedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StampedImage.h; path = TextMyPhoto/StampedImage.h; sourceTree = "<group>"; };
-		DEA3B2A11650DBA00067D798 /* StampedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StampedImage.m; path = TextMyPhoto/StampedImage.m; sourceTree = "<group>"; };
 		DEA991DF16295AEF00F0F07E /* UIImage+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utilities.h"; sourceTree = "<group>"; };
 		DEA991E016295AF000F0F07E /* UIImage+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utilities.m"; sourceTree = "<group>"; };
 		DED06305161EBCB000FD976D /* LaunchMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchMenuViewController.h; sourceTree = "<group>"; };
@@ -177,6 +213,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DE0066B5165DE04200470F88 /* imageFilters */ = {
+			isa = PBXGroup;
+			children = (
+				DE0066B6165DE04200470F88 /* Curve */,
+				DE0066C6165DE04200470F88 /* ImageFilter.h */,
+				DE0066C7165DE04200470F88 /* ImageFilter.m */,
+			);
+			name = imageFilters;
+			path = TextMyPhoto/imageFilters;
+			sourceTree = "<group>";
+		};
+		DE0066B6165DE04200470F88 /* Curve */ = {
+			isa = PBXGroup;
+			children = (
+				DE0066B7165DE04200470F88 /* BezierCurve.h */,
+				DE0066B8165DE04200470F88 /* BezierCurve.m */,
+				DE0066B9165DE04200470F88 /* CatmullRomSpline.h */,
+				DE0066BA165DE04200470F88 /* CatmullRomSpline.m */,
+				DE0066BB165DE04200470F88 /* CGPointArithmetic.h */,
+				DE0066BC165DE04200470F88 /* CubicBezierCurve.h */,
+				DE0066BD165DE04200470F88 /* CubicBezierCurve.m */,
+				DE0066BE165DE04200470F88 /* LinearBezierCurve.h */,
+				DE0066BF165DE04200470F88 /* LinearBezierCurve.m */,
+				DE0066C0165DE04200470F88 /* NSArray_PointArray.h */,
+				DE0066C1165DE04200470F88 /* NSArray_PointArray.m */,
+				DE0066C2165DE04200470F88 /* QuadraticBezierCurve.h */,
+				DE0066C3165DE04200470F88 /* QuadraticBezierCurve.m */,
+				DE0066C4165DE04200470F88 /* Spline.h */,
+				DE0066C5165DE04200470F88 /* Spline.m */,
+			);
+			path = Curve;
+			sourceTree = "<group>";
+		};
+		DE0066DF165E218F00470F88 /* FilterImages */ = {
+			isa = PBXGroup;
+			children = (
+				DE0066E0165E21B800470F88 /* FILTER_NORMAL.png */,
+				DE0066E1165E21B800470F88 /* FILTER_BW.JPG */,
+				DE0066E2165E21B800470F88 /* FILTER_SEPIA.JPG */,
+				DE0066E3165E21B800470F88 /* FILTER_CONTRAST.JPG */,
+			);
+			name = FilterImages;
+			sourceTree = "<group>";
+		};
 		DE3130E116401CE60095B75A /* CollectionViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -190,6 +270,8 @@
 				DE3130E91640207B0095B75A /* PreviousCollectionViewController.m */,
 				DE3130ED1640D29C0095B75A /* StylePickerCollectionViewController.h */,
 				DE3130EE1640D29C0095B75A /* StylePickerCollectionViewController.m */,
+				DE0066AE165DCAB600470F88 /* FilterPickerCollectionViewController.h */,
+				DE0066AF165DCAB600470F88 /* FilterPickerCollectionViewController.m */,
 			);
 			name = CollectionViewController;
 			sourceTree = "<group>";
@@ -234,9 +316,9 @@
 		DEA33C74162B921400DBFB35 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				DEA3B2A01650DBA00067D798 /* StampedImage.h */,
-				DEA3B2A11650DBA00067D798 /* StampedImage.m */,
 				DEA33C75162B926600DBFB35 /* TextMyPhoto.xcdatamodeld */,
+				DE0066B2165DD18400470F88 /* StampedImage.h */,
+				DE0066B3165DD18400470F88 /* StampedImage.m */,
 				DEF9B1051635AB61006EBD7F /* Label.h */,
 				DEF9B1061635AB61006EBD7F /* Label.m */,
 				DEA33CA2162B9EE900DBFB35 /* StampedImage+Create.h */,
@@ -248,6 +330,7 @@
 		DED062FF161EB85100FD976D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DE0066DF165E218F00470F88 /* FilterImages */,
 				DE604E651653500800F8952B /* tapToAddCaptionHelper.png */,
 				DE3130EB1640C0B80095B75A /* delete.png */,
 				DE3130D8164014990095B75A /* orange_fabric.png */,
@@ -268,6 +351,7 @@
 				DE4D995B1626B5AC00936EBE /* MNColorPicker */,
 				DE3130E116401CE60095B75A /* CollectionViewController */,
 				DEA33C74162B921400DBFB35 /* Database */,
+				DE0066B5165DE04200470F88 /* imageFilters */,
 				DEED1B9815EFA2A6004E33F3 /* Stamp It! */,
 				DEED1B9115EFA2A6004E33F3 /* Frameworks */,
 				DEED1B8F15EFA2A6004E33F3 /* Products */,
@@ -428,6 +512,10 @@
 				DE66A5D41658AEB700106E1A /* .gitignore in Resources */,
 				DE66A5D61658AEB700106E1A /* AppiraterLocalizable.strings in Resources */,
 				DE66A5D71658AEB700106E1A /* README.md in Resources */,
+				DE0066E4165E21B800470F88 /* FILTER_NORMAL.png in Resources */,
+				DE0066E5165E21B800470F88 /* FILTER_BW.JPG in Resources */,
+				DE0066E6165E21B800470F88 /* FILTER_SEPIA.JPG in Resources */,
+				DE0066E7165E21B800470F88 /* FILTER_CONTRAST.JPG in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,9 +549,18 @@
 				DE3130E716401F080095B75A /* GenericCollectionViewCell.m in Sources */,
 				DE3130EA1640207B0095B75A /* PreviousCollectionViewController.m in Sources */,
 				DE3130EF1640D29C0095B75A /* StylePickerCollectionViewController.m in Sources */,
-				DEA3B2A21650DBA00067D798 /* StampedImage.m in Sources */,
 				DE1E26D016562065007D290D /* LoadingView.m in Sources */,
 				DE66A5D51658AEB700106E1A /* Appirater.m in Sources */,
+				DE0066B0165DCAB600470F88 /* FilterPickerCollectionViewController.m in Sources */,
+				DE0066B4165DD18400470F88 /* StampedImage.m in Sources */,
+				DE0066CC165DE04200470F88 /* BezierCurve.m in Sources */,
+				DE0066CD165DE04200470F88 /* CatmullRomSpline.m in Sources */,
+				DE0066CE165DE04200470F88 /* CubicBezierCurve.m in Sources */,
+				DE0066CF165DE04200470F88 /* LinearBezierCurve.m in Sources */,
+				DE0066D0165DE04200470F88 /* NSArray_PointArray.m in Sources */,
+				DE0066D1165DE04200470F88 /* QuadraticBezierCurve.m in Sources */,
+				DE0066D2165DE04200470F88 /* Spline.m in Sources */,
+				DE0066D3165DE04200470F88 /* ImageFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

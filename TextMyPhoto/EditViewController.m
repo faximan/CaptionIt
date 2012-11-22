@@ -12,6 +12,7 @@
 #import "PreviousCollectionViewController.h"
 #import "StylePickerCollectionViewController.h"
 #import "UIImage+Utilities.h"
+#import "ImageFilter.h"
 #import "LoadingView.h"
 #import "Appirater.h"
 
@@ -185,13 +186,14 @@
 }
 
 // Inverse the text using a mask
-- (IBAction)inverseText:(id)sender
+// Inverse text is not in use right now!
+/*- (IBAction)inverseText:(id)sender
 {
     // Invert text and picture
     needsNewThumbRendering = YES;
     self.labelContainerView.inverseMode = !self.labelContainerView.inverseMode;
     self.stampedImage.inverted = [NSNumber numberWithBool:self.labelContainerView.inverseMode];
-}
+}*/
 
 - (IBAction)toggleFade:(id)sender
 {
@@ -351,23 +353,25 @@
     
     // Scale down image if it is too big (on background thread)
     // and set up the view when finished
-    CGFloat widthScale = self.imageToStamp.size.width / MAX_ORIGINAL_IMAGE_WIDTH_FOR_RENDERING;
-    CGFloat heightScale = self.imageToStamp.size.height / MAX_ORIGINAL_IMAGE_HEIGHT_FOR_RENDERING;
-    if (widthScale > 1.0f || heightScale > 1.0f)
-    {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
+        CGFloat widthScale = self.imageToStamp.size.width / MAX_ORIGINAL_IMAGE_WIDTH_FOR_RENDERING;
+        CGFloat heightScale = self.imageToStamp.size.height / MAX_ORIGINAL_IMAGE_HEIGHT_FOR_RENDERING;
+        if (widthScale > 1.0f || heightScale > 1.0f)
+        {
             if (widthScale > heightScale)
             {
                 self.imageToStamp = [UIImage imageWithImage:self.imageToStamp scaledToSize:CGSizeMake(MAX_ORIGINAL_IMAGE_WIDTH_FOR_RENDERING, self.imageToStamp.size.height / widthScale)];
             }else{
                 self.imageToStamp = [UIImage imageWithImage:self.imageToStamp scaledToSize:CGSizeMake(self.imageToStamp.size.width / heightScale, MAX_ORIGINAL_IMAGE_HEIGHT_FOR_RENDERING)];
             }
-             dispatch_async(dispatch_get_main_queue(), ^{
-                 [self setUpViewWithStampedImage];});
+        }
+        UIImage *filteredImage = [self createFiltredImageWithFilter:self.stampedImage.filterType];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.originalImage.image = filteredImage;
+            [self setUpViewWithStampedImage];
         });
-    }
-    else
-        [self setUpViewWithStampedImage];
+    });
 }
 
 -(void)setUpViewWithStampedImage
@@ -379,12 +383,9 @@
     [self setToolbarVisible:YES];
     self.navigationItem.rightBarButtonItem = self.shareButton;
     
-    self.originalImage.image = self.imageToStamp;
     self.labelContainerView.inverseMode = [self.stampedImage.inverted boolValue];
     self.labelContainerView.shouldFade = [self.stampedImage.shouldFade boolValue];
     self.labelContainerView.delegate = self;
-    
-    NSLog(@"Nbr of labels: %d", [self.stampedImage.labels count]);
     
     // Add all labels
     for (Label *label in self.stampedImage.labels)
@@ -408,9 +409,9 @@
     if (![self.stampedImage.labels count])
         [self showHelperToAddCaption];
     
-    // Generate thumb if there is none since before
-    if (!self.stampedImage.thumbImage)
-        [self setThumb];
+    // Generate thumb
+    needsNewThumbRendering = YES;
+    [self setThumb];
 }
 
 -(void)showHelperToAddCaption
@@ -545,6 +546,14 @@
         stylePicker.curImage = [[UIImage modifyImage:self.imageToStamp toFillRectWithWidth:STYLE_PICKER_CELL_IMAGE_WIDTH andHeight:STYLE_PICKER_CELL_IMAGE_HEIGHT] getCenterOfImageWithWidth:STYLE_PICKER_CELL_IMAGE_WIDTH andHeight:STYLE_PICKER_CELL_IMAGE_HEIGHT];;
         stylePicker.curColor = self.stampedImage.color;
     }
+    else if ([[segue identifier] isEqualToString:@"pick filter"])
+    {
+        NSAssert(self.imageToStamp, nil);
+        
+        UINavigationController *nc = (UINavigationController *)[segue destinationViewController];
+        FilterPickerCollectionViewController *filterPicker = nc.viewControllers[0];
+        filterPicker.delegate = self;
+    }
 }
 
 // Call this method somewhere in your view controller setup code.
@@ -595,6 +604,54 @@
 }
 
 #pragma mark -
+#pragma mark FilterPickerCollectionViewControllerDelegate
+- (void)filterPickerCollectionViewController:(FilterPickerCollectionViewController *)filterPickerCollectionViewController didFinishWithFilter:(filterTypes)filter
+{
+    // Only do something if a new filter was applied
+    if (filter != [self.stampedImage.filterType integerValue])
+    {
+        // Apply filter in new thread
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            UIImage *filteredImage = [self createFiltredImageWithFilter:[NSNumber numberWithInteger:filter]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.originalImage.image = filteredImage;
+                [self.originalImage setNeedsDisplay];
+                needsNewThumbRendering = YES;
+                self.stampedImage.filterType = @(filter);
+                [self dismissViewControllerAnimated:YES completion:nil];
+            });
+        });
+    }
+    else
+        [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(UIImage *)createFiltredImageWithFilter:(NSNumber *)filter
+{
+    NSAssert(self.imageToStamp, nil);
+    UIImage *filterImage = nil;
+    
+    switch ([filter integerValue])
+    {
+        case FILTER_NORMAL:
+            filterImage = self.imageToStamp; // reset
+            break;
+        case FILTER_BW:
+            filterImage = [self.imageToStamp greyscale];
+            break;
+        case FILTER_SEPIA:
+            filterImage = [self.imageToStamp sepia];
+            break;
+        case FILTER_CONTRAST:
+            filterImage = [self.imageToStamp contrast:1.7];
+            break;
+        default:
+            NSLog(@"Invalid filter picked");
+    }
+    return filterImage;
+}
+
+#pragma mark -
 #pragma mark StylePickerCollectionViewControllerDelegate
 
 -(void)stylePickerCollectionViewController:(StylePickerCollectionViewController *)stylePickerCollectionViewController didFinishWithFont:(NSString *)font
@@ -609,6 +666,9 @@
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+#pragma mark -
+#pragma mark GenericCollectionViewControllerDelegate
 
 -(void)didCancelGenericCollectionViewController:(GenericCollectionViewController *)genericCollectionViewController
 {

@@ -30,7 +30,7 @@
         self.layer.borderColor = [[UIColor redColor] CGColor];
         self.layer.borderWidth = 1.0f;
         
-        [self addDropShadow];
+        //[self addDropShadow];
         
         // Remove useless padding.
         self.contentInset = UIEdgeInsetsMake(-8,-8,-8,-8);

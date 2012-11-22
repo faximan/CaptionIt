@@ -33,4 +33,11 @@ static const CGFloat ANIMATION_LENGTH = 0.2f; // Length of animation when editin
     [self.highlightFade setNeedsDisplay];
 }
 
+-(void)setSelected:(BOOL)selected
+{
+    [super setSelected:selected];
+    if (selected)
+        [self.spinner startAnimating];
+}
+
 @end

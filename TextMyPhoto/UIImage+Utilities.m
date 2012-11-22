@@ -153,4 +153,47 @@
     return result;
 }
 
+/*
+
++(UIImage *)sepiaImage:(UIImage *)image
+{
+    CGImageRef originalImage = [image CGImage];
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGContextRef bitmapContext = CGBitmapContextCreate(NULL,
+                                                       CGImageGetWidth(originalImage),
+                                                       CGImageGetHeight(originalImage),
+                                                       8,
+                                                       CGImageGetWidth(originalImage)*4,
+                                                       colorSpace,
+                                                       kCGImageAlphaPremultipliedLast);
+    CGColorSpaceRelease(colorSpace);
+    CGContextDrawImage(bitmapContext, CGRectMake(0, 0, CGBitmapContextGetWidth(bitmapContext), CGBitmapContextGetHeight(bitmapContext)), originalImage);
+    Byte *data = CGBitmapContextGetData(bitmapContext);
+    int numComponents = 4;
+    int bytesInContext = CGBitmapContextGetHeight(bitmapContext) * CGBitmapContextGetBytesPerRow(bitmapContext);
+    
+    Byte redIn, greenIn, blueIn;
+    CGFloat redOut, greenOut, blueOut;
+	
+    for (int i = 0; i < bytesInContext; i += numComponents) {
+		
+        redIn = data[i];
+        greenIn = data[i+1];
+        blueIn = data[i+2];
+		
+        redOut = (redIn * .393f) + (greenIn *.769f) + (blueIn * .189f);
+        greenOut = (redIn * .349f) + (greenIn *.686f) + (blueIn * .168f);
+        blueOut = (redIn * .272f) + (greenIn *.534f) + (blueIn * .131f);
+        
+        data[i] = (Byte)(MIN(255.0f, redOut));
+        data[i+1] = (Byte)(MIN(255.0f, greenOut));
+        data[i+2] = (Byte)(MIN(255.0f, blueOut));
+    }
+    
+    CGImageRef outImage = CGBitmapContextCreateImage(bitmapContext);
+    UIImage *uiImage = [UIImage imageWithCGImage:outImage];
+    CGImageRelease(outImage);
+    return uiImage;
+}
+*/
 @end

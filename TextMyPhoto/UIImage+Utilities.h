@@ -31,4 +31,9 @@
 // Save an image to the assert library. Return the URL
 // SYNCHRONUS!
 +(NSURL *)saveImageToAssetLibrary:(UIImage *)image;
+
+/* Filters */
+//Sepia filter
+//+(UIImage *)sepiaImage:(UIImage *)image;
+
 @end
